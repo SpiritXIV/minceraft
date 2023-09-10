@@ -176,6 +176,9 @@ public class ShitItems {
 
     //WEAPONS
     //GUNS
+
+    public static final Item AK47 = registerItem("ak47",
+            new ak47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item DOUBLE_BARREL = registerItem("double_barrel",
             new DoubleBarrelItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item FNP90 = registerItem("fnp_90",
