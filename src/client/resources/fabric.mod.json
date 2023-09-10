@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "shit",
+  "version": "1.0.0",
+
+  "name": "Shit of the Crypt",
+  "description": "This mod is just pure evil, its jsut a lot of goofy suggestions from the Zarsh Community that I agreed to add to the game.",
+  "authors": [
+    "Spirit (mod maker)",
+    "alphaxenopete82 (entity m/t)",
+    "Computer User (item/block m/t)",
+    "McFella (e/i/b m/t)",
+    "Milkyfur (item m/t)"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "mit",
+  "icon": "assets/shit/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.spirit.shit.ShitMod"
+    ],
+    "client": [
+      "com.spirit.shit.ShitClientMod"
+    ],
+    "fabric-datagen": [
+      "com.spirit.shit.ShitModDataGenerator"
+    ]
+  },
+
+  "mixins": [
+    "shit.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "geckolib": ">=4.2.2"
+  },
+
+  "suggests": {
+    "another-mod": "*"
+  }
+}

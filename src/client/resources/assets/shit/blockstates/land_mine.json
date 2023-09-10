@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "shit:block/land_mine_inactive"
+    },
+    "powered=true": {
+      "model": "shit:block/land_mine"
+    }
+  }
+}

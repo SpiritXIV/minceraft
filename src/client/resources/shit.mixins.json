@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.spirit.shit.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ShitMixin"
+  ],
+  "client": [
+    "client.ShitClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

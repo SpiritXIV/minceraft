@@ -1,0 +1,10 @@
+{
+  "name": "Book of the Rooms",
+  "landing_text": "This book houses most of the knowledge of the back rooms, I wrote a fair amount of thies to help anyone who finds thies to survive the Backroom. $(br)From the Levels, Entities, Items, Stories, and more. Some of the stories are from before what they call The Great Shift, where the rooms became blocky and 16-bit, but none of the entities' behavior changed. I got a lot of the intel from this place, and I hope this serves you well dear traveler, and try to get out....If that's even possible. Best of luck",
+  "version": 1,
+  "creative_tab": "backrooms",
+  "pause_game": true,
+  "text_overflow_mode": "resize",
+  "extend": "shit:data/shit/patchouli_books/bookoftherooms/book.json",
+  "allow_extensions": true
+}

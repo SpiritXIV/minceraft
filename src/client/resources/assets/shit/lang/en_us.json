@@ -1,0 +1,9 @@
+{
+  "death.attack.energized_by_peep_low_health": "%1$s didnt't have enough strength to house the surge",
+  "death.attack.energized_by_peep_bomb": "%1$s couldn't house the after surge",
+  "death.attack.energized_by_peep": "%1$s couldn't house the surge",
+  "death.attack.energized_by_peep.player": "%1$s couldn't house the surge by another player?",
+  "death.attack.radiation_poisoned": "%1$s radiated away",
+  "death.attack.stabbed_by_horn_by": "%1$s was stabbed by a very large unicorn horn",
+  "death.attack.smashed_by_giant_lollipop": "%1$s was smashed by a very large lollipop"
+}

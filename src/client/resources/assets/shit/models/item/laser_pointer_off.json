@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "shit:item/laser_pointer_off"
+  }
+}

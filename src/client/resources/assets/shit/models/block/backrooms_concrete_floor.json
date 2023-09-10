@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "shit:block/backrooms_concrete_floor"
+  }
+}
