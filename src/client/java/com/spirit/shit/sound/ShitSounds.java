@@ -34,6 +34,8 @@ public class ShitSounds {
 
     public static final SoundEvent PLASTIC_BOTTLE_HIT = registerSoundEvent("plastic_bottle_hit");
 
+    public static final SoundEvent BULLET_IMPACT = registerSoundEvent("bullet_impact");
+
 
 
     //GUNS

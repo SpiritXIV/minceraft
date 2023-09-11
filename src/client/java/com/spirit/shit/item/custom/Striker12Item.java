@@ -8,7 +8,6 @@ package com.spirit.shit.item.custom;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -22,11 +21,11 @@ import net.minecraft.world.World;
 
 import java.util.function.Predicate;
 
-public class fnp90Item extends RangedWeaponItem implements Vanishable {
+public class Striker12Item extends RangedWeaponItem implements Vanishable {
     public static final int TICKS_PER_SECOND = 20;
     public static final int RANGE = 15;
 
-    public fnp90Item(Settings settings) {
+    public Striker12Item(Settings settings) {
         super(settings);
     }
 
@@ -44,7 +43,7 @@ public class fnp90Item extends RangedWeaponItem implements Vanishable {
                 if (!((double)f < 0.1)) {
                     boolean bl2 = bl && itemStack.isOf(Items.ARROW);
                     if (!world.isClient) {
-                        ((PlayerEntity) user).getItemCooldownManager().set(this, 5);
+                        ((PlayerEntity) user).getItemCooldownManager().set(this, 1);
                         ArrowItem arrowItem = (ArrowItem) (itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
                         PersistentProjectileEntity PersistentProjectileEntity = arrowItem.createArrow(world, itemStack, playerEntity);
                         PersistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, 10.0F, -1F);
@@ -62,7 +61,7 @@ public class fnp90Item extends RangedWeaponItem implements Vanishable {
                         world.spawnEntity(PersistentProjectileEntity);
                     }
 
-                    world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), ShitSounds.RIFLE_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + 0.5F);
+                    world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), ShitSounds.M16_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + 0.5F);
                     if (!bl2 && !playerEntity.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                         if (itemStack.isEmpty()) {
@@ -75,6 +74,7 @@ public class fnp90Item extends RangedWeaponItem implements Vanishable {
             }
         }
     }
+
 
     public static float getPullProgress(int useTicks) {
         float f = (float)useTicks / 0F;
@@ -91,14 +91,6 @@ public class fnp90Item extends RangedWeaponItem implements Vanishable {
     }
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.BLOCK;
-    }
-
-
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, (e) -> {
-            e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-        });
-        return true;
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

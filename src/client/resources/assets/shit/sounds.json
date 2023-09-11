@@ -403,6 +403,26 @@
     ]
   },
 
+  "bullet_impact": {
+  "replace": true,
+  "sounds": [
+    {
+      "name": "shit:projectile/bullet_impact",
+      "volume": 1
+    },
+    {
+      "name": "shit:projectile/bullet_impact",
+      "volume": 1,
+      "pitch": 1.1
+    },
+    {
+      "name": "shit:projectile/bullet_impact",
+      "volume": 1,
+      "pitch": 0.9
+    }
+  ]
+},
+
   "nothing": {
     "sounds": [
       {

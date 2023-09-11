@@ -185,18 +185,23 @@ public class ShitItems {
             new fnp90Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item FNP90SCOPE = registerItem("fnp_90_scope",
             new fnp90scopeItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+    public static final Item GLOCK17 = registerItem("glock_17",
+            new Glock17Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item M16 = registerItem("m16",
             new m16Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+    public static final Item M1_GARAND = registerItem("m1_garand",
+            new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item REVOLVER = registerItem("revolver",
             new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item GOLDEN_REVOLVER = registerItem("revolver_golden",
             new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item SAWED_OFF = registerItem("sawed_off",
             new SawedOfflItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+    public static final Item STRIKER_12 = registerItem("striker_12",
+            new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
 
-
-    public static final Item RIFLE_BULLET = registerItem("rifle_bullet",
-            new ArrowItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+    public static final Item BULLET = registerItem("bullet",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
 
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,

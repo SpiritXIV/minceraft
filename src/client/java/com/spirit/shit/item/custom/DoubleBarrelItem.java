@@ -5,6 +5,7 @@
 
 package com.spirit.shit.item.custom;
 
+import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -35,22 +36,17 @@ public class DoubleBarrelItem extends RangedWeaponItem implements Vanishable {
             ItemStack itemStack = playerEntity.getProjectileType(stack);
             if (!itemStack.isEmpty() || bl) {
                 if (itemStack.isEmpty()) {
-                    itemStack = new ItemStack(Items.ARROW);
+                    itemStack = new ItemStack(ShitItems.BANANA);
                 }
 
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
                 float f = 10;
                 if (!((double)f < 0.1)) {
-                    boolean bl2 = bl && itemStack.isOf(Items.ARROW);
+                    boolean bl2 = bl && itemStack.isOf(ShitItems.BANANA);
                     if (!world.isClient) {
                         ((PlayerEntity) user).getItemCooldownManager().set(this, 20);
-                        ArrowItem arrowItem = (ArrowItem) (itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
+                        ArrowItem arrowItem = (ArrowItem) (itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : ShitItems.BANANA);
                         PersistentProjectileEntity PersistentProjectileEntity = arrowItem.createArrow(world, itemStack, playerEntity);
-                        arrowItem.createArrow(world, itemStack, playerEntity);
-                        arrowItem.createArrow(world, itemStack, playerEntity);
-                        arrowItem.createArrow(world, itemStack, playerEntity);
-                        arrowItem.createArrow(world, itemStack, playerEntity);
-                        arrowItem.createArrow(world, itemStack, playerEntity);
                         PersistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, 10.0F, -1F);
                         if (f == 1.0F) {
                             PersistentProjectileEntity.setCritical(true);
