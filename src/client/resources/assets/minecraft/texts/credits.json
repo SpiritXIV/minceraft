@@ -6,9 +6,15 @@
                 "discipline": "The Shit of the Crypt Mod Team",
                 "titles": [
                     {
-                        "title": "Main developer and designer",
+                        "title": "Lead developer and designer",
                         "names": [
                             "SpiritXIV"
+                        ]
+                    },
+                    {
+                        "title": "Java Rewriter/Translater (makes my code understandabe to other programmers)",
+                        "names": [
+                            "King_Zhara"
                         ]
                     },
                     {
@@ -36,13 +42,12 @@
                             "chipselect",
                             "Dhr",
                             "EliteCrow",
-                            "KingEpic",
+                            "Epic",
                             "Er is",
                             "Eru",
                             "Jargedes",
                             "JBird",
                             "K.M.3",
-                            "KingZhara",
                             "Multi",
                             "Nameca",
                             "Ninja_Kity",
