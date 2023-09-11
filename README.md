@@ -1,14 +1,14 @@
 # The shit of the crypt
 ### Version: 1.0.0
-### Current State: BETA
+### Current State: ALPHA
 
 ## Info
 A shitpost mod for a minecraft server.
 
-##TODO
+## TODO
 This is a list of thing that need to be done.
 
-###Entities
+### Entities
 - [ ] 🔴 = Joe biden as a boss,spawns tiny trumps that go "obmana”, comsumes some of them
 - [ ] 🟡 = Fat cat that takes up screen goes "GWAH GWAH"
 
