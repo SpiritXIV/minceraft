@@ -22,4 +22,3 @@ This is a list of thing that need to be done.
 ### Entities
 - [x] = Joe biden as a boss, spawns tiny trumps that go "obmana”, comsumes some of them
 - [ ] = Fat cat that takes up screen goes "GWAH GWAH"
-computer
