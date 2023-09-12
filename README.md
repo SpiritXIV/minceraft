@@ -1,3 +1,4 @@
+<h6 align="center">A Connection of Koil</h6>
 <hr>
 <img  align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title.png?raw=true" alt="minecraft_title.png"/>
 <h6 align="center"> Version: 1.0.0 | ALPHA <p></p> Currently in Development, not for public redistribution.</h6>
