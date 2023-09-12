@@ -33,13 +33,13 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Glock17Item extends RangedWeaponItem implements Vanishable {
-    public static final int TICKS_PER_SECOND = 20;
-    public static final int RANGE = 15;
-
+    private static final String ITEMS_KEY = "Items";
+    public static final int MAGAZINE_SIZE = 17;
+    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.4F, 0.4F, 1.0F);
     public Glock17Item(Settings settings) {
         super(settings);
     }
-
+/* Literally divides by zero -_-
     public static float getPullProgress(int useTicks) {
         float f = (float) useTicks / 0F;
         f = (f * f + f * 0F) / 0F;
@@ -49,7 +49,7 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
 
         return f;
     }
-
+*/
     public int getMaxUseTime(ItemStack stack) {
         return 1000;
     }
@@ -57,12 +57,6 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.BLOCK;
     }
-
-
-    private static final String ITEMS_KEY = "Items";
-    public static final int MAX_STORAGE = 64;
-    private static final int BUNDLE_ITEM_OCCUPANCY = 4;
-    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.4F, 0.4F, 1.0F);
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
@@ -82,11 +76,6 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
             return TypedActionResult.fail(itemStack);
         }
     }
-
-    public static float getAmountFilled(ItemStack stack) {
-        return (float) getBundleOccupancy(stack) / 64.0F;
-    }
-
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType != ClickType.RIGHT) {
             return false;
@@ -98,6 +87,9 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
                     addToBundle(stack, slot.insertStack(removedStack));
                 });
             } else if (itemStack.getItem().canBeNested()) {
+                if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
+                    return false;  // Do nothing if the magazine is full
+                }
                 int i = (64 - getBundleOccupancy(stack)) / getItemOccupancy(itemStack);
                 int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
                 if (j > 0) {
@@ -117,6 +109,9 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
                     cursorStackReference.set(itemStack);
                 });
             } else {
+                if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
+                    return false;  // Do nothing if the magazine is full
+                }
                 int i = addToBundle(stack, otherStack);
                 if (i > 0) {
                     this.playInsertSound(player);
@@ -141,37 +136,41 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
     public int getItemBarColor(ItemStack stack) {
         return ITEM_BAR_COLOR;
     }
-
     private static int addToBundle(ItemStack bundle, ItemStack stack) {
-        if (!stack.isEmpty() && stack.getItem().canBeNested()) {
+        if (!stack.isEmpty() && stack.isOf(ShitItems.BULLET)) {
             NbtCompound nbtCompound = bundle.getOrCreateNbt();
-            if (!nbtCompound.contains("Items")) {
-                nbtCompound.put("Items", new NbtList());
+            if (!nbtCompound.contains(ITEMS_KEY)) {
+                nbtCompound.put(ITEMS_KEY, new NbtList());
             }
 
-            int i = getBundleOccupancy(bundle);
-            int j = getItemOccupancy(stack);
-            int k = Math.min(stack.getCount(), (64 - i) / j);
-            if (k == 0) {
+            int i = getBundleOccupancy(bundle); // Check the current number of bullets
+
+            // Check if the bundle is already full
+            if (i >= MAGAZINE_SIZE) {
+                return 0;
+            }
+
+            // Calculate how many more bullets can be added
+            int j = Math.min(stack.getCount(), MAGAZINE_SIZE - i);
+            if (j == 0) {
                 return 0;
             } else {
-                NbtList nbtList = nbtCompound.getList("Items", 10);
+                NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
                 Optional<NbtCompound> optional = canMergeStack(stack, nbtList);
                 if (optional.isPresent()) {
-                    NbtCompound nbtCompound2 = (NbtCompound) optional.get();
+                    NbtCompound nbtCompound2 = optional.get();
                     ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
-                    itemStack.increment(k);
+                    itemStack.increment(j);
                     itemStack.writeNbt(nbtCompound2);
                     nbtList.remove(nbtCompound2);
                     nbtList.add(0, nbtCompound2);
                 } else {
-                    ItemStack itemStack2 = stack.copyWithCount(k);
+                    ItemStack itemStack2 = stack.copyWithCount(j);
                     NbtCompound nbtCompound3 = new NbtCompound();
                     itemStack2.writeNbt(nbtCompound3);
                     nbtList.add(0, nbtCompound3);
                 }
-
-                return k;
+                return j;
             }
         } else {
             return 0;
@@ -215,10 +214,10 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
 
     private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains("Items")) {
+        if (!nbtCompound.contains(ITEMS_KEY)) {
             return Optional.empty();
         } else {
-            NbtList nbtList = nbtCompound.getList("Items", 10);
+            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
             if (nbtList.isEmpty()) {
                 return Optional.empty();
             } else {
@@ -227,7 +226,7 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
                 ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
                 nbtList.remove(0);
                 if (nbtList.isEmpty()) {
-                    stack.removeSubNbt("Items");
+                    stack.removeSubNbt(ITEMS_KEY);
                 }
 
                 return Optional.of(itemStack);
@@ -237,21 +236,23 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
 
     private static boolean shootBulletDeletion(ItemStack stack, PlayerEntity player) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains("Items")) {
+        if (!nbtCompound.contains(ITEMS_KEY)) {
             return false;
         } else {
-            if (player instanceof ServerPlayerEntity) {
-                NbtList nbtList = nbtCompound.getList("Items", 10);
-                NbtCompound nbtCompound2 = nbtList.getCompound(0);
+            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
+            for (int i = 0; i < nbtList.size(); i++) {
+                NbtCompound nbtCompound2 = nbtList.getCompound(i);
                 ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
-                if (nbtList.contains(ShitItems.BULLET)); {
-                    itemStack.decrement(-1);
+                if (itemStack.isOf(ShitItems.BULLET)) {
+                    if (itemStack.getCount() > 0) {
+                        itemStack.decrement(1);
+                        itemStack.writeNbt(nbtCompound2);  // Update the NBT data
+                        return true;
+                    }
                 }
-
             }
         }
-
-        return true;
+        return false;
     }
 
     private static Stream<ItemStack> getBulletStacks(ItemStack stack) {
@@ -259,7 +260,7 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
         if (nbtCompound == null) {
             return Stream.empty();
         } else {
-            NbtList nbtList = nbtCompound.getList("Items", 10);
+            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
             Stream<NbtElement> var10000 = nbtList.stream();
             Objects.requireNonNull(NbtCompound.class);
             return var10000.map(NbtCompound.class::cast).map(ItemStack::fromNbt);
