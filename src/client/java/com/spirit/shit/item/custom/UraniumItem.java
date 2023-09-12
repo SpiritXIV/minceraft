@@ -38,7 +38,7 @@ public class UraniumItem extends Item {
                 stack.decrement(1);
             }
             user.addStatusEffect(new StatusEffectInstance(ShitEffects.RADIATION_POISONING, 90000, 0));
-            user.setOnFireFor(1000000000);
+            user.setOnFireFor(100000);
         }
         return stack;
     }
