@@ -1,3 +1,5 @@
+<H1>Zhara when you see this, edit the fiile please and paste the whoe list here(the pinned item in the mod team gc), just do that ill do the rest please.</H1>
+
 <h6 align="center">A Connection of Koil</h6>
 <hr>
 <img  align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title.png?raw=true" alt="minecraft_title.png"/>
