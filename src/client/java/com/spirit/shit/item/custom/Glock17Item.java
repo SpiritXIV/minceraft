@@ -51,7 +51,7 @@ public class Glock17Item extends RangedWeaponItem implements Vanishable {
     }
 */
 
-    //zhara im gonna krill you bbg
+    //zhara im gonna krill you, na but thanks for getting it fixed. :)
     public int getMaxUseTime(ItemStack stack) {
         return 1000;
     }
