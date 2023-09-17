@@ -1,4 +1,4 @@
-package com.spirit.shit.item.custom.abstract_items;
+package com.spirit.shit.common;
 
 import com.spirit.shit.entity.custom.projectile.BulletProjectileEntity;
 import com.spirit.shit.item.ShitItems;
@@ -32,6 +32,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private static final String ITEMS_KEY = "Items";
     private static final int DEFAULT_ITEM_BAR_COLOR = 0xFF0000; // RGB value for red
     private static final int RANGE = 100;
+    protected final int COOLDOWN;
     protected final int MAGAZINE_SIZE;
     protected final int ITEM_BAR_COLOR;
 
@@ -52,11 +53,12 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
-    public GunItem(Settings settings, int magazineSize) {
-        this(settings, magazineSize, DEFAULT_ITEM_BAR_COLOR);
+    public GunItem(Settings settings, int magazineSize, int cooldown) {
+        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR);
     }
-    public GunItem(Settings settings, int magazineSize, int itemBarColor) {
+    public GunItem(Settings settings, int cooldown, int magazineSize, int itemBarColor) {
         super(settings);
+        this.COOLDOWN = cooldown;
         this.MAGAZINE_SIZE = magazineSize;
         this.ITEM_BAR_COLOR = itemBarColor;
     }
@@ -69,8 +71,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private ActionResult shoot(ItemStack gun, PlayerEntity user, World world) {
         long currentTick = world.getTime(); // Current server tick
         // Added this line, assuming 1-second cooldown
-        long cooldownTicks = 20;
-        if (currentTick - lastFireTick < cooldownTicks) {
+        if (currentTick - lastFireTick < COOLDOWN) {
             return ActionResult.PASS;
         }
 

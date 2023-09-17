@@ -2,6 +2,7 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.custom.*;
+import com.spirit.shit.item.custom.guns.*;
 import com.spirit.shit.item.custom.projectile.*;
 import com.spirit.shit.item.custom.DoritosChipItem;
 import com.spirit.shit.item.custom.projectile.beverage.*;
@@ -14,7 +15,6 @@ import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ToolItem;
@@ -30,9 +30,9 @@ public class ShitItems {
     public static final Item RED_BRICK = registerItem("red_brick", new RedBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON)));
     public static final Item BLUE_BRICK = registerItem("blue_brick", new BlueBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON)));
     public static final Item TRASH_CAN = registerItem("trash_can", new TrashCanProjectileItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
-    public static final Item OAT = registerItem("oat", new OatProjectileItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
 
-    //FOODS
+    //FOODS@SuppressWarnings("unused")
+    public static final Item OAT = registerItem("oat", new OatProjectileItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item BANANA = registerItem("banana", new Item(new FabricItemSettings().food(ShitFoodComponents.BANANA).maxCount(64).rarity(Rarity.COMMON)));
     public static final Item POCKY_STICK = registerItem("pocky_stick", new Item(new FabricItemSettings().food(ShitFoodComponents.POCKY_STICK).maxCount(64).rarity(Rarity.COMMON)));
     public static final Item POCKY_STICKS = registerItem("pocky_sticks", new Item(new FabricItemSettings().food(ShitFoodComponents.POCKY_STICKS).maxCount(32).rarity(Rarity.COMMON)));
@@ -178,7 +178,7 @@ public class ShitItems {
     //GUNS
 
     public static final Item AK47 = registerItem("ak47",
-            new ak47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+            new AK47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item DOUBLE_BARREL = registerItem("double_barrel",
             new DoubleBarrelItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item FNP90 = registerItem("fnp_90",
@@ -188,7 +188,7 @@ public class ShitItems {
     public static final Item GLOCK17 = registerItem("glock_17",
             new Glock17Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item M16 = registerItem("m16",
-            new m16Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+            new M16Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item M1_GARAND = registerItem("m1_garand",
             new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item REVOLVER = registerItem("revolver",
@@ -196,7 +196,7 @@ public class ShitItems {
     public static final Item GOLDEN_REVOLVER = registerItem("revolver_golden",
             new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item SAWED_OFF = registerItem("sawed_off",
-            new SawedOfflItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+            new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item STRIKER_12 = registerItem("striker_12",
             new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
 
@@ -234,12 +234,15 @@ public class ShitItems {
 
     //OTHER SHIT ITEMS
     public static final Item SOUND_BOARD = registerItem("sound_board", new SoundBoardItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON)));
+
+    // UNSURE OF WHERE TO REGISTER THESE
     public static final Item MUSTARD = registerItem("mustard", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item KETCHUP = registerItem("ketchup", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item COMPUTER_MOUSE = registerItem("computer_mouse", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
     public static final Item TIN_FOIL = registerItem("tin_foil", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
 
     //MUSIC DISCS
+    // UNSURE OF WHERE TO REGISTER THESE
     public static final Item SILENT_HOUSES_MUSIC_DISC = registerItem("silent_houses_disc", new ShitMusicDiscItem(7, ShitSounds.SILENT_HOUSES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 143));
     public static final Item FREE_BIRD_MUSIC_DISC = registerItem("free_bird_disc", new ShitMusicDiscItem(7, ShitSounds.FREE_BIRD_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 546));
     public static final Item AFTER_PARTY_MUSIC_DISC = registerItem("after_party", new ShitMusicDiscItem(7, ShitSounds.AFTER_PARTY_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 168));
@@ -247,6 +250,8 @@ public class ShitItems {
     //SMOKES
     public static final Item CIGAR = registerItem("cigar", new CigarItem(new FabricItemSettings().food(ShitFoodComponents.NOTHING).maxCount(1).rarity(Rarity.COMMON).maxDamage(12)));
     public static final Item CIGARETTE = registerItem("cigarette", new CigaretteItem(new FabricItemSettings().food(ShitFoodComponents.NOTHING).maxCount(1).rarity(Rarity.COMMON).maxDamage(12)));
+
+    // UNSURE OF WHERE TO REGISTER THESE
     public static final Item CAMEL_BOX = registerItem("camel_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
     public static final Item MARLBORO_BOX = registerItem("marlboro_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
 

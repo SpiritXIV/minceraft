@@ -9,13 +9,12 @@ import com.spirit.shit.entity.custom.projectile.beverage.*;
 import com.spirit.shit.item.ShitFoodComponents;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.item.custom.abstract_items.GunItem;
+import com.spirit.shit.common.GunItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -37,7 +36,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.player.PlayerEntity;
+
+import java.util.Objects;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -617,7 +617,7 @@ public class ShitMod implements ModInitializer {
             server.execute(() -> { // Switch to the main server thread before modifying the game
                 ItemStack itemStack = player.getStackInHand(Hand.values()[hand]);
                 if (itemStack.getItem() instanceof GunItem) {
-                    ActionResult result = ((GunItem) itemStack.getItem()).handleLeftClick(itemStack, player, player.getWorld());
+                    ((GunItem) itemStack.getItem()).handleLeftClick(itemStack, player, player.getWorld());
                     // Now this function internally checks for cooldown
                 }
             });
@@ -628,14 +628,13 @@ public class ShitMod implements ModInitializer {
         //DETONATION COMMAND
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("explode")
                 .executes(context -> {
-                    if (!context.getSource().getPlayer().getWorld().isClient()) {
+                    if (!Objects.requireNonNull(context.getSource().getPlayer()).getWorld().isClient()) {
                         double x = context.getSource().getPlayer().getX();
                         double y = context.getSource().getPlayer().getY();
                         double z = context.getSource().getPlayer().getZ();
                         float xp = context.getSource().getPlayer().experienceLevel;
-                        float damage = xp;
                         boolean fire = context.getSource().getPlayer().isOnFire();
-                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, damage, fire, World.ExplosionSourceType.BLOCK, true);
+                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, xp, fire, World.ExplosionSourceType.BLOCK, true);
                         context.getSource().getPlayer().damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), xp/10);
                         context.getSource().getPlayer().playSound(ShitSounds.EXPLODE_SOUND_COMMAND, SoundCategory.PLAYERS, 1, 1);
                     }

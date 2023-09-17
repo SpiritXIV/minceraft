@@ -1,15 +1,16 @@
-package com.spirit.shit.item.custom;
+package com.spirit.shit.item.custom.guns;
 
-import com.spirit.shit.item.custom.abstract_items.GunItem;
+import com.spirit.shit.common.GunItem;
 import net.minecraft.item.Item;
 
 public class Glock17Item extends GunItem {
-    private static final int GLOCK_17_MAGAZINE_SIZE = 17; // Glock 17 typically has a 17-round magazine
-    private static final int GLOCK_17_ITEM_BAR_COLOR = 0x00FF00; // RGB value for green, you can change this
+    private static final int MAGAZINE_SIZE = 17;
+    private static final int COOLDOWN = 20;
+    private static final int ITEM_BAR_COLOR = 0x00FF00;
 
     public Glock17Item(Item.Settings settings) {
         // Calls the super class (GunItem) constructor
-        super(settings, GLOCK_17_MAGAZINE_SIZE, GLOCK_17_ITEM_BAR_COLOR);
+        super(settings, COOLDOWN, MAGAZINE_SIZE, ITEM_BAR_COLOR);
     }
 }
 
