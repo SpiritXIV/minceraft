@@ -32,6 +32,8 @@ import java.util.stream.Stream;
 import java.util.function.Predicate;
 
 public abstract class GunItem extends RangedWeaponItem implements Vanishable {
+    private long lastFireTick = 0; // Added this line
+
     private static final String ITEMS_KEY = "Items";
     private static final int DEFAULT_ITEM_BAR_COLOR = 0xFF0000; // RGB value for red
     private static final int RANGE = 100;
@@ -68,6 +70,14 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
     }
     private ActionResult shoot(ItemStack gun, PlayerEntity user, World world) {
+        long currentTick = world.getTime(); // Current server tick
+        // Added this line, assuming 1-second cooldown
+        long cooldownTicks = 20;
+        if (currentTick - lastFireTick < cooldownTicks) {
+            return ActionResult.PASS;
+        }
+
+        lastFireTick = currentTick; // Update last fire tick
 
         System.out.println("At Function!");
         NbtCompound gunNBT = gun.getOrCreateNbt();
@@ -139,15 +149,21 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
                 removeFirstStack(stack).ifPresent((removedStack) -> {
                     addToBundle(stack, slot.insertStack(removedStack));
                 });
-            } else if (itemStack.getItem().canBeNested()) {
+            } else if (itemStack.isOf(ShitItems.BULLET)) {  // Changed this line
                 if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
                     return false;  // Do nothing if the magazine is full
                 }
-                int i = (MAGAZINE_SIZE - getBundleOccupancy(stack)) / getItemOccupancy(itemStack);
+                int itemOccupancy = getItemOccupancy(itemStack);
+                if (itemOccupancy == 0) {
+                    return false;  // If occupancy is zero, return false
+                }
+                int i = (MAGAZINE_SIZE - getBundleOccupancy(stack)) / itemOccupancy;
                 int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
                 if (j > 0) {
                     this.playInsertSound(player);
                 }
+            } else {
+                return false;  // If item is not a bullet, return false
             }
 
             return true;
@@ -250,10 +266,12 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         } else {
             if ((stack.isOf(ShitItems.BULLET)) && stack.hasNbt()) {
                 NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
-                if (nbtCompound != null && !nbtCompound.getList("Bees", 10).isEmpty()) {
-
+                if (nbtCompound != null) {
                     return MAGAZINE_SIZE;
                 }
+            }
+            if (stack.getMaxCount() == 0) {
+                return 0;  // Return zero if getMaxCount is zero
             }
             return 1 / stack.getMaxCount();
         }
@@ -295,9 +313,10 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             return Stream.empty();
         } else {
             NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
-            Stream<NbtElement> var10000 = nbtList.stream();
-            Objects.requireNonNull(NbtCompound.class);
-            return var10000.map(NbtCompound.class::cast).map(ItemStack::fromNbt);
+            return nbtList.stream()
+                    .map(NbtCompound.class::cast)
+                    .map(ItemStack::fromNbt)
+                    .filter(itemStack -> itemStack.isOf(ShitItems.BULLET));
         }
     }
 
