@@ -20,6 +20,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
+//Alright so for default it needs to be off then when we right click it, like not in the inv, it needs to turn on, aka the on varient, and when its on it shoots a lazer that deals damage, but also it needs to show where the lazer is going.)
+
+
 public class LaserPointerItemOn extends Item {
     private static final int MAX_USE_TIME = 2;
 
