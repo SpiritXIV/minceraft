@@ -76,6 +76,31 @@ public class ShitMod implements ModInitializer {
                     .build());
 
 
+    public static final EntityType<BulletProjectileEntity> BulletProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "bullet_entity"),
+            FabricEntityTypeBuilder.<BulletProjectileEntity>create(SpawnGroup.MISC, BulletProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+    public static final EntityType<RifleBulletProjectileEntity> RifleBulletProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "rifle_bullet_entity"),
+            FabricEntityTypeBuilder.<RifleBulletProjectileEntity>create(SpawnGroup.MISC, RifleBulletProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+    public static final EntityType<ShellProjectileEntity> ShellProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "shell_entity"),
+            FabricEntityTypeBuilder.<ShellProjectileEntity>create(SpawnGroup.MISC, ShellProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+
+
+
 //DRINKS
     public static final EntityType<BeerBottleProjectileEntity> BeerBottleProjectileEntityType = Registry.register(
             Registries.ENTITY_TYPE,

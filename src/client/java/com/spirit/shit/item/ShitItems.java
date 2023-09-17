@@ -201,7 +201,19 @@ public class ShitItems {
             new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
 
     public static final Item BULLET = registerItem("bullet",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    /*Makes another item but 3d so it doesnt shoot the 2d bullet*/
+    public static final Item BULLET_ENTITY = registerItem("bullet_entity",
             new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+    public static final Item RIFLE_BULLET = registerItem("rifle_bullet",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item RIFLE_BULLET_ENTITY = registerItem("rifle_bullet_entity",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+    public static final Item SHELL = registerItem("shell",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SHELL_ENTITY = registerItem("shell_entity",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+
 
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,
