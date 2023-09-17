@@ -22,22 +22,22 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
-public class BulletProjectileEntity extends ThrownItemEntity {
-    public BulletProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+public class RifleBulletProjectileEntity extends ThrownItemEntity {
+    public RifleBulletProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return ShitItems.BULLET_ENTITY;
+        return ShitItems.RIFLE_BULLET_ENTITY;
     }
 
-    public BulletProjectileEntity(World world, LivingEntity owner) {
-        super(ShitMod.BulletProjectileEntityType, owner, world);
+    public RifleBulletProjectileEntity(World world, LivingEntity owner) {
+        super(ShitMod.RifleBulletProjectileEntityType, owner, world);
     }
 
-    public BulletProjectileEntity(World world, double x, double y, double z) {
-        super(ShitMod.BulletProjectileEntityType, x, y, z, world);
+    public RifleBulletProjectileEntity(World world, double x, double y, double z) {
+        super(ShitMod.RifleBulletProjectileEntityType, x, y, z, world);
     }
 
     @Environment(EnvType.CLIENT)

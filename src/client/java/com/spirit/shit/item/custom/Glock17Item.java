@@ -20,6 +20,20 @@ public class Glock17Item extends GunItem {
     public Glock17Item(Settings settings) {
         super(settings);
     }
+ Literally divides by zero -_-
+    public static float getPullProgress(int useTicks) {
+        float f = (float) useTicks / 0F;
+        f = (f * f + f * 0F) / 0F;
+        if (f > 0F) {
+            f = 0F;
+        }
+
+        return f;
+    }
+
+    //zhara im gonna krill you, na but thanks for getting it fixed. :)
+//>>>>>>>
+main
     public int getMaxUseTime(ItemStack stack) {
         return 1000;
     }
