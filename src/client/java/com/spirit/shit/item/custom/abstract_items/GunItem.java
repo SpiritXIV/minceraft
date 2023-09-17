@@ -5,7 +5,6 @@ import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -16,15 +15,11 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.collection.DefaultedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -42,13 +37,19 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
     // Defining sounds.
     public enum SoundType {
-       SHOOT,
-       RELOAD,
-       EMPTY
+        SHOOT,
+        RELOAD,
+        EMPTY,
+        REMOVE_ONE,
+        INSERT,
+        DROP_CONTENT
     }
     private final SoundEvent SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
     private final SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
     private final SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    private final SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
+    private final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
+    private final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
     public GunItem(Settings settings, int magazineSize) {
@@ -59,11 +60,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         this.MAGAZINE_SIZE = magazineSize;
         this.ITEM_BAR_COLOR = itemBarColor;
     }
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        // This method is called when the player left-clicks on an entity.
-        return handleLeftClick(stack, user, entity.getWorld());
-    }
+
     public ActionResult handleLeftClick(ItemStack itemStack, PlayerEntity user, World world) {
         System.out.println("Shooting!");
         return this.shoot(itemStack, user, world);
@@ -126,16 +123,33 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         return !player.isCreative();
     }
     private void playSound(World world, PlayerEntity player, SoundType type) {
-        SoundEvent sound;
+        SoundEvent sound = null;
         switch (type) {
             case SHOOT -> sound = SHOOT_SOUND;
             case RELOAD -> sound = RELOAD_SOUND;
             case EMPTY -> sound = EMPTY_SOUND;
-            default -> {
-                throw new IllegalArgumentException("Invalid sound type specified: " + type);
-            }
+            case REMOVE_ONE -> sound = REMOVE_BULLET_SOUND;
+            // default -> {
+            //     throw new IllegalArgumentException("Invalid sound type specified: " + type);
+            // }
         }
         world.playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
+    }
+    private void playSound(PlayerEntity player, SoundType type) {
+        SoundEvent sound = null;
+        switch (type) {
+            case SHOOT -> sound = SHOOT_SOUND;
+            case RELOAD -> sound = RELOAD_SOUND;
+            case EMPTY -> sound = EMPTY_SOUND;
+            case REMOVE_ONE -> sound = REMOVE_BULLET_SOUND;
+            case INSERT -> sound = INSERT_SOUND;
+            case DROP_CONTENT -> sound = DROP_CONTENT_SOUND;
+            // default -> {
+            //     throw new IllegalArgumentException("Invalid sound type specified: " + type);
+            // }
+        }
+
+        player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
     }
 
 
@@ -145,10 +159,8 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         } else {
             ItemStack itemStack = slot.getStack();
             if (itemStack.isEmpty()) {
-                this.playRemoveOneSound(player);
-                removeFirstStack(stack).ifPresent((removedStack) -> {
-                    addToBundle(stack, slot.insertStack(removedStack));
-                });
+                playSound(player, SoundType.REMOVE_ONE);
+                removeFirstStack(stack).ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
             } else if (itemStack.isOf(ShitItems.BULLET)) {  // Changed this line
                 if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
                     return false;  // Do nothing if the magazine is full
@@ -160,7 +172,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
                 int i = (MAGAZINE_SIZE - getBundleOccupancy(stack)) / itemOccupancy;
                 int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
                 if (j > 0) {
-                    this.playInsertSound(player);
+                    playSound(player, SoundType.INSERT);
                 }
             } else {
                 return false;  // If item is not a bullet, return false
@@ -174,7 +186,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
             if (otherStack.isEmpty()) {
                 removeFirstStack(stack).ifPresent((itemStack) -> {
-                    this.playRemoveOneSound(player);
+                    playSound(player, SoundType.REMOVE_ONE);
                     cursorStackReference.set(itemStack);
                 });
             } else {
@@ -183,7 +195,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
                 }
                 int i = addToBundle(stack, otherStack);
                 if (i > 0) {
-                    this.playInsertSound(player);
+                    playSound(player, SoundType.INSERT);
                     otherStack.decrement(i);
                 }
             }
@@ -194,17 +206,6 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
-    public boolean isItemBarVisible(ItemStack stack) {
-        return getBundleOccupancy(stack) > 0;
-    }
-
-    public int getItemBarStep(ItemStack stack) {
-        return Math.min(1 + 12 * getBundleOccupancy(stack) / MAGAZINE_SIZE, 13);
-    }
-
-    public int getItemBarColor(ItemStack stack) {
-        return ITEM_BAR_COLOR;
-    }
     private int addToBundle(ItemStack bundle, ItemStack stack) {
         if (!stack.isEmpty() && stack.isOf(ShitItems.BULLET)) {
             NbtCompound nbtCompound = bundle.getOrCreateNbt();
@@ -254,9 +255,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             Objects.requireNonNull(NbtCompound.class);
             var10000 = var10000.filter(NbtCompound.class::isInstance);
             Objects.requireNonNull(NbtCompound.class);
-            return var10000.map(NbtCompound.class::cast).filter((item) -> {
-                return ItemStack.canCombine(ItemStack.fromNbt(item), stack);
-            }).findFirst();
+            return var10000.map(NbtCompound.class::cast).filter((item) -> ItemStack.canCombine(ItemStack.fromNbt(item), stack)).findFirst();
         }
     }
 
@@ -277,35 +276,25 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
-    private int getBundleOccupancy(ItemStack stack) {
-        return getBulletStacks(stack).mapToInt((itemStack) -> {
-            return getItemOccupancy(itemStack) * itemStack.getCount();
-        }).sum();
-    }
-
     private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains(ITEMS_KEY)) {
+        NbtCompound gun = stack.getOrCreateNbt();
+        if (!gun.contains(ITEMS_KEY)) {
+            return Optional.empty();
+        }
+
+        NbtList bulletList = gun.getList(ITEMS_KEY, 10);
+        if (bulletList.isEmpty()) {
             return Optional.empty();
         } else {
-            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
-            if (nbtList.isEmpty()) {
-                return Optional.empty();
-            } else {
-                boolean i = false;
-                NbtCompound nbtCompound2 = nbtList.getCompound(0);
-                ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
-                nbtList.remove(0);
-                if (nbtList.isEmpty()) {
-                    stack.removeSubNbt(ITEMS_KEY);
-                }
-
-                return Optional.of(itemStack);
+            NbtCompound bulletCompound = bulletList.getCompound(0);
+            ItemStack bulletStack = ItemStack.fromNbt(bulletCompound);
+            bulletList.remove(0);
+            if (bulletList.isEmpty()) {
+                stack.removeSubNbt(ITEMS_KEY);
             }
+            return Optional.of(bulletStack);
         }
     }
-
-
 
     private static Stream<ItemStack> getBulletStacks(ItemStack stack) {
         NbtCompound nbtCompound = stack.getNbt();
@@ -320,6 +309,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
+    /*
     public Optional<TooltipData> getTooltipData(ItemStack stack) {
         DefaultedList<ItemStack> defaultedList = DefaultedList.of();
         Stream<ItemStack> var10000 = getBulletStacks(stack);
@@ -327,30 +317,34 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         var10000.forEach(defaultedList::add);
         return Optional.of(new BundleTooltipData(defaultedList, getBundleOccupancy(stack)));
     }
+    */
 
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.gun.mag.fullness", new Object[]{getBundleOccupancy(stack), MAGAZINE_SIZE}).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.gun.mag.fullness", getBundleOccupancy(stack), MAGAZINE_SIZE).formatted(Formatting.GRAY));
+    }
+    private int getBundleOccupancy(ItemStack stack) {
+        return getBulletStacks(stack).mapToInt((itemStack) -> getItemOccupancy(itemStack) * itemStack.getCount()).sum();
     }
 
     public void onItemEntityDestroyed(ItemEntity entity) {
         ItemUsage.spawnItemContents(entity, getBulletStacks(entity.getStack()));
     }
-
-    private void playRemoveOneSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
-    }
-
-    private void playInsertSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
-    }
-
-    private void playDropContentsSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
-    }
     public Predicate<ItemStack> getProjectiles() {
-        return (Predicate<ItemStack>) ShitItems.BULLET;
+        return itemStack -> itemStack.getItem().equals(ShitItems.BULLET);
     }
     public int getRange() {
         return RANGE;
+    }
+
+    public boolean isItemBarVisible(ItemStack stack) {
+        return getBundleOccupancy(stack) > 0;
+    }
+
+    public int getItemBarStep(ItemStack stack) {
+        return Math.min(1 + 12 * getBundleOccupancy(stack) / MAGAZINE_SIZE, 13);
+    }
+
+    public int getItemBarColor(ItemStack stack) {
+        return ITEM_BAR_COLOR;
     }
 }
