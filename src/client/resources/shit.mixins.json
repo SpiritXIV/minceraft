@@ -3,7 +3,8 @@
   "package": "com.spirit.shit.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ShitMixin"
+    "ShitMixin",
+    "ClientPlayerInteractionManagerMixin"
   ],
   "client": [
     "client.ShitClientMixin"

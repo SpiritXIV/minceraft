@@ -1,51 +1,134 @@
-package com.spirit.shit.item.custom;
+package com.spirit.shit.item.custom.abstract_items;
 
-import com.spirit.shit.item.custom.abstract_items.GunItem;
-import net.minecraft.item.Item;
+import com.spirit.shit.entity.custom.projectile.BulletProjectileEntity;
+import com.spirit.shit.item.ShitItems;
+import com.spirit.shit.sound.ShitSounds;
 
-public class Glock17Item extends GunItem {
-    private static final int GLOCK_17_MAGAZINE_SIZE = 17; // Glock 17 typically has a 17-round magazine
-    private static final int GLOCK_17_ITEM_BAR_COLOR = 0x00FF00; // RGB value for green, you can change this
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.*;
+import net.minecraft.world.World;
+import net.minecraft.inventory.StackReference;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.client.item.BundleTooltipData;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.item.TooltipData;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.collection.DefaultedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.function.Predicate;
 
-    public Glock17Item(Item.Settings settings) {
-        // Calls the super class (GunItem) constructor
-        super(settings, GLOCK_17_MAGAZINE_SIZE, GLOCK_17_ITEM_BAR_COLOR);
-    }
-}
-
-/*public class Glock17Item extends RangedWeaponItem implements Vanishable {
+public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private static final String ITEMS_KEY = "Items";
-    public static final int MAGAZINE_SIZE = 17;
-    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.4F, 0.4F, 1.0F);
-    public Glock17Item(Settings settings) {
+    private static final int DEFAULT_ITEM_BAR_COLOR = 0xFF0000; // RGB value for red
+    private static final int RANGE = 100;
+    protected final int MAGAZINE_SIZE;
+    protected final int ITEM_BAR_COLOR;
+
+    // Defining sounds.
+    public enum SoundType {
+       SHOOT,
+       RELOAD,
+       EMPTY
+    }
+    private final SoundEvent SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
+    private final SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    private final SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+
+    // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
+    public GunItem(Settings settings, int magazineSize) {
+        this(settings, magazineSize, DEFAULT_ITEM_BAR_COLOR);
+    }
+    public GunItem(Settings settings, int magazineSize, int itemBarColor) {
         super(settings);
+        this.MAGAZINE_SIZE = magazineSize;
+        this.ITEM_BAR_COLOR = itemBarColor;
     }
-    public int getMaxUseTime(ItemStack stack) {
-        return 1000;
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        // This method is called when the player left-clicks on an entity.
+        return handleLeftClick(stack, user, entity.getWorld());
+    }
+    public ActionResult handleLeftClick(ItemStack itemStack, PlayerEntity user, World world) {
+        System.out.println("Shooting!");
+        return this.shoot(itemStack, user, world);
+
+    }
+    private ActionResult shoot(ItemStack gun, PlayerEntity user, World world) {
+
+        System.out.println("At Function!");
+        NbtCompound gunNBT = gun.getOrCreateNbt();
+        boolean hasAmmunition = this.hasAmmo(gunNBT),
+                usesAmmunition = this.doesUseAmmo(user);
+
+        System.out.println("Validating!");
+        if (usesAmmunition && !hasAmmunition)
+            return ActionResult.FAIL;
+
+        if (usesAmmunition)
+            this.removeAmmo(gunNBT);
+        System.out.println("Is Valid!");
+
+        if (!world.isClient) {
+            BulletProjectileEntity bullet = new BulletProjectileEntity(world, user);
+            bullet.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
+            world.spawnEntity(bullet);
+            System.out.println("Shot!");
+        }
+
+        user.incrementStat(Stats.USED.getOrCreateStat(this));
+        this.playSound(world, user, SoundType.SHOOT);
+
+        return ActionResult.SUCCESS;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BLOCK;
-    }
-
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-
-        if (shootBulletDeletion(itemStack, user)) {
-            this.playDropContentsSound(user);
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), ShitSounds.PISTOL_SHOOT, SoundCategory.NEUTRAL, 1F, 1F);
-            user.getItemCooldownManager().set(this, 5);
-            if (!world.isClient) {
-                BulletProjectileEntity snowballEntity = new BulletProjectileEntity(world, user);
-                snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
-                world.spawnEntity(snowballEntity);
+    private void removeAmmo(NbtCompound gunNBT) {
+        NbtList slotList = gunNBT.getList(ITEMS_KEY, 10);
+        for (int i = 0; i < slotList.size(); i++) {
+            NbtCompound slotNBT = slotList.getCompound(i);
+            ItemStack itemStack = ItemStack.fromNbt(slotNBT);
+            if (itemStack.isOf(ShitItems.BULLET)) {
+                if (itemStack.getCount() > 0) {
+                    itemStack.decrement(1);
+                    itemStack.writeNbt(slotNBT);  // Update the NBT data
+                }
             }
-            user.incrementStat(Stats.USED.getOrCreateStat(this));
-            return TypedActionResult.success(itemStack, world.isClient());
-        } else {
-            return TypedActionResult.fail(itemStack);
         }
     }
+
+    private boolean hasAmmo(NbtCompound gunNBT) {
+        return gunNBT.contains(ITEMS_KEY);
+    }
+    private boolean doesUseAmmo(PlayerEntity player) {
+        return !player.isCreative();
+    }
+    private void playSound(World world, PlayerEntity player, SoundType type) {
+        SoundEvent sound;
+        switch (type) {
+            case SHOOT -> sound = SHOOT_SOUND;
+            case RELOAD -> sound = RELOAD_SOUND;
+            case EMPTY -> sound = EMPTY_SOUND;
+            default -> {
+                throw new IllegalArgumentException("Invalid sound type specified: " + type);
+            }
+        }
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
+    }
+
+
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType != ClickType.RIGHT) {
             return false;
@@ -60,7 +143,7 @@ public class Glock17Item extends GunItem {
                 if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
                     return false;  // Do nothing if the magazine is full
                 }
-                int i = (64 - getBundleOccupancy(stack)) / getItemOccupancy(itemStack);
+                int i = (MAGAZINE_SIZE - getBundleOccupancy(stack)) / getItemOccupancy(itemStack);
                 int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
                 if (j > 0) {
                     this.playInsertSound(player);
@@ -100,13 +183,13 @@ public class Glock17Item extends GunItem {
     }
 
     public int getItemBarStep(ItemStack stack) {
-        return Math.min(1 + 12 * getBundleOccupancy(stack) / 64, 13);
+        return Math.min(1 + 12 * getBundleOccupancy(stack) / MAGAZINE_SIZE, 13);
     }
 
     public int getItemBarColor(ItemStack stack) {
         return ITEM_BAR_COLOR;
     }
-    private static int addToBundle(ItemStack bundle, ItemStack stack) {
+    private int addToBundle(ItemStack bundle, ItemStack stack) {
         if (!stack.isEmpty() && stack.isOf(ShitItems.BULLET)) {
             NbtCompound nbtCompound = bundle.getOrCreateNbt();
             if (!nbtCompound.contains(ITEMS_KEY)) {
@@ -161,7 +244,7 @@ public class Glock17Item extends GunItem {
         }
     }
 
-    private static int getItemOccupancy(ItemStack stack) {
+    private int getItemOccupancy(ItemStack stack) {
         if (stack.isOf(Items.BUNDLE)) {
             return 4 + getBundleOccupancy(stack);
         } else {
@@ -169,14 +252,14 @@ public class Glock17Item extends GunItem {
                 NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
                 if (nbtCompound != null && !nbtCompound.getList("Bees", 10).isEmpty()) {
 
-                    return 64;
+                    return MAGAZINE_SIZE;
                 }
             }
             return 1 / stack.getMaxCount();
         }
     }
 
-    private static int getBundleOccupancy(ItemStack stack) {
+    private int getBundleOccupancy(ItemStack stack) {
         return getBulletStacks(stack).mapToInt((itemStack) -> {
             return getItemOccupancy(itemStack) * itemStack.getCount();
         }).sum();
@@ -204,26 +287,7 @@ public class Glock17Item extends GunItem {
         }
     }
 
-    private static boolean shootBulletDeletion(ItemStack stack, PlayerEntity player) {
-        NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains(ITEMS_KEY)) {
-            return false;
-        } else {
-            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
-            for (int i = 0; i < nbtList.size(); i++) {
-                NbtCompound nbtCompound2 = nbtList.getCompound(i);
-                ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
-                if (itemStack.isOf(ShitItems.BULLET)) {
-                    if (itemStack.getCount() > 0) {
-                        itemStack.decrement(1);
-                        itemStack.writeNbt(nbtCompound2);  // Update the NBT data
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+
 
     private static Stream<ItemStack> getBulletStacks(ItemStack stack) {
         NbtCompound nbtCompound = stack.getNbt();
@@ -246,7 +310,7 @@ public class Glock17Item extends GunItem {
     }
 
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.gun.mag.fullness", new Object[]{getBundleOccupancy(stack), 64}).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.gun.mag.fullness", new Object[]{getBundleOccupancy(stack), MAGAZINE_SIZE}).formatted(Formatting.GRAY));
     }
 
     public void onItemEntityDestroyed(ItemEntity entity) {
@@ -264,14 +328,10 @@ public class Glock17Item extends GunItem {
     private void playDropContentsSound(Entity entity) {
         entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
     }
-
-
-
     public Predicate<ItemStack> getProjectiles() {
         return (Predicate<ItemStack>) ShitItems.BULLET;
     }
-
     public int getRange() {
-        return 15;
+        return RANGE;
     }
-}*/
+}
