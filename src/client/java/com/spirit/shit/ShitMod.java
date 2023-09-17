@@ -606,6 +606,7 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT_BOMB, RatBombEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT, RatEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.CAPYBARA, CapybaraEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(ShitEntities.FREDDYFAZBEAR, FreddyFazBearEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
 

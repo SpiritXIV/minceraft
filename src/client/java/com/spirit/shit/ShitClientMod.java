@@ -24,6 +24,7 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitEntities.RAT_BOMB, RatBombRenderer::new);
         EntityRendererRegistry.register(ShitEntities.RAT, RatRenderer::new);
         EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
+        EntityRendererRegistry.register(ShitEntities.FREDDYFAZBEAR, FreddyFazBearRenderer::new);
         EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
         EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
 
