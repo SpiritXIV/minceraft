@@ -20,9 +20,7 @@ public class Glock17Item extends GunItem {
     public Glock17Item(Settings settings) {
         super(settings);
     }
-//<<<<<<< kingzhara-main
-=======
-/* Literally divides by zero -_-
+ Literally divides by zero -_-
     public static float getPullProgress(int useTicks) {
         float f = (float) useTicks / 0F;
         f = (f * f + f * 0F) / 0F;
@@ -32,7 +30,6 @@ public class Glock17Item extends GunItem {
 
         return f;
     }
-*/
 
     //zhara im gonna krill you, na but thanks for getting it fixed. :)
 //>>>>>>>
