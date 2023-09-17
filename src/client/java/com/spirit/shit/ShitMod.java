@@ -592,10 +592,10 @@ public class ShitMod implements ModInitializer {
                 ItemStack itemStack = player.getStackInHand(Hand.values()[hand]);
                 if (itemStack.getItem() instanceof GunItem) {
                     ActionResult result = ((GunItem) itemStack.getItem()).handleLeftClick(itemStack, player, player.getWorld());
+                    // Now this function internally checks for cooldown
                 }
             });
         });
-
 
         //COMMANDS
 
