@@ -1,4 +1,5 @@
 package com.spirit.shit.mixin;
+
 import com.spirit.shit.ShitMod;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
