@@ -1,6 +1,6 @@
 package com.spirit.shit.mixin;
 
-import com.spirit.shit.item.custom.abstract_items.GunItem;
+import com.spirit.shit.common.GunItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.player.PlayerEntity;

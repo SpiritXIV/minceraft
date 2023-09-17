@@ -11,14 +11,16 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ShitItemGroup {
-        public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-                new Identifier(ShitMod.MOD_ID, "kelloggs"),
-                FabricItemGroup.builder().displayName(Text.translatable("itemgroup.kelloggs"))
-                        .icon(() -> new ItemStack(ShitItems.OAT)).entries((displayContext, entries) -> {
-                            entries.add(ShitItems.OAT);
-                            entries.add(ShitBlocks.CRACKLIN_BOX);
-                        }).build());
+    @SuppressWarnings("unused")
+    public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(ShitMod.MOD_ID, "kelloggs"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.kelloggs"))
+                    .icon(() -> new ItemStack(ShitItems.OAT)).entries((displayContext, entries) -> {
+                        entries.add(ShitItems.OAT);
+                        entries.add(ShitBlocks.CRACKLIN_BOX);
+                    }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "shitmain"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.shitmain"))
@@ -28,11 +30,23 @@ public class ShitItemGroup {
                         entries.add(ShitItems.NACHO_DORITOS_CHIP);
                         entries.add(ShitItems.NACHO_DORITOS_BAG);
                         entries.add(ShitItems.BANANA);
+                        entries.add(ShitItems.POCKY_STICK);
+                        entries.add(ShitItems.POCKY_STICKS);
+                        entries.add(ShitItems.HORSE_HOOF);
+                        entries.add(ShitItems.RAW_CHEVALINE);
+                        entries.add(ShitItems.COOKED_CHEVALINE);
+                        entries.add(ShitItems.TALON_BURGER);
+
+                        // Will kill you
                         entries.add(ShitItems.URANIUM_DUST);
                         entries.add(ShitItems.CHOCOLATE_OREO_SHAKE);
+                        entries.add(ShitItems.PEEP_CYAN);
+                        entries.add(ShitItems.PEEP_PINK);
+                        entries.add(ShitItems.PEEP_PURPLE);
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup BACKROOMS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "backrooms_item_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.backrooms"))
@@ -60,6 +74,7 @@ public class ShitItemGroup {
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup SPECIAL_WEAPONS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "special_weapons_item_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.special_weapons"))
@@ -68,6 +83,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.COSCO_BIG_LONG_DOG);
                         entries.add(ShitItems.COSCO_BIG_LONG_DOG_KETCHUP);
                         entries.add(ShitItems.COSCO_BIG_LONG_DOG_MUSTARD);
+                        entries.add(ShitItems.BRASS_KNUCKLES);
                         entries.add(ShitItems.CATCORN);
                         entries.add(ShitItems.LASER_POINTER_OFF);
                         entries.add(ShitItems.PIE);
@@ -78,10 +94,12 @@ public class ShitItemGroup {
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup GUNS = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "guns"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.guns"))
                     .icon(() -> new ItemStack(ShitItems.M16)).entries((displayContext, entries) -> {
+                        entries.add(ShitItems.AK47);
                         entries.add(ShitItems.DOUBLE_BARREL);
                         entries.add(ShitItems.FNP90);
                         entries.add(ShitItems.FNP90SCOPE);
@@ -90,15 +108,14 @@ public class ShitItemGroup {
                         entries.add(ShitItems.REVOLVER);
                         entries.add(ShitItems.GOLDEN_REVOLVER);
                         entries.add(ShitItems.SAWED_OFF);
-
-
-
+                        entries.add(ShitItems.STRIKER_12);
                         entries.add(ShitItems.BULLET);
                         entries.add(ShitItems.RIFLE_BULLET);
                         entries.add(ShitItems.SHELL);
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup PLUSHES = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "plushes"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.plushes"))
@@ -118,6 +135,7 @@ public class ShitItemGroup {
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup DRINKS_SODA = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "drinks_soda"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.drinks_soda"))
@@ -241,19 +259,18 @@ public class ShitItemGroup {
 
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup FOOD = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "food"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.food"))
                     .icon(() -> new ItemStack(ShitItems.POCKY_STICK_BOX)).entries((displayContext, entries) -> {
                     }).build());
 
+    @SuppressWarnings("unused")
     public static final ItemGroup SOUND = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ShitMod.MOD_ID, "sound"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.sound"))
-                    .icon(() -> new ItemStack(ShitItems.SOUND_BOARD)).entries((displayContext, entries) -> {
-                        entries.add(ShitItems.SOUND_BOARD);
-
-                    }).build());
+                    .icon(() -> new ItemStack(ShitItems.SOUND_BOARD)).entries((displayContext, entries) -> entries.add(ShitItems.SOUND_BOARD)).build());
     public static void registerShitItemGroup() {
         ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItemGroup");
     }
