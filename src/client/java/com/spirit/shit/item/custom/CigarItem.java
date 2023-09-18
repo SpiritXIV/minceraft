@@ -20,13 +20,14 @@ import net.minecraft.world.World;
 
 public class CigarItem extends Item {
     private static final int MAX_USE_TIME = 1800;
+    private static final double DAMPENING_FACTOR = (double) 1 / 7;  // Adjust this value as needed, uses the same factor you used before
 
     public CigarItem(Settings settings) {
         super(settings);
     }
 
     public int getMaxUseTime(ItemStack stack) {
-        return 1800;
+        return MAX_USE_TIME;
     }
 
     public UseAction getUseAction(ItemStack stack) {
@@ -36,65 +37,76 @@ public class CigarItem extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof ServerPlayerEntity serverPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            if (!((ServerPlayerEntity) user).getAbilities().creativeMode) {
+            if (!serverPlayerEntity.getAbilities().creativeMode) {
                 stack.decrement(1);
             }
-            double x = user.getX();
-            double y = user.getY();
-            double z = user.getZ();
+
+            // Common code for calculating direction vector based on pitch and yaw
+            double[] directionVector = calculateDirectionVector(user);
+
+            // Generate particles when the item is finished using
+            for (int i = 0; i < 3; i++) {
+                user.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, user.getX(), user.getY() + 1.5, user.getZ(), directionVector[0], directionVector[1], directionVector[2]);
+            }
+
             float health = user.getHealth();
             user.damage(new DamageSource(RegistryEntry.of(new DamageType("smoked_to_much", 1))), health);
         }
         return stack;
     }
-
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_EAT;
-    }
-
     public TypedActionResult<ItemStack> use(ItemStack stack, World world, PlayerEntity user, Hand hand) {
+        // Common code for calculating direction vector based on pitch and yaw
+        double[] directionVector = calculateDirectionVector(user);
 
-        double x = user.getX();
-        double y = user.getY();
-        double z = user.getZ();
+        // Fire the particle 3 times
+        for (int i = 0; i < 3; i++) {
+            user.getWorld().addParticle(ParticleTypes.SMOKE, user.getX(), user.getY() + 1.5, user.getZ(), directionVector[0], directionVector[1], directionVector[2]);
+        }
 
-        double xx = user.getRotationVecClient().getX();
-        double yy = user.getRotationVecClient().getY();
-        double zz = user.getRotationVecClient().getZ();
         user.getItemCooldownManager().set(this, 15);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        stack.damage(1, user, (p) -> {
-            p.sendToolBreakStatus(user.getActiveHand());
-        });
+        stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
         return ItemUsage.consumeHeldItem(world, user, hand);
     }
+
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        double x = user.getX();
-        double y = user.getY();
-        double z = user.getZ();
-        double xx = user.getRotationVecClient().getX();
-        double yy = user.getRotationVecClient().getY();
-        double zz = user.getRotationVecClient().getZ();
+        // Common code for calculating direction vector based on pitch and yaw
+        double[] directionVector = calculateDirectionVector(user);
 
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
+        for (int i = 0; i < 4; i++) {
+            user.getWorld().addParticle(ParticleTypes.SMOKE, user.getX(), user.getY() + 1.5, user.getZ(), directionVector[0], directionVector[1], directionVector[2]);
+        }
     }
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        double x = user.getX();
-        double y = user.getY();
-        double z = user.getZ();
-        double xx = user.getRotationVecClient().getX();
-        double yy = user.getRotationVecClient().getY();
-        double zz = user.getRotationVecClient().getZ();
 
-        user.getWorld().addParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
-        user.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y + 1.5, z, xx/7, yy, zz/7);
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        // Common code for calculating direction vector based on pitch and yaw
+        double[] directionVector = calculateDirectionVector(user);
+
+        for (int i = 0; i < 4; i++) {
+            user.getWorld().addParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, user.getX(), user.getY() + 1.5, user.getZ(), directionVector[0], directionVector[1], directionVector[2]);
+            user.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, user.getX(), user.getY() + 1.5, user.getZ(), directionVector[0], directionVector[1], directionVector[2]);
+        }
+    }
+
+    private double[] calculateDirectionVector(LivingEntity user) {
+        // Get the pitch and yaw from the player
+        float pitch = user.getPitch(1.0F);
+        float yaw = user.getYaw(1.0F);
+
+        // Convert pitch and yaw to radians
+        double pitchRadians = Math.toRadians(pitch);
+        double yawRadians = Math.toRadians(yaw);
+
+        // Calculate direction vector for particles
+        double xx = -Math.sin(yawRadians) * Math.cos(pitchRadians);
+        double yy = -Math.sin(pitchRadians);
+        double zz = Math.cos(yawRadians) * Math.cos(pitchRadians);
+
+        // Apply dampening factor to the direction vector
+        xx *= DAMPENING_FACTOR;
+        yy *= DAMPENING_FACTOR;
+        zz *= DAMPENING_FACTOR;
+
+        return new double[]{xx, yy, zz};
     }
 }
 

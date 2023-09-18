@@ -20,6 +20,10 @@ public class ShitBlocks {
             new CracklinBoxBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0F).requiresTool()));
     public static final Block GAS_CAN = registerBlock("gas_can",
             new GasCanBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block GAS_CANISTER = registerBlock("gas_canister",
+            new GasCanisterBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block TOILET = registerBlock("toilet",
+            new ToiletBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block WORLD_BOMB = registerBlockWithoutBlockItem("world_bomb",
             new WorldBombBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 

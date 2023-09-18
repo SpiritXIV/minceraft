@@ -28,6 +28,10 @@ public class ShitEntities {
             Registries.ENTITY_TYPE, new Identifier(ShitMod.MOD_ID, "capybara"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CapybaraEntity::new)
                     .dimensions(EntityDimensions.fixed(1f, 1f)).build());
+    public static final EntityType<FreddyFazBearEntity> FREDDYFAZBEAR = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(ShitMod.MOD_ID, "freddy_faz_bear"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FreddyFazBearEntity::new)
+                    .dimensions(EntityDimensions.fixed(1f, 2f)).build());
     public static final EntityType<SlimShadyEntity> SLIM_SHADY = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(ShitMod.MOD_ID, "slim_shady"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SlimShadyEntity::new)
