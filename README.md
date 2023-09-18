@@ -15,7 +15,7 @@
 <hr>
 <h3  align="center">TODO</h3>
 <p></p>
-This is a list of thing that need to be done.
+This is a list of thing that need to be done. (made with chatGPT so most might not be there/not make any sense)
 
 ## Entities to Create
 
