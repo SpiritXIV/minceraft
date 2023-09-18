@@ -34,6 +34,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private static final int RANGE = 100;
     protected final int COOLDOWN;
     protected final int MAGAZINE_SIZE;
+    protected final float BULLET_DAMAGE;
     protected final int ITEM_BAR_COLOR;
 
     // Defining sounds.
@@ -45,34 +46,35 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         INSERT,
         DROP_CONTENT
     }
-    private final SoundEvent SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
-    private final SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
-    private final SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
-    private final SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
-    private final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
-    private final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
+    protected SoundEvent SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
+    protected SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    protected SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    protected SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
+    protected SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
+    protected SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
-    public GunItem(Settings settings, int magazineSize, int cooldown) {
-        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR);
+    public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage) {  // Add bulletDamage parameter
+        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage);  // Add bulletDamage argument
     }
-    public GunItem(Settings settings, int cooldown, int magazineSize, int itemBarColor) {
+
+    public GunItem(Settings settings, int cooldown, int magazineSize, int itemBarColor, float bulletDamage) {  // Add bulletDamage parameter
         super(settings);
         this.COOLDOWN = cooldown;
         this.MAGAZINE_SIZE = magazineSize;
         this.ITEM_BAR_COLOR = itemBarColor;
+        this.BULLET_DAMAGE = bulletDamage;  // Initialize BULLET_DAMAGE
     }
 
-    public ActionResult handleLeftClick(ItemStack itemStack, PlayerEntity user, World world) {
+    public void handleLeftClick(ItemStack itemStack, PlayerEntity user, World world) {
         System.out.println("Shooting!");
-        return this.shoot(itemStack, user, world);
+        this.shoot(itemStack, user, world);
 
     }
-    private ActionResult shoot(ItemStack gun, PlayerEntity user, World world) {
-        long currentTick = world.getTime(); // Current server tick
-        // Added this line, assuming 1-second cooldown
+    private void shoot(ItemStack gun, PlayerEntity user, World world) {
+        long currentTick = world.getTime();
         if (currentTick - lastFireTick < COOLDOWN) {
-            return ActionResult.PASS;
+            return;
         }
 
         lastFireTick = currentTick; // Update last fire tick
@@ -84,7 +86,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         System.out.println("Validating!");
         if (usesAmmunition && !hasAmmunition)
-            return ActionResult.FAIL;
+            return;
 
         if (usesAmmunition)
             this.removeAmmo(gunNBT);
@@ -92,6 +94,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         if (!world.isClient) {
             BulletProjectileEntity bullet = new BulletProjectileEntity(world, user);
+            bullet.setBulletDamage(BULLET_DAMAGE);  // Pass bullet damage to BulletProjectileEntity
             bullet.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
             world.spawnEntity(bullet);
             System.out.println("Shot!");
@@ -100,7 +103,6 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         this.playSound(world, user, SoundType.SHOOT);
 
-        return ActionResult.SUCCESS;
     }
 
     private void removeAmmo(NbtCompound gunNBT) {
@@ -130,6 +132,8 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             case RELOAD -> sound = RELOAD_SOUND;
             case EMPTY -> sound = EMPTY_SOUND;
             case REMOVE_ONE -> sound = REMOVE_BULLET_SOUND;
+            case INSERT -> sound = INSERT_SOUND;
+            case DROP_CONTENT -> sound = DROP_CONTENT_SOUND;
             // default -> {
             //     throw new IllegalArgumentException("Invalid sound type specified: " + type);
             // }

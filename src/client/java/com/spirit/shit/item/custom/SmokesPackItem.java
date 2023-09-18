@@ -118,8 +118,8 @@ public class SmokesPackItem extends Item {
     private static int addToBundle(ItemStack bundle, ItemStack stack) {
         if (!stack.isEmpty() && stack.getItem().canBeNested()) {
             NbtCompound nbtCompound = bundle.getOrCreateNbt();
-            if (!nbtCompound.contains("Items")) {
-                nbtCompound.put("Items", new NbtList());
+            if (!nbtCompound.contains(ITEMS_KEY)) {
+                nbtCompound.put(ITEMS_KEY, new NbtList());
             }
 
             int i = getBundleOccupancy(bundle);
@@ -128,7 +128,7 @@ public class SmokesPackItem extends Item {
             if (k == 0) {
                 return 0;
             } else {
-                NbtList nbtList = nbtCompound.getList("Items", 10);
+                NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
                 Optional<NbtCompound> optional = canMergeStack(stack, nbtList);
                 if (optional.isPresent()) {
                     NbtCompound nbtCompound2 = (NbtCompound)optional.get();
@@ -155,15 +155,19 @@ public class SmokesPackItem extends Item {
         if (stack.isOf(Items.BUNDLE)) {
             return Optional.empty();
         } else {
-            Stream var10000 = items.stream();
-            Objects.requireNonNull(NbtCompound.class);
+            // Specify the type in Stream
+            Stream<NbtElement> var10000 = items.stream();
+
+            // Filtering instances of NbtCompound
             var10000 = var10000.filter(NbtCompound.class::isInstance);
-            Objects.requireNonNull(NbtCompound.class);
-            return var10000.map(NbtCompound.class::cast).filter((item) -> {
-                return ItemStack.canCombine(ItemStack.fromNbt((NbtCompound) item), stack);
-            }).findFirst();
+
+            // Map and filter, specifying type
+            return var10000.map(NbtCompound.class::cast)
+                    .filter((NbtCompound item) -> ItemStack.canCombine(ItemStack.fromNbt(item), stack))
+                    .findFirst();
         }
     }
+
 
     private static int getItemOccupancy(ItemStack stack) {
         if (stack.isOf(Items.BUNDLE)) {
@@ -185,10 +189,10 @@ public class SmokesPackItem extends Item {
 
     private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains("Items")) {
+        if (!nbtCompound.contains(ITEMS_KEY)) {
             return Optional.empty();
         } else {
-            NbtList nbtList = nbtCompound.getList("Items", 10);
+            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
             if (nbtList.isEmpty()) {
                 return Optional.empty();
             } else {
@@ -197,7 +201,7 @@ public class SmokesPackItem extends Item {
                 ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
                 nbtList.remove(0);
                 if (nbtList.isEmpty()) {
-                    stack.removeSubNbt("Items");
+                    stack.removeSubNbt(ITEMS_KEY);
                 }
 
                 return Optional.of(itemStack);
@@ -207,11 +211,11 @@ public class SmokesPackItem extends Item {
 
     private static boolean dropAllBundledItems(ItemStack stack, PlayerEntity player) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
-        if (!nbtCompound.contains("Items")) {
+        if (!nbtCompound.contains(ITEMS_KEY)) {
             return false;
         } else {
             if (player instanceof ServerPlayerEntity) {
-                NbtList nbtList = nbtCompound.getList("Items", 10);
+                NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
 
                 for(int i = 0; i < nbtList.size(); ++i) {
                     NbtCompound nbtCompound2 = nbtList.getCompound(i);
@@ -220,7 +224,7 @@ public class SmokesPackItem extends Item {
                 }
             }
 
-            stack.removeSubNbt("Items");
+            stack.removeSubNbt(ITEMS_KEY);
             return true;
         }
     }
@@ -230,7 +234,7 @@ public class SmokesPackItem extends Item {
         if (nbtCompound == null) {
             return Stream.empty();
         } else {
-            NbtList nbtList = nbtCompound.getList("Items", 10);
+            NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
             Stream<NbtElement> var10000 = nbtList.stream();
             Objects.requireNonNull(NbtCompound.class);
             return var10000.map(NbtCompound.class::cast).map(ItemStack::fromNbt);

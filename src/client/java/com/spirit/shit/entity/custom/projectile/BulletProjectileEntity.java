@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,8 +20,15 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtByte;
 
 public class BulletProjectileEntity extends ThrownItemEntity {
+        private float bulletDamage;
+    // 0: isShotgunShell, 1: isIncendiary, 2: isExplosive, 3: isExtendedDuration
+    private byte[] flags = new byte[4];
+
     public BulletProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -36,6 +42,7 @@ public class BulletProjectileEntity extends ThrownItemEntity {
         super(ShitMod.BulletProjectileEntityType, owner, world);
     }
 
+    @SuppressWarnings("unused")
     public BulletProjectileEntity(World world, double x, double y, double z) {
         super(ShitMod.BulletProjectileEntityType, x, y, z, world);
     }
@@ -57,16 +64,45 @@ public class BulletProjectileEntity extends ThrownItemEntity {
         }
 
     }
+    public static BulletProjectileEntity create(EntityType<? extends ThrownItemEntity> entityType, World world) {
+        return new BulletProjectileEntity(entityType, world);
+    }
+    public void setFlags(byte[] flags) {
+        if (flags.length == 3) { // Updated to match new flag length
+            System.arraycopy(flags, 0, this.flags, 0, 3); // Updated to match new flag length
+        }
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
+        tag.putFloat("BulletDamage", bulletDamage);
+        NbtList flagList = new NbtList();
+        for (byte flag : flags) {
+            flagList.add(NbtByte.of(flag));
+        }
+        tag.put("Flags", flagList);
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
+        bulletDamage = tag.getFloat("BulletDamage");
+        NbtList flagList = tag.getList("Flags", 1); // 1 is the type ID for ByteTag
+        for (int i = 0; i < Math.min(flagList.size(), 3); i++) { // Updated to match new flag length
+            flags[i] = ((NbtByte) flagList.get(i)).byteValue(); // Cast to ByteTag and then get byte
+        }
+    }
+
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof PlayerEntity ? 3 : 0;
-
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.damage(new DamageSource(RegistryEntry.of(new DamageType("shot", 1))), 2);
+            livingEntity.damage(new DamageSource(RegistryEntry.of(new DamageType("shot", 1))), bulletDamage);
         }
     }
+
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
@@ -76,5 +112,9 @@ public class BulletProjectileEntity extends ThrownItemEntity {
             this.kill();
         }
 
+    }
+
+    public void setBulletDamage(float newBulletDamage) {
+        bulletDamage = newBulletDamage;
     }
 }
