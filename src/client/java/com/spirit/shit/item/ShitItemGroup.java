@@ -125,7 +125,7 @@ public class ShitItemGroup {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullets"))
                     .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
                     .entries((displayContext, entries) -> {
-                        // Items to consider
+                        // consider the following
                         BulletProjectileItem[] items = {
                                 (BulletProjectileItem) ShitItems.BULLET,
                                 (BulletProjectileItem) ShitItems.RIFLE_BULLET,

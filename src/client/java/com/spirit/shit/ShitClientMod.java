@@ -34,6 +34,9 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitMod.OatProjectileEntityType, FlyingItemEntityRenderer::new);
 
         EntityRendererRegistry.register(ShitMod.BulletProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.RifleBulletProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.ShellProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.SlugProjectileEntityType, FlyingItemEntityRenderer::new);
 
 
 

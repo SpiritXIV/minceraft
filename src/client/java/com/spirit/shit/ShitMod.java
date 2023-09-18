@@ -100,6 +100,13 @@ public class ShitMod implements ModInitializer {
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
+    public static final EntityType<SlugProjectileEntity> SlugProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "slug_entity"),
+            FabricEntityTypeBuilder.<SlugProjectileEntity>create(SpawnGroup.MISC, SlugProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
 
 
 
