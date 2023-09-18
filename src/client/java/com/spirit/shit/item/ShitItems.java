@@ -213,6 +213,10 @@ public class ShitItems {
             new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
     public static final Item SHELL_ENTITY = registerItem("shell_entity",
             new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+    public static final Item SLUG = registerItem("slug",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SLUG_ENTITY = registerItem("slug_entity",
+            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
 
 
     //SPECIAL
