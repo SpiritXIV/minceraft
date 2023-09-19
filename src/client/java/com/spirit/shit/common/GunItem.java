@@ -102,7 +102,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
                 world.spawnEntity(bullet);
                 System.out.println("Big Shot!");
                 //this \/ just need to be every other item than the shot gun up here ˆ
-            } else if (!user.getActiveItem().isOf(ShitItems.DOUBLE_BARREL)) {
+            } else if (user.getActiveItem().isOf(!ShitItems.DOUBLE_BARREL)) {
                     bullet.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
                     world.spawnEntity(bullet);
                     System.out.println("One Shot!");
