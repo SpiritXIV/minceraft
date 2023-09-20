@@ -15,7 +15,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ShitBlocks {
-
     public static final Block CRACKLIN_BOX = registerBlock("cracklin_box",
             new CracklinBoxBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0F).requiresTool()));
     public static final Block GAS_CAN = registerBlock("gas_can",
@@ -115,11 +114,46 @@ public class ShitBlocks {
     public static final Block ZARSH_PLUSH = registerBlock("zarsh_plush",
             new ZarshPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
+
+
+
+
+
+
+
+    //WARZONE
     public static final Block LAND_MINE = registerBlock("land_mine",
             new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
     public static final Block LAND_MINE_ACTIVE = registerBlock("land_mine_active",
             new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+
+    //OTHER BLOCKS
+
+    public static final Block CUBE_BLUE = registerBlock("cube_blue",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_GRAY = registerBlock("cube_gray",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_GREEN = registerBlock("cube_green",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_LIGHTBLUE = registerBlock("cube_lightblue",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_ORANGE = registerBlock("cube_orange",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_PEACH = registerBlock("cube_peach",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_PINK = registerBlock("cube_pink",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_PURPLE = registerBlock("cube_purple",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_RED = registerBlock("cube_red",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_RUSTY = registerBlock("cube_rusty",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_WHITE = registerBlock("cube_white",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block CUBE_YELLOW = registerBlock("cube_yellow",
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
