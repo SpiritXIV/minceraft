@@ -106,6 +106,8 @@ public class ShitClientMod implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ALPHA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CATLOVE_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CHEFINSANITY_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.COMPUTER_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ERIS_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JARGEDES_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JBIRD_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MCFELLA_PLUSH, RenderLayer.getCutout());

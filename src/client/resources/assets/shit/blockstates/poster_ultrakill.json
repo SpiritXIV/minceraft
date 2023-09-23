@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [{
+      "model": "shit:block/poster_ultrakill","weight":500 },
+      {  "model": "shit:block/poster_ultrakill_2", "weight":250 },
+      {  "model": "shit:block/poster_ultrakill_3", "weight":1 }
+    ]}
+}

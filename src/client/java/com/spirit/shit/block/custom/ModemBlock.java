@@ -14,6 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -96,6 +97,8 @@ public class ModemBlock extends Block {
 
             //i need to add a sound for this
             user.playSound(ShitSounds.MICROWAVE_BEEP, SoundCategory.BLOCKS, 1, 1);
+            user.sendMessage(Text.of("[!] | incomplete"));
+
         }
 
 

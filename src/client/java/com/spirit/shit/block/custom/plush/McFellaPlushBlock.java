@@ -53,15 +53,8 @@ public class McFellaPlushBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-
-            default:
-                return SHAPE_N;
-        }
+        return SHAPE_N;
     }
-
 
 
     @Override

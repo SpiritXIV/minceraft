@@ -29,6 +29,10 @@ public class ShitBlocks {
     public static final Block MODEM = registerBlock("modem",
             new ModemBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
+    //POSTERS
+    public static final Block ULTRAKILL_POSTER = registerBlock("poster_ultrakill",
+            new UlraKillPosterBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = registerBlock("backrooms_light",
             new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> {
@@ -98,6 +102,10 @@ public class ShitBlocks {
             new CatlovePlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block CHEFINSANITY_PLUSH = registerBlock("chefinsanity_plush",
             new ChefInsanityPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block COMPUTER_PLUSH = registerBlock("computer_plush",
+            new ComputerPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block ERIS_PLUSH = registerBlock("eris_plush",
+            new ComputerPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block JARGEDES_PLUSH = registerBlock("jargedes_plush",
             new JargedesPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block JBIRD_PLUSH = registerBlock("jbird_plush",

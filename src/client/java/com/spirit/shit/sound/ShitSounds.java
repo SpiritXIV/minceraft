@@ -18,6 +18,10 @@ public class ShitSounds {
     public static final SoundEvent MICROWAVE_OPEN_DOOR = registerSoundEvent("microwave_open_door");
     public static final SoundEvent MICROWAVE_CLOSE_DOOR = registerSoundEvent("microwave_close_door");
 
+    //PLUSH
+    public static final SoundEvent TALON_SPEAK = registerSoundEvent("talon_speak");
+
+
     //ITEMS
     public static final SoundEvent SODA = registerSoundEvent("soda");
     public static final SoundEvent JBIRD_SODA = registerSoundEvent("jbird_soda");

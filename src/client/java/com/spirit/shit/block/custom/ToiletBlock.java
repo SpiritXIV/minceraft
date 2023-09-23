@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -21,6 +22,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
@@ -74,8 +76,18 @@ public class ToiletBlock extends Block {
     @Nullable
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player2, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity user, Hand hand, BlockHitResult hit) {
         world.playSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, ShitSounds.IM_SLIM, SoundCategory.BLOCKS, 1F, 1F, true);
+
+
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
+
+        user.sendMessage(Text.of("[!] | incomplete"));
         return ActionResult.PASS;
 }
 

@@ -80,7 +80,6 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.CUBE_WHITE);
                         entries.add(ShitBlocks.CUBE_RUSTY);
 
-
                         entries.add(ShitItems.BLUE_BRICK);
                         entries.add(ShitItems.RED_BRICK);
                         entries.add(ShitItems.TRASH_CAN);
@@ -89,6 +88,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.CIGARETTE);
                         entries.add(ShitItems.CAMEL_BOX);
                         entries.add(ShitItems.MARLBORO_BOX);
+                        entries.add(ShitItems.NEWPORT_BOX);
 
 
                         //WEAPONDS
@@ -259,6 +259,8 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.ALPHA_PLUSH);
                         entries.add(ShitBlocks.CATLOVE_PLUSH);
                         entries.add(ShitBlocks.CHEFINSANITY_PLUSH);
+                        entries.add(ShitBlocks.COMPUTER_PLUSH);
+                        entries.add(ShitBlocks.ERIS_PLUSH);
                         entries.add(ShitBlocks.JARGEDES_PLUSH);
                         entries.add(ShitBlocks.JBIRD_PLUSH);
                         entries.add(ShitBlocks.MCFELLA_PLUSH);
@@ -297,6 +299,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.VILLAGER_MYWAY_MUSIC_DISC);
                         entries.add(ShitItems.VILLAGER_OPPENGANGNAMSTYLE_MUSIC_DISC);
                         entries.add(ShitItems.VILLAGER_PEACHES_MUSIC_DISC);
+                        entries.add(ShitItems.VILLAGER_SCATMANSWORLD_MUSIC_DISC);
                         entries.add(ShitItems.VILLAGER_SMOOTHCRIMINAL_MUSIC_DISC);
                         entries.add(ShitItems.VILLAGER_SOMEBODYIUSETOKNOW_MUSIC_DISC);
                         entries.add(ShitItems.VILLAGER_TAKEONME_MUSIC_DISC);

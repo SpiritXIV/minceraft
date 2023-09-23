@@ -327,6 +327,8 @@ public class ShitItems {
     public static final Item VILLAGER_MYWAY_MUSIC_DISC = registerItem("villager_myway", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_MYWAY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 276));
     public static final Item VILLAGER_OPPENGANGNAMSTYLE_MUSIC_DISC = registerItem("villager_oppengangnamstyle", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_OPPENGANGNAMSTYLE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 249));
     public static final Item VILLAGER_PEACHES_MUSIC_DISC = registerItem("villager_peaches", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_PEACHES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 93));
+    public static final Item VILLAGER_SCATMANSWORLD_MUSIC_DISC = registerItem("villager_scatmansworld", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_WHATISLOVE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 240));
+
     public static final Item VILLAGER_SMOOTHCRIMINAL_MUSIC_DISC = registerItem("villager_smoothcriminal", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_SMOOTHCRIMINAL, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 251));
     public static final Item VILLAGER_SOMEBODYIUSETOKNOW_MUSIC_DISC = registerItem("villager_somebodyiusetoknow", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_SOMEBODYIUSETOKNOW, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 244));
     public static final Item VILLAGER_TAKEONME_MUSIC_DISC = registerItem("villager_takeonme", new ShitMusicDiscItem(7, ShitSounds.VILLAGER_TAKEONME, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 231));
@@ -340,6 +342,7 @@ public class ShitItems {
 
     public static final Item CAMEL_BOX = registerItem("camel_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
     public static final Item MARLBORO_BOX = registerItem("marlboro_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
+    public static final Item NEWPORT_BOX = registerItem("newport_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
 
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
