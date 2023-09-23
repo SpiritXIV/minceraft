@@ -544,14 +544,6 @@ public class ShitMod implements ModInitializer {
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
 
-    public static final EntityType<SpeedColaCanProjectileEntity> SpeedColaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "speed_cola_can"),
-            FabricEntityTypeBuilder.<SpeedColaCanProjectileEntity>create(SpawnGroup.MISC, SpeedColaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
     public static final EntityType<StrawBerryMilkCartonProjectileEntity> StrawBerryMilkCartonProjectileEntityType = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(ShitMod.MOD_ID, "strawberry_milk_carton_empty"),
@@ -585,6 +577,105 @@ public class ShitMod implements ModInitializer {
                     .build());
 
 
+
+
+
+    /*public static final EntityType<DeadShotDaiquiriCanProjectileEntity> DeadShotDaiquiriCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "deadshotdaiquiri_can"),
+            FabricEntityTypeBuilder.<DeadShotDaiquiriCanProjectileEntity>create(SpawnGroup.MISC, DeadShotDaiquiriCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<DoubleTapRootBeerCanProjectileEntity> DoubleTapRootBeerCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "doubletaprootbeer_can"),
+            FabricEntityTypeBuilder.<DoubleTapRootBeerCanProjectileEntity>create(SpawnGroup.MISC, DoubleTapRootBeerCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<JuggernogCanProjectileEntity> JuggernogCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "juggernog_can"),
+            FabricEntityTypeBuilder.<JuggernogCanProjectileEntity>create(SpawnGroup.MISC, JuggernogCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<MuleKickCanProjectileEntity> MuleKickCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "mulekick_can"),
+            FabricEntityTypeBuilder.<MuleKickCanProjectileEntity>create(SpawnGroup.MISC, MuleKickCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<PHDFlopperCanProjectileEntity> PHDFlopperCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "phdflopper_can"),
+            FabricEntityTypeBuilder.<PHDFlopperCanProjectileEntity>create(SpawnGroup.MISC, PHDFlopperCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<QuickReviveCanProjectileEntity> QuickReviveCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "quickrevive_can"),
+            FabricEntityTypeBuilder.<QuickReviveCanProjectileEntity>create(SpawnGroup.MISC, QuickReviveCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<SpeedColaCanProjectileEntity> SpeedColaCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "speed_cola_can"),
+            FabricEntityTypeBuilder.<SpeedColaCanProjectileEntity>create(SpawnGroup.MISC, SpeedColaCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<StaminUpCanProjectileEntity> StaminUpCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "staminup_can"),
+            FabricEntityTypeBuilder.<StaminUpCanProjectileEntity>create(SpawnGroup.MISC, StaminUpCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<TombStoneSodaCanProjectileEntity> TombStoneSodaCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "tombstonesoda_can"),
+            FabricEntityTypeBuilder.<TombStoneSodaCanProjectileEntity>create(SpawnGroup.MISC, TombStoneSodaCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<VultureAidCanProjectileEntity> VultureAidCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "vultureaid_can"),
+            FabricEntityTypeBuilder.<VultureAidCanProjectileEntity>create(SpawnGroup.MISC, VultureAidCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<WhosWhoCanProjectileEntity> WhosWhoCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "whoswho_can"),
+            FabricEntityTypeBuilder.<WhosWhoCanProjectileEntity>create(SpawnGroup.MISC, WhosWhoCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<WidowsWineCanProjectileEntity> WidowsWineCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "widowswine_can"),
+            FabricEntityTypeBuilder.<WidowsWineCanProjectileEntity>create(SpawnGroup.MISC, WidowsWineCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
+*/
     @Override
     public void onInitialize() {
         ShitItemGroup.registerShitItemGroup();

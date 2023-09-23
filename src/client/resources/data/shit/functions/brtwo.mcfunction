@@ -25,11 +25,11 @@ execute as @e[type=marker,tag=flicker2] at @s if block ~ ~ ~ light[level=13] run
 execute as @e[type=marker,tag=flicker2] at @s if block ~ ~ ~ light[level=14] run setblock ~ ~ ~ light[level=13]
 execute as @e[type=marker,tag=flicker2] at @s if block ~ ~ ~ light[level=15] run setblock ~ ~ ~ light[level=14]
 # randomly decides when to flicker, sometimes with a double flash.
-execute as @e[type=marker,tag=flickerwall] at @s if block ~ ~ ~ light[level=11] if predicate shit:flickerwall_r run setblock ~ ~ ~ light[level=15]
-execute as @e[type=marker,tag=flickerwall] at @s if block ~ ~ ~ light[level=0] if predicate shit:flickerwall_r run setblock ~ ~ ~ light[level=15]
+execute as @e[type=marker,tag=flicker2_r] at @s if block ~ ~ ~ light[level=11] if predicate shit:flicker2_r_r run setblock ~ ~ ~ light[level=15]
+execute as @e[type=marker,tag=flicker2_r] at @s if block ~ ~ ~ light[level=0] if predicate shit:flicker2_r_r run setblock ~ ~ ~ light[level=15]
 # plays a couple notes which together sorta sound like a fluorescent bulb flickering.
-execute as @e[type=marker,tag=flickerwall] at @s if block ~ ~ ~ light[level=15] in shit:backroomsone run playsound shit:light_flicker master @a[nbt={Dimension:"shit:backroomsone"}] ~ ~ ~ 0.2 0.8
-execute as @e[type=marker,tag=flickerwall] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:flame ^ ^1 ^ 0 0 0 0.1 2 force @a
-execute as @e[type=marker,tag=flickerwall] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:ash ^ ^1 ^ 0 0 0 2 10 force @a
+execute as @e[type=marker,tag=flicker2_r] at @s if block ~ ~ ~ light[level=15] in shit:backroomsone run playsound shit:light_flicker master @a[nbt={Dimension:"shit:backroomsone"}] ~ ~ ~ 0.2 0.8
+execute as @e[type=marker,tag=flicker2_r] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:flame ^ ^1 ^ 0 0 0 0.1 2 force @a
+execute as @e[type=marker,tag=flicker2_r] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:ash ^ ^1 ^ 0 0 0 2 10 force @a
 # TP the player to the next level
 # execute at @a[nbt={Dimension:"shit:backroomsone"}] if block ~ ~-1 ~ shit:backrooms_concrete_floor_teleport run function shit:tplevel2
