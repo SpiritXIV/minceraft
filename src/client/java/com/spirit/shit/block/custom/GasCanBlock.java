@@ -38,7 +38,7 @@ public class GasCanBlock extends Block {
 
     public GasCanBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)this.getDefaultState().with(UNSTABLE, false));
+        this.setDefaultState(this.getDefaultState().with(UNSTABLE, false));
     }
 
     private static final VoxelShape SHAPE_N = Stream.of(
@@ -79,18 +79,12 @@ public class GasCanBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-            case SOUTH:
-                return SHAPE_S;
-            case WEST:
-                return SHAPE_W;
-            case EAST:
-                return SHAPE_E;
-            default:
-                return SHAPE_N;
-        }
+        return switch (state.get(FACING)) {
+            case SOUTH -> SHAPE_S;
+            case WEST -> SHAPE_W;
+            case EAST -> SHAPE_E;
+            default -> SHAPE_N;
+        };
     }
 
     @Nullable
@@ -119,7 +113,7 @@ public class GasCanBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE).booleanValue()) {
+        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE)) {
             GasCanBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);

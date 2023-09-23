@@ -1,31 +1,14 @@
 package com.spirit.shit.block.custom.plush;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class ZarshPlushBlock extends Block {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
-    public ZarshPlushBlock(Settings settings) {
-        super(settings);
-    }
-
-    private static final VoxelShape SHAPE_N = Stream.of(
+public class ZarshPlushBlock extends AbstractPlush {
+    private static final VoxelShape SHAPE = Stream.of(
             Stream.of(
                     Block.createCuboidShape(5.25, 13, 3, 10.75, 15, 5),
                     Block.createCuboidShape(10, 12.5, 2.75, 12, 14.5, 4.75),
@@ -55,31 +38,8 @@ public class ZarshPlushBlock extends Block {
             Block.createCuboidShape(9, 4.75, 5.25, 10, 6.75, 6.25),
             Block.createCuboidShape(6, 4.75, 5.25, 7, 6.75, 6.25)
             ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-            default:
-                return SHAPE_N;
-        }
-    }
-
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-    
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+    public ZarshPlushBlock(Settings settings) {
+        super(settings, SHAPE);
     }
 }
 

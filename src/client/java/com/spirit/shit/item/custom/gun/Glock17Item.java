@@ -1,6 +1,9 @@
-package com.spirit.shit.item.custom.guns;
+package com.spirit.shit.item.custom.gun;
 
+import com.spirit.shit.common.Common;
 import com.spirit.shit.common.GunItem;
+
+import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.item.Item;
 
@@ -9,10 +12,13 @@ public class Glock17Item extends GunItem {
     private static final int COOLDOWN = 20;
     private static final int ITEM_BAR_COLOR = 0x00FF00;
     private static final float DAMAGE = 4F;
+    private static final Item[] ALLOWED_TYPES = new GunProjectileItem[] {
+            Common.getBulletProjectileItemByType("bullet")
+    };
 
     public Glock17Item(Item.Settings settings) {
         // Calls the super class (GunItem) constructor
-        super(settings, COOLDOWN, MAGAZINE_SIZE, ITEM_BAR_COLOR, DAMAGE);
+        super(settings, COOLDOWN, MAGAZINE_SIZE, ITEM_BAR_COLOR, DAMAGE, ALLOWED_TYPES);
         this.SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
     }
 }
@@ -131,14 +137,14 @@ main
                 nbtCompound.put(ITEMS_KEY, new NbtList());
             }
 
-            int i = getBundleOccupancy(bundle); // Check the current number of bullets
+            int i = getBundleOccupancy(bundle); // Check the current number of bullet
 
             // Check if the bundle is already full
             if (i >= MAGAZINE_SIZE) {
                 return 0;
             }
 
-            // Calculate how many more bullets can be added
+            // Calculate how many more bullet can be added
             int j = Math.min(stack.getCount(), MAGAZINE_SIZE - i);
             if (j == 0) {
                 return 0;

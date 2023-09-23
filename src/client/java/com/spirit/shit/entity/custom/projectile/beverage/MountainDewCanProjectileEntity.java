@@ -43,7 +43,7 @@ public class MountainDewCanProjectileEntity extends ThrownItemEntity {
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.CRIT : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return itemStack.isEmpty() ? ParticleTypes.CRIT : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack);
     }
 
     @Environment(EnvType.CLIENT)

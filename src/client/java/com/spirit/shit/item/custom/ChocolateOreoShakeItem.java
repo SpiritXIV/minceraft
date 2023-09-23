@@ -1,11 +1,9 @@
 package com.spirit.shit.item.custom;
 
-import com.spirit.shit.effect.ShitEffects;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,8 +18,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class ChocolateOreoShakeItem extends Item {
-    private static final int MAX_USE_TIME = 50;
-
     public ChocolateOreoShakeItem(Settings settings) {
         super(settings);
     }

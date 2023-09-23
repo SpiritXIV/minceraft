@@ -1,6 +1,5 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.item.ItemPlacementContext;
@@ -20,7 +19,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class BackroomsPipeLargeBlock extends Block {
@@ -58,18 +56,12 @@ public class BackroomsPipeLargeBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-            case SOUTH:
-                return SHAPE_S;
-            case WEST:
-                return SHAPE_W;
-            case EAST:
-                return SHAPE_E;
-            default:
-                return SHAPE_N;
-        }
+        return switch (state.get(FACING)) {
+            case SOUTH -> SHAPE_S;
+            case WEST -> SHAPE_W;
+            case EAST -> SHAPE_E;
+            default -> SHAPE_N;
+        };
     }
 
     @Nullable

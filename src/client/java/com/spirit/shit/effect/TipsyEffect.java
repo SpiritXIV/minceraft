@@ -2,15 +2,12 @@ package com.spirit.shit.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.explosion.ExplosionBehavior;
 
 public class TipsyEffect extends StatusEffect {
-    protected TipsyEffect(StatusEffectCategory category, int color) {
-        super(category, color);
+    protected TipsyEffect() {
+        super(StatusEffectCategory.HARMFUL, 15259508);
     }
 
     @Override

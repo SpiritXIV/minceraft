@@ -2,7 +2,6 @@ package com.spirit.shit.entity.custom.projectile.beverage;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -44,7 +43,7 @@ public class BottleProjectileEntity extends ThrownItemEntity {
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.CRIT : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return itemStack.isEmpty() ? ParticleTypes.CRIT : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack);
     }
 
     @Environment(EnvType.CLIENT)

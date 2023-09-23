@@ -9,15 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class UraniumItem extends Item {
-    private static final int MAX_USE_TIME = 10;
 
     public UraniumItem(Settings settings) {
         super(settings);
@@ -41,10 +38,6 @@ public class UraniumItem extends Item {
             user.setOnFireFor(100000);
         }
         return stack;
-    }
-
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_EAT;
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

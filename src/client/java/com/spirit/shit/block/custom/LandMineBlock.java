@@ -1,24 +1,16 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.block.ShitBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -31,7 +23,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
@@ -42,8 +33,8 @@ public class LandMineBlock extends Block {
 
     public LandMineBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState) this.getDefaultState().with(UNSTABLE, false));
-        this.setDefaultState((BlockState)this.getDefaultState().with(POWERED, false));
+        this.setDefaultState(this.getDefaultState().with(UNSTABLE, false));
+        this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
 
     private static final VoxelShape SHAPE_N = Stream.of(
@@ -54,16 +45,8 @@ public class LandMineBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            default:
-                return SHAPE_N;
-        }
-    }
-
-    @Nullable
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState();
+        state.get(FACING);
+        return SHAPE_N;
     }
 
     @Override
@@ -76,7 +59,7 @@ public class LandMineBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE).booleanValue()) {
+        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE)) {
             LandMineBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);

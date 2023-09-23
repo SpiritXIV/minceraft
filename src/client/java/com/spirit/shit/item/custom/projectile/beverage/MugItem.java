@@ -1,38 +1,21 @@
 package com.spirit.shit.item.custom.projectile.beverage;
 
-import com.spirit.shit.entity.custom.projectile.beverage.BottleProjectileEntity;
 import com.spirit.shit.entity.custom.projectile.beverage.MugProjectileEntity;
+import com.spirit.shit.common.BeverageProjectileItem;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 
-public class MugItem extends Item {
-    public MugItem(Settings settings) {
-        super(settings);
+public class MugItem extends BeverageProjectileItem {
+    private static final SoundEvent THROW_SOUND = ShitSounds.GLASS_BOTTLE_THROWN;
+    public MugItem(Item.Settings settings) {
+        super(settings, THROW_SOUND);
     }
 
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), ShitSounds.GLASS_BOTTLE_THROWN, SoundCategory.NEUTRAL, 1F, 1F);
-		user.getItemCooldownManager().set(this, 5);
-        if (!world.isClient) {
-            MugProjectileEntity snowballEntity = new MugProjectileEntity(world, user);
-            snowballEntity.setItem(itemStack);
-            snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 1.0F, 0.5F, 1F);
-            world.spawnEntity(snowballEntity);
-        }
-
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1);
-        }
-
-        return TypedActionResult.success(itemStack, world.isClient());
+    @Override
+    public MugProjectileEntity createProjectileEntity(World world, PlayerEntity user) {
+        return new MugProjectileEntity(world, user);
     }
 }

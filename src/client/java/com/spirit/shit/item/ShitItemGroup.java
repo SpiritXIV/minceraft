@@ -2,7 +2,7 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.block.ShitBlocks;
-import com.spirit.shit.item.custom.projectile.BulletProjectileItem;
+import com.spirit.shit.common.GunProjectileItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -11,7 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.nbt.NbtCompound;
+import com.spirit.shit.common.Common;
 
 public class ShitItemGroup {
     @SuppressWarnings("unused")
@@ -99,8 +99,8 @@ public class ShitItemGroup {
 
     @SuppressWarnings("unused")
     public static final ItemGroup GUNS = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "guns"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.guns"))
+            new Identifier(ShitMod.MOD_ID, "gun"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.gun"))
                     .icon(() -> new ItemStack(ShitItems.M16)).entries((displayContext, entries) -> {
                         entries.add(ShitItems.AK47);
                         entries.add(ShitItems.DOUBLE_BARREL);
@@ -121,44 +121,27 @@ public class ShitItemGroup {
 
     @SuppressWarnings("unused")
     public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "bullets"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullets"))
-                    .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
-                    .entries((displayContext, entries) -> {
-                        // Items to consider
-                        BulletProjectileItem[] items = {
-                                (BulletProjectileItem) ShitItems.BULLET,
-                                (BulletProjectileItem) ShitItems.RIFLE_BULLET,
-                                (BulletProjectileItem) ShitItems.SHELL,
-                                (BulletProjectileItem) ShitItems.SLUG
-                        };
+        new Identifier(ShitMod.MOD_ID, "bullet"),
+        FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
+            .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
+                .entries((displayContext, entries) -> {
+                    // Items to consider
+                    GunProjectileItem[] items = Common.getBulletProjectileItems();
 
-                        for (BulletProjectileItem bulletItem : items) {
-                            for (StatusEffect effect : Registries.STATUS_EFFECT) {
-                                for (byte isIncendiary : new byte[]{0, 1}) {
-                                    for (byte isExplosive : new byte[]{0, 1}) {
-                                        for (byte isExtendedDuration : new byte[]{0, 1}) {
-                                            ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
-
-                                            // Add BulletType to NBT data
-                                            NbtCompound nbt = stack.getOrCreateNbt();
-                                            nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
-
-                                            // Generate a custom name for this bullet based on its properties.
-                                            String customName = bulletItem.generateCustomNameFromNBT(stack);
-
-                                            // Set the custom name to the ItemStack.
-                                            stack.setCustomName(Text.translatable(customName));
-
-
-                                            // Add the customized ItemStack to the entries.
-                                            entries.add(stack);
-                                        }
+                    for (GunProjectileItem bulletItem : items) {
+                        for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                            for (byte isIncendiary : new byte[]{0, 1}) {
+                                for (byte isExplosive : new byte[]{0, 1}) {
+                                    for (byte isExtendedDuration : new byte[]{0, 1}) {
+                                        ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
+                                        // Add the customized ItemStack to the entries.
+                                        entries.add(stack);
                                     }
                                 }
                             }
                         }
-                    }).build());
+                    }
+                }).build());
 
     @SuppressWarnings("unused")
     public static final ItemGroup PLUSHES = Registry.register(Registries.ITEM_GROUP,

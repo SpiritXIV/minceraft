@@ -1,8 +1,6 @@
 package com.spirit.shit.item.custom;
 
-import com.spirit.shit.effect.ShitEffects;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -16,7 +14,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class CoscoBigLongDogItem extends Item {
-    private static final int MAX_USE_TIME = 60;
 
     public CoscoBigLongDogItem(Settings settings) {
         super(settings);
@@ -40,10 +37,6 @@ public class CoscoBigLongDogItem extends Item {
     }
 
     public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_GENERIC_EAT;
-    }
-
-    public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_EAT;
     }
 

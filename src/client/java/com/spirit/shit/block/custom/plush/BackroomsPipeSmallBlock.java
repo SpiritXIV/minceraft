@@ -26,7 +26,7 @@ public class BackroomsPipeSmallBlock extends Block {
         super(settings);
     }
 
-    private static final VoxelShape SHAPE_N = Stream.of(
+    private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(11, 1, 0, 16, 6, 16),
             Block.createCuboidShape(13, 8.25, 0, 16, 11.25, 16),
             Block.createCuboidShape(12, 11.75, 0, 16, 15.75, 16),
@@ -62,18 +62,12 @@ public class BackroomsPipeSmallBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-            case SOUTH:
-                return SHAPE_S;
-            case WEST:
-                return SHAPE_W;
-            case EAST:
-                return SHAPE_E;
-            default:
-                return SHAPE_N;
-        }
+        return switch (state.get(FACING)) {
+            case SOUTH -> SHAPE_S;
+            case WEST -> SHAPE_W;
+            case EAST -> SHAPE_E;
+            default -> SHAPE;
+        };
     }
 
     @Nullable

@@ -2,12 +2,11 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.custom.*;
-import com.spirit.shit.item.custom.guns.*;
+import com.spirit.shit.item.custom.gun.*;
 import com.spirit.shit.item.custom.projectile.*;
-import com.spirit.shit.item.custom.DoritosChipItem;
+import com.spirit.shit.item.custom.projectile.bullet.*;
 import com.spirit.shit.item.custom.projectile.beverage.*;
 import com.spirit.shit.item.custom.projectile.beverage.BottleItem;
-import com.spirit.shit.item.custom.SmokesPackItem;
 import com.spirit.shit.item.material.CatcornMaterial;
 import com.spirit.shit.item.material.GiantLolipopMaterial;
 import com.spirit.shit.item.material.ZarshScytheMaterial;
@@ -201,23 +200,13 @@ public class ShitItems {
             new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
 
     public static final Item BULLET = registerItem("bullet",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    /*Makes another item but 3d so it doesnt shoot the 2d bullet*/
-    public static final Item BULLET_ENTITY = registerItem("bullet_entity",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+            new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
     public static final Item RIFLE_BULLET = registerItem("rifle_bullet",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item RIFLE_BULLET_ENTITY = registerItem("rifle_bullet_entity",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+            new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
     public static final Item SHELL = registerItem("shell",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SHELL_ENTITY = registerItem("shell_entity",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+            new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
     public static final Item SLUG = registerItem("slug",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SLUG_ENTITY = registerItem("slug_entity",
-            new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-
+            new SlugItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
 
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,

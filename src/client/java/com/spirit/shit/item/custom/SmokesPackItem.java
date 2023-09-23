@@ -37,16 +37,10 @@ import net.minecraft.world.World;
 
 public class SmokesPackItem extends Item {
     private static final String ITEMS_KEY = "Items";
-    public static final int MAX_STORAGE = 16;
-    private static final int BUNDLE_ITEM_OCCUPANCY = 4;
     private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.6F, 0.4F, 0.0F);
 
     public SmokesPackItem(Item.Settings settings) {
         super(settings);
-    }
-
-    public static float getAmountFilled(ItemStack stack) {
-        return (float)getBundleOccupancy(stack) / 16.0F;
     }
 
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
@@ -56,9 +50,7 @@ public class SmokesPackItem extends Item {
             ItemStack itemStack = slot.getStack();
             if (itemStack.isEmpty()) {
                 this.playRemoveOneSound(player);
-                removeFirstStack(stack).ifPresent((removedStack) -> {
-                    addToBundle(stack, slot.insertStack(removedStack));
-                });
+                removeFirstStack(stack).ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
             } else if (itemStack.getItem().canBeNested()) {
                 int i = (16 - getBundleOccupancy(stack)) / getItemOccupancy(itemStack);
                 int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
@@ -131,7 +123,7 @@ public class SmokesPackItem extends Item {
                 NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
                 Optional<NbtCompound> optional = canMergeStack(stack, nbtList);
                 if (optional.isPresent()) {
-                    NbtCompound nbtCompound2 = (NbtCompound)optional.get();
+                    NbtCompound nbtCompound2 = optional.get();
                     ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
                     itemStack.increment(k);
                     itemStack.writeNbt(nbtCompound2);
@@ -174,7 +166,7 @@ public class SmokesPackItem extends Item {
             return 4 + getBundleOccupancy(stack);
         } else {
             if ((stack.isOf(ShitItems.CIGARETTE) || stack.isOf(ShitItems.CIGAR)) && stack.hasNbt()) {
-                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
+                BlockItem.getBlockEntityNbt(stack);
             }
 
             return 1 / stack.getMaxCount();
@@ -182,9 +174,7 @@ public class SmokesPackItem extends Item {
     }
 
     private static int getBundleOccupancy(ItemStack stack) {
-        return getBundledStacks(stack).mapToInt((itemStack) -> {
-            return getItemOccupancy(itemStack) * itemStack.getCount();
-        }).sum();
+        return getBundledStacks(stack).mapToInt((itemStack) -> getItemOccupancy(itemStack) * itemStack.getCount()).sum();
     }
 
     private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
@@ -196,7 +186,6 @@ public class SmokesPackItem extends Item {
             if (nbtList.isEmpty()) {
                 return Optional.empty();
             } else {
-                boolean i = false;
                 NbtCompound nbtCompound2 = nbtList.getCompound(0);
                 ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
                 nbtList.remove(0);
@@ -250,7 +239,7 @@ public class SmokesPackItem extends Item {
     }
 
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.minecraft.bundle.fullness", new Object[]{getBundleOccupancy(stack), 16}).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.minecraft.bundle.fullness", getBundleOccupancy(stack), 16).formatted(Formatting.GRAY));
     }
 
     public void onItemEntityDestroyed(ItemEntity entity) {

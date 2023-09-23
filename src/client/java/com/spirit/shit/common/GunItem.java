@@ -6,12 +6,15 @@ import com.spirit.shit.sound.ShitSounds;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtByte;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.*;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.screen.slot.Slot;
@@ -19,7 +22,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,8 +31,7 @@ import java.util.stream.Stream;
 import java.util.function.Predicate;
 
 public abstract class GunItem extends RangedWeaponItem implements Vanishable {
-    private long lastFireTick = 0; // Added this line
-
+    private long lastFireTick = 0;
     private static final String ITEMS_KEY = "Items";
     private static final int DEFAULT_ITEM_BAR_COLOR = 0xFF0000; // RGB value for red
     private static final int RANGE = 100;
@@ -36,7 +39,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     protected final int MAGAZINE_SIZE;
     protected final float BULLET_DAMAGE;
     protected final int ITEM_BAR_COLOR;
-
+    private final Item[] ALLOWED_TYPES;
     // Defining sounds.
     public enum SoundType {
         SHOOT,
@@ -47,27 +50,27 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         DROP_CONTENT
     }
     protected SoundEvent SHOOT_SOUND = ShitSounds.PISTOL_SHOOT;
-    protected SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
-    protected SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
-    protected SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
-    protected SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
-    protected SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
+    protected final SoundEvent RELOAD_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    protected final SoundEvent EMPTY_SOUND = ShitSounds.PISTOL_SHOOT; // Implement
+    protected final SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
+    protected final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
+    protected final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
-    public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage) {  // Add bulletDamage parameter
-        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage);  // Add bulletDamage argument
+    public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage, Item[] allowedTypes) {  // Add bulletDamage parameter
+        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage, allowedTypes);  // Add bulletDamage argument
     }
 
-    public GunItem(Settings settings, int cooldown, int magazineSize, int itemBarColor, float bulletDamage) {  // Add bulletDamage parameter
+    public GunItem(Settings settings, int magazineSize, int cooldown, int itemBarColor, float bulletDamage, Item[] allowedTypes) {  // Add bulletDamage parameter
         super(settings);
         this.COOLDOWN = cooldown;
         this.MAGAZINE_SIZE = magazineSize;
         this.ITEM_BAR_COLOR = itemBarColor;
         this.BULLET_DAMAGE = bulletDamage;  // Initialize BULLET_DAMAGE
+        ALLOWED_TYPES = allowedTypes;
     }
 
     public void handleLeftClick(ItemStack itemStack, PlayerEntity user, World world) {
-        System.out.println("Shooting!");
         this.shoot(itemStack, user, world);
 
     }
@@ -79,29 +82,25 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         lastFireTick = currentTick; // Update last fire tick
 
-        System.out.println("At Function!");
         NbtCompound gunNBT = gun.getOrCreateNbt();
         boolean hasAmmunition = this.hasAmmo(gunNBT),
                 usesAmmunition = this.doesUseAmmo(user);
 
-        System.out.println("Validating!");
         if (usesAmmunition && !hasAmmunition)
             return;
 
         if (usesAmmunition)
             this.removeAmmo(gunNBT);
-        System.out.println("Is Valid!");
 
         if (!world.isClient) {
-            BulletProjectileEntity bullet = new BulletProjectileEntity(world, user);
-            bullet.setBulletDamage(BULLET_DAMAGE);  // Pass bullet damage to BulletProjectileEntity
+            BulletProjectileEntity bullet = new BulletProjectileEntity(world, user, 1);
+            bullet.setDamage(BULLET_DAMAGE);  // Pass bullet damage to BulletProjectileEntity
             bullet.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
             world.spawnEntity(bullet);
-            System.out.println("Shot!");
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
-        this.playSound(world, user, SoundType.SHOOT);
+        this.playSound(user, SoundType.SHOOT);
 
     }
 
@@ -122,24 +121,11 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private boolean hasAmmo(NbtCompound gunNBT) {
         return gunNBT.contains(ITEMS_KEY);
     }
+
     private boolean doesUseAmmo(PlayerEntity player) {
         return !player.isCreative();
     }
-    private void playSound(World world, PlayerEntity player, SoundType type) {
-        SoundEvent sound = null;
-        switch (type) {
-            case SHOOT -> sound = SHOOT_SOUND;
-            case RELOAD -> sound = RELOAD_SOUND;
-            case EMPTY -> sound = EMPTY_SOUND;
-            case REMOVE_ONE -> sound = REMOVE_BULLET_SOUND;
-            case INSERT -> sound = INSERT_SOUND;
-            case DROP_CONTENT -> sound = DROP_CONTENT_SOUND;
-            // default -> {
-            //     throw new IllegalArgumentException("Invalid sound type specified: " + type);
-            // }
-        }
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
-    }
+
     private void playSound(PlayerEntity player, SoundType type) {
         SoundEvent sound = null;
         switch (type) {
@@ -149,101 +135,102 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             case REMOVE_ONE -> sound = REMOVE_BULLET_SOUND;
             case INSERT -> sound = INSERT_SOUND;
             case DROP_CONTENT -> sound = DROP_CONTENT_SOUND;
-            // default -> {
-            //     throw new IllegalArgumentException("Invalid sound type specified: " + type);
-            // }
         }
 
         player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
     }
 
-
-    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+    public boolean onStackClicked(ItemStack gun, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType != ClickType.RIGHT) {
             return false;
-        } else {
-            ItemStack itemStack = slot.getStack();
-            if (itemStack.isEmpty()) {
-                playSound(player, SoundType.REMOVE_ONE);
-                removeFirstStack(stack).ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
-            } else if (itemStack.isOf(ShitItems.BULLET)) {  // Changed this line
-                if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
-                    return false;  // Do nothing if the magazine is full
-                }
-                int itemOccupancy = getItemOccupancy(itemStack);
-                if (itemOccupancy == 0) {
-                    return false;  // If occupancy is zero, return false
-                }
-                int i = (MAGAZINE_SIZE - getBundleOccupancy(stack)) / itemOccupancy;
-                int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
-                if (j > 0) {
-                    playSound(player, SoundType.INSERT);
-                }
+        }
+        ItemStack clickedItem = slot.getStack();
+
+        if (clickedItem.isEmpty()) {
+            playSound(player, SoundType.REMOVE_ONE);
+            removeFirstStack(gun).ifPresent((removedStack) -> addToGunInventory(gun, slot.insertStack(removedStack)));
+        } else if (Arrays.stream(ALLOWED_TYPES).anyMatch(clickedItem::isOf)) {
+            if (getBundleOccupancy(gun) >= MAGAZINE_SIZE) {
+                return false;  // Do nothing if the magazine is full
+            }
+            int itemOccupancy = getItemOccupancy(clickedItem);
+            if (itemOccupancy == 0) {
+                return false;  // If occupancy is zero, return false
+            }
+            int i = (MAGAZINE_SIZE - getBundleOccupancy(gun)) / itemOccupancy;
+            int j = addToGunInventory(gun, slot.takeStackRange(clickedItem.getCount(), i, player));
+            if (j > 0) {
+                playSound(player, SoundType.INSERT);
+            }
             } else {
                 return false;  // If item is not a bullet, return false
             }
 
-            return true;
-        }
+        return true;
     }
 
-    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+    public boolean onClicked(ItemStack gun, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
             if (otherStack.isEmpty()) {
-                removeFirstStack(stack).ifPresent((itemStack) -> {
+                removeFirstStack(gun).ifPresent((itemStack) -> {
                     playSound(player, SoundType.REMOVE_ONE);
                     cursorStackReference.set(itemStack);
                 });
             } else {
-                if (getBundleOccupancy(stack) >= MAGAZINE_SIZE) {
+                if (getBundleOccupancy(gun) >= MAGAZINE_SIZE) {
                     return false;  // Do nothing if the magazine is full
                 }
-                int i = addToBundle(stack, otherStack);
+
+                int i = addToGunInventory(gun, otherStack);
+
                 if (i > 0) {
                     playSound(player, SoundType.INSERT);
                     otherStack.decrement(i);
                 }
             }
-
             return true;
         } else {
             return false;
         }
     }
 
-    private int addToBundle(ItemStack bundle, ItemStack stack) {
-        if (!stack.isEmpty() && stack.isOf(ShitItems.BULLET)) {
-            NbtCompound nbtCompound = bundle.getOrCreateNbt();
-            if (!nbtCompound.contains(ITEMS_KEY)) {
-                nbtCompound.put(ITEMS_KEY, new NbtList());
+    private int addToGunInventory(ItemStack gun, ItemStack item) {
+        // Check if the item type is allowed
+        boolean isAllowedType = Arrays.stream(ALLOWED_TYPES).anyMatch(item::isOf);
+        if (!isAllowedType) {
+            return 0;
+        }
+
+        if (!item.isEmpty()) {
+            NbtCompound gunNbt = gun.getOrCreateNbt();
+            if (!gunNbt.contains(ITEMS_KEY)) {
+                gunNbt.put(ITEMS_KEY, new NbtList());
             }
 
-            int i = getBundleOccupancy(bundle); // Check the current number of bullets
+            int i = getBundleOccupancy(gun); // Check the current number of bullet
 
-            // Check if the bundle is already full
+            // Check if the gun is already full
             if (i >= MAGAZINE_SIZE) {
                 return 0;
             }
 
-            // Calculate how many more bullets can be added
-            int j = Math.min(stack.getCount(), MAGAZINE_SIZE - i);
+            // Calculate how many more bullet can be added
+            int j = Math.min(item.getCount(), MAGAZINE_SIZE - i);
             if (j == 0) {
                 return 0;
             } else {
-                NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
-                Optional<NbtCompound> optional = canMergeStack(stack, nbtList);
+                NbtList gunInventory = gunNbt.getList(ITEMS_KEY, 10);
+                Optional<NbtCompound> optional = canMergeStack(item, gunInventory);
                 if (optional.isPresent()) {
                     NbtCompound nbtCompound2 = optional.get();
                     ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
                     itemStack.increment(j);
                     itemStack.writeNbt(nbtCompound2);
-                    nbtList.remove(nbtCompound2);
-                    nbtList.add(0, nbtCompound2);
                 } else {
-                    ItemStack itemStack2 = stack.copyWithCount(j);
+                    ItemStack itemStack2 = item.copyWithCount(j);
                     NbtCompound nbtCompound3 = new NbtCompound();
                     itemStack2.writeNbt(nbtCompound3);
-                    nbtList.add(0, nbtCompound3);
+                    gunInventory.add(nbtCompound3); // Add to the end if no existing item is found
                 }
                 return j;
             }
@@ -252,16 +239,12 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
-    private static Optional<NbtCompound> canMergeStack(ItemStack stack, NbtList items) {
-        if (stack.isOf(Items.BUNDLE)) {
-            return Optional.empty();
-        } else {
-            Stream<NbtElement> var10000 = items.stream();
-            Objects.requireNonNull(NbtCompound.class);
-            var10000 = var10000.filter(NbtCompound.class::isInstance);
-            Objects.requireNonNull(NbtCompound.class);
-            return var10000.map(NbtCompound.class::cast).filter((item) -> ItemStack.canCombine(ItemStack.fromNbt(item), stack)).findFirst();
-        }
+    private static Optional<NbtCompound> canMergeStack(ItemStack stack, NbtList gunInventory) {
+        Stream<NbtElement> var10000 = gunInventory.stream();
+        Objects.requireNonNull(NbtCompound.class);
+        var10000 = var10000.filter(NbtCompound.class::isInstance);
+        Objects.requireNonNull(NbtCompound.class);
+        return var10000.map(NbtCompound.class::cast).filter((item) -> ItemStack.canCombine(ItemStack.fromNbt(item), stack)).findFirst();
     }
 
     private int getItemOccupancy(ItemStack stack) {
@@ -281,18 +264,22 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
-    private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
+    private Optional<ItemStack> removeFirstStack(ItemStack stack) {
         NbtCompound gun = stack.getOrCreateNbt();
         if (!gun.contains(ITEMS_KEY)) {
             return Optional.empty();
         }
-
         NbtList bulletList = gun.getList(ITEMS_KEY, 10);
         if (bulletList.isEmpty()) {
             return Optional.empty();
         } else {
             NbtCompound bulletCompound = bulletList.getCompound(0);
             ItemStack bulletStack = ItemStack.fromNbt(bulletCompound);
+            // Validate if the item type is allowed
+            boolean isAllowedType = Arrays.stream(ALLOWED_TYPES).anyMatch(bulletStack::isOf);
+            if (!isAllowedType) {
+                return Optional.empty();
+            }
             bulletList.remove(0);
             if (bulletList.isEmpty()) {
                 stack.removeSubNbt(ITEMS_KEY);
@@ -301,7 +288,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         }
     }
 
-    private static Stream<ItemStack> getBulletStacks(ItemStack stack) {
+    private Stream<ItemStack> getBulletStacks(ItemStack stack) {
         NbtCompound nbtCompound = stack.getNbt();
         if (nbtCompound == null) {
             return Stream.empty();
@@ -310,23 +297,53 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             return nbtList.stream()
                     .map(NbtCompound.class::cast)
                     .map(ItemStack::fromNbt)
-                    .filter(itemStack -> itemStack.isOf(ShitItems.BULLET));
+                    .filter(itemStack -> {
+                        // Validate if the item type is allowed
+                        return Arrays.stream(ALLOWED_TYPES).anyMatch(itemStack::isOf);
+                    });
         }
     }
 
-    /*
-    public Optional<TooltipData> getTooltipData(ItemStack stack) {
-        DefaultedList<ItemStack> defaultedList = DefaultedList.of();
-        Stream<ItemStack> var10000 = getBulletStacks(stack);
-        Objects.requireNonNull(defaultedList);
-        var10000.forEach(defaultedList::add);
-        return Optional.of(new BundleTooltipData(defaultedList, getBundleOccupancy(stack)));
-    }
-    */
-
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.gun.mag.fullness", getBundleOccupancy(stack), MAGAZINE_SIZE).formatted(Formatting.GRAY));
+        // Display Capacity
+        int totalLoaded = getBundleOccupancy(stack); // Assuming this is the current number of bullet in the magazine
+        tooltip.add(Text.translatable("[ Capacity ]").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(totalLoaded + "/" + MAGAZINE_SIZE).formatted(Formatting.WHITE));
+
+        // Display Loaded Bullets
+        tooltip.add(Text.translatable("[ Loaded Bullets ]").formatted(Formatting.GRAY));
+
+        List<ItemStack> bulletStacks = getBulletStacks(stack).toList();
+
+        // Limiting display to up to 5 bullet stacks
+        for (int i = 0; i < Math.min(bulletStacks.size(), 5); i++) {
+            ItemStack bulletStack = bulletStacks.get(i);
+            MutableText bulletText = Text.translatable(bulletStack.getName().getString()).formatted(Formatting.WHITE);
+
+            NbtCompound nbt = bulletStack.getNbt();
+            if (nbt != null) {
+                if (nbt.contains("Flags")) {
+                    NbtList flags = nbt.getList("Flags", 1);  // Assuming 1 is the NBT type for BYTE
+
+                    if (!flags.isEmpty() && ((NbtByte)flags.get(0)).byteValue() == 1) {
+                        bulletText.append(Text.translatable("I").formatted(Formatting.GOLD));
+                    }
+                    if (flags.size() > 1 && ((NbtByte)flags.get(1)).byteValue() == 1) {
+                        bulletText.append(Text.translatable("X").formatted(Formatting.DARK_RED));
+                    }
+                    if (flags.size() > 2 && ((NbtByte)flags.get(2)).byteValue() == 1) {
+                        bulletText.append(Text.translatable("E").formatted(Formatting.AQUA));
+                    }
+                }
+            }
+
+            // Append item size
+            bulletText.append(" x" + bulletStack.getCount());
+
+            tooltip.add(bulletText);
+        }
     }
+
     private int getBundleOccupancy(ItemStack stack) {
         return getBulletStacks(stack).mapToInt((itemStack) -> getItemOccupancy(itemStack) * itemStack.getCount()).sum();
     }
