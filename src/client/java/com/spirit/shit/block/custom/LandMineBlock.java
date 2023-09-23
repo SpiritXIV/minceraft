@@ -36,13 +36,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 public class LandMineBlock extends Block {
-    public static final BooleanProperty UNSTABLE = Properties.UNSTABLE;
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public LandMineBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState) this.getDefaultState().with(UNSTABLE, false));
         this.setDefaultState((BlockState)this.getDefaultState().with(POWERED, false));
     }
 
@@ -76,7 +74,7 @@ public class LandMineBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE).booleanValue()) {
+        if (!world.isClient() && !player.isCreative()) {
             LandMineBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);
@@ -135,7 +133,6 @@ public class LandMineBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(POWERED);
-        builder.add(UNSTABLE);
         builder.add(FACING);
     }
 }

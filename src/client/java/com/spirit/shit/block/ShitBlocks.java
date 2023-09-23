@@ -26,6 +26,9 @@ public class ShitBlocks {
     public static final Block WORLD_BOMB = registerBlockWithoutBlockItem("world_bomb",
             new WorldBombBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
+    public static final Block MODEM = registerBlock("modem",
+            new ModemBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = registerBlock("backrooms_light",
             new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> {
@@ -76,16 +79,16 @@ public class ShitBlocks {
     public static final Block BACKROOMS_CONCRETE_CEILING_PAINTED_LIGHT_OFF = registerBlock("backrooms_concrete_ceiling_painted_light_off",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
 
-    //BACKROOMS LEVEL 2
+    //BACKROOMS LEVEL 2    
     public static final Block BACKROOMS_PIPE_LARGE = registerBlock("backrooms_pipe_large",
             new BackroomsPipeLargeBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
     public static final Block BACKROOMS_PIPE_SMALL = registerBlock("backrooms_pipe_small",
             new BackroomsPipeLargeBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
-    public static final Block BACKROOMS_GREY_BRICK_FLOOR = registerBlock("backrooms_grey_brick_floor",
+    public static final Block BACKROOMS_WETTED_CONCRETE_FLOOR = registerBlock("backrooms_wetted_concrete_floor",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F)));
-    public static final Block BACKROOMS_MOLDED_WALL = registerBlock("backrooms_molded_wall",
+    public static final Block BACKROOMS_WETTED_CONCRETE_WALL = registerBlock("backrooms_wetted_concrete_wall",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F)));
-    public static final Block BACKROOMS_BROWN_CEILING = registerBlock("backrooms_brown_ceiling",
+    public static final Block BACKROOMS_WETTED_CONCRETE_CEILING = registerBlock("backrooms_wetted_concrete_ceiling",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F)));
 
     //PLUSHES
@@ -113,10 +116,6 @@ public class ShitBlocks {
             new TalonPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block ZARSH_PLUSH = registerBlock("zarsh_plush",
             new ZarshPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
-
-
-
-
 
 
 
@@ -154,6 +153,10 @@ public class ShitBlocks {
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
     public static final Block CUBE_YELLOW = registerBlock("cube_yellow",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+
+
+
+
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

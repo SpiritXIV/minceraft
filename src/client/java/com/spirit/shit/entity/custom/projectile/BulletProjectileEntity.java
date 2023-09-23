@@ -25,7 +25,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtByte;
 
 public class BulletProjectileEntity extends ThrownItemEntity {
-        private float bulletDamage;
+    private float bulletDamage;
     // 0: isShotgunShell, 1: isIncendiary, 2: isExplosive, 3: isExtendedDuration
     private byte[] flags = new byte[4];
 
@@ -62,6 +62,8 @@ public class BulletProjectileEntity extends ThrownItemEntity {
                 this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), getRotationVecClient().getX() + 10.0D, getRotationVecClient().getY() + 0.0D, getRotationVecClient().getZ() + 10.0D);
             }
         }
+
+
 
     }
     public static BulletProjectileEntity create(EntityType<? extends ThrownItemEntity> entityType, World world) {
