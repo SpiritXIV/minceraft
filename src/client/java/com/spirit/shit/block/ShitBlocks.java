@@ -28,6 +28,12 @@ public class ShitBlocks {
 
     public static final Block MODEM = registerBlock("modem",
             new ModemBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block COMPUTER_MOUSE = registerBlock("computer_mouse",
+            new ComputerMouseBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block OLD_COMPUTER = registerBlock("old_computer",
+            new OldComputerBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
+    public static final Block RADIO = registerBlock("90s_radio",
+            new RadioBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F)));
 
     //POSTERS
     public static final Block ULTRAKILL_POSTER = registerBlock("poster_ultrakill",

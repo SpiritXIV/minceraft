@@ -61,7 +61,9 @@ public class ShitItems {
     public static final Item TARP = registerItem("tarp", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item TECH_TRASH = registerItem("tech_trash", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item WORN_TARP = registerItem("worn_tarp", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
-
+    public static final Item CLOTH_ROLL = registerItem("cloth_roll", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
+    public static final Item PLASTIC_ROLL = registerItem("plastic_roll", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
+    public static final Item RUBBER_ROLL = registerItem("rubber_roll", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
 
 
 
@@ -295,8 +297,6 @@ public class ShitItems {
 
     public static final Item MUSTARD = registerItem("mustard", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item KETCHUP = registerItem("ketchup", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
-    public static final Item COMPUTER_MOUSE = registerItem("computer_mouse", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
-    public static final Item MASTERCARD_COMPUTER_MOUSE = registerItem("mastarcard_computer_mouse", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
     public static final Item TIN_FOIL = registerItem("tin_foil", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
 
     //MUSIC DISCS

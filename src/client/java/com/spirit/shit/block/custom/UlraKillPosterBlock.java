@@ -37,9 +37,9 @@ public class UlraKillPosterBlock extends Block {
 
     private static final VoxelShape SHAPE_N = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 2.5, 15.99, 14, 15.5, 15.99), Block.createCuboidShape(2, 3.33311, 14.23299, 14, 5.33311, 14.23299), BooleanBiFunction.OR);
 
-    private static final VoxelShape SHAPE_E = VoxelShapes.combineAndSimplify(Block.createCuboidShape(0.01, 2.5, 2, 0.01, 15.5, 14), Block.createCuboidShape(1.8, 3.33311, 2, 1.8, 5.33311, 14), BooleanBiFunction.OR);
+    private static final VoxelShape SHAPE_E = VoxelShapes.combineAndSimplify(Block.createCuboidShape(0.1, 2.5, 2, 0.1, 15.5, 14), Block.createCuboidShape(1.8, 3.33311, 2, 1.8, 5.33311, 14), BooleanBiFunction.OR);
 
-    private static final VoxelShape SHAPE_S = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 2.5, 0.01, 14, 15.5, 0.01), Block.createCuboidShape(2, 3.33311, 1.8, 14, 5.33311, 1.8), BooleanBiFunction.OR);
+    private static final VoxelShape SHAPE_S = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 2.5, 0.1, 14, 15.5, 0.1), Block.createCuboidShape(2, 3.33311, 1.8, 14, 5.33311, 1.8), BooleanBiFunction.OR);
 
     private static final VoxelShape SHAPE_W = VoxelShapes.combineAndSimplify(Block.createCuboidShape(15.99, 2.5, 2, 15.99, 15.5, 14), Block.createCuboidShape(14.23299, 3.33311, 2, 14.23299, 5.33311, 14), BooleanBiFunction.OR);
 

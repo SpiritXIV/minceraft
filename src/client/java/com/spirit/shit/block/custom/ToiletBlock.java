@@ -16,6 +16,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
@@ -77,15 +78,14 @@ public class ToiletBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity user, Hand hand, BlockHitResult hit) {
-        world.playSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, ShitSounds.IM_SLIM, SoundCategory.BLOCKS, 1F, 1F, true);
+        world.playSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, 1F, 1F, true);
 
-
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * -0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * -0.2F + 0F));
-        user.getWorld().addParticle(ParticleTypes.DRIPPING_WATER, pos.getX(), pos.getY() + 0.3, pos.getZ(), (world.getRandom().nextFloat() * 0.2F + 0F), 0.4 ,(world.getRandom().nextFloat() * 0.2F + 0F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * 0.2F + -0.6F), 0.1F, (world.getRandom().nextFloat() * 0.2F + -0.6F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * -0.2F + 0.6F), 0.1F, (world.getRandom().nextFloat() * -0.2F + 0.6F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * 0.2F + -0.6F), 0.1F, (world.getRandom().nextFloat() * 0.2F + -0.6F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * -0.2F + 0.6F), 0.1F, (world.getRandom().nextFloat() * -0.2F + 0.6F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * 0.2F + -0.6F), 0.1F, (world.getRandom().nextFloat() * 0.2F + -0.6F));
+        user.getWorld().addParticle(ParticleTypes.SPLASH, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, (world.getRandom().nextFloat() * -0.2F + 0.6F), 0.1F, (world.getRandom().nextFloat() * -0.2F + 0.6F));
 
         user.sendMessage(Text.of("[!] | incomplete"));
         return ActionResult.PASS;

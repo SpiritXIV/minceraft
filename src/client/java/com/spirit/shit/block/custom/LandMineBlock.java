@@ -37,7 +37,6 @@ import java.util.stream.Stream;
 
 public class LandMineBlock extends Block {
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public LandMineBlock(Settings settings) {
         super(settings);
@@ -52,10 +51,7 @@ public class LandMineBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            default:
-                return SHAPE_N;
-        }
+        return SHAPE_N;
     }
 
     @Nullable
@@ -133,7 +129,6 @@ public class LandMineBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(POWERED);
-        builder.add(FACING);
     }
 }
 

@@ -62,11 +62,18 @@ public class ShitItemGroup {
                         entries.add(ShitItems.TARP);
                         entries.add(ShitItems.TECH_TRASH);
                         entries.add(ShitItems.WORN_TARP);
+                        entries.add(ShitItems.CLOTH_ROLL);
+                        entries.add(ShitItems.PLASTIC_ROLL);
+                        entries.add(ShitItems.RUBBER_ROLL);
 
                         //random blocks
                         entries.add(ShitBlocks.GAS_CAN);
                         entries.add(ShitBlocks.GAS_CANISTER);
                         entries.add(ShitBlocks.TOILET);
+                        entries.add(ShitBlocks.MODEM);
+                        entries.add(ShitBlocks.RADIO);
+                        entries.add(ShitBlocks.OLD_COMPUTER);
+                        entries.add(ShitBlocks.COMPUTER_MOUSE);
                         entries.add(ShitBlocks.CUBE_RED);
                         entries.add(ShitBlocks.CUBE_PEACH);
                         entries.add(ShitBlocks.CUBE_ORANGE);
@@ -110,7 +117,6 @@ public class ShitItemGroup {
                         //FOOD
                         entries.add(ShitItems.KETCHUP);
                         entries.add(ShitItems.MUSTARD);
-                        entries.add(ShitItems.COMPUTER_MOUSE);
 
                         entries.add(ShitItems.NACHO_DORITOS_CHIP);
                         entries.add(ShitItems.NACHO_DORITOS_BAG);
