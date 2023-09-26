@@ -14,6 +14,7 @@ public class KeyInputHandler {
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            //noinspection StatementWithEmptyBody
             if (reloadKey.wasPressed()) {
                 //
             }

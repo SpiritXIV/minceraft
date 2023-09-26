@@ -2,7 +2,6 @@ package com.spirit.shit.entity.custom.projectile;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,7 +10,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

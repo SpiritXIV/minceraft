@@ -13,7 +13,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public abstract class AbstractPlush extends Block {
-    VoxelShape SHAPE;
+    final VoxelShape SHAPE;
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 

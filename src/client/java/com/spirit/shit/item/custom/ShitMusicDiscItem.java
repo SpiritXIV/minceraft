@@ -47,8 +47,7 @@ public class ShitMusicDiscItem extends Item {
             if (!world.isClient) {
                 PlayerEntity playerEntity = context.getPlayer();
                 BlockEntity var8 = world.getBlockEntity(blockPos);
-                if (var8 instanceof JukeboxBlockEntity) {
-                    JukeboxBlockEntity jukeboxBlockEntity = (JukeboxBlockEntity)var8;
+                if (var8 instanceof JukeboxBlockEntity jukeboxBlockEntity) {
                     jukeboxBlockEntity.setStack(itemStack.copy());
                     world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, blockState));
                 }
@@ -79,7 +78,7 @@ public class ShitMusicDiscItem extends Item {
 
     @Nullable
     public static ShitMusicDiscItem bySound(SoundEvent sound) {
-        return (ShitMusicDiscItem)SHIT_MUSIC_DISCS.get(sound);
+        return SHIT_MUSIC_DISCS.get(sound);
     }
 
     public SoundEvent getSound() {

@@ -21,7 +21,6 @@ import com.spirit.shit.item.ShitFoodComponents;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.common.GunItem;
-import com.spirit.shit.item.custom.projectile.bullet.BulletItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
@@ -615,14 +614,6 @@ public class ShitMod implements ModInitializer {
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
 
-    public static final EntityType<SpeedColaCanProjectileEntity> SpeedColaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "speed_cola_can"),
-            FabricEntityTypeBuilder.<SpeedColaCanProjectileEntity>create(SpawnGroup.MISC, SpeedColaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
     public static final EntityType<StaminUpCanProjectileEntity> StaminUpCanProjectileEntityType = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(ShitMod.MOD_ID, "staminup_can"),
@@ -663,6 +654,14 @@ public class ShitMod implements ModInitializer {
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
 */
+
+    public static final EntityType<SpeedColaCanProjectileEntity> SpeedColaCanProjectileEntityType = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(ShitMod.MOD_ID, "speed_cola_can"),
+            FabricEntityTypeBuilder.<SpeedColaCanProjectileEntity>create(SpawnGroup.MISC, SpeedColaCanProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build());
     public static final ItemGroup BULLET_ITEM_GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
                     .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
                     .entries((displayContext, entries) -> {

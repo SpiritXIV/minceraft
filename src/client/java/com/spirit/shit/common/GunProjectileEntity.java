@@ -39,7 +39,6 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
     private String potionEffect; // Will hold the potion effect in the future
     private SoundEvent sound = this.getHitSound();
     private short life;
-    private final float WATER_DRAG = 0.6f;
 
 
     public GunProjectileEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
@@ -80,6 +79,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         Vec3d vec3d = this.getVelocity();
         if (this.prevPitch == 0.0f && this.prevYaw == 0.0f) {
             double d = vec3d.horizontalLength();
+            //noinspection SuspiciousNameCombination
             this.setYaw((float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875));
             this.setPitch((float)(MathHelper.atan2(vec3d.y, d) * 57.2957763671875));
             this.prevYaw = this.getYaw();
@@ -111,7 +111,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                 hitResult = entityHitResult;
             }
             if (hitResult != null && hitResult.getType() == HitResult.Type.ENTITY) {
-                Entity entity = ((EntityHitResult)hitResult).getEntity();
+                @SuppressWarnings("DataFlowIssue") Entity entity = ((EntityHitResult)hitResult).getEntity();
                 Entity entity2 = this.getOwner();
                 if (entity instanceof PlayerEntity && entity2 instanceof PlayerEntity && !((PlayerEntity)entity2).shouldDamagePlayer((PlayerEntity)entity)) {
                     hitResult = null;
@@ -141,6 +141,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         if (noClip) {
             this.setYaw((float)(MathHelper.atan2(-vX, -vZ) * 57.2957763671875));
         } else {
+            //noinspection SuspiciousNameCombination
             this.setYaw((float)(MathHelper.atan2(vX, vZ) * 57.2957763671875));
         }
         this.setPitch((float)(MathHelper.atan2(vY, l) * 57.2957763671875));
@@ -153,7 +154,8 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                 float particlePosModifier = 0.25f;
                 this.getWorld().addParticle(ParticleTypes.BUBBLE, newX - vX * particlePosModifier, newY - vY * particlePosModifier, newZ - vZ * particlePosModifier, vX, vY, vZ);
             }
-            drag = this.WATER_DRAG;
+            float WATER_DRAG = 0.6f;
+            drag = WATER_DRAG;
         }
         this.setVelocity(vec3d.multiply(drag));
         if (!this.hasNoGravity() && !noClip) {
@@ -258,10 +260,12 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         this.discard();
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected SoundEvent getHitSound() { // Spirit, replace this w/ your sound.
         return SoundEvents.ENTITY_ARROW_HIT;
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onHit(LivingEntity target) {
         // To be implemented when needed
     }

@@ -2,17 +2,13 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.block.ShitBlocks;
-import com.spirit.shit.common.GunProjectileItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.entity.effect.StatusEffect;
-import com.spirit.shit.common.Common;
 
 public class ShitItemGroup {
     @SuppressWarnings("unused")
@@ -315,8 +311,7 @@ public class ShitItemGroup {
                     }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup BACKROOMS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "backrooms_item_group"),
+    public static final ItemGroup BACKROOMS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "backrooms_item_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.backrooms"))
                     .icon(() -> new ItemStack(ShitBlocks.BACKROOMS_WALLPAPER)).entries((displayContext, entries) -> {
                         entries.add(ShitBlocks.BACKROOMS_CEILING);
@@ -344,8 +339,7 @@ public class ShitItemGroup {
                     }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "warzone"),
+    public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "warzone"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.warzone"))
                     .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
                     .entries((displayContext, entries) -> {
@@ -369,6 +363,8 @@ public class ShitItemGroup {
                         entries.add(ShitItems.RIFLE_BULLET);
                         entries.add(ShitItems.SHELL);
                         entries.add(ShitItems.SLUG);
+
+                    }).build());
 
     public static void registerShitItemGroup() {
         ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItemGroup");

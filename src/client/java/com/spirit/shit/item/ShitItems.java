@@ -4,9 +4,12 @@ import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.custom.*;
 import com.spirit.shit.item.custom.gun.*;
 import com.spirit.shit.item.custom.projectile.*;
-import com.spirit.shit.item.custom.projectile.bullet.*;
 import com.spirit.shit.item.custom.projectile.beverage.*;
 import com.spirit.shit.item.custom.projectile.beverage.BottleItem;
+import com.spirit.shit.item.custom.projectile.bullet.BulletItem;
+import com.spirit.shit.item.custom.projectile.bullet.RifleBulletItem;
+import com.spirit.shit.item.custom.projectile.bullet.ShellItem;
+import com.spirit.shit.item.custom.projectile.bullet.SlugItem;
 import com.spirit.shit.item.material.CatcornMaterial;
 import com.spirit.shit.item.material.GiantLolipopMaterial;
 import com.spirit.shit.item.material.ZarshScytheMaterial;
@@ -214,6 +217,10 @@ public class ShitItems {
 
     //WEAPONS
     //GUNS
+    public static final Item BULLET = registerItem("bullet", new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item RIFLE_BULLET = registerItem("rifle_bullet", new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SHELL = registerItem("shell", new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SLUG = registerItem("slug", new SlugItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
     public static final Item AK47 = registerItem("ak47", new AK47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item DOUBLE_BARREL = registerItem("double_barrel", new DoubleBarrelItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item FNP90 = registerItem("fnp_90", new fnp90Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
@@ -225,11 +232,7 @@ public class ShitItems {
     public static final Item GOLDEN_REVOLVER = registerItem("revolver_golden", new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item SAWED_OFF = registerItem("sawed_off", new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item STRIKER_12 = registerItem("striker_12", new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
-  
-    public static final Item BULLET = registerItem("bullet", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item RIFLE_BULLET = registerItem("rifle_bullet", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SHELL = registerItem("shell", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SLUG = registerItem("slug", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,
                     new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
@@ -300,6 +303,7 @@ public class ShitItems {
     public static final Item NEWPORT_BOX = registerItem("newport_box", new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));
 
 
+    @SuppressWarnings("UnstableApiUsage")
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
         entries.add(RED_BRICK);
         entries.add(BLUE_BRICK);

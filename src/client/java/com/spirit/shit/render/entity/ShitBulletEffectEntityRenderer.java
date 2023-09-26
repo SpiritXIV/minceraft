@@ -5,12 +5,6 @@
 
 package com.spirit.shit.render.entity;
 
-import com.spirit.shit.entity.custom.projectile.BulletProjectileEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.util.Identifier;
-
 /*@Environment(EnvType.CLIENT)
 public class ShitBulletEffectEntityRenderer extends ProjectileEntityRendererBase<BulletProjectileEntity> {
     public static final Identifier TEXTURE = new Identifier("textures/entity/projectiles/arrow.png");

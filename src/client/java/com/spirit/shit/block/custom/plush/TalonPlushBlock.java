@@ -1,6 +1,5 @@
 package com.spirit.shit.block.custom.plush;
 
-import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.Block;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.shape.VoxelShape;
