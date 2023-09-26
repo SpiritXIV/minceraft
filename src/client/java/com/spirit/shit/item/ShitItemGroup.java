@@ -2,16 +2,17 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.block.ShitBlocks;
-import com.spirit.shit.item.custom.projectile.BulletProjectileItem;
+import com.spirit.shit.common.GunProjectileItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.nbt.NbtCompound;
+import com.spirit.shit.common.Common;
 
 public class ShitItemGroup {
     @SuppressWarnings("unused")
@@ -113,7 +114,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.PIE_SUS);
                         entries.add(ShitItems.SAIS);
                         entries.add(ShitItems.ZARSH_SCYTHE);
-
+                      
                         //FOOD
                         entries.add(ShitItems.KETCHUP);
                         entries.add(ShitItems.MUSTARD);
@@ -364,56 +365,10 @@ public class ShitItemGroup {
                         entries.add(ShitItems.GOLDEN_REVOLVER);
                         entries.add(ShitItems.SAWED_OFF);
                         entries.add(ShitItems.STRIKER_12);
-                        entries.add(ShitItems.IRON_BULLET);
                         entries.add(ShitItems.BULLET);
-                        entries.add(ShitItems.GOLD_BULLET);
-                        //entries.add(ShitItems.INCENDIARY_BULLET);
-                        entries.add(ShitItems.IRON_RIFLE_BULLET);
                         entries.add(ShitItems.RIFLE_BULLET);
-                        entries.add(ShitItems.GOLD_RIFLE_BULLET);
-                        //entries.add(ShitItems.RIFLE_INCENDIARY_BULLET);
                         entries.add(ShitItems.SHELL);
-                        entries.add(ShitItems.MAGNUM_SHELL);
-                        entries.add(ShitItems.SHORTY_SHELL);
                         entries.add(ShitItems.SLUG);
-                        entries.add(ShitItems.HEAVY_SLUG);
-                        //entries.add(ShitItems.INCENDIARY_SLUG);
-
-
-                        // consider the following
-                        BulletProjectileItem[] items = {
-                                (BulletProjectileItem) ShitItems.BULLET,
-                                (BulletProjectileItem) ShitItems.RIFLE_BULLET,
-                                (BulletProjectileItem) ShitItems.SHELL,
-                                (BulletProjectileItem) ShitItems.SLUG
-                        };
-
-                        for (BulletProjectileItem bulletItem : items) {
-                            for (StatusEffect effect : Registries.STATUS_EFFECT) {
-                                for (byte isIncendiary : new byte[]{0, 1}) {
-                                    for (byte isExplosive : new byte[]{0, 1}) {
-                                        for (byte isExtendedDuration : new byte[]{0, 1}) {
-                                            ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
-
-                                            // Add BulletType to NBT data
-                                            NbtCompound nbt = stack.getOrCreateNbt();
-                                            nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
-
-                                            // Generate a custom name for this bullet based on its properties.
-                                            String customName = bulletItem.generateCustomNameFromNBT(stack);
-
-                                            // Set the custom name to the ItemStack.
-                                            stack.setCustomName(Text.translatable(customName));
-
-
-                                            // Add the customized ItemStack to the entries.
-                                            entries.add(stack);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }).build());
 
     public static void registerShitItemGroup() {
         ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItemGroup");

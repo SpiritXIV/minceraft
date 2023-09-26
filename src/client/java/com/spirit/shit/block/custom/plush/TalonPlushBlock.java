@@ -2,39 +2,14 @@ package com.spirit.shit.block.custom.plush;
 
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class TalonPlushBlock extends Block {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
-    public TalonPlushBlock(Settings settings) {
-        super(settings);
-    }
-
-    private static final VoxelShape SHAPE_N = Stream.of(
+public class TalonPlushBlock extends AbstractPlush {
+    private static final VoxelShape SHAPE = Stream.of(
             Stream.of(
                     Block.createCuboidShape(4, 7, 4, 12, 15, 12),
                     Block.createCuboidShape(5, 1, 6, 11, 7, 10),
@@ -76,33 +51,8 @@ public class TalonPlushBlock extends Block {
             ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get()
 ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_N;
-    }
-
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity user, Hand hand, BlockHitResult hit) {
-
-        user.playSound(ShitSounds.TALON_SPEAK, SoundCategory.BLOCKS, 1, 1);
-        user.sendMessage(Text.of("[!] | incomplete"));
-        return ActionResult.PASS;
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-    
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+    public TalonPlushBlock(Settings settings) {
+        super(settings, SHAPE);
     }
 }
 

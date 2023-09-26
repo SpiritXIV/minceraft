@@ -21,7 +21,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class YippeeEntity extends HostileEntity implements GeoEntity {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -59,6 +59,7 @@ public class YippeeEntity extends HostileEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.yippee.walk", Animation.LoopType.LOOP));
@@ -76,10 +77,6 @@ public class YippeeEntity extends HostileEntity implements GeoEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-
         this.playSound(ShitSounds.YIPPEE, 1, 1);
 
         return null;

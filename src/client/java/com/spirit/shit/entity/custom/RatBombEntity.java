@@ -14,7 +14,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.GoatEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +44,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import java.util.Collection;
 
 public class RatBombEntity extends PassiveEntity implements GeoEntity {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -84,13 +83,13 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(2, new RatBombIgniteGoal(this));
         //this.goalSelector.add(0, new FleeEntityGoal<RatBombEntity>(this, RatBombEntity.class, 4.0f, 1.0, 1.2));
-        this.targetSelector.add(2, new ActiveTargetGoal<HostileEntity>((MobEntity) this, HostileEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, HostileEntity.class, true));
         this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(6, new LookAroundGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<PlayerEntity>((MobEntity) this, PlayerEntity.class, true));
-        this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new RevengeGoal(this));
 
 
         this.experiencePoints = 5;
@@ -102,6 +101,7 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.rat_bomb.move", Animation.LoopType.LOOP));
@@ -116,6 +116,7 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState spinpredicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
         if (this.spinning && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
 

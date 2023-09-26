@@ -2,12 +2,11 @@ package com.spirit.shit.item;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.item.custom.*;
-import com.spirit.shit.item.custom.guns.*;
+import com.spirit.shit.item.custom.gun.*;
 import com.spirit.shit.item.custom.projectile.*;
-import com.spirit.shit.item.custom.DoritosChipItem;
+import com.spirit.shit.item.custom.projectile.bullet.*;
 import com.spirit.shit.item.custom.projectile.beverage.*;
 import com.spirit.shit.item.custom.projectile.beverage.BottleItem;
-import com.spirit.shit.item.custom.SmokesPackItem;
 import com.spirit.shit.item.material.CatcornMaterial;
 import com.spirit.shit.item.material.GiantLolipopMaterial;
 import com.spirit.shit.item.material.ZarshScytheMaterial;
@@ -24,8 +23,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class ShitItems {
-
-
     //Items
     public static final Item ALUMINUM_INGOT = registerItem("aluminum_ingot", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
     public static final Item ALUMINUM_NUGGET = registerItem("aluminum_nugget", new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON)));
@@ -217,7 +214,6 @@ public class ShitItems {
 
     //WEAPONS
     //GUNS
-
     public static final Item AK47 = registerItem("ak47", new AK47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item DOUBLE_BARREL = registerItem("double_barrel", new DoubleBarrelItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item FNP90 = registerItem("fnp_90", new fnp90Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
@@ -229,52 +225,11 @@ public class ShitItems {
     public static final Item GOLDEN_REVOLVER = registerItem("revolver_golden", new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item SAWED_OFF = registerItem("sawed_off", new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item STRIKER_12 = registerItem("striker_12", new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
-
-
-
-    //iron bullets are only a bullet your guns can shoot them, but you can not have tipped iron bullets, nor can you have tipped incendiary bullets
-    //gold bullets are spectral bullets, no this also can have any tipped varients, it will only give you glowing when hit,
-    //so the only bullets that should have a tipped varient are the bullet itself, the rifle bullet, the shell, and the slug
-
-
-    public static final Item IRON_BULLET = registerItem("bullet_iron", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item IRON_BULLET_ENTITY = registerItem("bullet_iron_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
+  
     public static final Item BULLET = registerItem("bullet", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item BULLET_ENTITY = registerItem("bullet_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    public static final Item GOLD_BULLET = registerItem("bullet_gold", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item GOLD_BULLET_ENTITY = registerItem("bullet_gold_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-   // public static final Item INCENDIARY_BULLET = registerItem("bullet_incendiary", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-   // public static final Item INCENDIARY_BULLET_ENTITY = registerItem("bullet_incendiary_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-
-
-    public static final Item IRON_RIFLE_BULLET = registerItem("rifle_bullet_iron", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item IRON_RIFLE_BULLET_ENTITY = registerItem("rifle_bullet_iron_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
     public static final Item RIFLE_BULLET = registerItem("rifle_bullet", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item RIFLE_BULLET_ENTITY = registerItem("rifle_bullet_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    public static final Item GOLD_RIFLE_BULLET = registerItem("rifle_bullet_gold", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item GOLD_RIFLE_BULLET_ENTITY = registerItem("rifle_bullet_gold_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    //public static final Item RIFLE_INCENDIARY_BULLET = registerItem("rifle_bullet_incendiary", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    //public static final Item RIFLE_INCENDIARY_BULLET_ENTITY = registerItem("rifle_bullet_incendiary_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-
-
     public static final Item SHELL = registerItem("shell", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SHELL_ENTITY = registerItem("shell_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    //the magnum just moves faster while dealing the same damage as the slugs
-    public static final Item MAGNUM_SHELL = registerItem("shell_magnum", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item MAGNUM_SHELL_ENTITY = registerItem("shell_magnum_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    //the shorty shells move much slower, deal less damage, unless up close
-    public static final Item SHORTY_SHELL = registerItem("shell_shorty", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SHORTY_SHELL_ENTITY = registerItem("shell_shorty_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-
-    //the slugs deal more damage moves abit slower
     public static final Item SLUG = registerItem("slug", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SLUG_ENTITY = registerItem("slug_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    //heavy slugs move farther than slugs but do a bunch of damage (there used for long ranged hunting)
-    public static final Item HEAVY_SLUG = registerItem("slug_heavy", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item HEAVY_SLUG_ENTITY = registerItem("slug_heavy_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-    //public static final Item INCENDIARY_SLUG = registerItem("slug_incendiary", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    //public static final Item INCENDIARY_SLUG_ENTITY = registerItem("slug_incendiary_entity", new BulletProjectileItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1)));
-
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,
                     new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON)));

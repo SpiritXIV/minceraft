@@ -21,7 +21,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class SlimShadyEntity extends HostileEntity implements GeoEntity {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -59,6 +59,7 @@ public class SlimShadyEntity extends HostileEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.slim_shady.move", Animation.LoopType.LOOP));

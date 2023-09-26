@@ -1,6 +1,5 @@
 package com.spirit.shit.item.custom.projectile.beverage;
 
-import com.spirit.shit.entity.custom.projectile.beverage.BottleProjectileEntity;
 import com.spirit.shit.entity.custom.projectile.beverage.ChugJugProjectileEntity;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.entity.player.PlayerEntity;

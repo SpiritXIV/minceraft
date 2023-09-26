@@ -23,21 +23,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ZarshScytheItem extends ToolItem implements Vanishable {
-    private final float attackDamage;
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     public ZarshScytheItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
             super(toolMaterial, settings);
-            this.attackDamage = (float)attackDamage + toolMaterial.getAttackDamage();
+        float attackDamage1 = (float) attackDamage + toolMaterial.getAttackDamage();
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-            builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", (double)this.attackDamage, EntityAttributeModifier.Operation.ADDITION));
-            builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", (double)attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+            builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", attackDamage1, EntityAttributeModifier.Operation.ADDITION));
+            builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
             this.attributeModifiers = builder.build();
         }
-
-    public float getAttackDamage() {
-        return this.attackDamage;
-    }
 
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return !miner.isCreative();
@@ -53,9 +48,7 @@ public class ZarshScytheItem extends ToolItem implements Vanishable {
 
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (state.getHardness(world, pos) != 0.0F) {
-            stack.damage(2, miner, (e) -> {
-                e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-            });
+            stack.damage(2, miner, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         }
 
         return true;
@@ -64,7 +57,7 @@ public class ZarshScytheItem extends ToolItem implements Vanishable {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!target.getWorld().isClient()) {
-            float health = target.getHealth();
+            target.getHealth();
             double x = target.getX();
             double y = target.getY();
             double z = target.getZ();
@@ -73,9 +66,7 @@ public class ZarshScytheItem extends ToolItem implements Vanishable {
             target.damage(new DamageSource(RegistryEntry.of(new DamageType("teared_through", 1))),  1);
             return super.postHit(stack, target, attacker);
     }
-        stack.damage(1, attacker, (e) -> {
-            e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-        });
+        stack.damage(1, attacker, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         return true;
     }
 

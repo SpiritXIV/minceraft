@@ -1,6 +1,17 @@
+/*
+    $/ A K F I I J L M P Q $ I L \$
+    |  F $ N R P T K D Q W V J N
+    |
+    |
+    |
+    |
+    #\
+ */
+
 package com.spirit.shit;
 
 import com.spirit.shit.block.ShitBlocks;
+import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
@@ -9,13 +20,18 @@ import com.spirit.shit.entity.custom.projectile.beverage.*;
 import com.spirit.shit.item.ShitFoodComponents;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.item.custom.projectile.BulletProjectileItem;
 import com.spirit.shit.common.GunItem;
+import com.spirit.shit.item.custom.projectile.bullet.BulletItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -32,13 +48,12 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraft.item.Item;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.GeckoLib;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import com.spirit.shit.common.Common;
 
 import java.util.Objects;
 
@@ -86,30 +101,6 @@ public class ShitMod implements ModInitializer {
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
-    public static final EntityType<RifleBulletProjectileEntity> RifleBulletProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "rifle_bullet_entity"),
-            FabricEntityTypeBuilder.<RifleBulletProjectileEntity>create(SpawnGroup.MISC, RifleBulletProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-    public static final EntityType<ShellProjectileEntity> ShellProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shell_entity"),
-            FabricEntityTypeBuilder.<ShellProjectileEntity>create(SpawnGroup.MISC, ShellProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-    public static final EntityType<SlugProjectileEntity> SlugProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "slug_entity"),
-            FabricEntityTypeBuilder.<SlugProjectileEntity>create(SpawnGroup.MISC, SlugProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-
-
 
 //DRINKS
     public static final EntityType<BeerBottleProjectileEntity> BeerBottleProjectileEntityType = Registry.register(
@@ -576,10 +567,6 @@ public class ShitMod implements ModInitializer {
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
 
-
-
-
-
     /*public static final EntityType<DeadShotDaiquiriCanProjectileEntity> DeadShotDaiquiriCanProjectileEntityType = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(ShitMod.MOD_ID, "deadshotdaiquiri_can"),
@@ -676,11 +663,40 @@ public class ShitMod implements ModInitializer {
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
 */
+    public static final ItemGroup BULLET_ITEM_GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
+                    .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
+                    .entries((displayContext, entries) -> {
+                        // Items to consider
+                        GunProjectileItem[] items = Common.getBulletProjectileItems();
+
+                        for (GunProjectileItem bulletItem : items) {
+                            for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                                for (byte isIncendiary : new byte[]{0, 1}) {
+                                    for (byte isExplosive : new byte[]{0, 1}) {
+                                        for (byte isExtendedDuration : new byte[]{0, 1}) {
+                                            ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
+
+                                            // Add BulletType to NBT data
+                                            NbtCompound nbt = stack.getOrCreateNbt();
+                                            nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
+
+                                            // Generate a custom name for this bullet based on its properties.
+                                            String customName = bulletItem.generateCustomNameFromNBT(stack);
+
+                                            // Set the custom name to the ItemStack.
+                                            stack.setCustomName(Text.translatable(customName));
+
+                                            // Add the customized ItemStack to the entries.
+                                            entries.add(stack);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }).build();
     @Override
     public void onInitialize() {
-        ShitItemGroup.registerShitItemGroup();
-
-        ShitItems.registerShitItems();
+        System.out.println("INIT - BULLET" + ShitItems.BULLET);
         ShitItems.registerCustomShitItems();
         ShitItems.registerCustomPShitItems();
         ShitItems.registerMaterialShitItems();
@@ -707,56 +723,13 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT_BOMB, RatBombEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT, RatEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.CAPYBARA, CapybaraEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(ShitEntities.FREDDYFAZBEAR, FreddyFazBearEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
 
-        String[] ammoTypes = {"bullet", "shell", "rifle_bullet", "slug"};
-        for (String ammoType : ammoTypes) {
-            // Register Entity
-            EntityType<BulletProjectileEntity> newBulletEntityType = Registry.register(
-                    Registries.ENTITY_TYPE,
-                    new Identifier("shit", ammoType),
-                    FabricEntityTypeBuilder.create(SpawnGroup.MISC, BulletProjectileEntity::create)
-                            .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
-            );
+        Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
+        ShitItemGroup.registerShitItemGroup();
 
-            // Register Item
-            //Item newItem = new BulletProjectileItem(new Item.Settings()); // Modify settings as needed
-            //Registry.register(Registries.ITEM, new Identifier("shit", ammoType), newItem);
-        }
-/*
-        String[] ammoTypes = {"bullet", "shell", "rifle_bullet", "slug"}; // New ammo types added
-        for (String ammoType : ammoTypes) {
-            for (StatusEffect effect : Registries.STATUS_EFFECT) { // Iterate over all registered status effects
-                for (byte isIncendiary : new byte[]{0, 1}) {
-                    for (byte isExplosive : new byte[]{0, 1}) {
-                        for (byte isExtendedDuration : new byte[]{0, 1}) {
-                            byte[] flags = new byte[] {isIncendiary, isExplosive, isExtendedDuration};
-                            String idName = ammoType + "_" +
-                                    Objects.requireNonNull(Registries.STATUS_EFFECT.getId(effect)).getPath() +  // Use registry to get effect identifier
-                                    (isIncendiary == 1 ? "_incendiary" : "") +
-                                    (isExplosive == 1 ? "_explosive" : "") +
-                                    (isExtendedDuration == 1 ? "_extended_duration" : "");
 
-                            // Register Entity
-                            EntityType<BulletProjectileEntity> newBulletEntityType = Registry.register(
-                                    Registries.ENTITY_TYPE,
-                                    new Identifier("shit", ammoType + "_" + idName),
-                                    FabricEntityTypeBuilder.create(SpawnGroup.MISC, BulletProjectileEntity::create)
-                                            .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
-                            );
-
-                            // Register Item
-                            Item newItem = new BulletProjectileItem(new Item.Settings()); // Modify settings as needed
-                            Registry.register(Registries.ITEM, new Identifier("shit", idName), newItem);
-                        }
-                    }
-                }
-            }
-        }
-
- */
 
         //PACKETS
 
@@ -789,22 +762,6 @@ public class ShitMod implements ModInitializer {
                     return 1;
                 })));
     }
-
-    @NotNull
-    private static String getAmmoType(boolean isRifle, boolean isSlug) {
-        String ammoType;
-        if (!isRifle && !isSlug) {
-            ammoType = "bullet";
-        } else if (isRifle && !isSlug) {
-            ammoType = "rifle_bullet";
-        } else if (!isRifle && isSlug) {
-            ammoType = "shotgun_shell";
-        } else {
-            ammoType = "slug";
-        }
-        return ammoType;
-    }
-
 
     public static void registerShitMain() {
         ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");

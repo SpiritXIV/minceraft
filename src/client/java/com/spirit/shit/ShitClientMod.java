@@ -8,6 +8,7 @@ import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.particle.custom.*;
 import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.api.ClientModInitializer;
+import com.spirit.shit.render.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -24,7 +25,6 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitEntities.RAT_BOMB, RatBombRenderer::new);
         EntityRendererRegistry.register(ShitEntities.RAT, RatRenderer::new);
         EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.FREDDYFAZBEAR, FreddyFazBearRenderer::new);
         EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
         EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
 
@@ -32,12 +32,7 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitMod.BlueBrickProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.TrashCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.OatProjectileEntityType, FlyingItemEntityRenderer::new);
-
-        EntityRendererRegistry.register(ShitMod.BulletProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.RifleBulletProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShellProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.SlugProjectileEntityType, FlyingItemEntityRenderer::new);
-
+        EntityRendererRegistry.register(ShitMod.BulletProjectileEntityType, BulletEntityRenderer::new);
 
         EntityRendererRegistry.register(ShitMod.BeerBottleProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.BonkAtomicPunchProjectileEntityType, FlyingItemEntityRenderer::new);

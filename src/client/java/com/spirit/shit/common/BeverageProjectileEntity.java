@@ -1,8 +1,5 @@
-package com.spirit.shit.entity.custom.projectile;
+package com.spirit.shit.common;
 
-import com.spirit.shit.ShitMod;
-import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -18,32 +15,40 @@ import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
-public class ShellProjectileEntity extends ThrownItemEntity {
-    public ShellProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+public abstract class BeverageProjectileEntity extends ThrownItemEntity {
+    private final SoundEvent collisionSound;
+    private final String damageMsgId;
+
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, SoundEvent collisionSound, String damageMsgId) {
         super(entityType, world);
+        this.collisionSound = collisionSound;
+        this.damageMsgId = damageMsgId;
     }
 
-    @Override
-    protected Item getDefaultItem() {
-        return ShitItems.SHELL_ENTITY;
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, LivingEntity owner, SoundEvent collisionSound, String damageMsgId) {
+        super(entityType, owner, world);
+        this.collisionSound = collisionSound;
+        this.damageMsgId = damageMsgId;
     }
 
-    public ShellProjectileEntity(World world, LivingEntity owner) {
-        super(ShitMod.ShellProjectileEntityType, owner, world);
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, double x, double y, double z, SoundEvent collisionSound, String damageMsgId) {
+        super(entityType, x, y, z, world);
+        this.collisionSound = collisionSound;
+        this.damageMsgId = damageMsgId;
     }
 
-    public ShellProjectileEntity(World world, double x, double y, double z) {
-        super(ShitMod.ShellProjectileEntityType, x, y, z, world);
-    }
+
+    protected abstract Item getDefaultItem();
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.SMALL_FLAME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return itemStack.isEmpty() ? ParticleTypes.CRIT : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack);
     }
 
     @Environment(EnvType.CLIENT)
@@ -52,10 +57,9 @@ public class ShellProjectileEntity extends ThrownItemEntity {
             ParticleEffect particleEffect = this.getParticleParameters();
 
             for(int i = 0; i < 8; ++i) {
-                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), getRotationVecClient().getX() + 10.0D, getRotationVecClient().getY() + 0.0D, getRotationVecClient().getZ() + 10.0D);
+                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
-
     }
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
@@ -64,7 +68,7 @@ public class ShellProjectileEntity extends ThrownItemEntity {
         int i = entity instanceof PlayerEntity ? 3 : 0;
 
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.damage(new DamageSource(RegistryEntry.of(new DamageType("shot", 1))), 2);
+            livingEntity.damage(new DamageSource(RegistryEntry.of(new DamageType(damageMsgId, 1))), 2);
         }
     }
 
@@ -72,9 +76,8 @@ public class ShellProjectileEntity extends ThrownItemEntity {
         super.onCollision(hitResult);
         if (!this.getWorld().isClient) {
             this.getWorld().sendEntityStatus(this, (byte)3);
-            this.playSound(ShitSounds.BULLET_IMPACT, 10F, 1F);
+            this.playSound(collisionSound, 10F, 1);
             this.kill();
         }
-
     }
 }
