@@ -7,12 +7,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.model.CreeperEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.GhastEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.Identifier;
@@ -20,7 +18,7 @@ import net.minecraft.util.math.MathHelper;
 
 @Environment(value=EnvType.CLIENT)
 public class SchizoEyeParticle extends SpriteBillboardParticle {
-    private static final double MAX_SQUARED_COLLISION_CHECK_DISTANCE = MathHelper.square(100.0);;
+    private static final double MAX_SQUARED_COLLISION_CHECK_DISTANCE = MathHelper.square(100.0);
     private final Model model;
     private final RenderLayer layer = RenderLayer.getEntityTranslucent(TEXTURE);
     public static final Identifier TEXTURE = new Identifier(ShitMod.MOD_ID, "textures/particle/schizo/giant_eye.png");
@@ -51,7 +49,7 @@ public class SchizoEyeParticle extends SpriteBillboardParticle {
         this.alpha = (-(1/(float)maxAge) * age + 1);
     }
     private void fadeIn() {
-        this.alpha = (+(1/(float)maxAge) * age - 1);
+        this.alpha = ((1/(float)maxAge) * age - 1);
     }
 
     @Override
@@ -71,9 +69,6 @@ public class SchizoEyeParticle extends SpriteBillboardParticle {
         VertexConsumer vertexConsumer2 = immediate.getBuffer(this.layer);
         this.model.render(matrixStack, vertexConsumer2, 0xF000F0, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, g);
         immediate.draw();
-    }
-
-    private void model(MatrixStack matrixStack, VertexConsumer vertexConsumer2, int i, int defaultUv, float v, float v1, float v2, float g) {
     }
 
 

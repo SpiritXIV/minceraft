@@ -1,7 +1,6 @@
 package com.spirit.shit.entity.client;
 
 import com.spirit.shit.ShitMod;
-import com.spirit.shit.entity.custom.CapybaraEntity;
 import com.spirit.shit.entity.custom.FreddyFazBearEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;

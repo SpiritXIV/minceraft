@@ -1,11 +1,9 @@
 package com.spirit.shit.item.custom;
 
-import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,8 +17,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class BottleItem extends Item {
-    private static final int MAX_USE_TIME = 10;
-
     public BottleItem(Settings settings) {
         super(settings);
     }
@@ -35,9 +31,8 @@ public class BottleItem extends Item {
         if (stack.isEmpty()) {
             return new ItemStack(ShitItems.PEPSI_CAN);
         } else {
-            if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+            if (user instanceof PlayerEntity playerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
                 ItemStack itemStack = new ItemStack(ShitItems.PEPSI_CAN);
-                PlayerEntity playerEntity = (PlayerEntity)user;
                 if (!playerEntity.getInventory().insertStack(itemStack)) {
                     playerEntity.dropItem(itemStack, false);
                 }

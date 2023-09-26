@@ -4,18 +4,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 
 public class PeepSpeedEffect extends StatusEffect {
-    protected PeepSpeedEffect(StatusEffectCategory category, int color) {
-        super(category, color);
+    protected PeepSpeedEffect() {
+        super(StatusEffectCategory.HARMFUL, 14270531);
     }
 
     @Override

@@ -11,8 +11,8 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
 
 public class RadiationPoisoningEffect extends StatusEffect {
-    protected RadiationPoisoningEffect(StatusEffectCategory statusEffectCategory, int color) {
-        super(statusEffectCategory, color);
+    protected RadiationPoisoningEffect() {
+        super(StatusEffectCategory.HARMFUL, 5149489);
     }
 
     @Override

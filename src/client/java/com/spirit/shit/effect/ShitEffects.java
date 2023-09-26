@@ -4,7 +4,6 @@ import com.spirit.shit.ShitMod;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -18,25 +17,25 @@ public class ShitEffects {
 
     public static StatusEffect registerRadiationPoisoningEffect(String name) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(ShitMod.MOD_ID, name),
-                new RadiationPoisoningEffect(StatusEffectCategory.HARMFUL, 5149489).addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                new RadiationPoisoningEffect().addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
                         "91AEAA56-376B-4498-935B-2F7F68070635", -0.5f,
                         EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     }
     public static StatusEffect registerPeepSpeedEffect(String name) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(ShitMod.MOD_ID, name),
-                new PeepSpeedEffect(StatusEffectCategory.HARMFUL, 14270531)
+                new PeepSpeedEffect()
                         .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
                                 "91AEAA56-376B-4498-935B-2F7F68070635", 10.0f,
                                 EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     }
     public static StatusEffect registerSchizophrenicEffect(String name) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(ShitMod.MOD_ID, name),
-                new SchizophrenicEffect(StatusEffectCategory.HARMFUL, 5266324));
+                new SchizophrenicEffect());
 
     }
     public static StatusEffect registerTipsyEffect(String name) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(ShitMod.MOD_ID, name),
-                new TipsyEffect(StatusEffectCategory.HARMFUL, 15259508).addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                new TipsyEffect().addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
                         "91AEAA56-376B-4498-935B-2F7F68070635", -0.01f,
                         EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 }

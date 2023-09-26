@@ -20,11 +20,6 @@ public class SimpleText implements Text {
     }
 
     @Override
-    public String getString() {
-        return Text.super.getString();
-    }
-
-    @Override
     public String asTruncatedString(int length) {
         return Text.super.asTruncatedString(length);
     }
@@ -32,16 +27,6 @@ public class SimpleText implements Text {
     @Override
     public List<Text> getSiblings() {
         return Collections.emptyList(); // No siblings for simplicity
-    }
-
-    @Override
-    public MutableText copyContentOnly() {
-        return Text.super.copyContentOnly();
-    }
-
-    @Override
-    public MutableText copy() {
-        return Text.super.copy();
     }
 
     @Override
@@ -57,11 +42,6 @@ public class SimpleText implements Text {
     @Override
     public <T> Optional<T> visit(Visitor<T> visitor) {
         return Text.super.visit(visitor);
-    }
-
-    @Override
-    public List<Text> withoutStyle() {
-        return Text.super.withoutStyle();
     }
 
     @Override

@@ -18,7 +18,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class PeepsPepsiItem extends Item {
-    private static final int MAX_USE_TIME = 10;
 
     public PeepsPepsiItem(Settings settings) {
         super(settings);
@@ -48,9 +47,8 @@ public class PeepsPepsiItem extends Item {
         if (stack.isEmpty()) {
             return new ItemStack(ShitItems.PEEPS_PEPSI_CAN);
         } else {
-            if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+            if (user instanceof PlayerEntity playerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
                 ItemStack itemStack = new ItemStack(ShitItems.PEEPS_PEPSI_CAN);
-                PlayerEntity playerEntity = (PlayerEntity)user;
                 if (!playerEntity.getInventory().insertStack(itemStack)) {
                     playerEntity.dropItem(itemStack, false);
                 }

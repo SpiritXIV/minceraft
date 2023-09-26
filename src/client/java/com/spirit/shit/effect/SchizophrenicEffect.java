@@ -2,18 +2,12 @@ package com.spirit.shit.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.explosion.ExplosionBehavior;
 
 public class SchizophrenicEffect extends StatusEffect {
-    protected SchizophrenicEffect(StatusEffectCategory category, int color) {
-        super(category, color);
+    protected SchizophrenicEffect() {
+        super(StatusEffectCategory.HARMFUL, 5266324);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.spirit.shit.item.custom.projectile.beverage;
 
-import com.spirit.shit.entity.custom.projectile.beverage.MilkCartonProjectileEntity;
 import com.spirit.shit.entity.custom.projectile.beverage.StrawBerryMilkCartonProjectileEntity;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.entity.player.PlayerEntity;

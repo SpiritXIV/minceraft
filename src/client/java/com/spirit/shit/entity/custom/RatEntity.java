@@ -30,10 +30,8 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
-import java.util.Arrays;
-
 public class RatEntity extends PassiveEntity implements GeoEntity {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -64,12 +62,12 @@ public class RatEntity extends PassiveEntity implements GeoEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new SwimGoal(this));
-        this.goalSelector.add(0, new FleeEntityGoal<RatBombEntity>(this, RatBombEntity.class, 4.0f, 1.0, 1.2));
+        this.goalSelector.add(0, new FleeEntityGoal<>(this, RatBombEntity.class, 4.0f, 1.0, 1.2));
         this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(6, new LookAroundGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<PlayerEntity>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(1, new RevengeGoal(this, LivingEntity.class).setGroupRevenge());
 
         this.experiencePoints = 5;
@@ -81,6 +79,7 @@ public class RatEntity extends PassiveEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.rat.move", Animation.LoopType.LOOP));
@@ -95,6 +94,7 @@ public class RatEntity extends PassiveEntity implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private <T extends GeoAnimatable> PlayState spinpredicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
         if (this.spinning && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
 

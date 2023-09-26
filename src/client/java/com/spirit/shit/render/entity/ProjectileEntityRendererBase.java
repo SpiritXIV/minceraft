@@ -5,21 +5,6 @@
 
 package com.spirit.shit.render.entity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
-
 /*@Environment(EnvType.CLIENT)
 public abstract class ProjectileEntityRendererBase<T extends PersistentProjectileEntity> extends EntityRenderer<T> {
     public ProjectileEntityRendererBase(EntityRendererFactory.Context context) {
