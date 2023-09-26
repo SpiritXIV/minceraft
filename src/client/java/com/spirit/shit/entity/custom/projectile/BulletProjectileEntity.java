@@ -16,5 +16,4 @@ public class BulletProjectileEntity extends GunProjectileEntity {
         this.setPosition(owner.getX()     , owner.getEyeY() - 0.1, owner.getZ());
         this.setDamage(damage);
     }
-
 }

@@ -23,8 +23,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class ShitItems {
-
-
     //Items
     public static final Item RED_BRICK = registerItem("red_brick", new RedBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON)));
     public static final Item BLUE_BRICK = registerItem("blue_brick", new BlueBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON)));
@@ -176,6 +174,15 @@ public class ShitItems {
     //WEAPONS
     //GUNS
 
+    public static final Item BULLET = registerItem("bullet",
+            new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item RIFLE_BULLET = registerItem("rifle_bullet",
+            new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SHELL = registerItem("shell",
+            new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+    public static final Item SLUG = registerItem("slug",
+            new SlugItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
+
     public static final Item AK47 = registerItem("ak47",
             new AK47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item DOUBLE_BARREL = registerItem("double_barrel",
@@ -198,15 +205,6 @@ public class ShitItems {
             new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item STRIKER_12 = registerItem("striker_12",
             new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
-
-    public static final Item BULLET = registerItem("bullet",
-            new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item RIFLE_BULLET = registerItem("rifle_bullet",
-            new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SHELL = registerItem("shell",
-            new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
-    public static final Item SLUG = registerItem("slug",
-            new SlugItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64)));
 
     //SPECIAL
     public static final Item GIANT_LOLLIPOP = registerToolItem("giant_lollipop", new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F,

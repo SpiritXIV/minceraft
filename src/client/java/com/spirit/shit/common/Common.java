@@ -18,11 +18,17 @@ public final class Common {
     private static final String[] AMMO_TYPES = {"bullet", "shell", "rifle_bullet", "slug"};
     private static final Map<String, GunProjectileItem> AMMO_MAP = new HashMap<>();
     static {
+        System.out.println("ShitItems.BULLET: " + ShitItems.BULLET);
+        System.out.println("ShitItems.SHELL: " + ShitItems.SHELL);
+        System.out.println("ShitItems.RIFLE_BULLET: " + ShitItems.RIFLE_BULLET);
+        System.out.println("ShitItems.SLUG: " + ShitItems.SLUG);
+
         AMMO_MAP.put("bullet", (GunProjectileItem) ShitItems.BULLET);
         AMMO_MAP.put("shell", (GunProjectileItem) ShitItems.SHELL);
         AMMO_MAP.put("rifle_bullet", (GunProjectileItem) ShitItems.RIFLE_BULLET);
         AMMO_MAP.put("slug", (GunProjectileItem) ShitItems.SLUG);
     }
+
 
     // Private constructor to prevent instantiation
     private Common() {
@@ -43,8 +49,11 @@ public final class Common {
      * @param ammoType the string identifier for the ammo type
      * @return the corresponding BulletProjectileItem, or null if the type is not recognized
      */
+
     public static GunProjectileItem getBulletProjectileItemByType(String ammoType) {
-        return AMMO_MAP.get(ammoType);
+        GunProjectileItem item = AMMO_MAP.get(ammoType);
+        System.out.println("Getting item for ammo type " + ammoType + ": " + item);
+        return item;
     }
 
     /**
@@ -69,15 +78,31 @@ public final class Common {
      */
     public static GunProjectileItem[] getBulletProjectileItems() {
         List<GunProjectileItem> itemsList = new ArrayList<>();
+
+        // Populate the list
         for (String ammoType : AMMO_TYPES) {
             GunProjectileItem item = getBulletProjectileItemByType(ammoType);
             if (item != null) {
                 itemsList.add(item);
             }
         }
-        // Convert the list to an array and return
+
+        // Print each item in the list
+        System.out.println("Items in the list:");
+        for (GunProjectileItem item : itemsList) {
+            System.out.println(item);
+        }
+
+        // Convert the list to an array
         GunProjectileItem[] itemsArray = new GunProjectileItem[itemsList.size()];
         itemsList.toArray(itemsArray);
+
+        // Print each item in the array
+        System.out.println("Items in the array:");
+        for (GunProjectileItem item : itemsArray) {
+            System.out.println(item);
+        }
+
         return itemsArray;
     }
 

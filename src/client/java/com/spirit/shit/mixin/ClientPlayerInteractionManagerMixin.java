@@ -33,13 +33,9 @@ public class ClientPlayerInteractionManagerMixin {
                 return;
             }
 
-            System.out.println("Key Pressed!");
-
             ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
 
             if (itemStack.getItem() instanceof GunItem) {
-                System.out.println("Item is a gun!");
-
                 // Create a PacketByteBuf and write the hand to it
                 PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
                 buf.writeInt(Hand.MAIN_HAND.ordinal()); // 0 for MAIN_HAND, 1 for OFF_HAND

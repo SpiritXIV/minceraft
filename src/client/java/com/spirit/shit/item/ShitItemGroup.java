@@ -6,6 +6,7 @@ import com.spirit.shit.common.GunProjectileItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -118,30 +119,6 @@ public class ShitItemGroup {
                         entries.add(ShitItems.SLUG);
 
                     }).build());
-
-    @SuppressWarnings("unused")
-    public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-        new Identifier(ShitMod.MOD_ID, "bullet"),
-        FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
-            .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
-                .entries((displayContext, entries) -> {
-                    // Items to consider
-                    GunProjectileItem[] items = Common.getBulletProjectileItems();
-
-                    for (GunProjectileItem bulletItem : items) {
-                        for (StatusEffect effect : Registries.STATUS_EFFECT) {
-                            for (byte isIncendiary : new byte[]{0, 1}) {
-                                for (byte isExplosive : new byte[]{0, 1}) {
-                                    for (byte isExtendedDuration : new byte[]{0, 1}) {
-                                        ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
-                                        // Add the customized ItemStack to the entries.
-                                        entries.add(stack);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }).build());
 
     @SuppressWarnings("unused")
     public static final ItemGroup PLUSHES = Registry.register(Registries.ITEM_GROUP,

@@ -1,6 +1,5 @@
 package com.spirit.shit.common;
 
-import com.spirit.shit.entity.custom.projectile.BulletProjectileEntity;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
@@ -23,10 +22,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundEvents;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.function.Predicate;
 
@@ -55,13 +51,14 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     protected final SoundEvent REMOVE_BULLET_SOUND = SoundEvents.ITEM_BUNDLE_REMOVE_ONE;
     protected final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
     protected final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
+    private static final Random random = new Random();
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
-    public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage, Item[] allowedTypes) {  // Add bulletDamage parameter
-        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage, allowedTypes);  // Add bulletDamage argument
+    public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage, Item[] allowedTypes) {
+        this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage, allowedTypes);
     }
 
-    public GunItem(Settings settings, int magazineSize, int cooldown, int itemBarColor, float bulletDamage, Item[] allowedTypes) {  // Add bulletDamage parameter
+    public GunItem(Settings settings, int magazineSize, int cooldown, int itemBarColor, float bulletDamage, Item[] allowedTypes) {
         super(settings);
         this.COOLDOWN = cooldown;
         this.MAGAZINE_SIZE = magazineSize;
@@ -89,33 +86,62 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         if (usesAmmunition && !hasAmmunition)
             return;
 
-        if (usesAmmunition)
-            this.removeAmmo(gunNBT);
+        ItemStack removedAmmunition = null;
 
-        if (!world.isClient) {
-            BulletProjectileEntity bullet = new BulletProjectileEntity(world, user, 1);
-            bullet.setDamage(BULLET_DAMAGE);  // Pass bullet damage to BulletProjectileEntity
-            bullet.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 10.F, 0F);
-            world.spawnEntity(bullet);
+        if (usesAmmunition) {
+            removedAmmunition = removeAmmo(gunNBT);
+        }
+        // If ammo was successfully removed, proceed to firing
+        if (removedAmmunition != null) {
+            System.out.println(removedAmmunition);
+            System.out.println(removedAmmunition.getItem());
+            // Cast to GunProjectileItem and call fire method
+            GunProjectileItem projectileItem = (GunProjectileItem) removedAmmunition.getItem();
+            projectileItem.fire(world, user, 0, removedAmmunition, BULLET_DAMAGE);
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         this.playSound(user, SoundType.SHOOT);
-
     }
 
-    private void removeAmmo(NbtCompound gunNBT) {
-        NbtList slotList = gunNBT.getList(ITEMS_KEY, 10);
-        for (int i = 0; i < slotList.size(); i++) {
-            NbtCompound slotNBT = slotList.getCompound(i);
-            ItemStack itemStack = ItemStack.fromNbt(slotNBT);
-            if (itemStack.isOf(ShitItems.BULLET)) {
-                if (itemStack.getCount() > 0) {
-                    itemStack.decrement(1);
-                    itemStack.writeNbt(slotNBT);  // Update the NBT data
-                }
+    /**
+     * Remove a random ammo from the gun's NBT and return it as an ItemStack.
+     * If no suitable ammo is found, returns null.
+     */
+    private ItemStack removeAmmo(NbtCompound gunNBT) {
+        NbtList gunInventory = gunNBT.getList(ITEMS_KEY, 10);
+        List<Integer> ammoIndices = new ArrayList<>();
+
+        // Identify ammo slots
+        for (int i = 0; i < gunInventory.size(); i++) {
+            NbtCompound slotNBT = gunInventory.getCompound(i);
+            ItemStack bulletStack = ItemStack.fromNbt(slotNBT);
+            if (bulletStack.getCount() > 0) {
+                ammoIndices.add(i);
             }
         }
+
+        // If no ammo found, return null
+        if (ammoIndices.isEmpty()) {
+            return null;
+        }
+
+        // Pick a random ammo slot
+        int randomIndex = ammoIndices.get(random.nextInt(ammoIndices.size()));
+        NbtCompound randomSlotNBT = gunInventory.getCompound(randomIndex);
+        ItemStack randomBulletStack = ItemStack.fromNbt(randomSlotNBT);
+
+        // Remove one bullet from the stack
+        randomBulletStack.decrement(1);
+
+        // Update the NBT data
+        randomBulletStack.writeNbt(randomSlotNBT);
+
+        // Create a new ItemStack with a count of 1 to return
+        ItemStack returnBulletStack = randomBulletStack.copy();
+        returnBulletStack.setCount(1);
+
+        return returnBulletStack;
     }
 
     private boolean hasAmmo(NbtCompound gunNBT) {
@@ -139,35 +165,48 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.NEUTRAL, 1F, 1F);
     }
-
-    public boolean onStackClicked(ItemStack gun, Slot slot, ClickType clickType, PlayerEntity player) {
-        if (clickType != ClickType.RIGHT) {
+    @Override
+    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+        // Check if it's a right-click event
+        if (clickType != ClickType.RIGHT)
             return false;
-        }
-        ItemStack clickedItem = slot.getStack();
 
-        if (clickedItem.isEmpty()) {
-            playSound(player, SoundType.REMOVE_ONE);
-            removeFirstStack(gun).ifPresent((removedStack) -> addToGunInventory(gun, slot.insertStack(removedStack)));
-        } else if (Arrays.stream(ALLOWED_TYPES).anyMatch(clickedItem::isOf)) {
-            if (getBundleOccupancy(gun) >= MAGAZINE_SIZE) {
-                return false;  // Do nothing if the magazine is full
-            }
-            int itemOccupancy = getItemOccupancy(clickedItem);
-            if (itemOccupancy == 0) {
-                return false;  // If occupancy is zero, return false
-            }
-            int i = (MAGAZINE_SIZE - getBundleOccupancy(gun)) / itemOccupancy;
-            int j = addToGunInventory(gun, slot.takeStackRange(clickedItem.getCount(), i, player));
-            if (j > 0) {
-                playSound(player, SoundType.INSERT);
-            }
-            } else {
-                return false;  // If item is not a bullet, return false
-            }
+        // Validate if the clicked item is of an allowed type
+        boolean isAllowedType = Arrays.stream(ALLOWED_TYPES).anyMatch(stack::isOf);
+        if (!isAllowedType)
+            return false;
+
+        // Fetch the ItemStack from the slot, which should represent the gun
+        ItemStack gun = slot.getStack();
+        NbtCompound gunNbt = gun.getOrCreateNbt();
+        if (!gunNbt.contains(ITEMS_KEY))
+            gunNbt.put(ITEMS_KEY, new NbtList());
+
+        NbtList gunInventory = gunNbt.getList(ITEMS_KEY, 10);
+
+        // Check if the gun has enough space based on the MAGAZINE_SIZE
+        int currentOccupancy = getBundleOccupancy(gun);
+        if (currentOccupancy >= MAGAZINE_SIZE)
+            return false;
+
+        // Check if there is an identical ItemStack inside the gun
+        Optional<NbtCompound> matchingSlotNbt = canMergeStack(stack, gunInventory);
+        if (matchingSlotNbt.isPresent()) {
+            NbtCompound slotNbt = matchingSlotNbt.get();
+            ItemStack existingStack = ItemStack.fromNbt(slotNbt);
+            existingStack.increment(stack.getCount());
+            existingStack.writeNbt(slotNbt);
+        } else {
+            // If no matching ItemStack, append as a new slot in the gun
+            ItemStack newStack = stack.copy();
+            NbtCompound newSlotNbt = new NbtCompound();
+            newStack.writeNbt(newSlotNbt);
+            gunInventory.add(newSlotNbt);
+        }
 
         return true;
     }
+
 
     public boolean onClicked(ItemStack gun, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {

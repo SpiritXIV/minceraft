@@ -11,6 +11,7 @@
 package com.spirit.shit;
 
 import com.spirit.shit.block.ShitBlocks;
+import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
@@ -20,11 +21,17 @@ import com.spirit.shit.item.ShitFoodComponents;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.common.GunItem;
+import com.spirit.shit.item.custom.projectile.bullet.BulletItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -46,6 +53,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import com.spirit.shit.common.Common;
 
 import java.util.Objects;
 
@@ -568,11 +576,42 @@ public class ShitMod implements ModInitializer {
                     .build());
 
 
+
+
+    public static final ItemGroup BULLET_ITEM_GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
+                    .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
+                    .entries((displayContext, entries) -> {
+                        // Items to consider
+                        GunProjectileItem[] items = Common.getBulletProjectileItems();
+
+                        for (GunProjectileItem bulletItem : items) {
+                            for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                                for (byte isIncendiary : new byte[]{0, 1}) {
+                                    for (byte isExplosive : new byte[]{0, 1}) {
+                                        for (byte isExtendedDuration : new byte[]{0, 1}) {
+                                            ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
+
+                                            // Add BulletType to NBT data
+                                            NbtCompound nbt = stack.getOrCreateNbt();
+                                            nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
+
+                                            // Generate a custom name for this bullet based on its properties.
+                                            String customName = bulletItem.generateCustomNameFromNBT(stack);
+
+                                            // Set the custom name to the ItemStack.
+                                            stack.setCustomName(Text.translatable(customName));
+
+                                            // Add the customized ItemStack to the entries.
+                                            entries.add(stack);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }).build();
     @Override
     public void onInitialize() {
-        ShitItemGroup.registerShitItemGroup();
-
-        ShitItems.registerShitItems();
+        System.out.println("INIT - BULLET" + ShitItems.BULLET);
         ShitItems.registerCustomShitItems();
         ShitItems.registerCustomPShitItems();
         ShitItems.registerMaterialShitItems();
@@ -601,6 +640,9 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.CAPYBARA, CapybaraEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
+
+        Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
+        ShitItemGroup.registerShitItemGroup();
 
 
 
