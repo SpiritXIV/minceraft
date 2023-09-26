@@ -18,6 +18,10 @@ public class ShitSounds {
     public static final SoundEvent MICROWAVE_OPEN_DOOR = registerSoundEvent("microwave_open_door");
     public static final SoundEvent MICROWAVE_CLOSE_DOOR = registerSoundEvent("microwave_close_door");
 
+    //PLUSH
+    public static final SoundEvent TALON_SPEAK = registerSoundEvent("talon_speak");
+
+
     //ITEMS
     public static final SoundEvent SODA = registerSoundEvent("soda");
     public static final SoundEvent JBIRD_SODA = registerSoundEvent("jbird_soda");
@@ -67,6 +71,33 @@ public class ShitSounds {
     public static final SoundEvent FREE_BIRD_DISC = registerSoundEvent("free_bird_disc");
     public static final SoundEvent AFTER_PARTY_DISC = registerSoundEvent("after_party");
 
+
+    public static final SoundEvent VILLAGER_AFTERPARTY = registerSoundEvent("villager_afterparty");
+    public static final SoundEvent VILLAGER_ALLSTAR = registerSoundEvent("villager_allstar");
+    public static final SoundEvent VILLAGER_BALLIN = registerSoundEvent("villager_ballin");
+    public static final SoundEvent VILLAGER_BEGGIN = registerSoundEvent("villager_beggin");
+    public static final SoundEvent VILLAGER_BILLIEJEAN = registerSoundEvent("villager_billiejean");
+    public static final SoundEvent VILLAGER_BUDDYHOLLY = registerSoundEvent("villager_buddyholly");
+    public static final SoundEvent VILLAGER_CUPID = registerSoundEvent("villager_cupid");
+    public static final SoundEvent VILLAGER_DONTSTOPMENOW = registerSoundEvent("villager_dontstopmenow");
+    public static final SoundEvent VILLAGER_FIREFLIES = registerSoundEvent("villager_fireflies");
+    public static final SoundEvent VILLAGER_FLYMETOTHEMOON = registerSoundEvent("villager_flymetothemoon");
+    public static final SoundEvent VILLAGER_FNAF = registerSoundEvent("villager_fnaf");
+    public static final SoundEvent VILLAGER_FREEBIRD = registerSoundEvent("villager_freebird");
+    public static final SoundEvent VILLAGER_GANGSTAPARADISE = registerSoundEvent("villager_gangstaparadise");
+    public static final SoundEvent VILLAGER_GOLDENHOUR = registerSoundEvent("villager_goldenhour");
+    public static final SoundEvent VILLAGER_HARDERBETTER = registerSoundEvent("villager_harderbetter");
+    public static final SoundEvent VILLAGER_HISWORLD = registerSoundEvent("villager_hisworld");
+    public static final SoundEvent VILLAGER_HOWBADCANIBE = registerSoundEvent("villager_howbadcanibe");
+    public static final SoundEvent VILLAGER_LIFECOULDBEDREAMS = registerSoundEvent("villager_lifecouldbedreams");
+    public static final SoundEvent VILLAGER_MONSTER = registerSoundEvent("villager_monster");
+    public static final SoundEvent VILLAGER_MYWAY = registerSoundEvent("villager_myway");
+    public static final SoundEvent VILLAGER_OPPENGANGNAMSTYLE = registerSoundEvent("villager_oppengangnamstyle");
+    public static final SoundEvent VILLAGER_PEACHES = registerSoundEvent("villager_peaches");
+    public static final SoundEvent VILLAGER_SMOOTHCRIMINAL = registerSoundEvent("villager_smoothcriminal");
+    public static final SoundEvent VILLAGER_SOMEBODYIUSETOKNOW = registerSoundEvent("villager_somebodyiusetoknow");
+    public static final SoundEvent VILLAGER_TAKEONME = registerSoundEvent("villager_takeonme");
+    public static final SoundEvent VILLAGER_WHATISLOVE = registerSoundEvent("villager_whatislove");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(ShitMod.MOD_ID, name);

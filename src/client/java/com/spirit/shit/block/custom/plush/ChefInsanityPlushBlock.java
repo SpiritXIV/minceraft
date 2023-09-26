@@ -46,7 +46,6 @@ public class ChefInsanityPlushBlock extends AbstractPlush {
             Block.createCuboidShape(8.25, 4, 5.75, 9.25, 5, 6.75),
             Block.createCuboidShape(9.5, 2.75, 5.75, 10.5, 3.75, 6.75)
             ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
     public ChefInsanityPlushBlock(Settings settings) {
         super(settings, SHAPE);
     }

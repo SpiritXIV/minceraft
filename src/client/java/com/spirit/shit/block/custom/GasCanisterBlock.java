@@ -36,12 +36,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 public class GasCanisterBlock extends Block {
-    public static final BooleanProperty UNSTABLE = Properties.UNSTABLE;
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public GasCanisterBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)this.getDefaultState().with(UNSTABLE, false));
     }
 
     private static final VoxelShape SHAPE_N = Stream.of(
@@ -77,7 +75,7 @@ public class GasCanisterBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE)) {
+        if (!world.isClient() && !player.isCreative()) {
             GasCanisterBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);
@@ -133,7 +131,6 @@ public class GasCanisterBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(UNSTABLE);
         builder.add(FACING);
     }
 }

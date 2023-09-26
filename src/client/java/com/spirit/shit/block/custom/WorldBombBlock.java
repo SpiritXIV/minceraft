@@ -25,11 +25,9 @@ import net.minecraft.world.explosion.ExplosionBehavior;
 import java.util.Objects;
 
 public class WorldBombBlock extends Block {
-    public static final BooleanProperty UNSTABLE = Properties.UNSTABLE;
 
     public WorldBombBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(UNSTABLE, false));
     }
 
     @Override
@@ -42,7 +40,7 @@ public class WorldBombBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE)) {
+        if (!world.isClient() && !player.isCreative()) {
             GasCanBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);
@@ -161,11 +159,6 @@ public class WorldBombBlock extends Block {
     @Override
     public boolean shouldDropItemsOnExplosion(Explosion explosion) {
         return false;
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(UNSTABLE);
     }
 }
 

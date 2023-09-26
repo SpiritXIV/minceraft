@@ -33,7 +33,7 @@ public class AlphaPlushBlock extends AbstractPlush {
             VoxelShapes.combineAndSimplify(Block.createCuboidShape(8.34776, 1.76537, 10.32, 11.34776, 6.76537, 10.32),
                     Block.createCuboidShape(4.65224, 1.76537, 10.32, 7.65224, 6.76537, 10.32),
                     BooleanBiFunction.OR)).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
+  
     public AlphaPlushBlock(Settings settings) {
         super(settings, SHAPE);
     }

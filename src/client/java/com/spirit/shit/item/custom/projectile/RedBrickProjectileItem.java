@@ -12,14 +12,14 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class RedBrickProjectileItem extends Item {
-    public RedBrickProjectileItem(Item.Settings settings) {
+    public RedBrickProjectileItem(Settings settings) {
         super(settings);
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), ShitSounds.BRICK_THROWN, SoundCategory.NEUTRAL, 1F, 1F);
-		user.getItemCooldownManager().set(this, 5);
+        user.getItemCooldownManager().set(this, 5);
         if (!world.isClient) {
             RedBrickProjectileEntity snowballEntity = new RedBrickProjectileEntity(world, user);
             snowballEntity.setItem(itemStack);

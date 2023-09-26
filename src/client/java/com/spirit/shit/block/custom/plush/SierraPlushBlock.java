@@ -38,4 +38,3 @@ public class SierraPlushBlock extends AbstractPlush {
         super(settings, SHAPE);
     }
 }
-

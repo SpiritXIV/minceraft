@@ -85,7 +85,6 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         if (usesAmmunition && !hasAmmunition)
             return;
-
         ItemStack removedAmmunition = null;
 
         if (usesAmmunition) {

@@ -423,6 +423,242 @@
   ]
 },
 
+  "villager_afterparty": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_afterparty",
+        "stream": true
+      }
+    ]
+  },
+  "villager_allstar": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_allstar",
+        "stream": true
+      }
+    ]
+  },
+  "villager_ballin": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_ballin",
+        "stream": true
+      }
+    ]
+  },
+  "villager_beggin": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_beggin",
+        "stream": true
+      }
+    ]
+  },
+  "villager_billiejean": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_billiejean",
+        "stream": true
+      }
+    ]
+  },
+  "villager_buddyholly": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_buddyholly",
+        "stream": true
+      }
+    ]
+  },
+  "villager_cupid": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_cupid",
+        "stream": true
+      }
+    ]
+  },
+  "villager_dontstopmenow": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_dontstopmenow",
+        "stream": true
+      }
+    ]
+  },
+  "villager_fireflies": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_fireflies",
+        "stream": true
+      }
+    ]
+  },
+  "villager_flymetothemoon": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_flymetothemoon",
+        "stream": true
+      }
+    ]
+  },
+  "villager_fnaf": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_fnaf",
+        "stream": true
+      }
+    ]
+  },
+  "villager_freebird": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_freebird",
+        "stream": true
+      }
+    ]
+  },
+  "villager_gangstaparadise": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_gangstaparadise",
+        "stream": true
+      }
+    ]
+  },
+  "villager_goldenhour": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_goldenhour",
+        "stream": true
+      }
+    ]
+  },
+  "villager_harderbetter": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_harderbetter",
+        "stream": true
+      }
+    ]
+  },
+  "villager_hisworld": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_hisworld",
+        "stream": true
+      }
+    ]
+  },
+  "villager_howbadcanibe": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_howbadcanibe",
+        "stream": true
+      }
+    ]
+  },
+  "villager_lifecouldbedreams": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_lifecouldbedreams",
+        "stream": true
+      }
+    ]
+  },
+  "villager_monster": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_monster",
+        "stream": true
+      }
+    ]
+  },
+  "villager_myway": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_myway",
+        "stream": true
+      }
+    ]
+  },
+  "villager_oppangangnamstyle": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_oppangangnamstyle",
+        "stream": true
+      }
+    ]
+  },
+  "villager_peaches": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_peaches",
+        "stream": true
+      }
+    ]
+  },
+  "villager_smoothcriminal": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_smoothcriminal",
+        "stream": true
+      }
+    ]
+  },
+  "villager_somebodyiusetoknow": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_somebodyiusetoknow",
+        "stream": true
+      }
+    ]
+  },
+  "villager_takeonme": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_takeonme",
+        "stream": true
+      }
+    ]
+  },
+  "villager_whatislove": {
+    "subtitle": "shit.disc_plays",
+    "sounds": [
+      {
+        "name": "shit:disc/villager_whatislove",
+        "stream": true
+      }
+    ]
+  },
+
+
   "nothing": {
     "sounds": [
       {

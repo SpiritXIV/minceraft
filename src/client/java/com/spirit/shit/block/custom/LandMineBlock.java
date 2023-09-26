@@ -27,14 +27,11 @@ import net.minecraft.world.explosion.ExplosionBehavior;
 import java.util.stream.Stream;
 
 public class LandMineBlock extends Block {
-    public static final BooleanProperty UNSTABLE = Properties.UNSTABLE;
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public LandMineBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(UNSTABLE, false));
-        this.setDefaultState(this.getDefaultState().with(POWERED, false));
+        this.setDefaultState((BlockState)this.getDefaultState().with(POWERED, false));
     }
 
     private static final VoxelShape SHAPE_N = Stream.of(
@@ -45,8 +42,13 @@ public class LandMineBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        state.get(FACING);
         return SHAPE_N;
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState();
     }
 
     @Override
@@ -59,7 +61,7 @@ public class LandMineBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.isCreative() && state.get(UNSTABLE)) {
+        if (!world.isClient() && !player.isCreative()) {
             LandMineBlock.primeTnt(world, pos);
         }
         super.onBreak(world, pos, state, player);
@@ -118,8 +120,6 @@ public class LandMineBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(POWERED);
-        builder.add(UNSTABLE);
-        builder.add(FACING);
     }
 }
 

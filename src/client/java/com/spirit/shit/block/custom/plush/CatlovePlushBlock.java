@@ -64,7 +64,6 @@ public class CatlovePlushBlock extends AbstractPlush {
             Block.createCuboidShape(8.75, 12.25, 12.75, 9.75, 14.25, 13.75)
             ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get()
             ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
     public CatlovePlushBlock(Settings settings) {
         super(settings, SHAPE);
     }

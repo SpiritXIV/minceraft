@@ -87,10 +87,23 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitMod.ShizeThirstBornCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.ShizeTiramisuCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.ShizeVeggieBrothCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.VodkaBottleProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.WineBottleProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.WineGlassProjectileEntityType, FlyingItemEntityRenderer::new);
+
+        /*EntityRendererRegistry.register(ShitMod.DeadShotDaiquiriCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.DoubleTapRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.JuggernogCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.MuleKickCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.PHDFlopperCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.QuickReviveCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.StaminUpCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.TombStoneSodaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.VultureAidCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.WhosWhoCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShitMod.WidowsWineCanProjectileEntityType, FlyingItemEntityRenderer::new); */
+
 
         ParticleFactoryRegistry.getInstance().register(ShitParticles.SCHIZO_EYE_PARTICLE, SchizoEyeParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.PLAYER_ENTITY_PARTICLE, PlayerEntityParticle.Factory::new);
@@ -101,6 +114,8 @@ public class ShitClientMod implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ALPHA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CATLOVE_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CHEFINSANITY_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.COMPUTER_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ERIS_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JARGEDES_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JBIRD_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MCFELLA_PLUSH, RenderLayer.getCutout());
