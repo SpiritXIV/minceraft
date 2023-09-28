@@ -1,6 +1,5 @@
 package com.spirit.shit.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
