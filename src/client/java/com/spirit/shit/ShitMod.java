@@ -699,7 +699,6 @@ public class ShitMod implements ModInitializer {
         ShitItems.registerCustomShitItems();
         ShitItems.registerCustomPShitItems();
         ShitItems.registerMaterialShitItems();
-        ShitBlocks.registerAll();
 
         ShitMod.registerShitMain();
         ShitParticles.registerParticles();

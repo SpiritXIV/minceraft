@@ -91,6 +91,8 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitMod.WineBottleProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.WineGlassProjectileEntityType, FlyingItemEntityRenderer::new);
 
+        EntityRendererRegistry.register(ShitMod.SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+
         /*EntityRendererRegistry.register(ShitMod.DeadShotDaiquiriCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.DoubleTapRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.JuggernogCanProjectileEntityType, FlyingItemEntityRenderer::new);
@@ -118,6 +120,7 @@ public class ShitClientMod implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ERIS_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JARGEDES_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JBIRD_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.KINGZHARA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MCFELLA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MILKYFUR_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.SIERRA_PLUSH, RenderLayer.getCutout());
