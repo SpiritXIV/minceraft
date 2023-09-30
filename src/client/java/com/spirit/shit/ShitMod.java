@@ -10,6 +10,7 @@
 
 package com.spirit.shit;
 
+import com.mojang.serialization.Lifecycle;
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.effect.ShitEffects;
@@ -17,6 +18,7 @@ import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
 import com.spirit.shit.entity.custom.projectile.*;
 import com.spirit.shit.entity.custom.projectile.beverage.*;
+import com.spirit.shit.entity.damage.DamageTypes;
 import com.spirit.shit.item.ShitFoodComponents;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
@@ -25,11 +27,13 @@ import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
+import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.fabricmc.api.ModInitializer;
@@ -41,8 +45,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
@@ -59,6 +61,9 @@ import java.util.Objects;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class ShitMod implements ModInitializer {
+    // Commented as a node of how to make a custom registry
+    //public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
+    //public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
 
     public static final String MOD_ID = "shit";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
@@ -723,10 +728,9 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
 
+
         Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
         ShitItemGroup.registerShitItemGroup();
-
-
 
         //PACKETS
 
