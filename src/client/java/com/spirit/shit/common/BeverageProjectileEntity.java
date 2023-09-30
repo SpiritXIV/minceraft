@@ -1,5 +1,6 @@
 package com.spirit.shit.common;
 
+import com.spirit.shit.entity.damage.DamageTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -22,24 +23,24 @@ import net.minecraft.world.World;
 
 public abstract class BeverageProjectileEntity extends ThrownItemEntity {
     private final SoundEvent collisionSound;
-    private final String damageMsgId;
+    private final DamageSource DamageSource;
 
-    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, SoundEvent collisionSound, String damageMsgId) {
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, SoundEvent collisionSound, DamageSource DamageSource) {
         super(entityType, world);
         this.collisionSound = collisionSound;
-        this.damageMsgId = damageMsgId;
+        this.DamageSource = DamageSource;
     }
 
-    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, LivingEntity owner, SoundEvent collisionSound, String damageMsgId) {
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, LivingEntity owner, SoundEvent collisionSound, DamageSource DamageSource) {
         super(entityType, owner, world);
         this.collisionSound = collisionSound;
-        this.damageMsgId = damageMsgId;
+        this.DamageSource = DamageSource;
     }
 
-    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, double x, double y, double z, SoundEvent collisionSound, String damageMsgId) {
+    public BeverageProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, double x, double y, double z, SoundEvent collisionSound, DamageSource DamageSource) {
         super(entityType, x, y, z, world);
         this.collisionSound = collisionSound;
-        this.damageMsgId = damageMsgId;
+        this.DamageSource = DamageSource;
     }
 
 
@@ -68,7 +69,7 @@ public abstract class BeverageProjectileEntity extends ThrownItemEntity {
         int i = entity instanceof PlayerEntity ? 3 : 0;
 
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.damage(new DamageSource(RegistryEntry.of(new DamageType(damageMsgId, 1))), 2);
+            livingEntity.damage(DamageSource, 5.0f);
         }
     }
 
