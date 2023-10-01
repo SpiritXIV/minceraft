@@ -70,6 +70,7 @@ public abstract class BeverageProjectileEntity extends ThrownItemEntity {
 
         if (entity instanceof LivingEntity livingEntity) {
             livingEntity.damage(DamageSource, 5.0f);
+            Common.applyKnockback(this, livingEntity, 0.5f);
         }
     }
 
