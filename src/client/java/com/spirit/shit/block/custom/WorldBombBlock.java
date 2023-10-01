@@ -43,49 +43,6 @@ public class WorldBombBlock extends Block {
         super.onBreak(world, pos, state, player);
     }
 
-    public static void primeTnt(World world, BlockPos pos) {
-        WorldBombBlock.primeTnt(world, pos, null);
-        if (!world.isClient()) {
-            double x = pos.getX();
-            double y = pos.getY();
-            double z = pos.getZ();
-            world.createExplosion(null, new DamageSource(RegistryEntry.of(new DamageType("world_bomb", 1))), new ExplosionBehavior(), x, y, z, 100, true, World.ExplosionSourceType.TNT);
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("----------------------------------------------------------SHIT OF THE CRYPT ----------------------------------------------------------");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            Objects.requireNonNull(world.getServer()).save(false, false, true);
-            Objects.requireNonNull(world.getServer()).close();        }
-    }
-
     private static void primeTnt(World world, BlockPos pos, LivingEntity igniter) {
         if (!world.isClient()) {
             double x = pos.getX();
