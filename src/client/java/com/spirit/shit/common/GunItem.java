@@ -3,6 +3,7 @@ package com.spirit.shit.common;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtByte;
@@ -14,6 +15,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.*;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.screen.slot.Slot;
@@ -467,6 +469,11 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
     public int getItemBarStep(ItemStack stack) {
         return Math.min(1 + 12 * getBundleOccupancy(stack) / MAGAZINE_SIZE, 13);
+    }
+
+    //Sets the item to not be used as a mining tool
+    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
+        return false;
     }
 
     public int getItemBarColor(ItemStack stack) {
