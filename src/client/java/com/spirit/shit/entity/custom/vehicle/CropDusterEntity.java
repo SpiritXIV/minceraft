@@ -1,7 +1,6 @@
 package com.spirit.shit.entity.custom.vehicle;
 
 import com.spirit.shit.ShitMod;
-import com.spirit.shit.item.ShitItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.EntityType;
@@ -159,56 +158,4 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
         public AnimatableInstanceCache getAnimatableInstanceCache () {
             return cache;
         }
-
-    /*     public void updatePassengerPosition (PlayerEntity passenger){
-            // Update the entity's yaw and pitch angles based on the rider's input
-            if (isFlying()) {
-                float newYaw = this.getYaw() + passenger.getYaw();
-                float newPitch = this.getPitch() - passenger.getPitch();
-
-                // Apply limits to pitch to prevent extreme angles
-                float minPitch = -30.0f;
-                float maxPitch = 30.0f;
-
-                if (newPitch < minPitch) {
-                    newPitch = minPitch;
-                } else if (newPitch > maxPitch) {
-                    newPitch = maxPitch;
-                }
-
-                this.setYaw(newYaw);
-                this.setPitch(newPitch);
-            }
-        }
-
-   private void updateVelocity() {
-        double d = -0.03999999910593033;
-        double e = this.hasNoGravity() ? 0.0 : -0.03999999910593033;
-        double f = 0.0;
-        float velocityDecay = 0.05F;
-        if (this.lastLocation == BoatEntity.Location.IN_AIR && this.location != BoatEntity.Location.IN_AIR && this.location != BoatEntity.Location.ON_LAND) {
-            this.waterLevel = this.getBodyY(1.0);
-            this.setPosition(this.getX(), (double)(this.getWaterHeightBelow() - this.getHeight()) + 0.101, this.getZ());
-            this.setVelocity(this.getVelocity().multiply(1.0, 0.0, 1.0));
-            this.location = Location.IN_AIR;
-        } else {
-            if (this.location == Location.IN_AIR) {
-                f = (this.waterLevel - this.getY()) / (double)this.getHeight();
-                velocityDecay = 0.9F;
-            } else if (this.location == BoatEntity.Location.ON_LAND) {
-                velocityDecay = this.nearbySlipperiness;
-                if (this.getControllingPassenger() instanceof PlayerEntity) {
-                    this.nearbySlipperiness /= 2.0F;
-                }
-            }
-
-            Vec3d vec3d = this.getVelocity();
-            this.setVelocity(vec3d.x * (double) velocityDecay, vec3d.y + e, vec3d.z * (double) velocityDecay);
-            this.yawVelocity *= velocityDecay;
-            if (f > 0.0) {
-                Vec3d vec3d2 = this.getVelocity();
-                this.setVelocity(vec3d2.x, (vec3d2.y + f * 0.06153846016296973) * 0.75, vec3d2.z);
-            }
-        }
-    } */
 }
