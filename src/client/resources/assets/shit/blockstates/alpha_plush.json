@@ -1,7 +1,8 @@
 {
 	"variants": {
-		"": {
-			"model": "shit:block/alpha_plush"
-		}
+		"facing=north": { "model": "shit:block/alpha_plush" },
+		"facing=south": { "model": "shit:block/alpha_plush" },
+		"facing=east": { "model": "shit:block/alpha_plush" },
+		"facing=west": { "model": "shit:block/alpha_plush" }
 	}
 }

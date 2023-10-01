@@ -85,47 +85,59 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
         if (usesAmmunition && !hasAmmunition)
             return;
-        ItemStack removedAmmunition = null;
 
-        if (usesAmmunition) {
-            removedAmmunition = removeAmmo(gunNBT);
+        ItemStack ammunition;
+
+        // For creative players, get a random bullet without removing it
+        if (!usesAmmunition) {
+            ammunition = getRandomAmmo(gunNBT);
+        } else {
+            // For survival players, get a random bullet and remove it
+            ammunition = removeAmmo(gunNBT);
         }
-        // If ammo was successfully removed, proceed to firing
-        if (removedAmmunition != null) {
-            System.out.println(removedAmmunition);
-            System.out.println(removedAmmunition.getItem());
+
+        // If ammo was successfully acquired, proceed to firing
+        if (ammunition != null) {
+            System.out.println(ammunition);
+            System.out.println(ammunition.getItem());
             // Cast to GunProjectileItem and call fire method
-            GunProjectileItem projectileItem = (GunProjectileItem) removedAmmunition.getItem();
-            projectileItem.fire(world, user, 0, removedAmmunition, BULLET_DAMAGE);
+            GunProjectileItem projectileItem = (GunProjectileItem) ammunition.getItem();
+            projectileItem.fire(world, user, 0, ammunition, BULLET_DAMAGE);
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         this.playSound(user, SoundType.SHOOT);
     }
 
-    /**
-     * Remove a random ammo from the gun's NBT and return it as an ItemStack.
-     * If no suitable ammo is found, returns null.
-     */
-    private ItemStack removeAmmo(NbtCompound gunNBT) {
+    // Get a random ammo ItemStack without removing it
+    private ItemStack getRandomAmmo(NbtCompound gunNBT) {
         NbtList gunInventory = gunNBT.getList(ITEMS_KEY, 10);
-        List<Integer> ammoIndices = new ArrayList<>();
+        List<Integer> ammoIndices = getAmmoIndices(gunInventory);
 
-        // Identify ammo slots
-        for (int i = 0; i < gunInventory.size(); i++) {
-            NbtCompound slotNBT = gunInventory.getCompound(i);
-            ItemStack bulletStack = ItemStack.fromNbt(slotNBT);
-            if (bulletStack.getCount() > 0) {
-                ammoIndices.add(i);
-            }
-        }
-
-        // If no ammo found, return null
         if (ammoIndices.isEmpty()) {
             return null;
         }
 
-        // Pick a random ammo slot
+        int randomIndex = ammoIndices.get(random.nextInt(ammoIndices.size()));
+        NbtCompound randomSlotNBT = gunInventory.getCompound(randomIndex);
+        ItemStack randomBulletStack = ItemStack.fromNbt(randomSlotNBT);
+
+        // Create a new ItemStack with a count of 1 to return
+        ItemStack returnBulletStack = randomBulletStack.copy();
+        returnBulletStack.setCount(1);
+
+        return returnBulletStack;
+    }
+
+    // Remove ammo and get ItemStack
+    private ItemStack removeAmmo(NbtCompound gunNBT) {
+        NbtList gunInventory = gunNBT.getList(ITEMS_KEY, 10);
+        List<Integer> ammoIndices = getAmmoIndices(gunInventory);
+
+        if (ammoIndices.isEmpty()) {
+            return null;
+        }
+
         int randomIndex = ammoIndices.get(random.nextInt(ammoIndices.size()));
         NbtCompound randomSlotNBT = gunInventory.getCompound(randomIndex);
         ItemStack randomBulletStack = ItemStack.fromNbt(randomSlotNBT);
@@ -141,6 +153,20 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         returnBulletStack.setCount(1);
 
         return returnBulletStack;
+    }
+
+    // Helper method to get ammo indices
+    private List<Integer> getAmmoIndices(NbtList gunInventory) {
+        List<Integer> ammoIndices = new ArrayList<>();
+
+        for (int i = 0; i < gunInventory.size(); i++) {
+            NbtCompound slotNBT = gunInventory.getCompound(i);
+            ItemStack bulletStack = ItemStack.fromNbt(slotNBT);
+            if (bulletStack.getCount() > 0) {
+                ammoIndices.add(i);
+            }
+        }
+        return ammoIndices;
     }
 
     private boolean hasAmmo(NbtCompound gunNBT) {
@@ -235,44 +261,64 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     private int addToGunInventory(ItemStack gun, ItemStack item) {
         // Check if the item type is allowed
         boolean isAllowedType = Arrays.stream(ALLOWED_TYPES).anyMatch(item::isOf);
+        System.out.println("a");
         if (!isAllowedType) {
+            System.out.println("b");
             return 0;
         }
 
+        System.out.println("c");
         if (!item.isEmpty()) {
+            System.out.println("d");
             NbtCompound gunNbt = gun.getOrCreateNbt();
             if (!gunNbt.contains(ITEMS_KEY)) {
+                System.out.println("e");
                 gunNbt.put(ITEMS_KEY, new NbtList());
             }
+            System.out.println("f");
 
-            int i = getBundleOccupancy(gun); // Check the current number of bullet
+            int currentOccupancy = getBundleOccupancy(gun); // Check the current number of bullets/items in the gun
 
             // Check if the gun is already full
-            if (i >= MAGAZINE_SIZE) {
+            if (currentOccupancy >= MAGAZINE_SIZE) {
+                System.out.println("g");
                 return 0;
             }
+            System.out.println("h");
 
-            // Calculate how many more bullet can be added
-            int j = Math.min(item.getCount(), MAGAZINE_SIZE - i);
-            if (j == 0) {
+            // Calculate how many more bullets/items can be added
+            int availableSpace = MAGAZINE_SIZE - currentOccupancy;
+            int itemOccupancy = getItemOccupancy(item);
+            int itemsToAdd = Math.min(itemOccupancy, availableSpace);
+
+            System.out.println(availableSpace);
+            System.out.println(itemOccupancy);
+            System.out.println(itemsToAdd);
+            if (itemsToAdd == 0) {
+                System.out.println("i");
                 return 0;
             } else {
+                System.out.println("j");
                 NbtList gunInventory = gunNbt.getList(ITEMS_KEY, 10);
                 Optional<NbtCompound> optional = canMergeStack(item, gunInventory);
                 if (optional.isPresent()) {
+                    System.out.println("k");
                     NbtCompound nbtCompound2 = optional.get();
                     ItemStack itemStack = ItemStack.fromNbt(nbtCompound2);
-                    itemStack.increment(j);
+                    itemStack.increment(itemsToAdd);
                     itemStack.writeNbt(nbtCompound2);
                 } else {
-                    ItemStack itemStack2 = item.copyWithCount(j);
+                    System.out.println("l");
+                    ItemStack itemStack2 = item.copyWithCount(itemsToAdd);
                     NbtCompound nbtCompound3 = new NbtCompound();
                     itemStack2.writeNbt(nbtCompound3);
                     gunInventory.add(nbtCompound3); // Add to the end if no existing item is found
                 }
-                return j;
+                System.out.println("m");
+                return itemsToAdd;
             }
         } else {
+            System.out.println("n");
             return 0;
         }
     }
@@ -286,20 +332,39 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     }
 
     private int getItemOccupancy(ItemStack stack) {
-        if (stack.isOf(Items.BUNDLE)) {
-            return 4 + getBundleOccupancy(stack);
-        } else {
-            if ((stack.isOf(ShitItems.BULLET)) && stack.hasNbt()) {
-                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
+        int occupancy = 0;
+        Queue<ItemStack> toProcess = new LinkedList<>();
+        toProcess.offer(stack);
+
+        while (!toProcess.isEmpty()) {
+            ItemStack currentStack = toProcess.poll();
+
+            // Assume the currentStack itself should not be counted if it has contained items
+            boolean shouldCountCurrentStack = true;
+
+            // If this stack has NBT data, handle it specially
+            if (currentStack.hasNbt()) {
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(currentStack);
                 if (nbtCompound != null) {
-                    return MAGAZINE_SIZE;
+                    // Enqueue the contained items for processing
+                    NbtList containedItems = nbtCompound.getList("Items", 10);  // Assuming 10 is the tag type for a compound
+                    for (int i = 0; i < containedItems.size(); i++) {
+                        NbtCompound containedItem = containedItems.getCompound(i);
+                        ItemStack containedStack = ItemStack.fromNbt(containedItem);
+                        toProcess.offer(containedStack);
+                    }
+                    // Since this stack contains other items, we don't count it itself
+                    shouldCountCurrentStack = false;
                 }
             }
-            if (stack.getMaxCount() == 0) {
-                return 0;  // Return zero if getMaxCount is zero
+
+            // Add the count of the current stack to the total occupancy only if it should be counted
+            if (shouldCountCurrentStack) {
+                occupancy += currentStack.getCount();
             }
-            return 1 / stack.getMaxCount();
         }
+
+        return occupancy;
     }
 
     private Optional<ItemStack> removeFirstStack(ItemStack stack) {
@@ -364,13 +429,13 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
                     NbtList flags = nbt.getList("Flags", 1);  // Assuming 1 is the NBT type for BYTE
 
                     if (!flags.isEmpty() && ((NbtByte)flags.get(0)).byteValue() == 1) {
-                        bulletText.append(Text.translatable("I").formatted(Formatting.GOLD));
+                        bulletText.append(Text.translatable(" I").formatted(Formatting.GOLD, Formatting.BOLD));
                     }
                     if (flags.size() > 1 && ((NbtByte)flags.get(1)).byteValue() == 1) {
-                        bulletText.append(Text.translatable("X").formatted(Formatting.DARK_RED));
+                        bulletText.append(Text.translatable(" X").formatted(Formatting.DARK_RED, Formatting.BOLD));
                     }
                     if (flags.size() > 2 && ((NbtByte)flags.get(2)).byteValue() == 1) {
-                        bulletText.append(Text.translatable("E").formatted(Formatting.AQUA));
+                        bulletText.append(Text.translatable(" E").formatted(Formatting.AQUA, Formatting.BOLD));
                     }
                 }
             }
@@ -383,7 +448,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     }
 
     private int getBundleOccupancy(ItemStack stack) {
-        return getBulletStacks(stack).mapToInt((itemStack) -> getItemOccupancy(itemStack) * itemStack.getCount()).sum();
+        return getBulletStacks(stack).mapToInt(this::getItemOccupancy).sum();
     }
 
     public void onItemEntityDestroyed(ItemEntity entity) {

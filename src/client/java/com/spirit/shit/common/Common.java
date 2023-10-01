@@ -39,6 +39,7 @@ public final class Common {
      *
      * @return an unmodifiable list of ammo types
      */
+    @SuppressWarnings("unused")
     public static List<String> getAmmoTypes() {
         return Collections.unmodifiableList(Arrays.asList(AMMO_TYPES));
     }
@@ -107,6 +108,26 @@ public final class Common {
     }
 
     /**
+     * Applies knockback to a target entity based on the position of an attacker entity.
+     *
+     * @param attacker The entity dealing the damage and causing the knockback.
+     * @param target   The entity receiving the damage and knockback.
+     * @param strength The strength of the knockback.
+     */
+    public static void applyKnockback(Entity attacker, LivingEntity target, float strength) {
+        double xRatio = attacker.getX() - target.getX();
+        double zRatio = attacker.getZ() - target.getZ();
+
+        // Normalize the x and z ratios to create a unit vector.
+        double length = Math.sqrt(xRatio * xRatio + zRatio * zRatio);
+        xRatio /= length;
+        zRatio /= length;
+
+        // Apply knockback
+        target.takeKnockback(strength, xRatio, zRatio);
+    }
+
+    /**
      * Calculates the direction vector based on the pitch and yaw of a given LivingEntity.
      * The direction vector is then scaled by a specified dampening factor.
      *
@@ -158,6 +179,7 @@ public final class Common {
      * @param entity2 The entity that entity1 should face.
      * @return A float array containing [azimuth, elevation].
      */
+    @SuppressWarnings("unused")
     public static float[] calculateFacingAngles(Entity entity1, Entity entity2) {
         double deltaX = entity2.getX() - entity1.getX();
         double deltaY = entity2.getY() - entity1.getY();

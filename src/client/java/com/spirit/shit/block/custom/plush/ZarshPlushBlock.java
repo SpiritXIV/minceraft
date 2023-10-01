@@ -7,7 +7,7 @@ import net.minecraft.util.shape.VoxelShapes;
 
 import java.util.stream.Stream;
 
-public class ZarshPlushBlock extends AbstractPlush {
+public class ZarshPlushBlock extends AbstractShitBlock {
     private static final VoxelShape SHAPE = Stream.of(
             Stream.of(
                     Block.createCuboidShape(5.25, 13, 3, 10.75, 15, 5),
