@@ -214,6 +214,7 @@ public class ShitItems {
 
     //DRINKS | WILL KILL YOU
     public static final Item CHOCOLATE_OREO_SHAKE = registerItem("chocolate_oreo_shake", new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_YELLOW).maxCount(1).rarity(Rarity.COMMON)));
+    public static final Item GRIMACE_SHAKE = registerItem("grimace_shake", new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_YELLOW).maxCount(1).rarity(Rarity.COMMON)));
 
     //WEAPONS
     //GUNS
@@ -227,7 +228,7 @@ public class ShitItems {
     public static final Item FNP90SCOPE = registerItem("fnp_90_scope", new fnp90scopeItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item GLOCK17 = registerItem("glock_17", new Glock17Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item M16 = registerItem("m16", new M16Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
-    public static final Item M1_GARAND = registerItem("m1_garand", new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
+    public static final Item M1_GARAND = registerItem("m1_garand", new M1GarandItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item REVOLVER = registerItem("revolver", new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item GOLDEN_REVOLVER = registerItem("revolver_golden", new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
     public static final Item SAWED_OFF = registerItem("sawed_off", new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600)));
