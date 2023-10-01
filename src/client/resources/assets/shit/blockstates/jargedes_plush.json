@@ -1,7 +1,8 @@
 {
 	"variants": {
-		"": {
-			"model": "shit:block/jargedes_plush"
-		}
+		"facing=north": { "model": "shit:block/jargedes_plush" },
+		"facing=south": { "model": "shit:block/jargedes_plush" },
+		"facing=east": { "model": "shit:block/jargedes_plush" },
+		"facing=west": { "model": "shit:block/jargedes_plush" }
 	}
 }

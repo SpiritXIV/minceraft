@@ -1,7 +1,8 @@
 {
 	"variants": {
-		"": {
-			"model": "shit:block/eris_plush"
-		}
+		"facing=north": { "model": "shit:block/eris_plush" },
+		"facing=south": { "model": "shit:block/eris_plush" },
+		"facing=east": { "model": "shit:block/eris_plush" },
+		"facing=west": { "model": "shit:block/eris_plush" }
 	}
 }
