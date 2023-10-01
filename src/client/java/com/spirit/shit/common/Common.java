@@ -39,6 +39,7 @@ public final class Common {
      *
      * @return an unmodifiable list of ammo types
      */
+    @SuppressWarnings("unused")
     public static List<String> getAmmoTypes() {
         return Collections.unmodifiableList(Arrays.asList(AMMO_TYPES));
     }
@@ -178,6 +179,7 @@ public final class Common {
      * @param entity2 The entity that entity1 should face.
      * @return A float array containing [azimuth, elevation].
      */
+    @SuppressWarnings("unused")
     public static float[] calculateFacingAngles(Entity entity1, Entity entity2) {
         double deltaX = entity2.getX() - entity1.getX();
         double deltaY = entity2.getY() - entity1.getY();
