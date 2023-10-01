@@ -68,7 +68,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
         this(settings, cooldown, magazineSize, DEFAULT_ITEM_BAR_COLOR, bulletDamage, allowedTypes);
     }
 
-    public GunItem(Settings settings, int magazineSize, int cooldown, int itemBarColor, float bulletDamage, Item[] allowedTypes) {
+    public GunItem(Settings settings, int cooldown, int magazineSize, int itemBarColor, float bulletDamage, Item[] allowedTypes) {
         super(settings);
         this.COOLDOWN = cooldown;
         this.MAGAZINE_SIZE = magazineSize;

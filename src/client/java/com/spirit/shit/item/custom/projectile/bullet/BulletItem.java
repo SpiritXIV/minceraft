@@ -11,7 +11,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.world.World;
 
 public class BulletItem extends GunProjectileItem {
-    double velocityMultiplier = 1;
+    double velocityMultiplier = 5;
     public BulletItem(Settings settings) {
         super(settings);
     }
@@ -43,9 +43,9 @@ public class BulletItem extends GunProjectileItem {
                         player.getZ()
                 );
                 bullet.setVelocity(
-                        velocityMultiplier * (-Math.sin(Math.toRadians(player.getYaw())) * Math.cos(Math.toRadians(player.getPitch()))),
-                        velocityMultiplier * (-Math.sin(Math.toRadians(player.getPitch()))),
-                        velocityMultiplier * (Math.cos(Math.toRadians(player.getYaw())) * Math.cos(Math.toRadians(player.getPitch())))
+                        (velocityMultiplier * velocityModifier) * (-Math.sin(Math.toRadians(player.getYaw())) * Math.cos(Math.toRadians(player.getPitch()))),
+                        (velocityMultiplier * velocityModifier) * (-Math.sin(Math.toRadians(player.getPitch()))),
+                        (velocityMultiplier * velocityModifier) * (Math.cos(Math.toRadians(player.getYaw())) * Math.cos(Math.toRadians(player.getPitch())))
                 );
 
                 // Spawn the bullet into the world

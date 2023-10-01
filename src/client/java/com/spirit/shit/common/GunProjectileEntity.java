@@ -283,12 +283,13 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                 if (flags[1] != 0) { // isExplosive
                     // Create an explosion at the entity's location
                     // Arguments: entity causing the explosion, x, y, z, power, create fire, explosion mode
-                    /*((LivingEntity) entity).getWorld().createExplosion(null,
+                    entity.getWorld().createExplosion(null,
                             entity.getX(),
                             entity.getY(),
                             entity.getZ(),
-                            4.0F, ,
-                            Explosion.DestructionType.BREAK);*/
+                            4.0F,
+                            World.ExplosionSourceType.MOB
+                    );
                 }
                 // Add other conditions and effects here
             }
