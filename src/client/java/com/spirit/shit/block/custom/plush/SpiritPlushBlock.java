@@ -9,7 +9,7 @@ import net.minecraft.util.shape.VoxelShapes;
 
 import java.util.stream.Stream;
 
-public class SpiritPlushBlock extends AbstractPlush {
+public class SpiritPlushBlock extends AbstractShitBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE = Stream.of(
