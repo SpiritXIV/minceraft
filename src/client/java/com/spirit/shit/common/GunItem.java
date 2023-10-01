@@ -3,6 +3,13 @@ package com.spirit.shit.common;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
+
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.SimpleOption;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtByte;
@@ -14,6 +21,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.*;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.screen.slot.Slot;
@@ -52,6 +60,8 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     protected final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
     protected final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
     private static final Random random = new Random();
+    public static final float field_30922 = 0.1F;
+
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
     public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage, Item[] allowedTypes) {
@@ -467,6 +477,11 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
 
     public int getItemBarStep(ItemStack stack) {
         return Math.min(1 + 12 * getBundleOccupancy(stack) / MAGAZINE_SIZE, 13);
+    }
+
+    //Sets the item to not be used as a mining tool
+    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
+        return false;
     }
 
     public int getItemBarColor(ItemStack stack) {
