@@ -2,6 +2,7 @@ package com.spirit.shit.entity;
 
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.entity.custom.*;
+import com.spirit.shit.entity.custom.vehicle.CropDusterEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -40,6 +41,14 @@ public class ShitEntities {
             Registries.ENTITY_TYPE, new Identifier(ShitMod.MOD_ID, "yippee"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, YippeeEntity::new)
                     .dimensions(EntityDimensions.fixed(1f, 0.6f)).build());
+
+
+    public static final EntityType<CropDusterEntity> CROP_DUSTER = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(ShitMod.MOD_ID, "crop_duster"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, CropDusterEntity::new)
+                    .dimensions(EntityDimensions.fixed(1f, 1f)).build());
+
+
 
     public static void registerShitEntities() {
         ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/entity/ShitEntities");

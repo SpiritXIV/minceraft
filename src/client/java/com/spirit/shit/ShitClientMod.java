@@ -3,6 +3,7 @@ package com.spirit.shit;
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.client.*;
+import com.spirit.shit.entity.client.vehicle.CropDusterRenderer;
 import com.spirit.shit.event.KeyInputHandler;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.particle.custom.*;
@@ -27,6 +28,10 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
         EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
+
+        EntityRendererRegistry.register(ShitEntities.CROP_DUSTER, CropDusterRenderer::new);
+
+
 
         EntityRendererRegistry.register(ShitMod.RedBrickProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.BlueBrickProjectileEntityType, FlyingItemEntityRenderer::new);

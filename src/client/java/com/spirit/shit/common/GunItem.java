@@ -3,7 +3,13 @@ package com.spirit.shit.common;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
+
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.SimpleOption;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtByte;
@@ -54,6 +60,8 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
     protected final SoundEvent INSERT_SOUND = SoundEvents.ITEM_BUNDLE_INSERT;
     protected final SoundEvent DROP_CONTENT_SOUND = SoundEvents.ITEM_BUNDLE_DROP_CONTENTS;
     private static final Random random = new Random();
+    public static final float field_30922 = 0.1F;
+
 
     // Constructor with mandatory magazineSize parameter and optional itemBarColor parameter
     public GunItem(Settings settings, int magazineSize, int cooldown, float bulletDamage, Item[] allowedTypes) {
