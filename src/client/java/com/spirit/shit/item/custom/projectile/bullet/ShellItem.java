@@ -54,7 +54,7 @@ public class ShellItem extends ShotgunAbstract {
                             }
                         }
                     } else if (hitResult.getType() == HitResult.Type.ENTITY) {
-                        @SuppressWarnings("DataFlowIssue") EntityHitResult entityHitResult = (EntityHitResult) hitResult;
+                        @SuppressWarnings("DataFlowIssue") EntityHitResult entityHitResult = (EntityHitResult) hitResult; // Ignoring warning thrown by IDE. warning is invalid
                         // Do something when hit an entity
                         if (entityHitResult.getEntity() instanceof LivingEntity livingEntity) { // Check if the entity is living
 

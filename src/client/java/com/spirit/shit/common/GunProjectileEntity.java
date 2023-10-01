@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public abstract class GunProjectileEntity extends ProjectileEntity {
-    private final byte[] flags = new byte[3]; // Will hold flags in the future
+    private byte[] flags = new byte[3]; // Will hold flags in the future
     private boolean CRITICAL_FLAG = false;
     private double damage;
     private String potionEffect; // Will hold the potion effect in the future
@@ -45,6 +45,13 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         super(entityType, world);
     }
 
+    public void setFlags(byte[] flags) {
+        this.flags = flags;
+    }
+
+    public void setPotionEffect(String potionEffect) {
+        this.potionEffect = potionEffect;
+    }
     public void setSound(SoundEvent sound) {
         this.sound = sound;
     }
@@ -239,7 +246,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                     EnchantmentHelper.onTargetDamaged((LivingEntity) owner, hitLivingEntity);
                 }
 
-                this.onHit(hitLivingEntity);
+                this.onHit(entityHitResult);
 
                 // If hit entity isn't the owner & is a player & the owner is a server player & the arrow isn't silent, make noises.
                 if (hitLivingEntity != owner && hitLivingEntity instanceof PlayerEntity && owner instanceof ServerPlayerEntity && !this.isSilent()) {
@@ -265,9 +272,18 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         return SoundEvents.ENTITY_ARROW_HIT;
     }
 
-    @SuppressWarnings("EmptyMethod")
-    protected void onHit(LivingEntity target) {
-        // To be implemented when needed
+    protected void onHit(HitResult hitResult) {
+        if (hitResult.getType() == HitResult.Type.ENTITY) {
+            Entity entity = ((EntityHitResult) hitResult).getEntity();
+            if (entity instanceof LivingEntity livingEntity) {
+                // Your logic for entity hit goes here
+                if (flags[0] != 0) { // isIncendiary
+                    livingEntity.setOnFireFor(5);
+                }
+                // Add other conditions and effects here
+            }
+        }
+        // Handle block hits...
     }
 
     @Nullable
