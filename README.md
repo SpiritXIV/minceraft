@@ -6,7 +6,7 @@
 <h3 align="center">Mod Team</b>
 <p></p>
 <p>SpiritXIV <b align="center">|</b> Main Developer</p>
-<p>KingZhara <b align="center">|</b> Java Rewriter/Mixin</p>
+<p>KingZhara <b align="center">|</b> Secondary Developer</p>
 <p>alphaxenopete86 <b align="center">|</b> Entity Designer Lead</p>
 <p>ComputerUser <b align="center">|</b> 2d, 3d, Designer Lead</p>
 <p>Milkyfur <b align="center">|</b> 2d Designer</p>
