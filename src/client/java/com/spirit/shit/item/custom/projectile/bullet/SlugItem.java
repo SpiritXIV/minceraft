@@ -10,7 +10,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.world.World;
 
 public class SlugItem extends ShotgunAbstract {
-    double velocityMultiplier = 5;
+    final double velocityMultiplier = 5;
     public SlugItem(Settings settings) {
         super(settings);
     }

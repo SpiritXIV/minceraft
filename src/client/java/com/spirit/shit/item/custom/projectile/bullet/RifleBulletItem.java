@@ -11,7 +11,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.world.World;
 
 public class RifleBulletItem extends GunProjectileItem {
-    double velocityMultiplier = 1.1;
+    final double velocityMultiplier = 1.1;
     public RifleBulletItem(Settings settings) {
         super(settings);
     }
