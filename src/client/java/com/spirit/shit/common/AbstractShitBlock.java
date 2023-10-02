@@ -30,7 +30,11 @@ public abstract class AbstractShitBlock extends Block {
         super(settings);
         this.NORTH_SHAPE = SHAPE;
         this.SHAPE_MAP = VoxelShapeRotator.rotateAllDirections(NORTH_SHAPE);
-
+    }
+    public AbstractShitBlock(Settings settings) {
+        super(settings);
+        this.NORTH_SHAPE = null;
+        this.SHAPE_MAP = null;
     }
 
     @Override
