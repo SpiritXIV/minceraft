@@ -17,5 +17,10 @@ public class ShitBulletEffectEntityRenderer extends ProjectileEntityRendererBase
     public Identifier getTexture(BulletProjectileEntity bulletProjectileEntity) {
         return bulletProjectileEntity.getColor() > 0 ? TIPPED_TEXTURE : TEXTURE;
     }
+
+    @SuppressWarnings("unused")
+    public void Logger() {
+        ShitLogger.logLoadedFile();
+    }
 }
 */

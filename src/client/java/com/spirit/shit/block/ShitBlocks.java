@@ -187,11 +187,4 @@ public class ShitBlocks {
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(ShitMod.MOD_ID, name), block);
     }
-
-    public static void registerShitBlocks() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/block/ShitBlocks");
-    }
-    public static void registerShitCustomBlocks() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/block/ShitBlocks>custom");
-    }
 }

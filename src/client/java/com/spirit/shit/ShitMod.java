@@ -10,24 +10,19 @@
 
 package com.spirit.shit;
 
-import com.mojang.serialization.Lifecycle;
-import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
+import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
 import com.spirit.shit.entity.custom.projectile.*;
 import com.spirit.shit.entity.custom.projectile.beverage.*;
-import com.spirit.shit.entity.damage.DamageTypes;
-import com.spirit.shit.item.ShitFoodComponents;
-import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.common.GunItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
-import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
@@ -701,24 +696,17 @@ public class ShitMod implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("INIT - BULLET" + ShitItems.BULLET);
-        ShitItems.registerCustomShitItems();
-        ShitItems.registerCustomPShitItems();
-        ShitItems.registerMaterialShitItems();
+        Class<?>[] initializedClasses = new Class[0];
+        RepositoryLogger.logInitializedClasses(initializedClasses);
+        Class<?>[] initializedResourceClasses = new Class[0];
+        RepositoryLogger.logInitializedResourceClasses(initializedResourceClasses);
+        Class<?>[] initializedFullClasses = new Class[0];
+        RepositoryLogger.logInitializedFullClasses(initializedFullClasses);
 
-        ShitMod.registerShitMain();
         ShitParticles.registerParticles();
-        ShitEffects.registerShitEffects();
-        ShitEntities.registerShitEntities();
-        ShitEntities.registerShitEntityAI();
-        ShitEntities.registerShitClientEntity();
-        ShitEntities.registerShitCustomEntity();
-        ShitEntities.registerShitCustomPEntity();
-        ShitPotions.registerShitPotions();
-        ShitFoodComponents.registerShitFoodItems();
         ShitEffects.registerEffects();
         ShitPotions.registerPotions();
 
-        ShitSounds.registerShitSounds();
 
         GeckoLib.initialize();
         FabricDefaultAttributeRegistry.register(ShitEntities.JBIRD, JbirdEntity.setAttributes());
@@ -730,7 +718,6 @@ public class ShitMod implements ModInitializer {
 
 
         Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
-        ShitItemGroup.registerShitItemGroup();
 
         //PACKETS
 
@@ -764,9 +751,6 @@ public class ShitMod implements ModInitializer {
                 })));
     }
 
-    public static void registerShitMain() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
-    }
 }
 
 

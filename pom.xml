@@ -1,0 +1,5 @@
+<dependency>
+    <groupId>net.sourceforge.pmd</groupId>
+    <artifactId>pmd-core</artifactId>
+    <version>6.42.0</version> <!-- Use the latest version -->
+</dependency>

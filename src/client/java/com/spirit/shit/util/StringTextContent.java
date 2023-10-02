@@ -35,4 +35,5 @@ public class StringTextContent implements TextContent {
     public String toString() {
         return content;
     }
+
 }

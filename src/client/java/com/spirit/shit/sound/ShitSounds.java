@@ -103,8 +103,4 @@ public class ShitSounds {
         Identifier id = new Identifier(ShitMod.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
-
-    public static void registerShitSounds() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/sound/ShitSounds");
-    }
 }

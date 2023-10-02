@@ -7,7 +7,6 @@ import com.spirit.shit.entity.client.vehicle.CropDusterRenderer;
 import com.spirit.shit.event.KeyInputHandler;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.particle.custom.*;
-import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.api.ClientModInitializer;
 import com.spirit.shit.render.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -20,7 +19,6 @@ public class ShitClientMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ShitSounds.registerShitSounds();
 
         EntityRendererRegistry.register(ShitEntities.JBIRD, JbirdRenderer::new);
         EntityRendererRegistry.register(ShitEntities.RAT_BOMB, RatBombRenderer::new);
@@ -137,7 +135,4 @@ public class ShitClientMod implements ClientModInitializer {
         KeyInputHandler.register();
     }
 
-    public static void registerShitClient() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitClientMod");
-    }
 }

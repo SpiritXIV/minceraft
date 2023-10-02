@@ -3,13 +3,8 @@ package com.spirit.shit.common;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.option.SimpleOption;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtByte;

@@ -365,8 +365,4 @@ public class ShitItemGroup {
                         entries.add(ShitItems.SLUG);
 
                     }).build());
-
-    public static void registerShitItemGroup() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItemGroup");
-    }
 }

@@ -62,5 +62,10 @@ public abstract class ProjectileEntityRendererBase<T extends PersistentProjectil
     public void vertex(Matrix4f positionMatrix, Matrix3f normalMatrix, VertexConsumer vertexConsumer, int x, int y, int z, float u, float v, int normalX, int normalZ, int normalY, int light) {
         vertexConsumer.vertex(positionMatrix, (float)x, (float)y, (float)z).color(255, 255, 255, 255).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normalMatrix, (float)normalX, (float)normalY, (float)normalZ).next();
     }
+
+    @SuppressWarnings("unused")
+    public void Logger() {
+        ShitLogger.logLoadedFile();
+    }
 }
 */
