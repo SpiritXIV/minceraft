@@ -12,7 +12,7 @@ public class AK47Item extends GunItem {
     private static final int ITEM_BAR_COLOR = 0x00FF00;
     private static final float DAMAGE = 1F;
     private static final Item[] ALLOWED_TYPES = new GunProjectileItem[] {
-             Common.getBulletProjectileItemByType("rifle")
+             Common.getBulletProjectileItemByType("rifle_bullet")
     };
 
     public AK47Item(Item.Settings settings) {

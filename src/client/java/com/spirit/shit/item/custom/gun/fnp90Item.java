@@ -14,7 +14,7 @@ public class fnp90Item extends GunItem {
     private static final float DAMAGE = 1F;
     private static final Item[] ALLOWED_TYPES = new GunProjectileItem[] {
             Common.getBulletProjectileItemByType("bullet"),
-            Common.getBulletProjectileItemByType("rifle")
+            Common.getBulletProjectileItemByType("rifle_bullet")
     };
 
     public fnp90Item(Item.Settings settings) {
