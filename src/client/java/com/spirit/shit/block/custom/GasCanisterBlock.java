@@ -1,9 +1,10 @@
 package com.spirit.shit.block.custom;
 
+import com.spirit.shit.block.custom.plush.AbstractShitBlock;
+import com.spirit.shit.entity.damage.DamageTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
@@ -13,9 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.stat.Stats;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -23,21 +21,14 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 
 import java.util.stream.Stream;
 
-public class GasCanisterBlock extends Block {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
-    public GasCanisterBlock(Settings settings) {
-        super(settings);
-    }
-
-    private static final VoxelShape SHAPE_N = Stream.of(
+public class GasCanisterBlock extends AbstractShitBlock {
+    private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(4, 0, 4, 12, 22, 12),
             Block.createCuboidShape(5, 22, 5, 11, 23, 11),
             Block.createCuboidShape(7, 23, 7, 9, 27, 9),
@@ -47,15 +38,12 @@ public class GasCanisterBlock extends Block {
             Block.createCuboidShape(6, 22.5, 6, 10, 23.5, 10)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(FACING)) {
-            default -> SHAPE_N;
-        };
+    public GasCanisterBlock(Settings settings) {
+        super(settings, SHAPE);
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isReceivingRedstonePower(pos)) {
             GasCanisterBlock.primeTnt(world, pos);
@@ -83,17 +71,17 @@ public class GasCanisterBlock extends Block {
 
     private static void primeTnt(World world, BlockPos pos, LivingEntity igniter) {
         if (!world.isClient()) {
-            float health = igniter.getHealth();
             double x = pos.getX();
             double y = pos.getY();
             double z = pos.getZ();
 
-            world.createExplosion(igniter, new DamageSource(RegistryEntry.of(new DamageType("gas_canister_bomb", 1 ))), new ExplosionBehavior(), x, y + 1, z, 15, true, World.ExplosionSourceType.TNT);
-            igniter.getWorld().createExplosion(igniter, new DamageSource(RegistryEntry.of(new DamageType("gas_canister_bomb",1 ))), new ExplosionBehavior(), x, y + 1, z, 15, true, World.ExplosionSourceType.TNT);
+            world.createExplosion(igniter, DamageTypes.of(world, DamageTypes.GAS_CAN), new ExplosionBehavior(), x, y + 1, z, 15, true, World.ExplosionSourceType.TNT);
+            igniter.getWorld().createExplosion(igniter, DamageTypes.of(world, DamageTypes.GAS_CAN), new ExplosionBehavior(), x, y + 1, z, 15, true, World.ExplosionSourceType.TNT);
         }
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player2, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player2.getStackInHand(hand);
         if (itemStack.isOf(Items.FLINT_AND_STEEL) || itemStack.isOf(Items.FIRE_CHARGE)) {
@@ -117,11 +105,6 @@ public class GasCanisterBlock extends Block {
     @Override
     public boolean shouldDropItemsOnExplosion(Explosion explosion) {
         return false;
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
     }
 }
 

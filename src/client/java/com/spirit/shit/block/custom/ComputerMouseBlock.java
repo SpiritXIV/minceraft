@@ -17,6 +17,7 @@ public class ComputerMouseBlock extends Block {
 
     private static final VoxelShape SHAPE_N = VoxelShapes.combineAndSimplify(Block.createCuboidShape(6, 0, 6, 10, 2, 11), Block.createCuboidShape(6.5, 1.5, 6.75, 9.5, 2.5, 10.75), BooleanBiFunction.OR);
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_N;
     }

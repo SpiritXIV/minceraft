@@ -1,6 +1,7 @@
 package com.spirit.shit.block.custom;
 
 import com.spirit.shit.ShitMod;
+import com.spirit.shit.entity.damage.DamageTypes;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -28,6 +29,7 @@ public class WorldBombBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isReceivingRedstonePower(pos)) {
             GasCanBlock.primeTnt(world, pos);
@@ -56,31 +58,8 @@ public class WorldBombBlock extends Block {
             ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
             ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
             ShitMod.LOGGER.info("----------------------------------------------------------SHIT OF THE CRYPT ----------------------------------------------------------");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
+            for (int i = 0; i < 25; i++)
+                ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
             ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
             ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
             ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
@@ -90,6 +69,7 @@ public class WorldBombBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player2, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player2.getStackInHand(hand);
         if (itemStack.isOf(Items.FLINT_AND_STEEL) || itemStack.isOf(Items.FIRE_CHARGE)) {
@@ -104,7 +84,7 @@ public class WorldBombBlock extends Block {
                 }
             }
             player2.incrementStat(Stats.USED.getOrCreateStat(item));
-            player2.damage(new DamageSource(RegistryEntry.of(new DamageType("gas_can_bomb", 1))), 100);
+            player2.damage(DamageTypes.of(world, DamageTypes.GAS_CAN), 100);
             return ActionResult.success(world.isClient);
         }
         return super.onUse(state, world, pos, player2, hand, hit);

@@ -5,8 +5,6 @@ import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -18,7 +16,6 @@ import net.minecraft.world.World;
 import java.util.stream.Stream;
 
 public class BackroomsPipeLargeBlock extends AbstractShitBlock {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(0, 8, 0, 16, 15, 7),

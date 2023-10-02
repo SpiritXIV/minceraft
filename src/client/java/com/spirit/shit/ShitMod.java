@@ -10,6 +10,9 @@
 
 package com.spirit.shit;
 
+import com.spirit.shit.common.GunItem;
+import com.spirit.shit.common.GunProjectileItem;
+import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
