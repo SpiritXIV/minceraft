@@ -1,8 +1,7 @@
 package com.spirit.shit.block.custom.plush;
 
+import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.Block;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -10,8 +9,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import java.util.stream.Stream;
 
 public class SpiritPlushBlock extends AbstractShitBlock {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
     private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(4, 7, 4, 12, 15, 12),
             Block.createCuboidShape(5, 1, 6, 11, 7, 10),

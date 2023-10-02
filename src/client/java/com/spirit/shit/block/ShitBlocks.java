@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -41,11 +40,9 @@ public class ShitBlocks {
 
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = registerBlock("backrooms_light",
-            new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> {
-                return 9; })));
+            new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 9)));
     public static final Block BACKROOMS_LIGHT_OFF = registerBlock("backrooms_light_off",
-            new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> {
-                return 0; })));
+            new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0)));
     public static final Block BACKROOMS_FLOOR = registerBlock("backrooms_floor",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.MUD).strength(-1.0F, 3600000.0F)));
     public static final Block BACKROOMS_FLOOR_TELEPORT = registerBlock("backrooms_floor_teleport",
@@ -68,11 +65,9 @@ public class ShitBlocks {
     public static final Block BACKROOMS_CONCRETE_WALL_PILLAR = registerBlock("backrooms_concrete_wall_pillar",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
     public static final Block BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_TOP = registerBlock("backrooms_concrete_wall_pillar_light_top",
-            new BackroomsConcreteLightBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> {
-                return 8; })));
+            new BackroomsConcreteLightBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> 8)));
     public static final Block BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_BOTTOM = registerBlock("backrooms_concrete_wall_pillar_light_bottom",
-            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> {
-                return 8; })));
+            new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> 8)));
     public static final Block BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_TOP_OFF = registerBlock("backrooms_concrete_wall_pillar_light_top_off",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
     public static final Block BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_BOTTOM_OFF = registerBlock("backrooms_concrete_wall_pillar_light_bottom_off",
@@ -84,8 +79,7 @@ public class ShitBlocks {
     public static final Block BACKROOMS_CONCRETE_CEILING_PAINTED = registerBlock("backrooms_concrete_ceiling_painted",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
     public static final Block BACKROOMS_CONCRETE_CEILING_PAINTED_LIGHT = registerBlock("backrooms_concrete_ceiling_painted_light",
-            new BackroomsConcreteLightBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> {
-                return 8; })));
+            new BackroomsConcreteLightBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance((state) -> 8)));
     public static final Block BACKROOMS_CONCRETE_CEILING_PAINTED_LIGHT_OFF = registerBlock("backrooms_concrete_ceiling_painted_light_off",
             new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F)));
 
@@ -179,8 +173,8 @@ public class ShitBlocks {
         return Registry.register(Registries.BLOCK, new Identifier(ShitMod.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block) {
-        return Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name),
+    private static void registerBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
 

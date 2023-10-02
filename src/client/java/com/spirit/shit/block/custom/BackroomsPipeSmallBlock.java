@@ -1,13 +1,11 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.block.custom.plush.AbstractShitBlock;
+import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -19,7 +17,6 @@ import net.minecraft.world.World;
 import java.util.stream.Stream;
 
 public class BackroomsPipeSmallBlock extends AbstractShitBlock {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(0, 1, 0, 16, 6, 5),

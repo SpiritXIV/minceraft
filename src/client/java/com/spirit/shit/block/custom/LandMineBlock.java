@@ -1,12 +1,12 @@
 package com.spirit.shit.block.custom;
 
+import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -17,35 +17,27 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class LandMineBlock extends Block {
+public class LandMineBlock extends AbstractShitBlock {
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-
-    public LandMineBlock(Settings settings) {
-        super(settings);
-        this.setDefaultState(this.getDefaultState().with(POWERED, false));
-    }
-
-    private static final VoxelShape SHAPE_N = Stream.of(
+    private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(3, 0, 3, 13, 2, 13),
             Block.createCuboidShape(4, 1.5, 4, 12, 2.5, 12),
             Block.createCuboidShape(7, 2, 7, 9, 3, 9)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_N;
+    public LandMineBlock(Settings settings) {
+        super(settings, SHAPE);
+        this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
-
     @Override
+    @SuppressWarnings("deprecation")
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isReceivingRedstonePower(pos)) {
             LandMineBlock.primeTnt(world, pos);
@@ -84,6 +76,7 @@ public class LandMineBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         super.onEntityCollision(state, world, pos, entity);
         if (state.get(POWERED)) {
@@ -98,6 +91,7 @@ public class LandMineBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos,
                               PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(!world.isClient() && hand == Hand.MAIN_HAND) {

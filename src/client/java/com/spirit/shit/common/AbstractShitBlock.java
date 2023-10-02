@@ -1,4 +1,4 @@
-package com.spirit.shit.block.custom.plush;
+package com.spirit.shit.common;
 
 import com.spirit.shit.util.VoxelShapeRotator;
 import net.minecraft.block.Block;

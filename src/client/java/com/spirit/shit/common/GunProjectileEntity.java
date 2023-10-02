@@ -6,6 +6,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -35,6 +36,7 @@ import java.util.Objects;
 public abstract class GunProjectileEntity extends ProjectileEntity {
     private byte[] flags = new byte[3]; // Will hold flags in the future
     private boolean CRITICAL_FLAG = false;
+    private static final float WATER_DRAG = 0.6f;
     private double damage;
     private String potionEffect; // Will hold the potion effect in the future
     private SoundEvent sound = this.getHitSound();
@@ -161,7 +163,6 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                 float particlePosModifier = 0.25f;
                 this.getWorld().addParticle(ParticleTypes.BUBBLE, newX - vX * particlePosModifier, newY - vY * particlePosModifier, newZ - vZ * particlePosModifier, vX, vY, vZ);
             }
-            float WATER_DRAG = 0.6f;
             drag = WATER_DRAG;
         }
         this.setVelocity(vec3d.multiply(drag));
@@ -206,7 +207,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         Entity owner = this.getOwner();
         super.onEntityHit(entityHitResult);
         Entity hitEntity = entityHitResult.getEntity();
-        float velocityDamageModifier = (float)this.getVelocity().length();
+        float velocityDamageModifier = 1; //(float)this.getVelocity().length();
         int damage = MathHelper.ceil(MathHelper.clamp((double) velocityDamageModifier * this.damage, 0.0, 2.147483647E9));
 
         if (this.isCritical()) {
@@ -276,21 +277,56 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             Entity entity = ((EntityHitResult) hitResult).getEntity();
             if (entity instanceof LivingEntity livingEntity) {
-                // Your logic for entity hit goes here
+                int duration = 400; // default duration in ticks (20 seconds)
+
+                // Handle extended duration flag
+                if (flags[2] != 0) { // hasExtendedDuration
+                    duration = 800; // extended duration in ticks (40 seconds)
+                }
+
+                // Handle incendiary flag
                 if (flags[0] != 0) { // isIncendiary
                     livingEntity.setOnFireFor(5);
                 }
+
+                // Handle explosive flag and area effect clouds
                 if (flags[1] != 0) { // isExplosive
                     // Create an explosion at the entity's location
-                    // Arguments: entity causing the explosion, x, y, z, power, create fire, explosion mode
                     entity.getWorld().createExplosion(null,
                             entity.getX(),
                             entity.getY(),
                             entity.getZ(),
-                            4.0F,
+                            2.0F,
                             World.ExplosionSourceType.MOB
                     );
+
+                    // Create area effect clouds if a potion effect exists
+                    if (potionEffect != null) {
+                        StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(potionEffect));
+
+                        if (effect != null) {
+                            for (int i = -2; i <= 2; i++) {
+                                AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(entity.getWorld(), entity.getX(), entity.getY() + i, entity.getZ());
+                                cloud.setParticleType(ParticleTypes.AMBIENT_ENTITY_EFFECT); // just an example
+                                cloud.addEffect(new StatusEffectInstance(effect, duration, 0));
+                                cloud.setRadius(3.0F);
+                                cloud.setDuration(duration); // set the cloud duration to match the effect duration
+                                entity.getWorld().spawnEntity(cloud);
+                            }
+                        }
+                    }
                 }
+
+                // Handle stored potion effect
+                if (potionEffect != null) {
+                    StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(potionEffect));
+
+                    if (effect != null) {
+                        // Add the status effect to the entity
+                        livingEntity.addStatusEffect(new StatusEffectInstance(effect, duration, 0));
+                    }
+                }
+
                 // Add other conditions and effects here
             }
         }

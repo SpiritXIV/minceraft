@@ -10,6 +10,7 @@
 
 package com.spirit.shit;
 
+import com.spirit.shit.common.GunItem;
 import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
@@ -18,7 +19,6 @@ import com.spirit.shit.entity.custom.*;
 import com.spirit.shit.entity.custom.projectile.*;
 import com.spirit.shit.entity.custom.projectile.beverage.*;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.common.GunItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
@@ -27,7 +27,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -668,17 +667,12 @@ public class ShitMod implements ModInitializer {
                         // Items to consider
                         GunProjectileItem[] items = Common.getBulletProjectileItems();
 
-                        for (GunProjectileItem bulletItem : items) {
-                            for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                        for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                            for (GunProjectileItem bulletItem : items) {
                                 for (byte isIncendiary : new byte[]{0, 1}) {
                                     for (byte isExplosive : new byte[]{0, 1}) {
                                         for (byte isExtendedDuration : new byte[]{0, 1}) {
                                             ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
-
-                                            // Add BulletType to NBT data
-                                            NbtCompound nbt = stack.getOrCreateNbt();
-                                            nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
-
                                             // Generate a custom name for this bullet based on its properties.
                                             String customName = bulletItem.generateCustomNameFromNBT(stack);
 
