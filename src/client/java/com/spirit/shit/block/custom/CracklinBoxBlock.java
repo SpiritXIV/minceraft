@@ -1,6 +1,6 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.block.custom.plush.AbstractShitBlock;
+import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.Block;
 import net.minecraft.util.shape.VoxelShape;
 

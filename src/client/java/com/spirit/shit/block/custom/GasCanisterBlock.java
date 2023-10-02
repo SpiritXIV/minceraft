@@ -1,6 +1,6 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.block.custom.plush.AbstractShitBlock;
+import com.spirit.shit.common.AbstractShitBlock;
 import com.spirit.shit.entity.damage.DamageTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,6 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.block.custom.plush.AbstractShitBlock;
+import com.spirit.shit.common.AbstractShitBlock;
 import com.spirit.shit.common.Common;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.Block;
