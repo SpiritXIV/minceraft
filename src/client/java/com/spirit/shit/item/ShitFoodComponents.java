@@ -1,6 +1,5 @@
 package com.spirit.shit.item;
 
-import com.spirit.shit.ShitMod;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
@@ -44,8 +43,4 @@ public class ShitFoodComponents {
 
     public static final FoodComponent NOTHING = new FoodComponent.Builder().hunger(0).saturationModifier(0f).build();
 
-
-    public static void registerShitFoodItems() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitFoodComponents");
-    }
 }

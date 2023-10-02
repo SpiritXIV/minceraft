@@ -9,7 +9,6 @@ import java.util.Collections;
 
 public class SimpleText implements Text {
     private final TextContent content;
-
     public SimpleText(TextContent content) {
         this.content = content;
     }

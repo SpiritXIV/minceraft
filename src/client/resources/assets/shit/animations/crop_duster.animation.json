@@ -200,23 +200,9 @@
 			}
 		},
 		"animation.crop_duster.turn_left": {
-			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"override_previous_animation": true,
 			"bones": {
-				"body": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.125": {
-							"vector": [0, 0, 0]
-						},
-						"1.0": {
-							"vector": [0, 0, 12.5]
-						}
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"0.0": {
@@ -381,11 +367,6 @@
 						}
 					}
 				},
-				"body": {
-					"rotation": {
-						"vector": [0, 0, 12.5]
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"vector": [-17.5, 0, 0]
@@ -419,23 +400,9 @@
 			}
 		},
 		"animation.crop_duster.turn_right": {
-			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"override_previous_animation": true,
 			"bones": {
-				"body": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.125": {
-							"vector": [0, 0, 0]
-						},
-						"1.0": {
-							"vector": [0, 0, -12.5]
-						}
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"0.0": {
@@ -600,11 +567,6 @@
 						}
 					}
 				},
-				"body": {
-					"rotation": {
-						"vector": [0, 0, -12.5]
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"vector": [17.5, 0, 0]
@@ -638,23 +600,9 @@
 			}
 		},
 		"animation.crop_duster.turn_lift": {
-			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"override_previous_animation": true,
 			"bones": {
-				"body": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.125": {
-							"vector": [0, 0, 0]
-						},
-						"1.0": {
-							"vector": [-12.5, 0, 0]
-						}
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"0.0": {
@@ -811,11 +759,6 @@
 						}
 					}
 				},
-				"body": {
-					"rotation": {
-						"vector": [-12.5, 0, 0]
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"vector": [-17.5, 0, 0]
@@ -844,23 +787,9 @@
 			}
 		},
 		"animation.crop_duster.turn_fall": {
-			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"override_previous_animation": true,
 			"bones": {
-				"body": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.125": {
-							"vector": [0, 0, 0]
-						},
-						"1.0": {
-							"vector": [12.5, 0, 0]
-						}
-					}
-				},
 				"fin2": {
 					"rotation": {
 						"0.0": {
@@ -1023,11 +952,6 @@
 							"vector": [0, 0, 0],
 							"easing": "linear"
 						}
-					}
-				},
-				"body": {
-					"rotation": {
-						"vector": [12.5, 0, 0]
 					}
 				},
 				"fin2": {

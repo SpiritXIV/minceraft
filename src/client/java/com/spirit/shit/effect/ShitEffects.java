@@ -45,8 +45,4 @@ public class ShitEffects {
         SCHIZOPHRENIC = registerSchizophrenicEffect("schizophrenic");
         TIPSY = registerTipsyEffect("tipsy_effect");
     }
-
-    public static void registerShitEffects() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/effect/ShitEffect");
-    }
 }

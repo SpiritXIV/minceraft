@@ -16,9 +16,7 @@ import com.spirit.shit.item.material.ZarshScytheMaterial;
 import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ToolItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -317,19 +315,5 @@ public class ShitItems {
     }
     private static ToolItem registerToolItem(String name, Item item) {
         return (ToolItem) Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name), item);
-    }
-    public static void registerShitItems() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItems");
-
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ShitItems::addItemsToIngredientItemGroup);
-    }
-    public static void registerCustomShitItems() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItems>custom");
-    }
-    public static void registerCustomPShitItems() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItems>custom/projectile");
-    }
-    public static void registerMaterialShitItems() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/item/ShitItems>material");
     }
 }

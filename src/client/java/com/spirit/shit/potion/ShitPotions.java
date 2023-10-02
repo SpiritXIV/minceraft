@@ -25,7 +25,4 @@ public class ShitPotions {
         RADIATION_POISONING = registerRadiationPoisoningPotion("radiation_poisoning");
         PEEPS_SPEED = registerPeepSpeedPotion("peeps_speed");
     }
-    public static void registerShitPotions() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/potion/ShitPotion");
-    }
 }

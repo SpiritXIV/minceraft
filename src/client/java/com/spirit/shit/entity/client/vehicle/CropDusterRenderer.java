@@ -21,6 +21,7 @@ public class CropDusterRenderer extends GeoEntityRenderer<CropDusterEntity> {
         return new Identifier(ShitMod.MOD_ID, "textures/entity/crop_duster.png");
     }
 
+
     @Override
     public void render(CropDusterEntity entity, float entityYaw, float partialTick, MatrixStack poseStack,
                        VertexConsumerProvider bufferSource, int packedLight) {
