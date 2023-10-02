@@ -1,5 +1,7 @@
 <div align="center">
-<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/>
+<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/> <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
+
+  <hr>
 </div>
 
 <hr>
