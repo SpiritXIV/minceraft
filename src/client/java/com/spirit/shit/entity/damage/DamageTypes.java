@@ -1,7 +1,5 @@
 package com.spirit.shit.entity.damage;
 
-import com.mojang.serialization.Lifecycle;
-import com.spirit.shit.ShitMod;
 import net.minecraft.entity.damage.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

@@ -10,15 +10,12 @@
 
 package com.spirit.shit;
 
-import com.spirit.shit.common.GunProjectileItem;
-import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
 import com.spirit.shit.entity.custom.projectile.*;
 import com.spirit.shit.entity.custom.projectile.beverage.*;
 import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.common.GunItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
@@ -27,7 +24,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;

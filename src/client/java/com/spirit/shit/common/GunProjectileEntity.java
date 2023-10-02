@@ -36,6 +36,7 @@ import java.util.Objects;
 public abstract class GunProjectileEntity extends ProjectileEntity {
     private byte[] flags = new byte[3]; // Will hold flags in the future
     private boolean CRITICAL_FLAG = false;
+    private static final float WATER_DRAG = 0.6f;
     private double damage;
     private String potionEffect; // Will hold the potion effect in the future
     private SoundEvent sound = this.getHitSound();
@@ -162,7 +163,6 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
                 float particlePosModifier = 0.25f;
                 this.getWorld().addParticle(ParticleTypes.BUBBLE, newX - vX * particlePosModifier, newY - vY * particlePosModifier, newZ - vZ * particlePosModifier, vX, vY, vZ);
             }
-            float WATER_DRAG = 0.6f;
             drag = WATER_DRAG;
         }
         this.setVelocity(vec3d.multiply(drag));

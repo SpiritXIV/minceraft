@@ -3,8 +3,6 @@ package com.spirit.shit.common;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.sound.ShitSounds;
 
-import net.minecraft.block.BlockState;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtByte;
