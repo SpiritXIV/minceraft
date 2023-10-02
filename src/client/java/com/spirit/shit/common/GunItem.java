@@ -112,7 +112,7 @@ public abstract class GunItem extends RangedWeaponItem implements Vanishable {
             System.out.println(ammunition.getItem());
             // Cast to GunProjectileItem and call fire method
             GunProjectileItem projectileItem = (GunProjectileItem) ammunition.getItem();
-            projectileItem.fire(world, user, 0, ammunition, BULLET_DAMAGE);
+            projectileItem.fire(world, user, 1, ammunition, BULLET_DAMAGE);
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
