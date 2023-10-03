@@ -1,16 +1,25 @@
-<h6 align="center">A Connection of Koil</h6>
+<div align="center">
+<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/> <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
+
+  <hr>
+</div>
+
 <hr>
-<img  align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title.png?raw=true" alt="minecraft_title.png"/>
-<h6 align="center"> Version: 1.0.0 | ALPHA <p></p> Currently in Development, not for public redistribution.<p><br><img src="https://wakatime.com/badge/github/SpiritXIV/the-shit-of-crypt.svg" alt="spirits wakatime"> <img src="https://wakatime.com/badge/user/ed131eb9-2f69-4003-911c-207210cbc266/project/399f361b-5624-44c9-bf23-82c7b61cde3f.svg" alt="zharas wakatime"></a></p></h6>
-<hr>
-<h3 align="center">Mod Team</b>
+<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title.png?raw=true" alt="minecraft_title.png" />
+<div align="center"><b>Version: 1.0.0 | ALPHA <p>Currently in Development, not for public redistribution</p></b></div>
 <p></p>
-<p>SpiritXIV <b align="center">|</b> Main Developer</p>
-<p>KingZhara <b align="center">|</b> Java Rewriter/Mixin</p>
-<p>alphaxenopete86 <b align="center">|</b> Entity Designer Lead</p>
-<p>ComputerUser <b align="center">|</b> 2d, 3d, Designer Lead</p>
-<p>Milkyfur <b align="center">|</b> 2d Designer</p>
-<p>Mcfella <b align="center">|</b> 3d Designer</p>
+<div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/the-shit-of-crypt.svg" alt="spirits wakatime"> <img src="https://wakatime.com/badge/user/ed131eb9-2f69-4003-911c-207210cbc266/project/399f361b-5624-44c9-bf23-82c7b61cde3f.svg" alt="zharas wakatime"></div>
+<hr>
+<h3 align="center">Mod Team</h3>
+<div align="center"><b>
+  <p>SpiritXIV <span style="float: right;">| Main Developer</span></p> 
+  <p>KingZhara <span style="float: right;">| Secondary Developer</span></p>
+  <p>alphaxenopete86 <span style="float: right;">| Entity Designer Lead</span></p>
+  <p>ComputerUser <span style="float: right;">| 2d, 3d, Designer Lead</span></p>
+  <p>Milkyfur <span style="float: right;">| 2d Designer</span></p>
+  <p>Mcfella <span style="float: right;">| 3d Designer</span></p>
+</b></div>
+
 
 <hr>
 <h3  align="center">TODO</h3>
