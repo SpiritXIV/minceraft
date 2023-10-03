@@ -10,15 +10,17 @@
 
 package com.spirit.shit;
 
-import com.spirit.shit.common.GunItem;
+
+import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
-import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
 import com.spirit.shit.entity.custom.projectile.*;
 import com.spirit.shit.entity.custom.projectile.beverage.*;
+import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
+import com.spirit.shit.common.GunItem;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
@@ -27,7 +29,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.fabricmc.api.ModInitializer;
@@ -39,6 +41,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
@@ -661,45 +665,51 @@ public class ShitMod implements ModInitializer {
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build());
+
+
+
     public static final ItemGroup BULLET_ITEM_GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bullet"))
-                    .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
-                    .entries((displayContext, entries) -> {
-                        // Items to consider
-                        GunProjectileItem[] items = Common.getBulletProjectileItems();
+            .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
+            .entries((displayContext, entries) -> {
+                // Items to consider
+                GunProjectileItem[] items = Common.getBulletProjectileItems();
 
-                        for (StatusEffect effect : Registries.STATUS_EFFECT) {
-                            for (GunProjectileItem bulletItem : items) {
-                                for (byte isIncendiary : new byte[]{0, 1}) {
-                                    for (byte isExplosive : new byte[]{0, 1}) {
-                                        for (byte isExtendedDuration : new byte[]{0, 1}) {
-                                            ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
-                                            // Generate a custom name for this bullet based on its properties.
-                                            String customName = bulletItem.generateCustomNameFromNBT(stack);
+                for (GunProjectileItem bulletItem : items) {
+                    for (StatusEffect effect : Registries.STATUS_EFFECT) {
+                        for (byte isIncendiary : new byte[]{0, 1}) {
+                            for (byte isExplosive : new byte[]{0, 1}) {
+                                for (byte isExtendedDuration : new byte[]{0, 1}) {
+                                    ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
 
-                                            // Set the custom name to the ItemStack.
-                                            stack.setCustomName(Text.translatable(customName));
+                                    // Add BulletType to NBT data
+                                    NbtCompound nbt = stack.getOrCreateNbt();
+                                    nbt.putString("BulletType", bulletItem.getName().getString());  // Assuming getName().getString() returns the type like "Bullet", "Rifle Bullet", etc.
 
-                                            // Add the customized ItemStack to the entries.
-                                            entries.add(stack);
-                                        }
-                                    }
+                                    // Generate a custom name for this bullet based on its properties.
+                                    String customName = bulletItem.generateCustomNameFromNBT(stack);
+
+                                    // Set the custom name to the ItemStack.
+                                    stack.setCustomName(Text.translatable(customName));
+
+                                    // Add the customized ItemStack to the entries.
+                                    entries.add(stack);
                                 }
                             }
                         }
-                    }).build();
+                    }
+                }
+            }).build();
+
     @Override
     public void onInitialize() {
-        System.out.println("INIT - BULLET" + ShitItems.BULLET);
-        Class<?>[] initializedClasses = new Class[0];
-        RepositoryLogger.logInitializedClasses(initializedClasses);
-        Class<?>[] initializedResourceClasses = new Class[0];
-        RepositoryLogger.logInitializedResourceClasses(initializedResourceClasses);
-        Class<?>[] initializedFullClasses = new Class[0];
-        RepositoryLogger.logInitializedFullClasses(initializedFullClasses);
-
+        //System.out.println("INIT - BULLET" + ShitItems.BULLET);
+        ShitItems.registerAll();
+        ShitSounds.registerAll();
         ShitParticles.registerParticles();
         ShitEffects.registerEffects();
         ShitPotions.registerPotions();
+        ShitBlocks.registerAll();
+        ShitItemGroup.register();
 
 
         GeckoLib.initialize();
@@ -709,7 +719,6 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.CAPYBARA, CapybaraEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
-
 
         Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
 
@@ -744,7 +753,9 @@ public class ShitMod implements ModInitializer {
                     return 1;
                 })));
     }
-
+    public static void registerShitMain() {
+        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
+    }
 }
 
 

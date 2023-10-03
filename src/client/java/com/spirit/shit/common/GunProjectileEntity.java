@@ -270,7 +270,7 @@ public abstract class GunProjectileEntity extends ProjectileEntity {
 
     @SuppressWarnings("SameReturnValue")
     protected SoundEvent getHitSound() { // Spirit, replace this w/ your sound.
-        return SoundEvents.ENTITY_ARROW_HIT;
+        return ShitSounds.BULLET_IMPACT;
     }
 
     protected void onHit(HitResult hitResult) {

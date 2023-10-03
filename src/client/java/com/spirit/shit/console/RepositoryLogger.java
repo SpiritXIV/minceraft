@@ -15,8 +15,10 @@ import java.util.concurrent.atomic.AtomicLong;
 public class RepositoryLogger {
 
     public static void logInitializedClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "/Users/default/Downloads/MC mods/the-shit-of-crypt/src/client/java"; // Change this to the actual path of your repository
+        String repositoryPath = "./src/client/java"; // Change this to the actual path of your repository
 
+        ShitMod.LOGGER.info(">> /-------------------------------------------------------------------------------------------------------------------------------------");
+        ShitMod.LOGGER.info(">> | Loading initialized classes files...");
         ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
         ShitMod.LOGGER.info(">> | Preparing to loading initialized java classes...");
 
@@ -82,7 +84,7 @@ public class RepositoryLogger {
 
             long endTime = System.currentTimeMillis(); // Capture end time
             long elapsedTime = endTime - startTime; // Calculate elapsed time
-            ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+            ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
 
             ShitMod.LOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
 
@@ -181,9 +183,9 @@ public class RepositoryLogger {
     }
 
     public static void logInitializedResourceClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "/Users/default/Downloads/MC mods/the-shit-of-crypt/src/client/resources"; // Change this to the actual path of your repository
+        String repositoryPath = "./src/client/resources"; // Change this to the actual path of your repository
 
-        ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+        ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
         ShitMod.LOGGER.info(">> | Loading initialized resource files...");
 
         List<String> loadedFiles = new ArrayList<>();
@@ -258,14 +260,14 @@ public class RepositoryLogger {
             }
 
             ShitMod.LOGGER.info(">> | Finished loading resource files");
-            ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+            ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
 
         } catch (IOException ignored) {
         }
     }
 
     public static void logInitializedFullClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "/Users/default/Downloads/MC mods/the-shit-of-crypt/src/"; // Change this to the actual path of your repository
+        String repositoryPath = "./src/"; // Change this to the actual path of your repository
 
         List<String> loadedFiles = new ArrayList<>();
         AtomicInteger totalFiles = new AtomicInteger();
@@ -337,7 +339,7 @@ public class RepositoryLogger {
                 ShitMod.LOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
             }
 
-            ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+            ShitMod.LOGGER.info(">> \\+------------------------------------------------------------------------------------------------------------------------------------");
 
         } catch (IOException e) {
             e.printStackTrace();

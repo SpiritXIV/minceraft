@@ -42,7 +42,7 @@ This is a list of thing that need to be done. (made with chatGPT so most might n
 - [ ] a tesla
 - [ ] maxwell
 - [x] yippee creature
-- [ ] different types of planes
+- [X] different types of planes
 - [ ] florp from ULTRAKILL
 - [ ] bro fucking add Joe biden as a boss, also have him spawn tiny trumps that go "obmana”, and he will consume some of them
 - [ ] add fat cat that takes up screen goes "GWAH GWAH"
@@ -58,7 +58,7 @@ This is a list of thing that need to be done. (made with chatGPT so most might n
 
 - [ ] Flintlock pistol
 - [x] shotgun (for the trapped doors soon)
-- [ ] just a lot of well-known guns,
+- [X] just a lot of well-known guns,
 - [ ] yeezees
 - [ ] darts from btd
 - [ ] balloon form btd
@@ -72,9 +72,9 @@ This is a list of thing that need to be done. (made with chatGPT so most might n
 - [x] add pocky sticks
 - [x] add peeps flavored pepsi and peeps for that matter, make it give you max tolerable speed, the faster you go the more the damage adds up, and once its up you take that all at once
 - [x] add gas cans that explode
-- [ ] add throwable cans
+- [X] add throwable cans
 - [x] add uranium that is able to be eaten
-- [ ] add make beverages
+- [X] add make beverages
 - [ ] add guns (I'll try)
 - [ ] add a baller
 - [ ] give Janie a gun
@@ -95,19 +95,19 @@ This is a list of thing that need to be done. (made with chatGPT so most might n
 - [x] milk carton
 - [x] snowman (not the MC snowman)
 - [ ] add a Tesla
-- [ ] add toilets
-- [ ] add pipe bomb mail
+- [X] add toilets
+- [X] add pipe bomb mail
 - [ ] switch sheep and cows noises
 - [ ] add yeezees
 - [ ] add a painting of the madam who said meme
-- [ ] add horizontal spinning rats that will play Freebird when nearby
-- [ ] add horizontal spinning frogs that will play Zarsh's Crypt when nearby
+- [X] add horizontal spinning rats that will play Freebird when nearby
+- [ ] add horizontal spinning frogs that will play silent houses when nearby
 - [ ] somehow add drunk driving
 - [ ] add planes
-- [ ] add land mines
+- [X] add land mines
 - [ ] add advancements (search it in this chat)
 - [ ] add salesmen
-- [ ] add a modem that kicks you for having "no internet"
+- [X] add a modem that kicks you for having "no internet"
 - [ ] add breaking bad
 - [ ] a microwave, and add tinfoil
 
@@ -116,11 +116,11 @@ This is a list of thing that need to be done. (made with chatGPT so most might n
 - [x] pepsi you drink it says SODAAAA
 - [ ] add a computer mouse but when you use it it squeaks like an actual mouse
 - [ ] add shotgun trapped doors/add the lock pick thing as well
-- [ ] add slim shady make him obese and only say I’m slim
-- [ ] add peeps flavored pepsi and peeps for that matter, make it give you max tolerable speed, the faster you go the more the damage adds up, and once its up you take that all at once
+- [X] add slim shady make him obese and only say I’m slim
+- [X] add peeps flavored pepsi and peeps for that matter, make it give you max tolerable speed, the faster you go the more the damage adds up, and once its up you take that all at once
 - [ ] add a painting of the madam who said meme
-- [ ] add throwable cans
-- [ ] add horizontal spinning rats that will play freebird when near by
-- [ ] add horizontal spinning frogs that will play ⁠Zarsh's Crypt⁠ when near by
+- [X] add throwable cans
+- [X] add horizontal spinning rats that will play freebird when near by
+- [ ] add horizontal spinning frogs that will play ⁠silent houses when near by
 - [ ] add breaking bad
 - [ ] give Janie a gun

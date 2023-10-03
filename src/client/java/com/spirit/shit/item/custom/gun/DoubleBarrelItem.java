@@ -18,7 +18,7 @@ public class DoubleBarrelItem extends GunItem { // BUBBLE BARREL BOT BUN
 
     public DoubleBarrelItem(Item.Settings settings) {
         // Calls the super class (GunItem) constructor
-        super(settings, COOLDOWN, MAGAZINE_SIZE, DAMAGE, ALLOWED_TYPES);
+        super(settings, MAGAZINE_SIZE, COOLDOWN, DAMAGE, ALLOWED_TYPES);
         this.SHOOT_SOUND = ShitSounds.SHOTGUN_SHOOT;
     }
 }

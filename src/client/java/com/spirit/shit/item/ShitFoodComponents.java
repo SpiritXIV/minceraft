@@ -9,7 +9,7 @@ public class ShitFoodComponents {
     public static final FoodComponent TEST = new FoodComponent.Builder().hunger(4).saturationModifier(1.0f).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0f).statusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 100, 0), 1.0f).build();
 
     //FOODS
-    @SuppressWarnings("unused") // UNSURE WHERE TO REGISTER
+    @SuppressWarnings("unused")
     public static final FoodComponent OAT = new FoodComponent.Builder().hunger(1).saturationModifier(0.1f).build();
     public static final FoodComponent BANANA = new FoodComponent.Builder().hunger(6).saturationModifier(0.5f).build();
     public static final FoodComponent POCKY_STICK = new FoodComponent.Builder().hunger(4).saturationModifier(0.5f).build();

@@ -12,7 +12,7 @@ public class AWPItem extends GunItem {
     private static final int ITEM_BAR_COLOR = 0xFF0000;
     private static final float DAMAGE = 2F;
     private static final Item[] ALLOWED_TYPES = new GunProjectileItem[] {
-            Common.getBulletProjectileItemByType("rifle")
+            Common.getBulletProjectileItemByType("rifle_bullet")
     };
 
     public AWPItem(Settings settings) {
