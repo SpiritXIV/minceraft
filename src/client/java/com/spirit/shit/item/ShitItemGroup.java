@@ -11,18 +11,19 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ShitItemGroup {
-    @SuppressWarnings("unused")
-    public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "kelloggs"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.kelloggs"))
-                    .icon(() -> new ItemStack(ShitItems.OAT)).entries((displayContext, entries) -> {
-                        entries.add(ShitItems.OAT);
-                        entries.add(ShitBlocks.CRACKLIN_BOX);
-                    }).build());
+
+    // Initialize the ItemGroup with the builder, but don't register it yet
+    public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "kellogs"),
+            FabricItemGroup.builder()
+            .displayName(Text.translatable("itemgroup.kelloggs"))
+            .icon(() -> new ItemStack(ShitItems.OAT))
+            .entries((displayContext, entries) -> {
+                entries.add(ShitItems.OAT);
+                entries.add(ShitBlocks.CRACKLIN_BOX);
+            }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ShitMod.MOD_ID, "shitmain"),
+    public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "shitmain"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.shitmain"))
                     .icon(() -> new ItemStack(ShitItems.PEEP_YELLOW)).entries((displayContext, entries) -> {
                         //random items
@@ -110,7 +111,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.PIE_SUS);
                         entries.add(ShitItems.SAIS);
                         entries.add(ShitItems.ZARSH_SCYTHE);
-                      
+
                         //FOOD
                         entries.add(ShitItems.KETCHUP);
                         entries.add(ShitItems.MUSTARD);
@@ -365,4 +366,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.SLUG);
 
                     }).build());
+    public static void register() {
+
+    }
 }
