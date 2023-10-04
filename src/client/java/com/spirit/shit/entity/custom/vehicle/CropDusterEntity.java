@@ -134,7 +134,6 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
         }
     }
 
-
     public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
         this.x = x;
         this.y = y;
@@ -182,8 +181,6 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
         }
 
     private <T extends GeoAnimatable > PlayState predicate(AnimationState < T > event) {
-
-
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.crop_duster.moveon_ground", Animation.LoopType.LOOP));
         }
