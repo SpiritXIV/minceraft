@@ -61,7 +61,7 @@ sourceSets {
 
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.0'
-	implementation group: 'net.sourceforge.pmd', name: 'pmd-core', version: '6.42.0' // Use the latest version
+	implementation group: 'net.sourceforge.pmd', name: 'pmd-core', version: '6.55.0' // Use the latest version, Old one had a vulnerability
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -93,7 +93,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 17
-	options.compilerArgs << "-Xlint:deprecation"
+	options.compilerArgs << "-Xlint:all"
 }
 
 java {
