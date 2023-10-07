@@ -71,6 +71,18 @@
       }
     ]
   },
+  "radio_tune": {
+    "subtitle": "shit.radio_tune",
+    "sounds": [
+      {
+        "name": "shit:blocks/radio/radio_tune",
+        "stream": true
+      }
+    ]
+  },
+
+
+
   "soda": {
     "subtitle": "shit.soda",
     "sounds": [

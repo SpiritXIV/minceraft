@@ -1,5 +1,6 @@
 package com.spirit.shit.common;
 
+import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;

@@ -12,13 +12,14 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings("unused")
 public class ShitEntities {
 
-    private static final List<EntityEntry<?>> ENTITY_ENTRIES = new ArrayList<>();
+    private static final Set<EntityType<?>> ENTITY_ENTRIES = new HashSet<>();
+    private static final Identifier MOD_ID = new Identifier(ShitMod.MOD_ID);
 
     public static final EntityType<JbirdEntity> JBIRD = registerEntity("jbird", SpawnGroup.CREATURE, JbirdEntity::new, 1f, 2f);
     public static final EntityType<RatBombEntity> RAT_BOMB = registerEntity("rat_bomb", SpawnGroup.MONSTER, RatBombEntity::new, 0.5f, 0.4f);
@@ -38,13 +39,7 @@ public class ShitEntities {
                         .dimensions(EntityDimensions.fixed(width, height))
                         .build()
         );
-        ENTITY_ENTRIES.add(new EntityEntry<>(entityId, entityType));
+        ENTITY_ENTRIES.add(entityType);
         return entityType;
-    }
-
-    private static class EntityEntry<T extends Entity> {
-
-        private EntityEntry(Identifier entityId, EntityType<T> entityType) {
-        }
     }
 }

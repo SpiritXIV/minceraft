@@ -65,5 +65,7 @@ public abstract class AbstractShitBlock extends Block {
         return this.getDefaultState().with(FACING, dir);
     }
 
+    protected void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    }
 }
 

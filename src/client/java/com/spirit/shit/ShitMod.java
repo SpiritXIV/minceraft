@@ -13,6 +13,7 @@ package com.spirit.shit;
 
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
+import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
@@ -703,6 +704,7 @@ public class ShitMod implements ModInitializer {
     @Override
     public void onInitialize() {
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
+
         ShitItems.registerAll();
         ShitSounds.registerAll();
         ShitParticles.registerParticles();

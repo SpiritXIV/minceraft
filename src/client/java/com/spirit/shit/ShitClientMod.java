@@ -7,8 +7,8 @@ import com.spirit.shit.entity.client.vehicle.CropDusterRenderer;
 import com.spirit.shit.event.KeyInputHandler;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.particle.custom.*;
+import com.spirit.shit.render.BulletEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
-import com.spirit.shit.render.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -19,18 +19,24 @@ public class ShitClientMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        registerEntityRenderers();
+        registerProjectiles();
+        registerParticles();
+        registerBlockRenderLayers();
+        KeyInputHandler.register();
+    }
 
+    private void registerEntityRenderers() {
         EntityRendererRegistry.register(ShitEntities.JBIRD, JbirdRenderer::new);
         EntityRendererRegistry.register(ShitEntities.RAT_BOMB, RatBombRenderer::new);
         EntityRendererRegistry.register(ShitEntities.RAT, RatRenderer::new);
         EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
         EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
-
         EntityRendererRegistry.register(ShitEntities.CROP_DUSTER, CropDusterRenderer::new);
+    }
 
-
-
+    private void registerProjectiles() {
         EntityRendererRegistry.register(ShitMod.RedBrickProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.BlueBrickProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.TrashCanProjectileEntityType, FlyingItemEntityRenderer::new);
@@ -108,14 +114,18 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitMod.VultureAidCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.WhosWhoCanProjectileEntityType, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ShitMod.WidowsWineCanProjectileEntityType, FlyingItemEntityRenderer::new); */
+    }
 
-
+    private void registerParticles() {
         ParticleFactoryRegistry.getInstance().register(ShitParticles.SCHIZO_EYE_PARTICLE, SchizoEyeParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.PLAYER_ENTITY_PARTICLE, PlayerEntityParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.ZOMBIE_ENTITY_PARTICLE, ZombieEntityParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.SKELETON_ENTITY_PARTICLE, SkeletonEntityParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.CREEPER_ENTITY_PARTICLE, CreeperEntityParticle.Factory::new);
+    }
 
+
+    private void registerBlockRenderLayers() {
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ALPHA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CATLOVE_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CHEFINSANITY_PLUSH, RenderLayer.getCutout());
@@ -131,8 +141,5 @@ public class ShitClientMod implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.SPIRIT_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.TALON_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ZARSH_PLUSH, RenderLayer.getCutout());
-
-        KeyInputHandler.register();
     }
-
 }
