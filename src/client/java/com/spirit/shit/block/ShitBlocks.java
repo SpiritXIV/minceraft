@@ -34,7 +34,7 @@ public class ShitBlocks {
 
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 9));
-    public static final Block BACKROOMS_LIGHT_OFF = new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0));
+    public static final Block BACKROOMS_LIGHT_OFF = new BackroomsBrokenLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0));
     public static final Block BACKROOMS_FLOOR = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.MUD).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_FLOOR_TELEPORT = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.MUD).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_WALLPAPER = new Block(FabricBlockSettings.copy(Blocks.WHITE_WOOL).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F));

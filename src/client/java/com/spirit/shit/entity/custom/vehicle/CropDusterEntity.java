@@ -85,7 +85,7 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
 
     private void handleGroundControl(PlayerEntity rider) {
         double riderYaw = rider.getYaw();
-        float accelerationFactor = 0.02f; // These were changed to floats to remove casts in subsequent usages.
+        float accelerationFactor = 0.02f;
         float decelerationFactor = 0.01f;
 
         boolean isWPressed = InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_W);
@@ -96,8 +96,6 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
 
         if (isWPressed || isSPressed) {
             // Accelerate forward speed or decelerate when 'W' or 'S' is pressed
-            // BTW Spirit this is a ternary if operation, to illustrate its components:
-            // If {condition} ?(? = if true then) {If True} :(: = else) {Else}
             currentSpeed += (isWPressed ? accelerationFactor : -decelerationFactor);
             canRotate = true; // Allow rotation when moving forward or backward
         } else {
@@ -106,33 +104,37 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
             currentSpeed = Math.max(currentSpeed, 0.0f); // Ensure speed doesn't go negative
         }
 
-        if (isWPressed && isSpacePressed) {
-            movesY = 0.1;
-        } else if (this.isOnGround() && !isSpacePressed) {
-            movesY = 0;
-        } else if (!this.isOnGround() && !isSpacePressed) {
-            movesY = 0.1;
+        if (currentSpeed > 0) {
+            if (isWPressed && isSpacePressed) {
+                movesY = 0.1;
+            } else if (this.isOnGround() && !isSpacePressed) {
+                movesY = 0;
+            } else if (!this.isOnGround() && !isSpacePressed) {
+                movesY = 0.1;
+            }
+
+            if (isSPressed && isSpacePressed) {
+                movesY = -0.1;
+            } else if (this.isOnGround() && !isSpacePressed) {
+                movesY = 0;
+            } else if (!this.isOnGround() && !isSpacePressed) {
+                movesY = -0.02;
+            }
+
+            double moveY = this.movesY;
+            double moveX = -Math.sin(Math.toRadians(riderYaw)) * currentSpeed;
+            double moveZ = Math.cos(Math.toRadians(riderYaw)) * currentSpeed;
+
+            this.setVelocity(moveX, moveY, moveZ);
         }
 
-        if (isSPressed && isSpacePressed) {
-            movesY = -0.1;
-        } else if (this.isOnGround() && !isSpacePressed) {
-            movesY = 0;
-        } else if (!this.isOnGround() && !isSpacePressed) {
-            movesY = -0.02;
-        }
-
-        double moveY = this.movesY;
-        double moveX = -Math.sin(Math.toRadians(riderYaw)) * currentSpeed;
-        double moveZ = Math.cos(Math.toRadians(riderYaw)) * currentSpeed;
-
-        this.setVelocity(moveX, moveY, moveZ);
-
-        // Restrict rotation when not moving forward or backward or in the air
-        if (!canRotate || this.isOnGround()) {
+        // Restrict rotation when not moving forward or backward
+        if (!canRotate) {
             this.setYaw((float) riderYaw);
         }
     }
+
+
 
 
     public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
@@ -165,10 +167,6 @@ public class CropDusterEntity extends BoatEntity implements GeoEntity {
             this.setRotation(this.getYaw(), this.getPitch());
         }
     }
-
-    // Was identical to super method.
-
-    // Was identical to super method.
 
 
     private boolean hasPassenger () {

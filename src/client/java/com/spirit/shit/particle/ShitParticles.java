@@ -15,17 +15,15 @@ public class ShitParticles {
     public static final DefaultParticleType SKELETON_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType CREEPER_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
 
+    private static void registerParticle(DefaultParticleType particleType, String name) {
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, name), particleType);
+    }
 
     public static void registerParticles() {
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, "schizo_eye_particle"),
-                SCHIZO_EYE_PARTICLE);
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, "player_entity_particle"),
-                PLAYER_ENTITY_PARTICLE);
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, "zombie_entity_particle"),
-                ZOMBIE_ENTITY_PARTICLE);
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, "skeleton_entity_particle"),
-                SKELETON_ENTITY_PARTICLE);
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, "creeper_entity_particle"),
-                CREEPER_ENTITY_PARTICLE);
+        registerParticle(SCHIZO_EYE_PARTICLE, "schizo_eye_particle");
+        registerParticle(PLAYER_ENTITY_PARTICLE, "player_entity_particle");
+        registerParticle(ZOMBIE_ENTITY_PARTICLE, "zombie_entity_particle");
+        registerParticle(SKELETON_ENTITY_PARTICLE, "skeleton_entity_particle");
+        registerParticle(CREEPER_ENTITY_PARTICLE, "creeper_entity_particle");
     }
 }

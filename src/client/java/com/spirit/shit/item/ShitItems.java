@@ -16,6 +16,7 @@ import com.spirit.shit.item.material.ZarshScytheMaterial;
 import com.spirit.shit.sound.ShitSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -257,39 +258,39 @@ public class ShitItems {
     public static final Item TIN_FOIL = new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
 
     //MUSIC DISCS
-    public static final Item SILENT_HOUSES_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.SILENT_HOUSES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 143);
-    public static final Item FREE_BIRD_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.FREE_BIRD_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 546);
-    public static final Item AFTER_PARTY_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.AFTER_PARTY_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 168);
+    public static final Item SILENT_HOUSES_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.SILENT_HOUSES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 143);
+    public static final Item FREE_BIRD_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.FREE_BIRD_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 546);
+    public static final Item AFTER_PARTY_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.AFTER_PARTY_DISC, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 168);
 
 
-    public static final Item VILLAGER_AFTERPARTY_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_AFTERPARTY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 166);
-    public static final Item VILLAGER_ALLSTAR_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_ALLSTAR, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 197);
-    public static final Item VILLAGER_BALLIN_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_BALLIN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 180);
-    public static final Item VILLAGER_BEGGIN_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_BEGGIN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 213);
-    public static final Item VILLAGER_BILLIEJEAN_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_BILLIEJEAN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 315);
-    public static final Item VILLAGER_BUDDYHOLLY_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_BUDDYHOLLY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 159);
-    public static final Item VILLAGER_CUPID_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_CUPID, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 173);
-    public static final Item VILLAGER_DONTSTOPMENOW_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_DONTSTOPMENOW, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 209);
-    public static final Item VILLAGER_FIREFLIES_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_FIREFLIES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 229);
-    public static final Item VILLAGER_FLYMETOTHEMOON_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_FLYMETOTHEMOON, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 149);
-    public static final Item VILLAGER_FNAF_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_FNAF, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 170);
-    public static final Item VILLAGER_FREEBIRD_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_FREEBIRD, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 55);
-    public static final Item VILLAGER_GANGSTAPARADISE_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_GANGSTAPARADISE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 231);
-    public static final Item VILLAGER_GOLDENHOUR_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_GOLDENHOUR, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 209);
-    public static final Item VILLAGER_HARDERBETTER_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_HARDERBETTER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 226);
-    public static final Item VILLAGER_HISWORLD_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_HISWORLD, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 279);
-    public static final Item VILLAGER_HOWBADCANIBE_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_HOWBADCANIBE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 168);
-    public static final Item VILLAGER_LIFECOULDBEDREAMS_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_LIFECOULDBEDREAMS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 145);
-    public static final Item VILLAGER_MONSTER_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_MONSTER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 177);
-    public static final Item VILLAGER_MYWAY_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_MYWAY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 276);
-    public static final Item VILLAGER_OPPENGANGNAMSTYLE_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_OPPENGANGNAMSTYLE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 249);
-    public static final Item VILLAGER_PEACHES_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_PEACHES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 93);
-    public static final Item VILLAGER_SCATMANSWORLD_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_WHATISLOVE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 240);
+    public static final Item VILLAGER_AFTERPARTY_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_AFTERPARTY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 166);
+    public static final Item VILLAGER_ALLSTAR_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_ALLSTAR, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 197);
+    public static final Item VILLAGER_BALLIN_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_BALLIN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 180);
+    public static final Item VILLAGER_BEGGIN_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_BEGGIN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 213);
+    public static final Item VILLAGER_BILLIEJEAN_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_BILLIEJEAN, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 315);
+    public static final Item VILLAGER_BUDDYHOLLY_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_BUDDYHOLLY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 159);
+    public static final Item VILLAGER_CUPID_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_CUPID, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 173);
+    public static final Item VILLAGER_DONTSTOPMENOW_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_DONTSTOPMENOW, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 209);
+    public static final Item VILLAGER_FIREFLIES_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_FIREFLIES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 229);
+    public static final Item VILLAGER_FLYMETOTHEMOON_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_FLYMETOTHEMOON, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 149);
+    public static final Item VILLAGER_FNAF_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_FNAF, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 170);
+    public static final Item VILLAGER_FREEBIRD_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_FREEBIRD, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 55);
+    public static final Item VILLAGER_GANGSTAPARADISE_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_GANGSTAPARADISE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 231);
+    public static final Item VILLAGER_GOLDENHOUR_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_GOLDENHOUR, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 209);
+    public static final Item VILLAGER_HARDERBETTER_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_HARDERBETTER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 226);
+    public static final Item VILLAGER_HISWORLD_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_HISWORLD, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 279);
+    public static final Item VILLAGER_HOWBADCANIBE_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_HOWBADCANIBE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 168);
+    public static final Item VILLAGER_LIFECOULDBEDREAMS_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_LIFECOULDBEDREAMS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 145);
+    public static final Item VILLAGER_MONSTER_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_MONSTER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 177);
+    public static final Item VILLAGER_MYWAY_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_MYWAY, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 276);
+    public static final Item VILLAGER_OPPENGANGNAMSTYLE_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_OPPENGANGNAMSTYLE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 249);
+    public static final Item VILLAGER_PEACHES_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_PEACHES, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 93);
+    public static final Item VILLAGER_SCATMANSWORLD_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_WHATISLOVE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 240);
 
-    public static final Item VILLAGER_SMOOTHCRIMINAL_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_SMOOTHCRIMINAL, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 251);
-    public static final Item VILLAGER_SOMEBODYIUSETOKNOW_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_SOMEBODYIUSETOKNOW, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 244);
-    public static final Item VILLAGER_TAKEONME_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_TAKEONME, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 231);
-    public static final Item VILLAGER_WHATISLOVE_MUSIC_DISC = new ShitMusicDiscItem(7, ShitSounds.VILLAGER_WHATISLOVE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 240);
+    public static final Item VILLAGER_SMOOTHCRIMINAL_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_SMOOTHCRIMINAL, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 251);
+    public static final Item VILLAGER_SOMEBODYIUSETOKNOW_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_SOMEBODYIUSETOKNOW, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 244);
+    public static final Item VILLAGER_TAKEONME_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_TAKEONME, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 231);
+    public static final Item VILLAGER_WHATISLOVE_MUSIC_DISC = new MusicDiscItem(7, ShitSounds.VILLAGER_WHATISLOVE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 240);
 
 
 

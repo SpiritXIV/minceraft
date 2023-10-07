@@ -20,6 +20,7 @@ public class ShitSounds {
     public static final SoundEvent MICROWAVE_BEEP = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_beep"));
     public static final SoundEvent MICROWAVE_OPEN_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_open_door"));
     public static final SoundEvent MICROWAVE_CLOSE_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_close_door"));
+    public static final SoundEvent RADIO_TUNE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "radio_tune"));
 
     //PLUSH
     public static final SoundEvent TALON_SPEAK = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "talon_speak"));
