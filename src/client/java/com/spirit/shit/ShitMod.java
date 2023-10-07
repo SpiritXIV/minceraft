@@ -11,6 +11,7 @@
 package com.spirit.shit;
 
 
+import com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse;
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
 import com.spirit.shit.console.RepositoryLogger;
@@ -26,6 +27,7 @@ import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
+import net.fabricmc.fabric.api.event.server.ServerStartCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
