@@ -34,7 +34,7 @@ public class ShitBlocks {
 
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 9));
-    public static final Block BACKROOMS_LIGHT_OFF = new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0));
+    public static final Block BACKROOMS_LIGHT_OFF = new BackroomsBrokenLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0));
     public static final Block BACKROOMS_FLOOR = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.MUD).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_FLOOR_TELEPORT = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.MUD).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_WALLPAPER = new Block(FabricBlockSettings.copy(Blocks.WHITE_WOOL).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F));
@@ -62,6 +62,8 @@ public class ShitBlocks {
     public static final Block BACKROOMS_WETTED_CONCRETE_FLOOR = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_WETTED_CONCRETE_WALL = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F));
     public static final Block BACKROOMS_WETTED_CONCRETE_CEILING = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(-1.0F, 3600000.0F));
+    public static final Block BACKROOMS_INDUSTRIAL_LIGHT = new BackroomsIndustrialLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 9));
+    public static final Block BACKROOMS_INDUSTRIAL_LIGHT_SHATTERED = new BackroomsIndustrialBrokenLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 0));
 
     //PLUSHES
     public static final Block ALPHA_PLUSH = new AlphaPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
@@ -140,6 +142,9 @@ public class ShitBlocks {
             {"backrooms_wetted_concrete_floor", BACKROOMS_WETTED_CONCRETE_FLOOR},
             {"backrooms_wetted_concrete_wall", BACKROOMS_WETTED_CONCRETE_WALL},
             {"backrooms_wetted_concrete_ceiling", BACKROOMS_WETTED_CONCRETE_CEILING},
+            {"backrooms_industrial_light", BACKROOMS_INDUSTRIAL_LIGHT},
+            {"backrooms_industrial_light_shattered", BACKROOMS_INDUSTRIAL_LIGHT_SHATTERED},
+
             {"alpha_plush", ALPHA_PLUSH},
             {"catlove_plush", CATLOVE_PLUSH},
             {"chefinsanity_plush", CHEFINSANITY_PLUSH},

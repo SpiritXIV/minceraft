@@ -2,10 +2,15 @@ package com.spirit.shit.block.custom;
 
 import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class OldComputerBlock extends AbstractShitBlock {

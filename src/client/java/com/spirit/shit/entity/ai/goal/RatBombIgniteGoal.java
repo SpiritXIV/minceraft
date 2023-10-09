@@ -20,7 +20,8 @@ public class RatBombIgniteGoal extends Goal {
     @Override
     public boolean canStart() {
         LivingEntity livingEntity = this.ratBomb.getTarget();
-        return this.ratBomb.getFuseSpeed() > 0 || livingEntity != null && this.ratBomb.squaredDistanceTo(livingEntity) <= 10.0;
+        double distanceSquared = this.ratBomb.squaredDistanceTo(livingEntity);
+        return this.ratBomb.getFuseSpeed() > 0 || (livingEntity != null && distanceSquared <= 250.0 && this.ratBomb.getVisibilityCache().canSee(this.target));
     }
 
     @Override
@@ -41,18 +42,10 @@ public class RatBombIgniteGoal extends Goal {
 
     @Override
     public void tick() {
-        if (this.target == null) {
+        if (this.target == null || this.ratBomb.squaredDistanceTo(this.target) >= 50.0 || !this.ratBomb.getVisibilityCache().canSee(this.target)) {
             this.ratBomb.setFuseSpeed(-1);
-            return;
+        } else {
+            this.ratBomb.setFuseSpeed(1);
         }
-        if (this.ratBomb.squaredDistanceTo(this.target) >= 50.0) {
-            this.ratBomb.setFuseSpeed(-1);
-            return;
-        }
-        if (!this.ratBomb.getVisibilityCache().canSee(this.target)) {
-            this.ratBomb.setFuseSpeed(-1);
-            return;
-        }
-        this.ratBomb.setFuseSpeed(1);
     }
 }

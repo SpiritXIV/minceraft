@@ -11,8 +11,10 @@
 package com.spirit.shit;
 
 
+import com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse;
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
+import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
@@ -25,6 +27,7 @@ import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
+import net.fabricmc.fabric.api.event.server.ServerStartCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
@@ -703,6 +706,7 @@ public class ShitMod implements ModInitializer {
     @Override
     public void onInitialize() {
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
+
         ShitItems.registerAll();
         ShitSounds.registerAll();
         ShitParticles.registerParticles();
@@ -746,9 +750,12 @@ public class ShitMod implements ModInitializer {
                         double z = context.getSource().getPlayer().getZ();
                         float xp = context.getSource().getPlayer().experienceLevel;
                         boolean fire = context.getSource().getPlayer().isOnFire();
-                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, xp, fire, World.ExplosionSourceType.BLOCK, true);
-                        context.getSource().getPlayer().damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), xp/10);
+                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, xp/4, fire, World.ExplosionSourceType.BLOCK, true);
+                        context.getSource().getPlayer().damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), xp);
+                        context.getSource().getPlayer().setExperienceLevel(0);
+                        context.getSource().getPlayer().setExperiencePoints(0);
                         context.getSource().getPlayer().playSound(ShitSounds.EXPLODE_SOUND_COMMAND, SoundCategory.PLAYERS, 1, 1);
+
                     }
                     return 1;
                 })));

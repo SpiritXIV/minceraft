@@ -12,10 +12,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+@SuppressWarnings("unused")
 public class RepositoryLogger {
 
     public static void logInitializedClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "./src/client/java"; // Change this to the actual path of your repository
+        String repositoryPath = "the-shit-of-crypt/src"; // Change this to the actual path of your repository
 
         ShitMod.LOGGER.info(">> /-------------------------------------------------------------------------------------------------------------------------------------");
         ShitMod.LOGGER.info(">> | Loading initialized classes files...");
@@ -100,7 +101,7 @@ public class RepositoryLogger {
     }
 
     public static void logInitializedCPPClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "/Users/default/Downloads/MC mods/the-shit-of-crypt/src/client/c++"; // Change this to the actual path of your repository
+        String repositoryPath = "the-shit-of-crypt/src/client/c++"; // Change this to the actual path of your repository
 
         ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
         ShitMod.LOGGER.info(">> | Preparing to loading initialized c++ classes...");
@@ -183,7 +184,7 @@ public class RepositoryLogger {
     }
 
     public static void logInitializedResourceClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "./src/client/resources"; // Change this to the actual path of your repository
+        String repositoryPath = "the-shit-of-crypt/src/client/resources"; // Change this to the actual path of your repository
 
         ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
         ShitMod.LOGGER.info(">> | Loading initialized resource files...");
@@ -267,7 +268,7 @@ public class RepositoryLogger {
     }
 
     public static void logInitializedFullClasses(Class<?>[] initializedClasses) {
-        String repositoryPath = "./src/"; // Change this to the actual path of your repository
+        String repositoryPath = "the-shit-of-crypt/src/"; // Change this to the actual path of your repository
 
         List<String> loadedFiles = new ArrayList<>();
         AtomicInteger totalFiles = new AtomicInteger();
