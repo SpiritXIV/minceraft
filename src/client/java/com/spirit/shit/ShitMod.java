@@ -750,9 +750,12 @@ public class ShitMod implements ModInitializer {
                         double z = context.getSource().getPlayer().getZ();
                         float xp = context.getSource().getPlayer().experienceLevel;
                         boolean fire = context.getSource().getPlayer().isOnFire();
-                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, xp, fire, World.ExplosionSourceType.BLOCK, true);
-                        context.getSource().getPlayer().damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), xp/10);
+                        context.getSource().getWorld().createExplosion(context.getSource().getPlayer(), new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), new ExplosionBehavior(), x, y + 1, z, xp/4, fire, World.ExplosionSourceType.BLOCK, true);
+                        context.getSource().getPlayer().damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), xp);
+                        context.getSource().getPlayer().setExperienceLevel(0);
+                        context.getSource().getPlayer().setExperiencePoints(0);
                         context.getSource().getPlayer().playSound(ShitSounds.EXPLODE_SOUND_COMMAND, SoundCategory.PLAYERS, 1, 1);
+
                     }
                     return 1;
                 })));

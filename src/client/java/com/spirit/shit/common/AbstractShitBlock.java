@@ -40,7 +40,7 @@ public abstract class AbstractShitBlock extends Block {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (placer != null) {
-            Direction direction = placer.getHorizontalFacing().getOpposite();
+            Direction direction = placer.getHorizontalFacing();
             world.setBlockState(pos, state.with(FACING, direction), 2);
         }
     }
@@ -63,9 +63,6 @@ public abstract class AbstractShitBlock extends Block {
         float yaw = Objects.requireNonNull(ctx.getPlayer()).getYaw();
         Direction dir = Direction.fromHorizontal(Math.floorMod((int)Math.floor((double)(yaw * 4.0F / 360.0F) + 0.5D), 4));
         return this.getDefaultState().with(FACING, dir);
-    }
-
-    protected void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
     }
 }
 

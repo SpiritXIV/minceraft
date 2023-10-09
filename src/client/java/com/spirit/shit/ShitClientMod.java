@@ -4,6 +4,7 @@ import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.client.*;
 import com.spirit.shit.entity.client.vehicle.CropDusterRenderer;
+import com.spirit.shit.entity.client.vehicle.TankRenderer;
 import com.spirit.shit.event.KeyInputHandler;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.particle.custom.*;
@@ -33,7 +34,12 @@ public class ShitClientMod implements ClientModInitializer {
         EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
         EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
+
+        EntityRendererRegistry.register(ShitEntities.DART_MONKEY, DartMonkeyRenderer::new);
+
+
         EntityRendererRegistry.register(ShitEntities.CROP_DUSTER, CropDusterRenderer::new);
+        EntityRendererRegistry.register(ShitEntities.ABRAMS_TANK, TankRenderer::new);
     }
 
     private void registerProjectiles() {
@@ -117,7 +123,6 @@ public class ShitClientMod implements ClientModInitializer {
     }
 
     private void registerParticles() {
-        ParticleFactoryRegistry.getInstance().register(ShitParticles.SCHIZO_EYE_PARTICLE, SchizoEyeParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.PLAYER_ENTITY_PARTICLE, PlayerEntityParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.ZOMBIE_ENTITY_PARTICLE, ZombieEntityParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ShitParticles.SKELETON_ENTITY_PARTICLE, SkeletonEntityParticle.Factory::new);

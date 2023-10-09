@@ -3,6 +3,7 @@ package com.spirit.shit.sound;
 import com.spirit.shit.ShitMod;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -169,6 +170,7 @@ public class ShitSounds {
             {"villager_takeonme", VILLAGER_TAKEONME},
             {"villager_whatislove", VILLAGER_WHATISLOVE}
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
+
 
     public static void registerAll() {
         for (Map.Entry<String, Object> entry : ITEMS.entrySet()) {

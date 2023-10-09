@@ -1,5 +1,6 @@
 package com.spirit.shit.item.custom.projectile.beverage;
 
+import com.spirit.shit.entity.custom.projectile.beverage.BeerBottleProjectileEntity;
 import com.spirit.shit.entity.custom.projectile.beverage.MugProjectileEntity;
 import com.spirit.shit.common.BeverageProjectileItem;
 import com.spirit.shit.sound.ShitSounds;

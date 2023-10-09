@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 
 public class ShitParticles {
 
-    public static final DefaultParticleType SCHIZO_EYE_PARTICLE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType PLAYER_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType ZOMBIE_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
     public static final DefaultParticleType SKELETON_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
@@ -20,7 +19,6 @@ public class ShitParticles {
     }
 
     public static void registerParticles() {
-        registerParticle(SCHIZO_EYE_PARTICLE, "schizo_eye_particle");
         registerParticle(PLAYER_ENTITY_PARTICLE, "player_entity_particle");
         registerParticle(ZOMBIE_ENTITY_PARTICLE, "zombie_entity_particle");
         registerParticle(SKELETON_ENTITY_PARTICLE, "skeleton_entity_particle");

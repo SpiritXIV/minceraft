@@ -1,7 +1,7 @@
 {
   "variants": {
     "": [{
-      "model": "shit:block/computer_mouse", "weight":500},
-      {  "model": "shit:block/mastercard_mouse", "weight":1 }
+      "model": "shit:block/computer_mouse","weight":500},
+      {  "model": "shit:block/mastercard_mouse", "weight":100}
     ]}
 }

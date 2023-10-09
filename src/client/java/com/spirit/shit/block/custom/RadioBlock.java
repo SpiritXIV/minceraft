@@ -44,7 +44,7 @@ public class RadioBlock extends AbstractShitBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity user, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
-            playSoundForDuration(world, pos, RADIO_SOUND);
+            world.playSound(null, pos, ShitSounds.RADIO_TUNE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.emitGameEvent(user, GameEvent.BLOCK_ACTIVATE, pos);
         }
         return ActionResult.PASS;
@@ -65,17 +65,6 @@ public class RadioBlock extends AbstractShitBlock {
 
     public static void tick(World world, BlockPos pos, RadioBlock block) {
         block.tick(world, pos);
-    }
-
-    private void playSoundForDuration(World world, BlockPos pos, SoundEvent sound) {
-        world.playSound(null, pos, sound, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                world.playSound(null, pos, sound, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            }
-        }, 154000L); // 2 minutes and 34 seconds in milliseconds
     }
 }
 

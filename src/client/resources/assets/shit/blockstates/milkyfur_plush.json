@@ -1,8 +1,8 @@
 {
 	"variants": {
-		"facing=north": { "model": "shit:block/milkyfur_plush" },
-		"facing=south": { "model": "shit:block/milkyfur_plush" },
-		"facing=east": { "model": "shit:block/milkyfur_plush" },
-		"facing=west": { "model": "shit:block/milkyfur_plush" }
+		"facing=east": {"model": "shit:block/milkyfur_plush", "y": 270},
+		"facing=north": {"model": "shit:block/milkyfur_plush", "y": 180},
+		"facing=south": {"model": "shit:block/milkyfur_plush"},
+		"facing=west": {"model": "shit:block/milkyfur_plush", "y": 90}
 	}
 }
