@@ -1,5 +1,6 @@
 package com.spirit.shit.entity.custom;
 
+import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -9,6 +10,8 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -20,19 +23,25 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
-public class CapybaraEntity extends HostileEntity implements GeoEntity {
+public class CapybaraEntity extends PassiveEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-    public CapybaraEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public CapybaraEntity(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
     }
 
+    @Override
+    public CapybaraEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+        return ShitEntities.CAPYBARA.create(serverWorld);
+    }
+
+
     public static DefaultAttributeContainer.Builder setAttributes() {
-        return HostileEntity.createMobAttributes()
+        return PassiveEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.00)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0f)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1f)

@@ -1,37 +1,31 @@
 package com.spirit.shit.item.custom.projectile.beverage;
 
+import com.spirit.shit.common.BeverageProjectileEntity;
+import com.spirit.shit.common.BeverageProjectileItem;
+import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.projectile.beverage.BeerBottleProjectileEntity;
+import com.spirit.shit.entity.custom.projectile.beverage.MugProjectileEntity;
 import com.spirit.shit.sound.ShitSounds;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class BeerBottleProjectileItem extends Item {
-    public BeerBottleProjectileItem(Settings settings) {
-        super(settings);
+public class BeerBottleProjectileItem extends BeverageProjectileItem {
+    private static final SoundEvent THROW_SOUND = ShitSounds.GLASS_BOTTLE_THROWN;
+    public BeerBottleProjectileItem(Item.Settings settings) {
+        super(settings, THROW_SOUND);
     }
 
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), ShitSounds.GLASS_BOTTLE_THROWN, SoundCategory.NEUTRAL, 1F, 1F);
-		user.getItemCooldownManager().set(this, 5);
-        if (!world.isClient) {
-            BeerBottleProjectileEntity snowballEntity = new BeerBottleProjectileEntity(world, user);
-            snowballEntity.setItem(itemStack);
-            snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 1.0F, 0.5F, 1F);
-            world.spawnEntity(snowballEntity);
-        }
-
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1);
-        }
-
-        return TypedActionResult.success(itemStack, world.isClient());
+    @Override
+    public BeerBottleProjectileEntity createProjectileEntity(World world, PlayerEntity user) {
+        return new BeerBottleProjectileEntity(world, user);
     }
 }

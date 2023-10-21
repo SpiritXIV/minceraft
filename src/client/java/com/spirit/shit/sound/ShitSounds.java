@@ -3,6 +3,7 @@ package com.spirit.shit.sound;
 import com.spirit.shit.ShitMod;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -20,6 +21,7 @@ public class ShitSounds {
     public static final SoundEvent MICROWAVE_BEEP = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_beep"));
     public static final SoundEvent MICROWAVE_OPEN_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_open_door"));
     public static final SoundEvent MICROWAVE_CLOSE_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_close_door"));
+    public static final SoundEvent RADIO_TUNE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "radio_tune"));
 
     //PLUSH
     public static final SoundEvent TALON_SPEAK = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "talon_speak"));
@@ -168,6 +170,7 @@ public class ShitSounds {
             {"villager_takeonme", VILLAGER_TAKEONME},
             {"villager_whatislove", VILLAGER_WHATISLOVE}
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
+
 
     public static void registerAll() {
         for (Map.Entry<String, Object> entry : ITEMS.entrySet()) {

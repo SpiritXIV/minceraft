@@ -1,0 +1,169 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.abrams_tank.move": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"tire": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire7": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire8": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire9": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire10": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire11": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire12": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire13": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"tire14": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [180, 0, 0],
+							"easing": "linear"
+						}
+					}
+				}
+			}
+		},
+		"animation.abrams_tank.idle": {
+			"loop": true
+		}
+	},
+	"geckolib_format_version": 2
+}

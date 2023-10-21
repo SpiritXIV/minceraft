@@ -5,8 +5,10 @@ import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -15,10 +17,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Stream;
 
 public class RadioBlock extends AbstractShitBlock {
+    private final SoundEvent RADIO_SOUND = ShitSounds.RADIO_TUNE;
+
     private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(2.5, 0, 6, 13.5, 6, 10),
             Block.createCuboidShape(4, 5.5, 8, 6, 6.5, 9),
@@ -33,14 +40,31 @@ public class RadioBlock extends AbstractShitBlock {
         super(settings, SHAPE);
     }
 
-    @Override
     @SuppressWarnings("deprecation")
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity user, Hand hand, BlockHitResult hit) {
-        world.playSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, ShitSounds.MICROWAVE_BEEP, SoundCategory.BLOCKS, 1F, 1F, true);
-        user.sendMessage(Text.of("[!] | incomplete"));
+        if (!world.isClient) {
+            world.playSound(null, pos, ShitSounds.RADIO_TUNE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.emitGameEvent(user, GameEvent.BLOCK_ACTIVATE, pos);
+        }
+        return ActionResult.PASS;
+    }
 
-            return ActionResult.PASS;
-}
+    private void spawnNoteParticle(World world, BlockPos pos) {
+        if (world instanceof ServerWorld serverWorld) {
+            float f = (float)world.getRandom().nextInt(4) / 24.0F;
+            serverWorld.spawnParticles(ParticleTypes.NOTE, pos.getX(), pos.getY() + 0.3, pos.getZ(), 0, f, 0.0, 0.0, 1.0);
+        }
 
+    }
+
+
+    private void tick(World world, BlockPos pos) {
+        this.spawnNoteParticle(world, pos);
+    }
+
+    public static void tick(World world, BlockPos pos, RadioBlock block) {
+        block.tick(world, pos);
+    }
 }
 

@@ -7,49 +7,28 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.SkeletonEntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-@Environment(value=EnvType.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SkeletonEntityParticle extends SpriteBillboardParticle {
-    private static final double MAX_SQUARED_COLLISION_CHECK_DISTANCE = MathHelper.square(100.0);
-    private final Model model;
-    private final RenderLayer layer = RenderLayer.getEntityTranslucent(TEXTURE);
-    public static final Identifier TEXTURE = new Identifier(ShitMod.MOD_ID, "textures/particle/schizo/giant_eye.png");
-    private boolean field_21507;
 
-    SkeletonEntityParticle(ClientWorld clientWorld, double x, double y, double z, SpriteProvider spriteSet, double xx, double yy, double zz) {
+    private static final Identifier TEXTURE = new Identifier(ShitMod.MOD_ID, "textures/particle/schizo/skeleton.png");
+    private static final RenderLayer LAYER = RenderLayer.getEntityTranslucent(TEXTURE);
+    private static final Model MODEL = new SkeletonEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.SKELETON));
+
+    public SkeletonEntityParticle(ClientWorld clientWorld, double x, double y, double z) {
         super(clientWorld, x, y, z);
-        this.model = new SkeletonEntityModel<SkeletonEntity>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.SKELETON));
-        this.setBoundingBoxSpacing(0.2f, 0.2f);
-        this.gravityStrength = 1f;
+        this.gravityStrength = 0.0F;
         this.maxAge = 30;
-        this.velocityMultiplier = 0.6F;
-        this.x = xx;
-        this.y = yy;
-        this.z = zz;
-        this.scale *= 2F;
-        this.setSpriteForAge(spriteSet);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        fadeOut();
-        fadeIn();
-    }
-
-    private void fadeOut() {
-        this.alpha = (-(1/(float)maxAge) * age + 1);
-    }
-    private void fadeIn() {
-        this.alpha = ((1/(float)maxAge) * age - 1);
+        this.velocityX = 0.0;
+        this.velocityY = 0.0;
+        this.velocityZ = 0.0;
     }
 
     @Override
@@ -59,31 +38,25 @@ public class SkeletonEntityParticle extends SpriteBillboardParticle {
 
     @Override
     public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
-        float f = ((float)this.age + tickDelta) / (float)this.maxAge;
-        float g = 0.05f + 0.5f * MathHelper.sin(f * (float)Math.PI);
+        float ageFraction = ((float) this.age + tickDelta) / (float) this.maxAge;
+        float scale = 0.05F + 0.5F * MathHelper.sin(ageFraction * 3.1415927F);
         MatrixStack matrixStack = new MatrixStack();
-
-        matrixStack.scale(-50.0f, -50.0f, 50.0f);
-        matrixStack.translate(0.0f, -1.101f, 3.0f);
+        matrixStack.scale(-1.0F, -1.0F, 1.0F);
+        matrixStack.translate(0.0F, -1.101F, 1.5F);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
-        VertexConsumer vertexConsumer2 = immediate.getBuffer(this.layer);
-        this.model.render(matrixStack, vertexConsumer2, 0xF000F0, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, g);
+        VertexConsumer vertexConsumer2 = immediate.getBuffer(LAYER);
+        MODEL.render(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, scale);
         immediate.draw();
     }
-
 
     @Environment(EnvType.CLIENT)
     public static class Factory implements ParticleFactory<DefaultParticleType> {
 
-        private final SpriteProvider sprites;
-
-        public Factory(SpriteProvider spriteSet) {
-            this.sprites = spriteSet;
+        public Factory(SpriteProvider ignoredSpriteSet) {
         }
 
-        @Override
-        public Particle createParticle(DefaultParticleType particleType, ClientWorld clientWorld, double x, double y, double z, double xx, double yy, double zz) {
-            return new SkeletonEntityParticle(clientWorld, x, y, z, this.sprites, xx, yy, zz);
+        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+            return new SkeletonEntityParticle(clientWorld, x, y, z);
         }
     }
 }

@@ -12,17 +12,12 @@ public class ShitPotions {
     public static Potion RADIATION_POISONING;
     public static Potion PEEPS_SPEED;
 
-    public static Potion registerRadiationPoisoningPotion(String name) {
-        return Registry.register(Registries.POTION, new Identifier(ShitMod.MOD_ID, name),
-                new Potion(new StatusEffectInstance(ShitEffects.RADIATION_POISONING, 200, 0)));
-    }
-    public static Potion registerPeepSpeedPotion(String name) {
-        return Registry.register(Registries.POTION, new Identifier(ShitMod.MOD_ID, name),
-                new Potion(new StatusEffectInstance(ShitEffects.PEEPS_SPEED, 200, 0)));
+    private static Potion registerPotion(String name, StatusEffectInstance effectInstance) {
+        return Registry.register(Registries.POTION, new Identifier(ShitMod.MOD_ID, name), new Potion(effectInstance));
     }
 
     public static void registerPotions() {
-        RADIATION_POISONING = registerRadiationPoisoningPotion("radiation_poisoning");
-        PEEPS_SPEED = registerPeepSpeedPotion("peeps_speed");
+        RADIATION_POISONING = registerPotion("radiation_poisoning", new StatusEffectInstance(ShitEffects.RADIATION_POISONING, 200, 0));
+        PEEPS_SPEED = registerPotion("peeps_speed", new StatusEffectInstance(ShitEffects.PEEPS_SPEED, 200, 0));
     }
 }

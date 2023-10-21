@@ -25,7 +25,7 @@ import net.minecraft.world.explosion.ExplosionBehavior;
 
 import java.util.stream.Stream;
 
-public class LandMineBlock extends AbstractShitBlock {
+public class LandMineBlock extends Block {
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
     private static final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(3, 0, 3, 13, 2, 13),
@@ -34,7 +34,7 @@ public class LandMineBlock extends AbstractShitBlock {
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
     public LandMineBlock(Settings settings) {
-        super(settings, SHAPE);
+        super(settings);
         this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
     @Override
