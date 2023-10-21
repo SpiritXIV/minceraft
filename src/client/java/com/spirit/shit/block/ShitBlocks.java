@@ -106,6 +106,15 @@ public class ShitBlocks {
     public static final Block CUBE_YELLOW = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
 
+
+    //ORES
+    public static final Block BAUXITE_ORE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).requiresTool().strength(2.0F));
+    public static final Block DEEPSLATE_BAUXITE_ORE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).requiresTool().strength(2.0F));
+
+
+
+
+
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
             {"cracklin_box", CRACKLIN_BOX},
             {"gas_can", GAS_CAN},
@@ -174,6 +183,10 @@ public class ShitBlocks {
             {"cube_rusty", CUBE_RUSTY},
             {"cube_white", CUBE_WHITE},
             {"cube_yellow", CUBE_YELLOW},
+            {"bauxite_ore", BAUXITE_ORE},
+            {"deepslate_bauxite_ore", DEEPSLATE_BAUXITE_ORE},
+
+
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
     public static void registerAll() {
