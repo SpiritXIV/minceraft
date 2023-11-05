@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "up": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "north": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "east": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "south": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "west": "tdbtd:block/infurtrinated_deepslate_bricks",
+    "particle": "tdbtd:block/infurtrinated_deepslate_bricks"
+  }
+}

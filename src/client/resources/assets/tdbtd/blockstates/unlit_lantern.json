@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "tdbtd:block/unlit_lantern"
+    },
+    "hanging=true": {
+      "model": "tdbtd:block/unlit_lantern_hanging"
+    }
+  }
+}

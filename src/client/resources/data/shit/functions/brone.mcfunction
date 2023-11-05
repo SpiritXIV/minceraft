@@ -32,4 +32,4 @@ execute as @e[type=marker,tag=flickerwall] at @s if block ~ ~ ~ light[level=15] 
 execute as @e[type=marker,tag=flickerwall] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:flame ^ ^1 ^ 0 0 0 0.1 2 force @a
 execute as @e[type=marker,tag=flickerwall] at @s anchored eyes if block ~ ~ ~ light[level=15] in shit:backroomsone run particle minecraft:ash ^ ^1 ^ 0 0 0 2 10 force @a
 # TP the player to the next level
-execute at @a[nbt={Dimension:"shit:backroomsone"}] if block ~ ~-1 ~ shit:backrooms_concrete_floor_teleport run function shit:tplevel2
+# execute at @a[nbt={Dimension:"shit:backroomsone"}] if block ~ ~-1 ~ shit:backrooms_concrete_floor_teleport run function shit:tplevel2

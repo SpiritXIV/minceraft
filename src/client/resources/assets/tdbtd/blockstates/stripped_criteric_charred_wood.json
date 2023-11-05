@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "tdbtd:block/stripped_criteric_charred_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tdbtd:block/stripped_criteric_charred_wood"
+    },
+    "axis=z": {
+      "model": "tdbtd:block/stripped_criteric_charred_wood",
+      "x": 90
+    }
+  }
+}

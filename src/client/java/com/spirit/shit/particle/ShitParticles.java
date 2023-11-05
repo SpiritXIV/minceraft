@@ -1,6 +1,6 @@
 package com.spirit.shit.particle;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
@@ -15,7 +15,7 @@ public class ShitParticles {
     public static final DefaultParticleType CREEPER_ENTITY_PARTICLE = FabricParticleTypes.simple(true);
 
     private static void registerParticle(DefaultParticleType particleType, String name) {
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(ShitMod.MOD_ID, name), particleType);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(Main.SHIT_ID, name), particleType);
     }
 
     public static void registerParticles() {

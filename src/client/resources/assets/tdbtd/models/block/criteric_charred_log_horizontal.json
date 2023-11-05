@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "tdbtd:block/criteric_charred_log_top",
+    "side": "tdbtd:block/criteric_charred_log"
+  }
+}

@@ -12,8 +12,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
-import java.lang.reflect.Constructor;
-
 public class BeerBottleProjectileEntity extends BeverageProjectileEntity {
     static EntityType TYPE = ShitMod.BeerBottleProjectileEntityType;
     public static final SoundEvent SOUND = SoundEvents.BLOCK_GLASS_BREAK;

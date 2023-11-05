@@ -1,0 +1,35 @@
+{
+  "shrieker": {
+    "sounds": [
+      {
+        "name": "tdbtd:shrieker",
+        "stream": true
+      }
+    ]
+  },
+  "the_warden": {
+    "sounds": [
+      {
+        "name": "tdbtd:the_warden",
+        "stream": true
+      }
+    ]
+  },
+  "warden_run": {
+    "sounds": [
+      {
+        "name": "tdbtd:warden_run",
+        "stream": true
+      }
+    ]
+  },
+  "pollo_one_beam": {
+    "sounds": [
+      {
+        "name": "tdbtd:pollo_one_beam",
+        "stream": true
+      }
+    ]
+  }
+
+}

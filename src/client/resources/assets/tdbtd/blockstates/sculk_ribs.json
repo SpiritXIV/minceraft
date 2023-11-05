@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north":[ { "model": "tdbtd:block/sculk_ribs" }
+      ],
+    "facing=east":[ { "model": "tdbtd:block/sculk_ribs", "y": 90 }
+      ],
+    "facing=south":[ { "model": "tdbtd:block/sculk_ribs", "y": 180 }
+      ],
+    "facing=west":[ { "model": "tdbtd:block/sculk_ribs", "y": 270 }
+      ]
+}
+}

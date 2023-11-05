@@ -1,6 +1,6 @@
 package com.spirit.shit.datagen;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import net.minecraft.data.DataOutput;
 import net.minecraft.data.server.tag.TagProvider;
 import net.minecraft.registry.RegistryKeys;
@@ -17,10 +17,10 @@ public class ShitPoiTagProvider extends TagProvider<PointOfInterestType> {
         super(output, RegistryKeys.POINT_OF_INTEREST_TYPE, registryLookupFuture);
     }
 
-    //for sales man soon
+    //for salesman soon
     @Override
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         this.getOrCreateTagBuilder(PointOfInterestTypeTags.ACQUIRABLE_JOB_SITE)
-                .addOptional(new Identifier(ShitMod.MOD_ID, "soundpoi"));
+                .addOptional(new Identifier(Main.SHIT_ID, "soundpoi"));
     }
 }

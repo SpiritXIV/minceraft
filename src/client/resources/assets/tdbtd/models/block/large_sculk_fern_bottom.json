@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tdbtd:block/large_sculk_fern_bottom"
+  }
+}

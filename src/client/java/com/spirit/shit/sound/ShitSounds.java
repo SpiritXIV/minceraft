@@ -1,9 +1,8 @@
 package com.spirit.shit.sound;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -13,98 +12,98 @@ import java.util.stream.Stream;
 
 public class ShitSounds {
     //BLOCKS
-    public static final SoundEvent LIGHT_BUZZING = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "light_buzzing"));
-    public static final SoundEvent LIGHT_FLICKER = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "light_flicker"));
-    public static final SoundEvent FALL_INTO_BACKROOMS = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "fall_into_backrooms"));
-    public static final SoundEvent VENT_AMBIENT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "vent_ambient"));
-    public static final SoundEvent MICROWAVE_RUNNING = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_running"));
-    public static final SoundEvent MICROWAVE_BEEP = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_beep"));
-    public static final SoundEvent MICROWAVE_OPEN_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_open_door"));
-    public static final SoundEvent MICROWAVE_CLOSE_DOOR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "microwave_close_door"));
-    public static final SoundEvent RADIO_TUNE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "radio_tune"));
+    public static final SoundEvent LIGHT_BUZZING = SoundEvent.of(new Identifier(Main.SHIT_ID, "light_buzzing"));
+    public static final SoundEvent LIGHT_FLICKER = SoundEvent.of(new Identifier(Main.SHIT_ID, "light_flicker"));
+    public static final SoundEvent FALL_INTO_BACKROOMS = SoundEvent.of(new Identifier(Main.SHIT_ID, "fall_into_backrooms"));
+    public static final SoundEvent VENT_AMBIENT = SoundEvent.of(new Identifier(Main.SHIT_ID, "vent_ambient"));
+    public static final SoundEvent MICROWAVE_RUNNING = SoundEvent.of(new Identifier(Main.SHIT_ID, "microwave_running"));
+    public static final SoundEvent MICROWAVE_BEEP = SoundEvent.of(new Identifier(Main.SHIT_ID, "microwave_beep"));
+    public static final SoundEvent MICROWAVE_OPEN_DOOR = SoundEvent.of(new Identifier(Main.SHIT_ID, "microwave_open_door"));
+    public static final SoundEvent MICROWAVE_CLOSE_DOOR = SoundEvent.of(new Identifier(Main.SHIT_ID, "microwave_close_door"));
+    public static final SoundEvent RADIO_TUNE = SoundEvent.of(new Identifier(Main.SHIT_ID, "radio_tune"));
 
     //PLUSH
-    public static final SoundEvent TALON_SPEAK = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "talon_speak"));
+    public static final SoundEvent TALON_SPEAK = SoundEvent.of(new Identifier(Main.SHIT_ID, "talon_speak"));
 
 
     //ITEMS
-    public static final SoundEvent SODA = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "soda"));
-    public static final SoundEvent JBIRD_SODA = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "jbird_soda"));
-    public static final SoundEvent MEME_PLAY = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "meme_play"));
-    public static final SoundEvent GIANT_CRUNCH = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "giant_crunch"));
-    public static final SoundEvent BRICK_THROWN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "brick_thrown"));
-    public static final SoundEvent BRICK_LAND = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "brick_land"));
+    public static final SoundEvent SODA = SoundEvent.of(new Identifier(Main.SHIT_ID, "soda"));
+    public static final SoundEvent JBIRD_SODA = SoundEvent.of(new Identifier(Main.SHIT_ID, "jbird_soda"));
+    public static final SoundEvent MEME_PLAY = SoundEvent.of(new Identifier(Main.SHIT_ID, "meme_play"));
+    public static final SoundEvent GIANT_CRUNCH = SoundEvent.of(new Identifier(Main.SHIT_ID, "giant_crunch"));
+    public static final SoundEvent BRICK_THROWN = SoundEvent.of(new Identifier(Main.SHIT_ID, "brick_thrown"));
+    public static final SoundEvent BRICK_LAND = SoundEvent.of(new Identifier(Main.SHIT_ID, "brick_land"));
 
-    public static final SoundEvent CAN_HIT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "can_hit"));
+    public static final SoundEvent CAN_HIT = SoundEvent.of(new Identifier(Main.SHIT_ID, "can_hit"));
 
-    public static final SoundEvent GLASS_BOTTLE_THROWN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "glass_bottle_thrown"));
+    public static final SoundEvent GLASS_BOTTLE_THROWN = SoundEvent.of(new Identifier(Main.SHIT_ID, "glass_bottle_thrown"));
 
-    public static final SoundEvent PLASTIC_BOTTLE_THROWN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "plastic_bottle_thrown"));
+    public static final SoundEvent PLASTIC_BOTTLE_THROWN = SoundEvent.of(new Identifier(Main.SHIT_ID, "plastic_bottle_thrown"));
 
-    public static final SoundEvent PLASTIC_BOTTLE_HIT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "plastic_bottle_hit"));
+    public static final SoundEvent PLASTIC_BOTTLE_HIT = SoundEvent.of(new Identifier(Main.SHIT_ID, "plastic_bottle_hit"));
 
-    public static final SoundEvent BULLET_IMPACT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "bullet_impact"));
+    public static final SoundEvent BULLET_IMPACT = SoundEvent.of(new Identifier(Main.SHIT_ID, "bullet_impact"));
 
 
 
     //GUNS
-    public static final SoundEvent HUNTING_RIFLE_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "hunting_rifle_shoot"));
-    public static final SoundEvent M16_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "m16_shoot"));
-    public static final SoundEvent PISTOL_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "pistol_shoot"));
-    public static final SoundEvent REVOLVER_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "revolver_shoot"));
-    public static final SoundEvent RIFLE_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "rifle_shoot"));
-    public static final SoundEvent SHOTGUN_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "shotgun_shoot"));
-    public static final SoundEvent SNIPER_SHOOT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "sniper_shoot"));
+    public static final SoundEvent HUNTING_RIFLE_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "hunting_rifle_shoot"));
+    public static final SoundEvent M16_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "m16_shoot"));
+    public static final SoundEvent PISTOL_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "pistol_shoot"));
+    public static final SoundEvent REVOLVER_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "revolver_shoot"));
+    public static final SoundEvent RIFLE_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "rifle_shoot"));
+    public static final SoundEvent SHOTGUN_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "shotgun_shoot"));
+    public static final SoundEvent SNIPER_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "sniper_shoot"));
 
 
     //ENTITES
-    public static final SoundEvent JBIRD_SPEAK = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "jbird_speak"));
-    public static final SoundEvent JBIRD_HURT = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "jbird_hurt"));
-    public static final SoundEvent IM_SLIM = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "im_slim"));
-    public static final SoundEvent FREE_BIRD = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "free_bird"));
-    public static final SoundEvent CAPYBARA_PULLS_UP = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "capybara_pulls_up"));
-    public static final SoundEvent YIPPEE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "yippee"));
+    public static final SoundEvent JBIRD_SPEAK = SoundEvent.of(new Identifier(Main.SHIT_ID, "jbird_speak"));
+    public static final SoundEvent JBIRD_HURT = SoundEvent.of(new Identifier(Main.SHIT_ID, "jbird_hurt"));
+    public static final SoundEvent IM_SLIM = SoundEvent.of(new Identifier(Main.SHIT_ID, "im_slim"));
+    public static final SoundEvent FREE_BIRD = SoundEvent.of(new Identifier(Main.SHIT_ID, "free_bird"));
+    public static final SoundEvent CAPYBARA_PULLS_UP = SoundEvent.of(new Identifier(Main.SHIT_ID, "capybara_pulls_up"));
+    public static final SoundEvent YIPPEE = SoundEvent.of(new Identifier(Main.SHIT_ID, "yippee"));
 
     //COMMAND
-    public static final SoundEvent EXPLODE_SOUND_COMMAND = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "explode_sound_command"));
+    public static final SoundEvent EXPLODE_SOUND_COMMAND = SoundEvent.of(new Identifier(Main.SHIT_ID, "explode_sound_command"));
 
-    public static final SoundEvent NOTHING = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "nothing"));
+    public static final SoundEvent NOTHING = SoundEvent.of(new Identifier(Main.SHIT_ID, "nothing"));
 
 
     //MUSIC DISCS
-    public static final SoundEvent SILENT_HOUSES = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "silent_houses"));
-    public static final SoundEvent FREE_BIRD_DISC = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "free_bird_disc"));
-    public static final SoundEvent AFTER_PARTY_DISC = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "after_party"));
+    public static final SoundEvent SILENT_HOUSES = SoundEvent.of(new Identifier(Main.SHIT_ID, "silent_houses"));
+    public static final SoundEvent FREE_BIRD_DISC = SoundEvent.of(new Identifier(Main.SHIT_ID, "free_bird_disc"));
+    public static final SoundEvent AFTER_PARTY_DISC = SoundEvent.of(new Identifier(Main.SHIT_ID, "after_party"));
 
 
-    public static final SoundEvent VILLAGER_AFTERPARTY = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_afterparty"));
-    public static final SoundEvent VILLAGER_ALLSTAR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_allstar"));
-    public static final SoundEvent VILLAGER_BALLIN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_ballin"));
-    public static final SoundEvent VILLAGER_BEGGIN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_beggin"));
-    public static final SoundEvent VILLAGER_BILLIEJEAN = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_billiejean"));
-    public static final SoundEvent VILLAGER_BUDDYHOLLY = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_buddyholly"));
-    public static final SoundEvent VILLAGER_CUPID = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_cupid"));
-    public static final SoundEvent VILLAGER_DONTSTOPMENOW = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_dontstopmenow"));
-    public static final SoundEvent VILLAGER_FIREFLIES = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_fireflies"));
-    public static final SoundEvent VILLAGER_FLYMETOTHEMOON = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_flymetothemoon"));
-    public static final SoundEvent VILLAGER_FNAF = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_fnaf"));
-    public static final SoundEvent VILLAGER_FREEBIRD = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_freebird"));
-    public static final SoundEvent VILLAGER_GANGSTAPARADISE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_gangstaparadise"));
-    public static final SoundEvent VILLAGER_GOLDENHOUR = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_goldenhour"));
-    public static final SoundEvent VILLAGER_HARDERBETTER = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_harderbetter"));
-    public static final SoundEvent VILLAGER_HISWORLD = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_hisworld"));
-    public static final SoundEvent VILLAGER_HOWBADCANIBE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_howbadcanibe"));
-    public static final SoundEvent VILLAGER_LIFECOULDBEDREAMS = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_lifecouldbedreams"));
-    public static final SoundEvent VILLAGER_MONSTER = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_monster"));
-    public static final SoundEvent VILLAGER_MYWAY = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_myway"));
-    public static final SoundEvent VILLAGER_OPPENGANGNAMSTYLE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_oppengangnamstyle"));
-    public static final SoundEvent VILLAGER_PEACHES = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_peaches"));
-    public static final SoundEvent VILLAGER_SMOOTHCRIMINAL = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_smoothcriminal"));
-    public static final SoundEvent VILLAGER_SOMEBODYIUSETOKNOW = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_somebodyiusetoknow"));
-    public static final SoundEvent VILLAGER_TAKEONME = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_takeonme"));
-    public static final SoundEvent VILLAGER_WHATISLOVE = SoundEvent.of(new Identifier(ShitMod.MOD_ID, "villager_whatislove"));
+    public static final SoundEvent VILLAGER_AFTERPARTY = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_afterparty"));
+    public static final SoundEvent VILLAGER_ALLSTAR = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_allstar"));
+    public static final SoundEvent VILLAGER_BALLIN = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_ballin"));
+    public static final SoundEvent VILLAGER_BEGGIN = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_beggin"));
+    public static final SoundEvent VILLAGER_BILLIEJEAN = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_billiejean"));
+    public static final SoundEvent VILLAGER_BUDDYHOLLY = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_buddyholly"));
+    public static final SoundEvent VILLAGER_CUPID = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_cupid"));
+    public static final SoundEvent VILLAGER_DONTSTOPMENOW = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_dontstopmenow"));
+    public static final SoundEvent VILLAGER_FIREFLIES = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_fireflies"));
+    public static final SoundEvent VILLAGER_FLYMETOTHEMOON = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_flymetothemoon"));
+    public static final SoundEvent VILLAGER_FNAF = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_fnaf"));
+    public static final SoundEvent VILLAGER_FREEBIRD = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_freebird"));
+    public static final SoundEvent VILLAGER_GANGSTAPARADISE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_gangstaparadise"));
+    public static final SoundEvent VILLAGER_GOLDENHOUR = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_goldenhour"));
+    public static final SoundEvent VILLAGER_HARDERBETTER = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_harderbetter"));
+    public static final SoundEvent VILLAGER_HISWORLD = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_hisworld"));
+    public static final SoundEvent VILLAGER_HOWBADCANIBE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_howbadcanibe"));
+    public static final SoundEvent VILLAGER_LIFECOULDBEDREAMS = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_lifecouldbedreams"));
+    public static final SoundEvent VILLAGER_MONSTER = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_monster"));
+    public static final SoundEvent VILLAGER_MYWAY = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_myway"));
+    public static final SoundEvent VILLAGER_OPPENGANGNAMSTYLE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_oppengangnamstyle"));
+    public static final SoundEvent VILLAGER_PEACHES = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_peaches"));
+    public static final SoundEvent VILLAGER_SMOOTHCRIMINAL = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_smoothcriminal"));
+    public static final SoundEvent VILLAGER_SOMEBODYIUSETOKNOW = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_somebodyiusetoknow"));
+    public static final SoundEvent VILLAGER_TAKEONME = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_takeonme"));
+    public static final SoundEvent VILLAGER_WHATISLOVE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_whatislove"));
 
-    static Map<String, Object> ITEMS = Stream.of(new Object[][]{
+    static Map<String, Object> SOUNDS = Stream.of(new Object[][]{
             {"light_buzzing", LIGHT_BUZZING},
             {"light_flicker", LIGHT_FLICKER},
             {"fall_into_backrooms", FALL_INTO_BACKROOMS},
@@ -173,7 +172,7 @@ public class ShitSounds {
 
 
     public static void registerAll() {
-        for (Map.Entry<String, Object> entry : ITEMS.entrySet()) {
+        for (Map.Entry<String, Object> entry : SOUNDS.entrySet()) {
             String key = entry.getKey();
             SoundEvent value = (SoundEvent) entry.getValue();
 
@@ -181,7 +180,7 @@ public class ShitSounds {
         }
     }
     private static void registerSoundEvent(String name, SoundEvent sound) {
-        Identifier id = new Identifier(ShitMod.MOD_ID, name);
+        Identifier id = new Identifier(Main.SHIT_ID, name);
         Registry.register(Registries.SOUND_EVENT, id, sound);
     }
 }

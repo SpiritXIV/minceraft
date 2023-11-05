@@ -1,30 +1,32 @@
 package com.spirit.shit.entity.client.vehicle;
 
-import com.spirit.shit.ShitMod;
-import com.spirit.shit.entity.custom.vehicle.TankEntity;
+import com.spirit.Main;
+import com.spirit.shit.entity.client.ShitModelLayers;
+import com.spirit.shit.entity.client.figures.CapybaraModel;
+import com.spirit.shit.entity.custom.CapybaraEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class TankRenderer extends GeoEntityRenderer<TankEntity> {
-    public static final Identifier TEXTURE = new Identifier(ShitMod.MOD_ID, "textures/entity/abrams_tank.png");
+public class TankRenderer extends MobEntityRenderer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
+    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/abrams_tank.png");
 
-    public TankRenderer(EntityRendererFactory.Context renderManager) {
-        super(renderManager, new TankModel());
+    public TankRenderer(EntityRendererFactory.Context context) {
+        super(context, new CapybaraModel<>(context.getPart(ShitModelLayers.CAPYBARA)), 0.6f);
     }
 
     @Override
-    public Identifier getTextureLocation(TankEntity instance) {
-        return new Identifier(ShitMod.MOD_ID, "textures/entity/abrams_tank.png");
+    public Identifier getTexture(CapybaraEntity entity) {
+        return TEXTURE;
     }
 
-
     @Override
-    public void render(TankEntity entity, float entityYaw, float partialTick, MatrixStack poseStack,
-                       VertexConsumerProvider bufferSource, int packedLight) {
+    public void render(CapybaraEntity mobEntity, float f, float g, MatrixStack matrixStack,
+                       VertexConsumerProvider vertexConsumerProvider, int i) {
+        matrixStack.scale(1f, 1f, 1f);
 
-        super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+        super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 }

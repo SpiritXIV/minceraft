@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tdbtd:block/infurtrinated_deepslate_tiles_slab"
+    },
+    "type=double": {
+      "model": "tdbtd:block/infurtrinated_deepslate_tiles"
+    },
+    "type=top": {
+      "model": "tdbtd:block/infurtrinated_deepslate_tiles_slab_top"
+    }
+  }
+}

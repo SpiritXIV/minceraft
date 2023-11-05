@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "tdbtd:block/large_sculk_fern_bottom"
+    },
+    "half=upper": {
+      "model": "tdbtd:block/large_sculk_fern_top"
+    }
+  }
+}

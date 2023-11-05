@@ -1,6 +1,6 @@
 package com.spirit.shit.item;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import com.spirit.shit.block.ShitBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class ShitItemGroup {
 
     // Initialize the ItemGroup with the builder, but don't register it yet
-    public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "kellogs"),
+    public static final ItemGroup KELLOGGS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.SHIT_ID, "kellogs"),
             FabricItemGroup.builder()
             .displayName(Text.translatable("itemgroup.kelloggs"))
             .icon(() -> new ItemStack(ShitItems.OAT))
@@ -23,7 +23,7 @@ public class ShitItemGroup {
             }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "shitmain"),
+    public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.SHIT_ID, "shitmain"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.shitmain"))
                     .icon(() -> new ItemStack(ShitItems.PEEP_YELLOW)).entries((displayContext, entries) -> {
                         //random items
@@ -105,7 +105,7 @@ public class ShitItemGroup {
                         entries.add(ShitItems.COSCO_BIG_LONG_DOG_MUSTARD);
                         entries.add(ShitItems.BRASS_KNUCKLES);
                         entries.add(ShitItems.CATCORN);
-                        entries.add(ShitItems.LASER_POINTER_OFF);
+                        entries.add(ShitItems.LASER_POINTER);
                         entries.add(ShitItems.PIE);
                         entries.add(ShitItems.PIE_DAMAGE);
                         entries.add(ShitItems.PIE_SUS);
@@ -312,7 +312,7 @@ public class ShitItemGroup {
                     }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup BACKROOMS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "backrooms_item_group"),
+    public static final ItemGroup BACKROOMS_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.SHIT_ID, "backrooms_item_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.backrooms"))
                     .icon(() -> new ItemStack(ShitBlocks.BACKROOMS_WALLPAPER)).entries((displayContext, entries) -> {
                         entries.add(ShitBlocks.BACKROOMS_CEILING);
@@ -340,7 +340,7 @@ public class ShitItemGroup {
                     }).build());
 
     @SuppressWarnings("unused")
-    public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(ShitMod.MOD_ID, "warzone"),
+    public static final ItemGroup BULLET_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.SHIT_ID, "warzone"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.warzone"))
                     .icon(() -> new ItemStack(ShitItems.BULLET))  // Replace with a representative ItemStack for this group
                     .entries((displayContext, entries) -> {

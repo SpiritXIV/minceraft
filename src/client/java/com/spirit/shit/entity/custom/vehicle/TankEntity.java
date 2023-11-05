@@ -7,17 +7,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.world.World;
 import org.lwjgl.glfw.GLFW;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
 
-public class TankEntity extends BoatEntity implements GeoEntity {
+public class TankEntity extends BoatEntity {
     private static final float TANK_ACCELERATION = 0.05f;
     private static final float TANK_DECELERATION = 0.02f;
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     public TankEntity(EntityType<? extends TankEntity> entityType, World world) {
         super(entityType, world);
@@ -79,22 +72,4 @@ public class TankEntity extends BoatEntity implements GeoEntity {
         return !this.getPassengerList().isEmpty();
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState< T > event) {
-
-
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.crop_duster.move", Animation.LoopType.LOOP));
-        }
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers (AnimatableManager.ControllerRegistrar controllerRegistrar){
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache () {
-        return cache;
-    }
 }

@@ -19,8 +19,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.stream.Stream;
 
 public class RadioBlock extends AbstractShitBlock {

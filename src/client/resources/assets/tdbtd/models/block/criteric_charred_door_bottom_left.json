@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "tdbtd:block/criteric_charred_door_bottom",
+    "top": "tdbtd:block/criteric_charred_door_top"
+  }
+}

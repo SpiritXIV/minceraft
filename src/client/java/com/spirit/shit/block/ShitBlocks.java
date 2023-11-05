@@ -1,6 +1,6 @@
 package com.spirit.shit.block;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import com.spirit.shit.block.custom.*;
 import com.spirit.shit.block.custom.plush.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -88,8 +88,6 @@ public class ShitBlocks {
     //WARZONE
     public static final Block LAND_MINE = new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
-    public static final Block LAND_MINE_ACTIVE = new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
-
     //OTHER BLOCKS
 
     public static final Block CUBE_BLUE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
@@ -170,7 +168,6 @@ public class ShitBlocks {
             {"talon_plush", TALON_PLUSH},
             {"zarsh_plush", ZARSH_PLUSH},
             {"land_mine", LAND_MINE},
-            {"land_mine_active", LAND_MINE_ACTIVE},
             {"cube_blue", CUBE_BLUE},
             {"cube_gray", CUBE_GRAY},
             {"cube_green", CUBE_GREEN},
@@ -201,15 +198,15 @@ public class ShitBlocks {
 
     private static void registerBlock(String name, Block block) {
         registerBlockItem(name, block);
-        Registry.register(Registries.BLOCK, new Identifier(ShitMod.MOD_ID, name), block);
+        Registry.register(Registries.BLOCK, new Identifier(Main.SHIT_ID, name), block);
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name),
+        Registry.register(Registries.ITEM, new Identifier(Main.SHIT_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
 
     private static void registerBlockWithoutBlockItem(String name, Block block) {
-        Registry.register(Registries.BLOCK, new Identifier(ShitMod.MOD_ID, name), block);
+        Registry.register(Registries.BLOCK, new Identifier(Main.SHIT_ID, name), block);
     }
 }

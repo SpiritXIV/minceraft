@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "berries=false": {
+      "model": "tdbtd:block/criteric_vines_top"
+    },
+    "berries=true": {
+      "model": "tdbtd:block/criteric_vines_top_lit"
+    }
+  }
+}

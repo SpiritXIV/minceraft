@@ -1,20 +1,27 @@
 package com.spirit.shit;
 
-import com.spirit.shit.block.ShitBlocks;
-import com.spirit.shit.entity.ShitEntities;
-import com.spirit.shit.entity.client.*;
-import com.spirit.shit.entity.client.vehicle.CropDusterRenderer;
-import com.spirit.shit.entity.client.vehicle.TankRenderer;
+import com.spirit.Main;
+import com.spirit.shit.entity.client.ShitModelLayers;
+import com.spirit.shit.entity.client.figures.*;
 import com.spirit.shit.event.KeyInputHandler;
-import com.spirit.shit.particle.ShitParticles;
-import com.spirit.shit.particle.custom.*;
+import com.spirit.shit.particle.custom.CreeperEntityParticle;
+import com.spirit.shit.particle.custom.PlayerEntityParticle;
+import com.spirit.shit.particle.custom.SkeletonEntityParticle;
+import com.spirit.shit.particle.custom.ZombieEntityParticle;
 import com.spirit.shit.render.BulletEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+
+import static com.spirit.shit.block.ShitBlocks.*;
+import static com.spirit.shit.entity.ShitEntities.*;
+import static com.spirit.shit.particle.ShitParticles.*;
+import static com.spirit.shit.ShitMod.*;
+
 
 public class ShitClientMod implements ClientModInitializer {
 
@@ -28,123 +35,134 @@ public class ShitClientMod implements ClientModInitializer {
     }
 
     private void registerEntityRenderers() {
-        EntityRendererRegistry.register(ShitEntities.JBIRD, JbirdRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.RAT_BOMB, RatBombRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.RAT, RatRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.CAPYBARA, CapybaraRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.YIPPEE, YippeeRenderer::new);
+        EntityRendererRegistry.register(JBRID, JbirdRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.JBIRD, JbirdModel::getTexturedModelData);
+        EntityRendererRegistry.register(RAT_BOMB, RatBombRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.RAT_BOMB, RatBombModel::getTexturedModelData);
+        EntityRendererRegistry.register(RAT, RatRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.RAT, RatModel::getTexturedModelData);
+        EntityRendererRegistry.register(CAPYBARA, CapybaraRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.CAPYBARA, CapybaraModel::getTexturedModelData);
+        EntityRendererRegistry.register(SLIM_SHADY, SlimShadyRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.SLIM_SHADY, SlimShadyModel::getTexturedModelData);
+        /*EntityRendererRegistry.register(YIPPEE, YippeeRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.YIPPEE, YippeeModel::getTexturedModelData);*/
+        EntityRendererRegistry.register(DART_MONKEY, DartMonkeyRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.DART_MONKEY, DartMonkeyModel::getTexturedModelData);
+        /*EntityRendererRegistry.register(CESSNA, CapybaraRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.CESSNA, CapybaraModel::getTexturedModelData);
+        EntityRendererRegistry.register(ABRAMS_TANK, TankRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ShitModelLayers.ABRAMS_TANK, TankModel::getTexturedModelData);*/
 
-        EntityRendererRegistry.register(ShitEntities.DART_MONKEY, DartMonkeyRenderer::new);
-
-
-        EntityRendererRegistry.register(ShitEntities.CROP_DUSTER, CropDusterRenderer::new);
-        EntityRendererRegistry.register(ShitEntities.ABRAMS_TANK, TankRenderer::new);
     }
 
     private void registerProjectiles() {
-        EntityRendererRegistry.register(ShitMod.RedBrickProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.BlueBrickProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.TrashCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.OatProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.BulletProjectileEntityType, BulletEntityRenderer::new);
+        EntityRendererRegistry.register(RedBrickProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BlueBrickProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(TrashCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(OatProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BulletProjectileEntityType, BulletEntityRenderer::new);
 
-        EntityRendererRegistry.register(ShitMod.BeerBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.BonkAtomicPunchProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.BottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.BudLightCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ChampagneBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ChugJugProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.CocaColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.CokeZeroCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.CritaColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.DrPepperCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.FantaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.FlaskProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.GlassJarProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.LagarBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.MilkCartonProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.MountainDewCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.MugProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.MugRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.NukaColaBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.NukaColaDarkBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.NukaColaQuantumBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.PeepsPepsiCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.PepsiCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.RumBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeBlueBerryTartCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeBlushingRoseCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeCanadaShyCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeCheekyBitoPudCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeCherryPopCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeColdBeetStewCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeElderFlowerCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeFactoryRustCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeFourCheeseCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeFrenchVanillaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeFulmedamesCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeGamerEnergyCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeJellyBeanCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeJuicyMelonCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeLemonPartyCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeLightCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeLiquroLisiousCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeMayonnaiseCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeMustardCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeOriginalCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizePineapplePizzaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeRawMeatCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeSardineSurpriseCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.StrawBerryMilkCartonProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeTangyKetchupCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeTaroTeaseCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeThirstBornCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeTiramisuCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.ShizeVeggieBrothCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.VodkaBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.WineBottleProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.WineGlassProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BeerBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BonkAtomicPunchProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BudLightCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ChampagneBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ChugJugProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(CocaColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(CokeZeroCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(CritaColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(DrPepperCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(FantaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(FlaskProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(GlassJarProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(LagarBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(MilkCartonProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(MountainDewCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(MugProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(MugRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(NukaColaBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(NukaColaDarkBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(NukaColaQuantumBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(PeepsPepsiCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(PepsiCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(RumBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeBlueBerryTartCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeBlushingRoseCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeCanadaShyCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeCheekyBitoPudCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeCherryPopCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeColdBeetStewCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeElderFlowerCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeFactoryRustCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeFourCheeseCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeFrenchVanillaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeFulmedamesCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeGamerEnergyCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeJellyBeanCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeJuicyMelonCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeLemonPartyCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeLightCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeLiquorLisiousCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeMayonnaiseCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeMustardCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeOriginalCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizePineapplePizzaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeRawMeatCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeSardineSurpriseCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(StrawBerryMilkCartonProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeTangyKetchupCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeTaroTeaseCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeThirstBornCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeTiramisuCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ShizeVeggieBrothCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(VodkaBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(WineBottleProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(WineGlassProjectileEntityType, FlyingItemEntityRenderer::new);
 
-        EntityRendererRegistry.register(ShitMod.SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
 
-        /*EntityRendererRegistry.register(ShitMod.DeadShotDaiquiriCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.DoubleTapRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.JuggernogCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.MuleKickCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.PHDFlopperCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.QuickReviveCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.StaminUpCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.TombStoneSodaCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.VultureAidCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.WhosWhoCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(ShitMod.WidowsWineCanProjectileEntityType, FlyingItemEntityRenderer::new); */
+        /*EntityRendererRegistry.register(DeadShotDaiquiriCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(DoubleTapRootBeerCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(JuggernogCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(MuleKickCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(PHDFlopperCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(QuickReviveCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(SpeedColaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(StaminUpCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(TombStoneSodaCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(VultureAidCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(WhosWhoCanProjectileEntityType, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(WidowsWineCanProjectileEntityType, FlyingItemEntityRenderer::new); */
     }
 
     private void registerParticles() {
-        ParticleFactoryRegistry.getInstance().register(ShitParticles.PLAYER_ENTITY_PARTICLE, PlayerEntityParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ShitParticles.ZOMBIE_ENTITY_PARTICLE, ZombieEntityParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ShitParticles.SKELETON_ENTITY_PARTICLE, SkeletonEntityParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ShitParticles.CREEPER_ENTITY_PARTICLE, CreeperEntityParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(PLAYER_ENTITY_PARTICLE, PlayerEntityParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ZOMBIE_ENTITY_PARTICLE, ZombieEntityParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(SKELETON_ENTITY_PARTICLE, SkeletonEntityParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CREEPER_ENTITY_PARTICLE, CreeperEntityParticle.Factory::new);
     }
 
 
     private void registerBlockRenderLayers() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ALPHA_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CATLOVE_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.CHEFINSANITY_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.COMPUTER_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ERIS_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JARGEDES_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.JBIRD_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.KINGZHARA_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MCFELLA_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.MILKYFUR_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.SIERRA_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.SLAZER_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.SPIRIT_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.TALON_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ShitBlocks.ZARSH_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ALPHA_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(CATLOVE_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(CHEFINSANITY_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(COMPUTER_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ERIS_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(JARGEDES_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(JBIRD_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(KINGZHARA_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MCFELLA_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MILKYFUR_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SIERRA_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SLAZER_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SPIRIT_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TALON_PLUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ZARSH_PLUSH, RenderLayer.getCutout());
+    }
+
+    public static void registerShitpostClientMod() {
+        Main.SHITLOGGER.info("> --Connected || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitClientMod");
     }
 }

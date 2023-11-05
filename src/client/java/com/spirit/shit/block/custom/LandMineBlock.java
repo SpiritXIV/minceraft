@@ -1,6 +1,5 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.common.AbstractShitBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

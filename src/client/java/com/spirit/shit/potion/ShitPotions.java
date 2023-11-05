@@ -1,6 +1,6 @@
 package com.spirit.shit.potion;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import com.spirit.shit.effect.ShitEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.potion.Potion;
@@ -13,7 +13,7 @@ public class ShitPotions {
     public static Potion PEEPS_SPEED;
 
     private static Potion registerPotion(String name, StatusEffectInstance effectInstance) {
-        return Registry.register(Registries.POTION, new Identifier(ShitMod.MOD_ID, name), new Potion(effectInstance));
+        return Registry.register(Registries.POTION, new Identifier(Main.SHIT_ID, name), new Potion(effectInstance));
     }
 
     public static void registerPotions() {

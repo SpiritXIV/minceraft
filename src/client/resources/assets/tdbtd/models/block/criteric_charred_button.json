@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "tdbtd:block/criteric_charred_planks"
+  }
+}

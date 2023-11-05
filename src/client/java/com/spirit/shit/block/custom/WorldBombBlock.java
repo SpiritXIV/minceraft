@@ -1,8 +1,11 @@
 package com.spirit.shit.block.custom;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import com.spirit.shit.entity.damage.DamageTypes;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
@@ -54,15 +57,15 @@ public class WorldBombBlock extends Block {
 
             world.createExplosion(igniter, new DamageSource(RegistryEntry.of(new DamageType("world_bomb", 1))), new ExplosionBehavior(), x, y, z, 100, true, World.ExplosionSourceType.TNT);
             igniter.getWorld().createExplosion(igniter, new DamageSource(RegistryEntry.of(new DamageType("world_bomb", 1))), new ExplosionBehavior(), x, y, z, 100, true, World.ExplosionSourceType.TNT);
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("----------------------------------------------------------SHIT OF THE CRYPT ----------------------------------------------------------");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+            Main.LOGGER.info("----------------------------------------------------------SHIT OF THE CRYPT ----------------------------------------------------------");
             for (int i = 0; i < 25; i++)
-                ShitMod.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
-            ShitMod.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+                Main.LOGGER.info("- THE SERVER WAS CLOSED DUE TO SOMEONE DETONATING THE WORLD BOMB, IT DIDN'T CRASH THE BOMB IS MADE TO INTENTIONALLY CRASH THE SERVER -");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
+            Main.LOGGER.info("--------------------------------------------------------------------------------------------------------------------------------------");
             Objects.requireNonNull(world.getServer()).save(false, false, true);
             Objects.requireNonNull(world.getServer()).close();
         }

@@ -2,7 +2,10 @@ package com.spirit.shit.entity.custom;
 
 import com.spirit.shit.sound.ShitSounds;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -20,29 +23,38 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.Animation;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
 
-public class RatEntity extends PassiveEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
+public class RatEntity extends PassiveEntity {
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
     private boolean spinning;
 
     public RatEntity(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
     }
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
+            this.idleAnimationTimeout = this.random.nextInt(40) + 80;
+            this.idleAnimationState.start(this.age);
+        } else {
+            --this.idleAnimationTimeout;
+        }
+    }
 
+    @Override
+    protected void updateLimbs(float posDelta) {
+        float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
+        this.limbAnimator.updateLimbs(f, 0.2f);
+    }
+
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(this.getWorld().isClient()) {
+            setupAnimationStates();
+        }
+    }
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -79,33 +91,6 @@ public class RatEntity extends PassiveEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
-    @SuppressWarnings("SameReturnValue")
-    private <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.rat.move", Animation.LoopType.LOOP));
-            if (this.spinning){
-                setSpinning(false);
-            }
-
-            return PlayState.CONTINUE;
-        }
-
-        event.getController().setAnimation(RawAnimation.begin().then("animation.rat.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    @SuppressWarnings("SameReturnValue")
-    private <T extends GeoAnimatable> PlayState spinpredicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
-        if (this.spinning && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-
-            event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().then("animation.rat.spin", Animation.LoopType.PLAY_ONCE));
-        }
-        setSpinning(false);
-        this.setAiDisabled(false);
-        return PlayState.CONTINUE;
-    }
-
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
@@ -128,12 +113,6 @@ public class RatEntity extends PassiveEntity implements GeoEntity {
             return ActionResult.success(this.getWorld().isClient);
         }
         return super.interactMob(player, hand);
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
-        controllerRegistrar.add(new AnimationController<>(this, "spincontroller", 1, this::spinpredicate));
     }
 
     @Override

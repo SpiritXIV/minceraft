@@ -1,6 +1,6 @@
 package com.spirit.shit.console;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,10 +18,10 @@ public class RepositoryLogger {
     public static void logInitializedClasses(Class<?>[] initializedClasses) {
         String repositoryPath = "the-shit-of-crypt/src"; // Change this to the actual path of your repository
 
-        ShitMod.LOGGER.info(">> /-------------------------------------------------------------------------------------------------------------------------------------");
-        ShitMod.LOGGER.info(">> | Loading initialized classes files...");
-        ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
-        ShitMod.LOGGER.info(">> | Preparing to loading initialized java classes...");
+        Main.SHITLOGGER.info(">> /-------------------------------------------------------------------------------------------------------------------------------------");
+        Main.SHITLOGGER.info(">> | Loading initialized classes files...");
+        Main.SHITLOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+        Main.SHITLOGGER.info(">> | Preparing to loading initialized java classes...");
 
         List<String> loadedFiles = new ArrayList<>();
         AtomicInteger totalFiles = new AtomicInteger();
@@ -73,29 +73,29 @@ public class RepositoryLogger {
                 // Calculate characters in the class name (including package name)
                 totalCharacters.addAndGet(className.length());
             }
-            ShitMod.LOGGER.info(">> | Beginning to loading java classes...");
+            Main.SHITLOGGER.info(">> | Beginning to loading java classes...");
             Collections.sort(loadedFiles);
 
             int count = 0;
             for (String loadedFile : loadedFiles) {
                 count++;
                 double progress = (double) count / totalFiles.get() * 100;
-                ShitMod.LOGGER.info("[" + String.format("%.2f", progress) + "%] >> | " + loadedFile);
+                Main.SHITLOGGER.info("[" + String.format("%.2f", progress) + "%] >> | " + loadedFile);
             }
 
             long endTime = System.currentTimeMillis(); // Capture end time
             long elapsedTime = endTime - startTime; // Calculate elapsed time
-            ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
+            Main.SHITLOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
 
-            ShitMod.LOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
+            Main.SHITLOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
 
             // Display the count of each file type
-            ShitMod.LOGGER.info(">> | Total classes file types:");
+            Main.SHITLOGGER.info(">> | Total classes file types:");
             for (Map.Entry<String, Integer> entry : fileTypeCounts.entrySet()) {
-                ShitMod.LOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
+                Main.SHITLOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
             }
 
-            ShitMod.LOGGER.info(">> | Finished loading java classes");
+            Main.SHITLOGGER.info(">> | Finished loading java classes");
         } catch (IOException ignored) {
         }
     }
@@ -103,8 +103,8 @@ public class RepositoryLogger {
     public static void logInitializedCPPClasses(Class<?>[] initializedClasses) {
         String repositoryPath = "the-shit-of-crypt/src/client/c++"; // Change this to the actual path of your repository
 
-        ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
-        ShitMod.LOGGER.info(">> | Preparing to loading initialized c++ classes...");
+        Main.SHITLOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+        Main.SHITLOGGER.info(">> | Preparing to loading initialized c++ classes...");
 
         List<String> loadedFiles = new ArrayList<>();
         AtomicInteger totalFiles = new AtomicInteger();
@@ -156,29 +156,29 @@ public class RepositoryLogger {
                 // Calculate characters in the class name (including package name)
                 totalCharacters.addAndGet(className.length());
             }
-            ShitMod.LOGGER.info(">> | Beginning to loading c++ classes...");
+            Main.SHITLOGGER.info(">> | Beginning to loading c++ classes...");
             Collections.sort(loadedFiles);
 
             int count = 0;
             for (String loadedFile : loadedFiles) {
                 count++;
                 double progress = (double) count / totalFiles.get() * 100;
-                ShitMod.LOGGER.info("[" + String.format("%.2f", progress) + "%] >> | " + loadedFile);
+                Main.SHITLOGGER.info("[" + String.format("%.2f", progress) + "%] >> | " + loadedFile);
             }
 
             long endTime = System.currentTimeMillis(); // Capture end time
             long elapsedTime = endTime - startTime; // Calculate elapsed time
-            ShitMod.LOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
+            Main.SHITLOGGER.info(">> | ------------------------------------------------------------------------------------------------------------------------------------");
 
-            ShitMod.LOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
+            Main.SHITLOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
 
             // Display the count of each file type
-            ShitMod.LOGGER.info(">> | Total classes file types:");
+            Main.SHITLOGGER.info(">> | Total classes file types:");
             for (Map.Entry<String, Integer> entry : fileTypeCounts.entrySet()) {
-                ShitMod.LOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
+                Main.SHITLOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
             }
 
-            ShitMod.LOGGER.info(">> | Finished loading c++ classes");
+            Main.SHITLOGGER.info(">> | Finished loading c++ classes");
         } catch (IOException ignored) {
         }
     }
@@ -186,8 +186,8 @@ public class RepositoryLogger {
     public static void logInitializedResourceClasses(Class<?>[] initializedClasses) {
         String repositoryPath = "the-shit-of-crypt/src/client/resources"; // Change this to the actual path of your repository
 
-        ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
-        ShitMod.LOGGER.info(">> | Loading initialized resource files...");
+        Main.SHITLOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
+        Main.SHITLOGGER.info(">> | Loading initialized resource files...");
 
         List<String> loadedFiles = new ArrayList<>();
         AtomicInteger totalFiles = new AtomicInteger();
@@ -239,8 +239,8 @@ public class RepositoryLogger {
                 // Calculate characters in the class name (including package name)
                 totalCharacters.addAndGet(className.length());
             }
-            ShitMod.LOGGER.info(">> | Preparing loading resource files in background...");
-            ShitMod.LOGGER.info(">> | Beginning loading resource files in background...");
+            Main.SHITLOGGER.info(">> | Preparing loading resource files in background...");
+            Main.SHITLOGGER.info(">> | Beginning loading resource files in background...");
             Collections.sort(loadedFiles);
 
             int count = 0;
@@ -252,16 +252,16 @@ public class RepositoryLogger {
             long endTime = System.currentTimeMillis(); // Capture end time
             long elapsedTime = endTime - startTime; // Calculate elapsed time
 
-            ShitMod.LOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
+            Main.SHITLOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
 
             // Display the count of each file type
-            ShitMod.LOGGER.info(">> | Total resource files Types:");
+            Main.SHITLOGGER.info(">> | Total resource files Types:");
             for (Map.Entry<String, Integer> entry : fileTypeCounts.entrySet()) {
-                ShitMod.LOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
+                Main.SHITLOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
             }
 
-            ShitMod.LOGGER.info(">> | Finished loading resource files");
-            ShitMod.LOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
+            Main.SHITLOGGER.info(">> | Finished loading resource files");
+            Main.SHITLOGGER.info(">> +-------------------------------------------------------------------------------------------------------------------------------------");
 
         } catch (IOException ignored) {
         }
@@ -330,17 +330,17 @@ public class RepositoryLogger {
 
             long endTime = System.currentTimeMillis(); // Capture end time
             long elapsedTime = endTime - startTime; // Calculate elapsed time
-            ShitMod.LOGGER.info(">> | Full repo files:");
+            Main.SHITLOGGER.info(">> | Full repo files:");
 
-            ShitMod.LOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
+            Main.SHITLOGGER.info(">> | Total Size: " + totalSize[0] + " bytes | Total Characters: " + totalCharacters.get() + " | Total Lines: " + totalLines.get() + " | Elapsed Time: " + elapsedTime + " ms | Files Loaded: " + totalFiles.get());
 
             // Display the count of each file type
-            ShitMod.LOGGER.info(">> | Total File Types:");
+            Main.SHITLOGGER.info(">> | Total File Types:");
             for (Map.Entry<String, Integer> entry : fileTypeCounts.entrySet()) {
-                ShitMod.LOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
+                Main.SHITLOGGER.info(">> | " + entry.getKey() + ": " + entry.getValue());
             }
 
-            ShitMod.LOGGER.info(">> \\+------------------------------------------------------------------------------------------------------------------------------------");
+            Main.SHITLOGGER.info(">> \\+------------------------------------------------------------------------------------------------------------------------------------");
 
         } catch (IOException e) {
             e.printStackTrace();

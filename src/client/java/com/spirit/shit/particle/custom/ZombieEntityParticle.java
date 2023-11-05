@@ -1,6 +1,6 @@
 package com.spirit.shit.particle.custom;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.MathHelper;
 @Environment(EnvType.CLIENT)
 public class ZombieEntityParticle extends SpriteBillboardParticle {
 
-    private static final Identifier TEXTURE = new Identifier(ShitMod.MOD_ID, "textures/particle/schizo/zombie.png");
+    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/particle/schizo/zombie.png");
     private static final RenderLayer LAYER = RenderLayer.getEntityTranslucent(TEXTURE);
     private static final Model MODEL = new ZombieEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.ZOMBIE));
 

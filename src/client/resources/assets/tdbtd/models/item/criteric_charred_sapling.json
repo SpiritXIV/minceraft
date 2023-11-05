@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tdbtd:item/criteric_charred_sapling"
+  }
+}

@@ -1,6 +1,6 @@
 package com.spirit.shit.item;
 
-import com.spirit.shit.ShitMod;
+import com.spirit.Main;
 import com.spirit.shit.item.custom.*;
 import com.spirit.shit.item.custom.gun.*;
 import com.spirit.shit.item.custom.projectile.*;
@@ -26,7 +26,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
+
 public class ShitItems {
+
+    //UNSORTED
+    public static final Item RAW_BAUXITE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+
+
+
+
+
+
+
     //Items
     public static final Item ALUMINUM_INGOT = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item ALUMINUM_NUGGET = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
@@ -241,8 +253,7 @@ public class ShitItems {
     public static final Item PIE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item PIE_DAMAGE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item PIE_SUS = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
-    public static final Item LASER_POINTER_OFF = new LaserPointerItemOff(new FabricItemSettings().food(ShitFoodComponents.NOTHING).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item LASER_POINTER_ON = new LaserPointerItemOn(new FabricItemSettings().food(ShitFoodComponents.NOTHING).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item LASER_POINTER = new LaserPointerItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG_MUSTARD = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG_KETCHUP = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
@@ -304,6 +315,12 @@ public class ShitItems {
     public static final Item NEWPORT_BOX = new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
 
     static Map<String, Object> ITEMS = Stream.of(new Object[][] {
+
+            //UNSORTED
+            {"raw_bauxite", RAW_BAUXITE},
+
+
+
             {"aluminum_ingot", ALUMINUM_INGOT},
             {"aluminum_nugget", ALUMINUM_NUGGET},
             {"bolt_bronze", BOLT_BRONZE},
@@ -496,8 +513,7 @@ public class ShitItems {
             {"pie", PIE},
             {"pie_damage", PIE_DAMAGE},
             {"pie_sus", PIE_SUS},
-            {"laser_pointer_off", LASER_POINTER_OFF},
-            {"laser_pointer_on", LASER_POINTER_ON},
+            {"laser_pointer", LASER_POINTER},
             {"cosco_big_long_dog", COSCO_BIG_LONG_DOG},
             {"cosco_big_long_dog_mustard", COSCO_BIG_LONG_DOG_MUSTARD},
             {"cosco_big_long_dog_ketchup", COSCO_BIG_LONG_DOG_KETCHUP},
@@ -567,9 +583,9 @@ public class ShitItems {
 
     //REGISTRY
     private static void registerItem(String name, Item item) {
-        Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name), item);
+        Registry.register(Registries.ITEM, new Identifier(Main.SHIT_ID, name), item);
     }
     private static void registerToolItem(String name, Item item) {
-        Registry.register(Registries.ITEM, new Identifier(ShitMod.MOD_ID, name), item);
+        Registry.register(Registries.ITEM, new Identifier(Main.SHIT_ID, name), item);
     }
 }

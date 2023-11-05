@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "tdbtd:block/criteric_charred_leaves"
+  }
+}

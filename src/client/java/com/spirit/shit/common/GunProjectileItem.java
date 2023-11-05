@@ -10,6 +10,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import net.minecraft.world.World;
 import net.minecraft.client.item.TooltipContext;
@@ -18,11 +22,17 @@ import java.util.List;
 
 public abstract class GunProjectileItem extends Item {
 
+    // /*attempt*/ = getting the bullets to have a custom color for the effect
+
+    /*attempt*/ public Color bulletColor = Color.RED; // Default color
+    /*attempt*/ public Map<String, Color> effectColorMap = new HashMap<>();
+
     public GunProjectileItem(Settings settings) {
         super(settings);
     }
 
-    public ItemStack createItemWithEffects(StatusEffect effect, byte isIncendiary, byte isExplosive, byte isExtendedDuration) {
+
+    public ItemStack createItemWithEffects(StatusEffect effect, byte isIncendiary, byte isExplosive, byte isExtendedDuration, /*attempt*/ GunProjectileItem bulletColor) {
         ItemStack stack = new ItemStack(this);
         NbtCompound nbt = new NbtCompound();
         NbtList flags = new NbtList();
@@ -32,11 +42,25 @@ public abstract class GunProjectileItem extends Item {
         flags.add(NbtByte.of(isExplosive));  // Is Explosive
         flags.add(NbtByte.of(isExtendedDuration)); // Has Extended Duration
 
-        nbt.put("Flags", flags);
 
+        /*attempt*/ nbt.putString("BulletColor", bulletColor.toString()); // Store the bullet color as a string
+
+        nbt.put("Flags", flags);
         stack.setNbt(nbt);
         return stack;
     }
+
+    /*attempt*/
+    private Color getArrowColorFromNBT(ItemStack stack) {
+        NbtCompound nbt = stack.getNbt();
+        if (nbt != null && nbt.contains("BulletColor")) {
+            String colorString = nbt.getString("BulletColor");
+            return Color.getColor(colorString);
+        }
+        return Color.cyan; // Default color if not found in NBT
+    }
+
+
 
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         NbtCompound nbt = stack.getNbt();
@@ -119,5 +143,7 @@ public abstract class GunProjectileItem extends Item {
         }
         return super.getName(stack);
     }
+
+
     public abstract void fire(World world, PlayerEntity player, double velocityModifier, ItemStack bulletItem, double damage);
 }

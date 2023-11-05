@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tdbtd:block/criteric_vines_top"
+  }
+}

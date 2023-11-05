@@ -1,0 +1,6 @@
+{
+  "parent": "item/gui",
+  "textures": {
+    "layer0": "tdbtd:item/dimented_scythe"
+  }
+}

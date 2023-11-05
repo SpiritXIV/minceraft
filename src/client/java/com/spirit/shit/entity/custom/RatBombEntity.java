@@ -32,24 +32,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.Animation;
-import software.bernie.geckolib.core.animation.AnimationController;import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
 
 import java.util.Collection;
 
-public class RatBombEntity extends PassiveEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+public class RatBombEntity extends PassiveEntity {
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
     private static final TrackedData<Integer> FUSE_SPEED = DataTracker.registerData(RatBombEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> IGNITED = DataTracker.registerData(RatBombEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private int lastFuseTime;
@@ -60,6 +49,20 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
 
     public RatBombEntity(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
+    }
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
+            this.idleAnimationTimeout = this.random.nextInt(40) + 80;
+            this.idleAnimationState.start(this.age);
+        } else {
+            --this.idleAnimationTimeout;
+        }
+    }
+
+    @Override
+    protected void updateLimbs(float posDelta) {
+        float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
+        this.limbAnimator.updateLimbs(f, 0.2f);
     }
 
     @Nullable
@@ -100,40 +103,6 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.LAVA, 8.0f);
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
-
-    @SuppressWarnings("SameReturnValue")
-    private <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.rat_bomb.move", Animation.LoopType.LOOP));
-            if (this.spinning) {
-                setSpinning(false);
-            }
-
-            return PlayState.CONTINUE;
-        }
-
-        event.getController().setAnimation(RawAnimation.begin().then("animation.rat_bomb.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    @SuppressWarnings("SameReturnValue")
-    private <T extends GeoAnimatable> PlayState spinpredicate(software.bernie.geckolib.core.animation.AnimationState<T> event) {
-        if (this.spinning && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-
-            event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().then("animation.rat_bomb.spin", Animation.LoopType.PLAY_ONCE));
-        }
-        setSpinning(false);
-        this.setAiDisabled(false);
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
-        controllerRegistrar.add(new AnimationController<>(this, "spincontroller", 1, this::spinpredicate));
-    }
-
     @Override
     protected SoundEvent getAmbientSound() {
         return ShitSounds.NOTHING;
@@ -215,6 +184,9 @@ public class RatBombEntity extends PassiveEntity implements GeoEntity {
             }
         }
         super.tick();
+        if(this.getWorld().isClient()) {
+            setupAnimationStates();
+        }
     }
 
     @Override

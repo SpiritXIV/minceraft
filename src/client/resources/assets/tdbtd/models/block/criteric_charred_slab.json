@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "tdbtd:block/criteric_charred_planks",
+    "side": "tdbtd:block/criteric_charred_planks",
+    "top": "tdbtd:block/criteric_charred_planks"
+  }
+}

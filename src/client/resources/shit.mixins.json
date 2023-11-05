@@ -1,13 +1,16 @@
 {
   "required": true,
-  "package": "com.spirit.shit.mixin",
+  "package": "com.spirit.Mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ClientPlayerInteractionManagerMixin",
-    "ShitMixin"
+    "ShitMixin",
+    "TDBTDMixin"
+
   ],
   "client": [
-    "client.ShitClientMixin"
+    "ShitMixin",
+    "TDBTDMixin"
   ],
   "injectors": {
     "defaultRequire": 1

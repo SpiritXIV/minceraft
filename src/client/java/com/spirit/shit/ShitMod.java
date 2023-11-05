@@ -11,10 +11,9 @@
 package com.spirit.shit;
 
 
-import com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse;
+import com.spirit.Main;
 import com.spirit.shit.block.ShitBlocks;
 import com.spirit.shit.common.GunProjectileItem;
-import com.spirit.shit.console.RepositoryLogger;
 import com.spirit.shit.effect.ShitEffects;
 import com.spirit.shit.entity.ShitEntities;
 import com.spirit.shit.entity.custom.*;
@@ -23,12 +22,13 @@ import com.spirit.shit.entity.custom.projectile.beverage.*;
 import com.spirit.shit.item.ShitItemGroup;
 import com.spirit.shit.item.ShitItems;
 import com.spirit.shit.common.GunItem;
+import com.spirit.shit.painting.ShitPaintings;
 import com.spirit.shit.particle.ShitParticles;
 import com.spirit.shit.potion.ShitPotions;
 import com.spirit.shit.sound.ShitSounds;
 import com.spirit.shit.util.PacketIDs;
-import net.fabricmc.fabric.api.event.server.ServerStartCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -51,12 +51,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import software.bernie.geckolib.GeckoLib;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import com.spirit.shit.common.Common;
-
 import java.util.Objects;
 
 import static net.minecraft.server.command.CommandManager.literal;
@@ -66,604 +62,96 @@ public class ShitMod implements ModInitializer {
     //public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     //public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
 
-    public static final String MOD_ID = "shit";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-
-    public static final EntityType<RedBrickProjectileEntity> RedBrickProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "red_brick"),
-            FabricEntityTypeBuilder.<RedBrickProjectileEntity>create(SpawnGroup.MISC, RedBrickProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-    public static final EntityType<BlueBrickProjectileEntity> BlueBrickProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "blue_brick"),
-            FabricEntityTypeBuilder.<BlueBrickProjectileEntity>create(SpawnGroup.MISC, BlueBrickProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-    public static final EntityType<TrashCanProjectileEntity> TrashCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "trash_can"),
-            FabricEntityTypeBuilder.<TrashCanProjectileEntity>create(SpawnGroup.MISC, TrashCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(1F, 2F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-    public static final EntityType<OatProjectileEntity> OatProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "oat"),
-            FabricEntityTypeBuilder.<OatProjectileEntity>create(SpawnGroup.MISC, OatProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-
-    public static final EntityType<BulletProjectileEntity> BulletProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "bullet_entity"),
-            FabricEntityTypeBuilder.<BulletProjectileEntity>create(SpawnGroup.MISC, BulletProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-//DRINKS
-    public static final EntityType<BeerBottleProjectileEntity> BeerBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "beer_bottle"),
-            FabricEntityTypeBuilder.<BeerBottleProjectileEntity>create(SpawnGroup.MISC, BeerBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<BonkAtomicPunchProjectileEntity> BonkAtomicPunchProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "bonk_atomic_punch_projectile"),
-            FabricEntityTypeBuilder.<BonkAtomicPunchProjectileEntity>create(SpawnGroup.MISC, BonkAtomicPunchProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<BottleProjectileEntity> BottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "bottle"),
-            FabricEntityTypeBuilder.<BottleProjectileEntity>create(SpawnGroup.MISC, BottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<BudLightCanProjectileEntity> BudLightCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "bud_light_can"),
-            FabricEntityTypeBuilder.<BudLightCanProjectileEntity>create(SpawnGroup.MISC, BudLightCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ChampagneBottleProjectileEntity> ChampagneBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "champagne_bottle"),
-            FabricEntityTypeBuilder.<ChampagneBottleProjectileEntity>create(SpawnGroup.MISC, ChampagneBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ChugJugProjectileEntity> ChugJugProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "chug_jug_empty"),
-            FabricEntityTypeBuilder.<ChugJugProjectileEntity>create(SpawnGroup.MISC, ChugJugProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<CocaColaCanProjectileEntity> CocaColaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "coca_cola_can"),
-            FabricEntityTypeBuilder.<CocaColaCanProjectileEntity>create(SpawnGroup.MISC, CocaColaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<CokeZeroCanProjectileEntity> CokeZeroCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "coke_zero_can"),
-            FabricEntityTypeBuilder.<CokeZeroCanProjectileEntity>create(SpawnGroup.MISC, CokeZeroCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<CritaColaCanProjectileEntity> CritaColaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "crita_cola_can"),
-            FabricEntityTypeBuilder.<CritaColaCanProjectileEntity>create(SpawnGroup.MISC, CritaColaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<DrPepperCanProjectileEntity> DrPepperCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "dr_pepper_can"),
-            FabricEntityTypeBuilder.<DrPepperCanProjectileEntity>create(SpawnGroup.MISC, DrPepperCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<FantaCanProjectileEntity> FantaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "fanta_can"),
-            FabricEntityTypeBuilder.<FantaCanProjectileEntity>create(SpawnGroup.MISC, FantaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<FlaskProjectileEntity> FlaskProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "flask_empty"),
-            FabricEntityTypeBuilder.<FlaskProjectileEntity>create(SpawnGroup.MISC, FlaskProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<GlassJarProjectileEntity> GlassJarProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "glass_jar"),
-            FabricEntityTypeBuilder.<GlassJarProjectileEntity>create(SpawnGroup.MISC, GlassJarProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<LagarBottleProjectileEntity> LagarBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "lagar_bottle"),
-            FabricEntityTypeBuilder.<LagarBottleProjectileEntity>create(SpawnGroup.MISC, LagarBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<MilkCartonProjectileEntity> MilkCartonProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "milk_carton_empty"),
-            FabricEntityTypeBuilder.<MilkCartonProjectileEntity>create(SpawnGroup.MISC, MilkCartonProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<MountainDewCanProjectileEntity> MountainDewCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "mountain_dew_can"),
-            FabricEntityTypeBuilder.<MountainDewCanProjectileEntity>create(SpawnGroup.MISC, MountainDewCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<MugProjectileEntity> MugProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "mug"),
-            FabricEntityTypeBuilder.<MugProjectileEntity>create(SpawnGroup.MISC, MugProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<NukaColaBottleProjectileEntity> NukaColaBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "nuka_cola_bottle"),
-            FabricEntityTypeBuilder.<NukaColaBottleProjectileEntity>create(SpawnGroup.MISC, NukaColaBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<NukaColaDarkBottleProjectileEntity> NukaColaDarkBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "nuka_cola_dark_bottle"),
-            FabricEntityTypeBuilder.<NukaColaDarkBottleProjectileEntity>create(SpawnGroup.MISC, NukaColaDarkBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<NukaColaQuantumBottleProjectileEntity> NukaColaQuantumBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "nuka_cola_quantum_bottle"),
-            FabricEntityTypeBuilder.<NukaColaQuantumBottleProjectileEntity>create(SpawnGroup.MISC, NukaColaQuantumBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<MugRootBeerCanProjectileEntity> MugRootBeerCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "mug_root_beer_can"),
-            FabricEntityTypeBuilder.<MugRootBeerCanProjectileEntity>create(SpawnGroup.MISC, MugRootBeerCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<PeepsPepsiCanProjectileEntity> PeepsPepsiCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "peeps_pepsi_can"),
-            FabricEntityTypeBuilder.<PeepsPepsiCanProjectileEntity>create(SpawnGroup.MISC, PeepsPepsiCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<PepsiCanProjectileEntity> PepsiCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "pepsi_can"),
-            FabricEntityTypeBuilder.<PepsiCanProjectileEntity>create(SpawnGroup.MISC, PepsiCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<RumBottleProjectileEntity> RumBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "rum_bottle"),
-            FabricEntityTypeBuilder.<RumBottleProjectileEntity>create(SpawnGroup.MISC, RumBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeBlueBerryTartCanProjectileEntity> ShizeBlueBerryTartCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_blueberrytart_can"),
-            FabricEntityTypeBuilder.<ShizeBlueBerryTartCanProjectileEntity>create(SpawnGroup.MISC, ShizeBlueBerryTartCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeBlushingRoseCanProjectileEntity> ShizeBlushingRoseCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_blushingrose_can"),
-            FabricEntityTypeBuilder.<ShizeBlushingRoseCanProjectileEntity>create(SpawnGroup.MISC, ShizeBlushingRoseCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeCanadaShyCanProjectileEntity> ShizeCanadaShyCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_canadashy_can"),
-            FabricEntityTypeBuilder.<ShizeCanadaShyCanProjectileEntity>create(SpawnGroup.MISC, ShizeCanadaShyCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeCheekyBitoPudCanProjectileEntity> ShizeCheekyBitoPudCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_cheekybitopud_can"),
-            FabricEntityTypeBuilder.<ShizeCheekyBitoPudCanProjectileEntity>create(SpawnGroup.MISC, ShizeCheekyBitoPudCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeCherryPopCanProjectileEntity> ShizeCherryPopCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_cherrypop_can"),
-            FabricEntityTypeBuilder.<ShizeCherryPopCanProjectileEntity>create(SpawnGroup.MISC, ShizeCherryPopCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeColdBeetStewCanProjectileEntity> ShizeColdBeetStewCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_coldbeetstew_can"),
-            FabricEntityTypeBuilder.<ShizeColdBeetStewCanProjectileEntity>create(SpawnGroup.MISC, ShizeColdBeetStewCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeElderFlowerCanProjectileEntity> ShizeElderFlowerCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_elderflower_can"),
-            FabricEntityTypeBuilder.<ShizeElderFlowerCanProjectileEntity>create(SpawnGroup.MISC, ShizeElderFlowerCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeFactoryRustCanProjectileEntity> ShizeFactoryRustCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_factoryrust_can"),
-            FabricEntityTypeBuilder.<ShizeFactoryRustCanProjectileEntity>create(SpawnGroup.MISC, ShizeFactoryRustCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeFourCheeseCanProjectileEntity> ShizeFourCheeseCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_fourcheese_can"),
-            FabricEntityTypeBuilder.<ShizeFourCheeseCanProjectileEntity>create(SpawnGroup.MISC, ShizeFourCheeseCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeFrenchVanillaCanProjectileEntity> ShizeFrenchVanillaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_frenchvanilla_can"),
-            FabricEntityTypeBuilder.<ShizeFrenchVanillaCanProjectileEntity>create(SpawnGroup.MISC, ShizeFrenchVanillaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeFulmedamesCanProjectileEntity> ShizeFulmedamesCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_fulmedames_can"),
-            FabricEntityTypeBuilder.<ShizeFulmedamesCanProjectileEntity>create(SpawnGroup.MISC, ShizeFulmedamesCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeGamerEnergyCanProjectileEntity> ShizeGamerEnergyCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_gamerenergy_can"),
-            FabricEntityTypeBuilder.<ShizeGamerEnergyCanProjectileEntity>create(SpawnGroup.MISC, ShizeGamerEnergyCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeJellyBeanCanProjectileEntity> ShizeJellyBeanCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_jellybean_can"),
-            FabricEntityTypeBuilder.<ShizeJellyBeanCanProjectileEntity>create(SpawnGroup.MISC, ShizeJellyBeanCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeJuicyMelonCanProjectileEntity> ShizeJuicyMelonCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_juicymelon_can"),
-            FabricEntityTypeBuilder.<ShizeJuicyMelonCanProjectileEntity>create(SpawnGroup.MISC, ShizeJuicyMelonCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeLemonPartyCanProjectileEntity> ShizeLemonPartyCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_lemonparty_can"),
-            FabricEntityTypeBuilder.<ShizeLemonPartyCanProjectileEntity>create(SpawnGroup.MISC, ShizeLemonPartyCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeLightCanProjectileEntity> ShizeLightCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_light_can"),
-            FabricEntityTypeBuilder.<ShizeLightCanProjectileEntity>create(SpawnGroup.MISC, ShizeLightCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeLiquorLisiousCanProjectileEntity> ShizeLiquroLisiousCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_liqurolisious_can"),
-            FabricEntityTypeBuilder.<ShizeLiquorLisiousCanProjectileEntity>create(SpawnGroup.MISC, ShizeLiquorLisiousCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeMayonnaiseCanProjectileEntity> ShizeMayonnaiseCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_mayonnaise_can"),
-            FabricEntityTypeBuilder.<ShizeMayonnaiseCanProjectileEntity>create(SpawnGroup.MISC, ShizeMayonnaiseCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeMustardCanProjectileEntity> ShizeMustardCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_mustard_can"),
-            FabricEntityTypeBuilder.<ShizeMustardCanProjectileEntity>create(SpawnGroup.MISC, ShizeMustardCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeOriginalCanProjectileEntity> ShizeOriginalCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_original_can"),
-            FabricEntityTypeBuilder.<ShizeOriginalCanProjectileEntity>create(SpawnGroup.MISC, ShizeOriginalCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizePineapplePizzaCanProjectileEntity> ShizePineapplePizzaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_pineapplepizza_can"),
-            FabricEntityTypeBuilder.<ShizePineapplePizzaCanProjectileEntity>create(SpawnGroup.MISC, ShizePineapplePizzaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeRawMeatCanProjectileEntity> ShizeRawMeatCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_rawmeat_can"),
-            FabricEntityTypeBuilder.<ShizeRawMeatCanProjectileEntity>create(SpawnGroup.MISC, ShizeRawMeatCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeSardineSurpriseCanProjectileEntity> ShizeSardineSurpriseCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_sardinesurprise_can"),
-            FabricEntityTypeBuilder.<ShizeSardineSurpriseCanProjectileEntity>create(SpawnGroup.MISC, ShizeSardineSurpriseCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeStrawberryKiwiCanProjectileEntity> ShizeStrawberryKiwiCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_strawberrykiwi_can"),
-            FabricEntityTypeBuilder.<ShizeStrawberryKiwiCanProjectileEntity>create(SpawnGroup.MISC, ShizeStrawberryKiwiCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeTangyKetchupCanProjectileEntity> ShizeTangyKetchupCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_tangyketchup_can"),
-            FabricEntityTypeBuilder.<ShizeTangyKetchupCanProjectileEntity>create(SpawnGroup.MISC, ShizeTangyKetchupCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeTaroTeaseCanProjectileEntity> ShizeTaroTeaseCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_tarotease_can"),
-            FabricEntityTypeBuilder.<ShizeTaroTeaseCanProjectileEntity>create(SpawnGroup.MISC, ShizeTaroTeaseCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeThirstBornCanProjectileEntity> ShizeThirstBornCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_thirstborn_can"),
-            FabricEntityTypeBuilder.<ShizeThirstBornCanProjectileEntity>create(SpawnGroup.MISC, ShizeThirstBornCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeTiramisuCanProjectileEntity> ShizeTiramisuCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_tiramisu_can"),
-            FabricEntityTypeBuilder.<ShizeTiramisuCanProjectileEntity>create(SpawnGroup.MISC, ShizeTiramisuCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeTropicalStormCanProjectileEntity> ShizeTropicalStormCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_tropicalstorm_can"),
-            FabricEntityTypeBuilder.<ShizeTropicalStormCanProjectileEntity>create(SpawnGroup.MISC, ShizeTropicalStormCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<ShizeVeggieBrothCanProjectileEntity> ShizeVeggieBrothCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "shize_veggiebroth_can"),
-            FabricEntityTypeBuilder.<ShizeVeggieBrothCanProjectileEntity>create(SpawnGroup.MISC, ShizeVeggieBrothCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<StrawBerryMilkCartonProjectileEntity> StrawBerryMilkCartonProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "strawberry_milk_carton_empty"),
-            FabricEntityTypeBuilder.<StrawBerryMilkCartonProjectileEntity>create(SpawnGroup.MISC, StrawBerryMilkCartonProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<VodkaBottleProjectileEntity> VodkaBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "vodka_bottle"),
-            FabricEntityTypeBuilder.<VodkaBottleProjectileEntity>create(SpawnGroup.MISC, VodkaBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<WineBottleProjectileEntity> WineBottleProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "wine_bottle"),
-            FabricEntityTypeBuilder.<WineBottleProjectileEntity>create(SpawnGroup.MISC, WineBottleProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<WineGlassProjectileEntity> WineGlassProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "wine_glass_empty"),
-            FabricEntityTypeBuilder.<WineGlassProjectileEntity>create(SpawnGroup.MISC, WineGlassProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    /*public static final EntityType<DeadShotDaiquiriCanProjectileEntity> DeadShotDaiquiriCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "deadshotdaiquiri_can"),
-            FabricEntityTypeBuilder.<DeadShotDaiquiriCanProjectileEntity>create(SpawnGroup.MISC, DeadShotDaiquiriCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<DoubleTapRootBeerCanProjectileEntity> DoubleTapRootBeerCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "doubletaprootbeer_can"),
-            FabricEntityTypeBuilder.<DoubleTapRootBeerCanProjectileEntity>create(SpawnGroup.MISC, DoubleTapRootBeerCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<JuggernogCanProjectileEntity> JuggernogCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "juggernog_can"),
-            FabricEntityTypeBuilder.<JuggernogCanProjectileEntity>create(SpawnGroup.MISC, JuggernogCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<MuleKickCanProjectileEntity> MuleKickCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "mulekick_can"),
-            FabricEntityTypeBuilder.<MuleKickCanProjectileEntity>create(SpawnGroup.MISC, MuleKickCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<PHDFlopperCanProjectileEntity> PHDFlopperCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "phdflopper_can"),
-            FabricEntityTypeBuilder.<PHDFlopperCanProjectileEntity>create(SpawnGroup.MISC, PHDFlopperCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<QuickReviveCanProjectileEntity> QuickReviveCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "quickrevive_can"),
-            FabricEntityTypeBuilder.<QuickReviveCanProjectileEntity>create(SpawnGroup.MISC, QuickReviveCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<StaminUpCanProjectileEntity> StaminUpCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "staminup_can"),
-            FabricEntityTypeBuilder.<StaminUpCanProjectileEntity>create(SpawnGroup.MISC, StaminUpCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<TombStoneSodaCanProjectileEntity> TombStoneSodaCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "tombstonesoda_can"),
-            FabricEntityTypeBuilder.<TombStoneSodaCanProjectileEntity>create(SpawnGroup.MISC, TombStoneSodaCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<VultureAidCanProjectileEntity> VultureAidCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "vultureaid_can"),
-            FabricEntityTypeBuilder.<VultureAidCanProjectileEntity>create(SpawnGroup.MISC, VultureAidCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<WhosWhoCanProjectileEntity> WhosWhoCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "whoswho_can"),
-            FabricEntityTypeBuilder.<WhosWhoCanProjectileEntity>create(SpawnGroup.MISC, WhosWhoCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-
-    public static final EntityType<WidowsWineCanProjectileEntity> WidowsWineCanProjectileEntityType = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "widowswine_can"),
-            FabricEntityTypeBuilder.<WidowsWineCanProjectileEntity>create(SpawnGroup.MISC, WidowsWineCanProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
-                    .build());
-*/
+    private static <T extends Entity> EntityType<T> registerEntityType(String name, SpawnGroup group, EntityType.EntityFactory<T> entityFactory, float width, float height) {
+        Identifier entityId = new Identifier(Main.SHIT_ID, name);
+        FabricEntityTypeBuilder<T> entityTypeBuilder = FabricEntityTypeBuilder.create(group, entityFactory)
+                .dimensions(EntityDimensions.fixed(width, height))
+                .trackRangeBlocks(4).trackedUpdateRate(10);
+        return Registry.register(Registries.ENTITY_TYPE, entityId, entityTypeBuilder.build());
+    }
+    public static final EntityType<RedBrickProjectileEntity> RedBrickProjectileEntityType = registerEntityType("red_brick", SpawnGroup.MISC, RedBrickProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BlueBrickProjectileEntity> BlueBrickProjectileEntityType = registerEntityType("blue_brick", SpawnGroup.MISC, BlueBrickProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<TrashCanProjectileEntity> TrashCanProjectileEntityType = registerEntityType("trash_can", SpawnGroup.MISC, TrashCanProjectileEntity::new, 1F, 2F);
+    public static final EntityType<OatProjectileEntity> OatProjectileEntityType = registerEntityType("oat", SpawnGroup.MISC, OatProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BulletProjectileEntity> BulletProjectileEntityType = registerEntityType("bullet_entity", SpawnGroup.MISC, BulletProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BeerBottleProjectileEntity> BeerBottleProjectileEntityType = registerEntityType("beer_bottle", SpawnGroup.MISC, BeerBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BonkAtomicPunchProjectileEntity> BonkAtomicPunchProjectileEntityType = registerEntityType("bonk_atomic_punch_projectile", SpawnGroup.MISC, BonkAtomicPunchProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BottleProjectileEntity> BottleProjectileEntityType = registerEntityType("bottle", SpawnGroup.MISC, BottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<BudLightCanProjectileEntity> BudLightCanProjectileEntityType = registerEntityType("bud_light_can", SpawnGroup.MISC, BudLightCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ChampagneBottleProjectileEntity> ChampagneBottleProjectileEntityType = registerEntityType("champagne_bottle", SpawnGroup.MISC, ChampagneBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ChugJugProjectileEntity> ChugJugProjectileEntityType = registerEntityType("chug_jug_empty", SpawnGroup.MISC, ChugJugProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<CocaColaCanProjectileEntity> CocaColaCanProjectileEntityType = registerEntityType("coca_cola_can", SpawnGroup.MISC, CocaColaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<CokeZeroCanProjectileEntity> CokeZeroCanProjectileEntityType = registerEntityType("coke_zero_can", SpawnGroup.MISC, CokeZeroCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<CritaColaCanProjectileEntity> CritaColaCanProjectileEntityType = registerEntityType("crita_cola_can", SpawnGroup.MISC, CritaColaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<DrPepperCanProjectileEntity> DrPepperCanProjectileEntityType = registerEntityType("dr_pepper_can", SpawnGroup.MISC, DrPepperCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<FantaCanProjectileEntity> FantaCanProjectileEntityType = registerEntityType("fanta_can", SpawnGroup.MISC, FantaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<FlaskProjectileEntity> FlaskProjectileEntityType = registerEntityType("flask_empty", SpawnGroup.MISC, FlaskProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<GlassJarProjectileEntity> GlassJarProjectileEntityType = registerEntityType("glass_jar", SpawnGroup.MISC, GlassJarProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<LagarBottleProjectileEntity> LagarBottleProjectileEntityType = registerEntityType("lagar_bottle", SpawnGroup.MISC, LagarBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<MilkCartonProjectileEntity> MilkCartonProjectileEntityType = registerEntityType("milk_carton_empty", SpawnGroup.MISC, MilkCartonProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<MountainDewCanProjectileEntity> MountainDewCanProjectileEntityType = registerEntityType("mountain_dew_can", SpawnGroup.MISC, MountainDewCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<MugProjectileEntity> MugProjectileEntityType = registerEntityType("mug", SpawnGroup.MISC, MugProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<NukaColaBottleProjectileEntity> NukaColaBottleProjectileEntityType = registerEntityType("nuka_cola_bottle", SpawnGroup.MISC, NukaColaBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<NukaColaDarkBottleProjectileEntity> NukaColaDarkBottleProjectileEntityType = registerEntityType("nuka_cola_dark_bottle", SpawnGroup.MISC, NukaColaDarkBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<NukaColaQuantumBottleProjectileEntity> NukaColaQuantumBottleProjectileEntityType = registerEntityType("nuka_cola_quantum_bottle", SpawnGroup.MISC, NukaColaQuantumBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<MugRootBeerCanProjectileEntity> MugRootBeerCanProjectileEntityType = registerEntityType("mug_root_beer_can", SpawnGroup.MISC, MugRootBeerCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<PeepsPepsiCanProjectileEntity> PeepsPepsiCanProjectileEntityType = registerEntityType("peeps_pepsi_can", SpawnGroup.MISC, PeepsPepsiCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<PepsiCanProjectileEntity> PepsiCanProjectileEntityType = registerEntityType("pepsi_can", SpawnGroup.MISC, PepsiCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<RumBottleProjectileEntity> RumBottleProjectileEntityType = registerEntityType("rum_bottle", SpawnGroup.MISC, RumBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeBlueBerryTartCanProjectileEntity> ShizeBlueBerryTartCanProjectileEntityType = registerEntityType("shize_blueberrytart_can", SpawnGroup.MISC, ShizeBlueBerryTartCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeBlushingRoseCanProjectileEntity> ShizeBlushingRoseCanProjectileEntityType = registerEntityType("shize_blushingrose_can", SpawnGroup.MISC, ShizeBlushingRoseCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeCanadaShyCanProjectileEntity> ShizeCanadaShyCanProjectileEntityType = registerEntityType("shize_canadashy_can", SpawnGroup.MISC, ShizeCanadaShyCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeCheekyBitoPudCanProjectileEntity> ShizeCheekyBitoPudCanProjectileEntityType = registerEntityType("shize_cheekybitopud_can", SpawnGroup.MISC, ShizeCheekyBitoPudCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeCherryPopCanProjectileEntity> ShizeCherryPopCanProjectileEntityType = registerEntityType("shize_cherrypop_can", SpawnGroup.MISC, ShizeCherryPopCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeColdBeetStewCanProjectileEntity> ShizeColdBeetStewCanProjectileEntityType = registerEntityType("shize_coldbeetstew_can", SpawnGroup.MISC, ShizeColdBeetStewCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeElderFlowerCanProjectileEntity> ShizeElderFlowerCanProjectileEntityType = registerEntityType("shize_elderflower_can", SpawnGroup.MISC, ShizeElderFlowerCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeFactoryRustCanProjectileEntity> ShizeFactoryRustCanProjectileEntityType = registerEntityType("shize_factoryrust_can", SpawnGroup.MISC, ShizeFactoryRustCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeFourCheeseCanProjectileEntity> ShizeFourCheeseCanProjectileEntityType = registerEntityType("shize_fourcheese_can", SpawnGroup.MISC, ShizeFourCheeseCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeFrenchVanillaCanProjectileEntity> ShizeFrenchVanillaCanProjectileEntityType = registerEntityType("shize_frenchvanilla_can", SpawnGroup.MISC, ShizeFrenchVanillaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeFulmedamesCanProjectileEntity> ShizeFulmedamesCanProjectileEntityType = registerEntityType("shize_fulmedames_can", SpawnGroup.MISC, ShizeFulmedamesCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeGamerEnergyCanProjectileEntity> ShizeGamerEnergyCanProjectileEntityType = registerEntityType("shize_gamerenergy_can", SpawnGroup.MISC, ShizeGamerEnergyCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeJellyBeanCanProjectileEntity> ShizeJellyBeanCanProjectileEntityType = registerEntityType("shize_jellybean_can", SpawnGroup.MISC, ShizeJellyBeanCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeJuicyMelonCanProjectileEntity> ShizeJuicyMelonCanProjectileEntityType = registerEntityType("shize_juicymelon_can", SpawnGroup.MISC, ShizeJuicyMelonCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeLemonPartyCanProjectileEntity> ShizeLemonPartyCanProjectileEntityType = registerEntityType("shize_lemonparty_can", SpawnGroup.MISC, ShizeLemonPartyCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeLightCanProjectileEntity> ShizeLightCanProjectileEntityType = registerEntityType("shize_light_can", SpawnGroup.MISC, ShizeLightCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeLiquorLisiousCanProjectileEntity> ShizeLiquorLisiousCanProjectileEntityType = registerEntityType("shize_liqurolisious_can", SpawnGroup.MISC, ShizeLiquorLisiousCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeMayonnaiseCanProjectileEntity> ShizeMayonnaiseCanProjectileEntityType = registerEntityType("shize_mayonnaise_can", SpawnGroup.MISC, ShizeMayonnaiseCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeMustardCanProjectileEntity> ShizeMustardCanProjectileEntityType = registerEntityType("shize_mustard_can", SpawnGroup.MISC, ShizeMustardCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeOriginalCanProjectileEntity> ShizeOriginalCanProjectileEntityType = registerEntityType("shize_original_can", SpawnGroup.MISC, ShizeOriginalCanProjectileEntity::new, 0.25F, 0.25F);
+
+    public static final EntityType<ShizePineapplePizzaCanProjectileEntity> ShizePineapplePizzaCanProjectileEntityType = registerEntityType("shize_pineapplepizza_can", SpawnGroup.MISC, ShizePineapplePizzaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeRawMeatCanProjectileEntity> ShizeRawMeatCanProjectileEntityType = registerEntityType("shize_rawmeat_can", SpawnGroup.MISC, ShizeRawMeatCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeSardineSurpriseCanProjectileEntity> ShizeSardineSurpriseCanProjectileEntityType = registerEntityType("shize_sardinesurprise_can", SpawnGroup.MISC, ShizeSardineSurpriseCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeStrawberryKiwiCanProjectileEntity> ShizeStrawberryKiwiCanProjectileEntityType = registerEntityType("shize_strawberrykiwi_can", SpawnGroup.MISC, ShizeStrawberryKiwiCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeTangyKetchupCanProjectileEntity> ShizeTangyKetchupCanProjectileEntityType = registerEntityType("shize_tangyketchup_can", SpawnGroup.MISC, ShizeTangyKetchupCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeTaroTeaseCanProjectileEntity> ShizeTaroTeaseCanProjectileEntityType = registerEntityType("shize_tarotease_can", SpawnGroup.MISC, ShizeTaroTeaseCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeThirstBornCanProjectileEntity> ShizeThirstBornCanProjectileEntityType = registerEntityType("shize_thirstborn_can", SpawnGroup.MISC, ShizeThirstBornCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeTiramisuCanProjectileEntity> ShizeTiramisuCanProjectileEntityType = registerEntityType("shize_tiramisu_can", SpawnGroup.MISC, ShizeTiramisuCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeTropicalStormCanProjectileEntity> ShizeTropicalStormCanProjectileEntityType = registerEntityType("shize_tropicalstorm_can", SpawnGroup.MISC, ShizeTropicalStormCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<ShizeVeggieBrothCanProjectileEntity> ShizeVeggieBrothCanProjectileEntityType = registerEntityType("shize_veggiebroth_can", SpawnGroup.MISC, ShizeVeggieBrothCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<StrawBerryMilkCartonProjectileEntity> StrawBerryMilkCartonProjectileEntityType = registerEntityType("strawberry_milk_carton_empty", SpawnGroup.MISC, StrawBerryMilkCartonProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<VodkaBottleProjectileEntity> VodkaBottleProjectileEntityType = registerEntityType("vodka_bottle", SpawnGroup.MISC, VodkaBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<WineBottleProjectileEntity> WineBottleProjectileEntityType = registerEntityType("wine_bottle", SpawnGroup.MISC, WineBottleProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<WineGlassProjectileEntity> WineGlassProjectileEntityType = registerEntityType("wine_glass_empty", SpawnGroup.MISC, WineGlassProjectileEntity::new, 0.25F, 0.25F);
+
+
+    /*
+    public static final EntityType<DeadShotDaiquiriCanProjectileEntity> DeadShotDaiquiriCanProjectileEntityType = registerEntityType("deadshotdaiquiri_can", SpawnGroup.MISC, DeadShotDaiquiriCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<DoubleTapRootBeerCanProjectileEntity> DoubleTapRootBeerCanProjectileEntityType = registerEntityType("doubletaprootbeer_can", SpawnGroup.MISC, DoubleTapRootBeerCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<JuggernogCanProjectileEntity> JuggernogCanProjectileEntityType = registerEntityType("juggernog_can", SpawnGroup.MISC, JuggernogCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<MuleKickCanProjectileEntity> MuleKickCanProjectileEntityType = registerEntityType("mulekick_can", SpawnGroup.MISC, MuleKickCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<PHDFlopperCanProjectileEntity> PHDFlopperCanProjectileEntityType = registerEntityType("phdflopper_can", SpawnGroup.MISC, PHDFlopperCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<QuickReviveCanProjectileEntity> QuickReviveCanProjectileEntityType = registerEntityType("quickrevive_can", SpawnGroup.MISC, QuickReviveCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<StaminUpCanProjectileEntity> StaminUpCanProjectileEntityType = registerEntityType("staminup_can", SpawnGroup.MISC, StaminUpCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<TombStoneSodaCanProjectileEntity> TombStoneSodaCanProjectileEntityType = registerEntityType("tombstonesoda_can", SpawnGroup.MISC, TombStoneSodaCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<VultureAidCanProjectileEntity> VultureAidCanProjectileEntityType = registerEntityType("vultureaid_can", SpawnGroup.MISC, VultureAidCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<WhosWhoCanProjectileEntity> WhosWhoCanProjectileEntityType = registerEntityType("whoswho_can", SpawnGroup.MISC, WhosWhoCanProjectileEntity::new, 0.25F, 0.25F);
+    public static final EntityType<WidowsWineCanProjectileEntity> WidowsWineCanProjectileEntityType = registerEntityType("widowswine_can", SpawnGroup.MISC, WidowsWineCanProjectileEntity::new, 0.25F, 0.25F);
+    */
 
     public static final EntityType<SpeedColaCanProjectileEntity> SpeedColaCanProjectileEntityType = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ShitMod.MOD_ID, "speed_cola_can"),
+            new Identifier(Main.SHIT_ID, "speed_cola_can"),
             FabricEntityTypeBuilder.<SpeedColaCanProjectileEntity>create(SpawnGroup.MISC, SpeedColaCanProjectileEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
@@ -682,7 +170,7 @@ public class ShitMod implements ModInitializer {
                         for (byte isIncendiary : new byte[]{0, 1}) {
                             for (byte isExplosive : new byte[]{0, 1}) {
                                 for (byte isExtendedDuration : new byte[]{0, 1}) {
-                                    ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration);
+                                    ItemStack stack = bulletItem.createItemWithEffects(effect, isIncendiary, isExplosive, isExtendedDuration, /*attempt*/ bulletItem);
 
                                     // Add BulletType to NBT data
                                     NbtCompound nbt = stack.getOrCreateNbt();
@@ -714,15 +202,15 @@ public class ShitMod implements ModInitializer {
         ShitPotions.registerPotions();
         ShitBlocks.registerAll();
         ShitItemGroup.register();
+        ShitPaintings.registerPaintings();
 
 
-        GeckoLib.initialize();
-        FabricDefaultAttributeRegistry.register(ShitEntities.JBIRD, JbirdEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(ShitEntities.JBRID, JbirdEntity.creatorJbirdAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT_BOMB, RatBombEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT, RatEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.CAPYBARA, CapybaraEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
+        //FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
 
         Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
 
@@ -760,8 +248,10 @@ public class ShitMod implements ModInitializer {
                     return 1;
                 })));
     }
-    public static void registerShitMain() {
-        ShitMod.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
+
+
+    public static void registerShitpostMod() {
+        Main.SHITLOGGER.info("> --Connected || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
     }
 }
 
