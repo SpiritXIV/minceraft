@@ -3,9 +3,9 @@
 
   <hr>
 </div>
-
 <hr>
-<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title.png?raw=true" alt="minecraft_title.png" />
+<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title_shit.png?raw=true" alt="minecraft_title.png" style="width: 50px"/><h1>X</h1>
+<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft_title_tdbtd.png?raw=true" alt="minecraft_title.png" style="width: 50px"/>
 <div align="center"><b>Version: 1.0.0 | ALPHA <p>Currently in Development, not for public redistribution</p></b></div>
 <p></p>
 <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/the-shit-of-crypt.svg" alt="spirits wakatime"> <img src="https://wakatime.com/badge/user/ed131eb9-2f69-4003-911c-207210cbc266/project/399f361b-5624-44c9-bf23-82c7b61cde3f.svg" alt="zharas wakatime"></div>
