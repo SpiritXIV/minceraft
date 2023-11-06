@@ -4,7 +4,6 @@ import com.spirit.Main;
 import com.spirit.tdbtd.entity.client.TDBTDModelLayers;
 import com.spirit.tdbtd.entity.client.figures.*;
 import com.spirit.tdbtd.util.TDBTDModelPredicateProvider;
-import com.spirit.tdbtd.world.gen.TDBTDWorldGen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -22,8 +21,6 @@ public class TDBTDClientMod implements ClientModInitializer {
         registerEntityRenderers();
         registerBlockRenderLayers();
         TDBTDModelPredicateProvider.registerModels();
-        TDBTDWorldGen.generateTDBTDWorldGen();
-        TDBTDWorldGen.registerWorldGenFeat();
     }
         private void registerBlockRenderLayers() {
             BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_DOOR, RenderLayer.getCutout());

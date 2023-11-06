@@ -42,7 +42,7 @@ public class TDBTDConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest deepslateReplaceables = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-        List<OreFeatureConfig.Target> overworldCitrineOres =
+        List<OreFeatureConfig.Target> overworldInfurtrinatedeOres =
                 List.of(OreFeatureConfig.createTarget(deepslateReplaceables, TDBTDBlocks.INFURTRINATED_DEEPSLATE_ORE.getDefaultState()));
 
         register(context, CRITERIC_CHARRED_KEY, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(TDBTDBlocks.CRITERIC_CHARRED_LOG),
@@ -60,7 +60,7 @@ public class TDBTDConfiguredFeatures {
                                         PropaguleBlock.AGE, (IntProvider)UniformIntProvider.create(0, 4)), 1, List.of(Direction.DOWN)), BEES_001)).forceDirt().ignoreVines()
                 .decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(TDBTDBlocks.DIMENTED_GRASS_BLOCK)))).build());
 
-        register(context, INFURTRINATED_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldCitrineOres, 12));
+        register(context, INFURTRINATED_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldInfurtrinatedeOres, 12));
 
     }
 
@@ -72,99 +72,90 @@ public class TDBTDConfiguredFeatures {
                                                                                    RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
+    /*
 
-      //ORE GENERATION
-    /*public static final List<OreFeatureConfig.Target> OVERWORLD_INFURTRINATED_DEEPSLATE_ORE = List.of(
-            OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                    TDBTDBlocks.INFURTRINATED_DEEPSLATE_ORE.getDefaultState()));
-
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> INFURTRINATED_DEEPSLATE_ORE =
-            ConfiguredFeatures.register("infurtrinated_deepslate_ore", Feature.ORE,
-                    new OreFeatureConfig(OVERWORLD_INFURTRINATED_DEEPSLATE_ORE, 3));
-
-
-    //GEODE
-    public static final RegistryEntry<ConfiguredFeature<GeodeFeatureConfig, ?>> DIMENTED_GEODE =
-            ConfiguredFeatures.register("dimented_geode", Feature.GEODE,
-                    new GeodeFeatureConfig(new GeodeLayerConfig(BlockStateProvider.of(Blocks.AIR),
-                            BlockStateProvider.of(Blocks.AMETHYST_BLOCK),
-                            BlockStateProvider.of(Blocks.BUDDING_AMETHYST),
-                            BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_CALCITE),
-                            BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_SMOOTH_BASALT),
-                            List.of(Blocks.AMETHYST_CLUSTER.getDefaultState()),
-                            BlockTags.FEATURES_CANNOT_REPLACE , BlockTags.GEODE_INVALID_BLOCKS),
-                            new GeodeLayerThicknessConfig(1.7D, 1.9D, 2.5D, 3.5D),
-                            new GeodeCrackConfig(0.25D, 1.5D, 1),
-                            0.5D, 0.1D,
-                            true, UniformIntProvider.create(3, 8),
-                            UniformIntProvider.create(2, 6), UniformIntProvider.create(1, 2),
-                            -18, 18, 0.075D, 1));
+        //GEODE
+        public static final RegistryEntry<ConfiguredFeature<GeodeFeatureConfig, ?>> DIMENTED_GEODE =
+                ConfiguredFeatures.register("dimented_geode", Feature.GEODE,
+                        new GeodeFeatureConfig(new GeodeLayerConfig(BlockStateProvider.of(Blocks.AIR),
+                                BlockStateProvider.of(Blocks.AMETHYST_BLOCK),
+                                BlockStateProvider.of(Blocks.BUDDING_AMETHYST),
+                                BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_CALCITE),
+                                BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_SMOOTH_BASALT),
+                                List.of(Blocks.AMETHYST_CLUSTER.getDefaultState()),
+                                BlockTags.FEATURES_CANNOT_REPLACE , BlockTags.GEODE_INVALID_BLOCKS),
+                                new GeodeLayerThicknessConfig(1.7D, 1.9D, 2.5D, 3.5D),
+                                new GeodeCrackConfig(0.25D, 1.5D, 1),
+                                0.5D, 0.1D,
+                                true, UniformIntProvider.create(3, 8),
+                                UniformIntProvider.create(2, 6), UniformIntProvider.create(1, 2),
+                                -18, 18, 0.075D, 1));
 
 
-    //GRASS WHEN BONEMEAL
-    public static final RegistryEntry<ConfiguredFeature<SimpleBlockFeatureConfig, ?>> DIMENTED_GRASS_BONEMEAL =
-            ConfiguredFeatures.register("dimented_grass_bonemeal", Feature.SIMPLE_BLOCK,
-                    new SimpleBlockFeatureConfig(BlockStateProvider.of(Blocks.SCULK_VEIN.getDefaultState())));
+        //GRASS WHEN BONEMEAL
+        public static final RegistryEntry<ConfiguredFeature<SimpleBlockFeatureConfig, ?>> DIMENTED_GRASS_BONEMEAL =
+                ConfiguredFeatures.register("dimented_grass_bonemeal", Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(Blocks.SCULK_VEIN.getDefaultState())));
 
-   //PILES
-    public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_RIBS =
-            ConfiguredFeatures.register("pile_sculk_ribs", Feature.BLOCK_PILE,
-                    new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_RIBS)));
+       //PILES
+        public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_RIBS =
+                ConfiguredFeatures.register("pile_sculk_ribs", Feature.BLOCK_PILE,
+                        new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_RIBS)));
 
-    public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_TEETH =
-            ConfiguredFeatures.register("pile_sculk_teeth", Feature.BLOCK_PILE,
-                    new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_TEETH)));
+        public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_TEETH =
+                ConfiguredFeatures.register("pile_sculk_teeth", Feature.BLOCK_PILE,
+                        new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_TEETH)));
 
-    public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_FERN =
-            ConfiguredFeatures.register("pile_sculk_fern", Feature.BLOCK_PILE,
-                    new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_FERN)));
+        public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> PILE_SCULK_FERN =
+                ConfiguredFeatures.register("pile_sculk_fern", Feature.BLOCK_PILE,
+                        new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_FERN)));
 
-    //DISKS
-    public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_TD =
-            ConfiguredFeatures.register("disk_td", Feature.DISK,
-                    new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_TUFF),
-                            List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
-                                    BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_TUFF)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
-                            UniformIntProvider.create(1, 5), 2));
+        //DISKS
+        public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_TD =
+                ConfiguredFeatures.register("disk_td", Feature.DISK,
+                        new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_TUFF),
+                                List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
+                                        BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_TUFF)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
+                                UniformIntProvider.create(1, 5), 2));
 
-    public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_CD =
-            ConfiguredFeatures.register("disk_cd", Feature.DISK,
-                    new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_DEEPSLATE),
-                            List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
-                                    BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_DEEPSLATE)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
-                            UniformIntProvider.create(3, 6), 2));
-    public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_GD =
-            ConfiguredFeatures.register("disk_gd", Feature.DISK,
-                    new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL),
-                            List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
-                                    BlockStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
-                            UniformIntProvider.create(1, 5), 2));
+        public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_CD =
+                ConfiguredFeatures.register("disk_cd", Feature.DISK,
+                        new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_DEEPSLATE),
+                                List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
+                                        BlockStateProvider.of(TDBTDBlocks.INFURTRINATED_DEEPSLATE)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
+                                UniformIntProvider.create(3, 6), 2));
+        public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_GD =
+                ConfiguredFeatures.register("disk_gd", Feature.DISK,
+                        new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL),
+                                List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
+                                        BlockStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
+                                UniformIntProvider.create(1, 5), 2));
 
-    public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_TREE =
-            ConfiguredFeatures.register("disk_tree", Feature.DISK,
-                    new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT),
-                            List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
-                                    BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
-                            UniformIntProvider.create(3, 6), 2));
-
-
-    //TENVINES
-    public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> SCULK_TENVINES =
-            ConfiguredFeatures.register("sculk_tenvines", Feature.BLOCK_PILE,
-                    new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_TENVINES_PLANT)));
-
-   //CAVE VINES
-   public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> SCULK_CAVE_VINES =
-           ConfiguredFeatures.register("sculk_cave_vines", TDBTDFeature.SCULK_CAVE_VINES);
+        public static final RegistryEntry<ConfiguredFeature<DiskFeatureConfig, ?>> DISK_TREE =
+                ConfiguredFeatures.register("disk_tree", Feature.DISK,
+                        new DiskFeatureConfig(new PredicatedStateProvider(BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT),
+                                List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
+                                        BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
+                                UniformIntProvider.create(3, 6), 2));
 
 
-   //PATCH
-   public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_LOTUS =
-           ConfiguredFeatures.register("patch_lotus", Feature.RANDOM_PATCH,
-                   new RandomPatchFeatureConfig(10, 7, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                           new SimpleBlockFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_LOTUS)))));
+        //TENVINES
+        public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> SCULK_TENVINES =
+                ConfiguredFeatures.register("sculk_tenvines", Feature.BLOCK_PILE,
+                        new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_TENVINES_PLANT)));
 
-*/
+       //CAVE VINES
+       public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> SCULK_CAVE_VINES =
+               ConfiguredFeatures.register("sculk_cave_vines", TDBTDFeature.SCULK_CAVE_VINES);
+
+
+       //PATCH
+       public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_LOTUS =
+               ConfiguredFeatures.register("patch_lotus", Feature.RANDOM_PATCH,
+                       new RandomPatchFeatureConfig(10, 7, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                               new SimpleBlockFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_LOTUS)))));
+
+    */
     //FINAL CONFIG MESSAGE
     public static void registerFeatures() {}
 }

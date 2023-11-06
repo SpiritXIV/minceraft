@@ -2,13 +2,11 @@ package com.spirit.tdbtd.world.gen;
 
 public class  TDBTDWorldGen {
  public static void generateTDBTDWorldGen() {
-        TDBTDOreGeneration.generateOres();
+        //TDBTDOreGeneration.generateOres();
 
         //TDBTDDiskGeneration.generateDiskTree();
-        //TDBTDOreGeneration.generateOresTree();
-
-        TDBTDTreeGeneration.generateTrees();
-        //TDBTDCaveVinesGeneration.generateSculkCaveVines();
+        //TDBTDTreeGeneration.generateTrees();
+        TDBTDCaveVinesGeneration.generateSculkCaveVines();
 
         //TDBTDDiskGeneration.generateDiskTD();
         //TDBTDDiskGeneration.generateDiskCD();

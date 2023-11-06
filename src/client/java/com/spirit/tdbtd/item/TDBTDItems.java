@@ -60,7 +60,8 @@ new TDBTDBowItem(new FabricItemSettings().rarity(Rarity.RARE).maxCount(1).maxDam
     public static final Item DIMENTEDSERPENT =
 new TDBTDShriekbowItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1200));
     public static final Item DIMENTEDTHORN =
-new TDBTDShriekbowItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1800));
+new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
+        new FabricItemSettings().rarity(Rarity.EPIC));
 
     //OTHER UNIQUE WEPONDS
     public static final Item SOULSHRIEKER =
@@ -177,16 +178,16 @@ new Item(new FabricItemSettings().food(TDBTDFoodComponents.SCULK_BEETROOT));
     static Map<String, Object> ITEMS = Stream.of(new Object[][] {
             {"infurtrinated_fragment", INFURTRINATED_FRAGMENT},
             {"infurtrinated_ingot", INFURTRINATED_INGOT},
-            {"dimentedstem", DIMENTEDSTEM},
-            {"dimentedpetal", DIMENTEDPETAL},
-            {"dimentedpetalalloy", DIMENTEDPETALALLOY},
-            {"dimentedflower", DIMENTEDFLOWER},
+            {"dimented_stem", DIMENTEDSTEM},
+            {"dimented_petal", DIMENTEDPETAL},
+            {"dimented_petal_alloy", DIMENTEDPETALALLOY},
+            {"dimented_flower", DIMENTEDFLOWER},
             {"soul_essence", SOUL_ESSENCE},
             {"lost_soul", LOST_SOUL},
-            {"dimentedhelmet", DIMENTEDHELMET},
-            {"dimentedchestplate", DIMENTEDCHESTPLATE},
-            {"dimentedleggings", DIMENTEDLEGGINGS},
-            {"dimentedboots", DIMENTEDBOOTS},
+            {"dimented_helmet", DIMENTEDHELMET},
+            {"dimented_chestplate", DIMENTEDCHESTPLATE},
+            {"dimented_leggings", DIMENTEDLEGGINGS},
+            {"dimented_boots", DIMENTEDBOOTS},
             {"apple", APPLE},
             {"baked_potato", BAKED_POTATO},
             {"beef", BEEF},
@@ -256,11 +257,11 @@ registerItem(key, value);
                 registerToolItem("dimented_axe", DIMENTED_AXE);
                 registerToolItem("dimented_shovel", DIMENTED_SHOVEL);
                 registerToolItem("dimented_hoe", DIMENTED_HOE);
-                registerToolItem("dimentedscythe", DIMENTEDSCYTHE);
-                registerToolItem("sculkbow", SCULKBOW);
-                registerToolItem("dimentedserpent", DIMENTEDSERPENT);
-                registerToolItem("dimentedthorn", DIMENTEDTHORN);
-                registerToolItem("soulshrieker", SOULSHRIEKER);
+                registerToolItem("dimented_scythe", DIMENTEDSCYTHE);
+                registerToolItem("sculk_bow", SCULKBOW);
+                registerToolItem("dimented_serpent", DIMENTEDSERPENT);
+                registerToolItem("dimented_thorn", DIMENTEDTHORN);
+                registerToolItem("soul_shrieker", SOULSHRIEKER);
     }
 
 

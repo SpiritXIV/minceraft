@@ -3,7 +3,7 @@
         "section": "Kontrariety of Open Intrepid Ligature (KOIL)",
         "disciplines": [
             {
-                "discipline": "The Shit of the Crypt Mod Team",
+                "discipline": "Minceraft Mod Team",
                 "titles": [
                     {
                         "title": "Lead developer and designer",
@@ -12,9 +12,10 @@
                         ]
                     },
                     {
-                        "title": "Java Rewriter/Translater (makes my code understandabe to other programmers)",
+                        "title": "Other Developers",
                         "names": [
-                            "King_Zhara"
+                            "King_Zhara",
+                            "Absolutelyaya"
                         ]
                     },
                     {
@@ -29,6 +30,12 @@
                         "title": "Lead 2d Texturer",
                         "names": [
                             "Milkyfur"
+                        ]
+                    },
+                    {
+                        "title": "Structure Builder",
+                        "names": [
+                            "EliteCrow"
                         ]
                     },
                     {

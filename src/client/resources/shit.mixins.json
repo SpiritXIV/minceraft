@@ -5,7 +5,8 @@
   "mixins": [
     "ClientPlayerInteractionManagerMixin",
     "ShitMixin",
-    "TDBTDMixin"
+    "TDBTDMixin",
+    "WorldLoadMixin"
 
   ],
   "client": [

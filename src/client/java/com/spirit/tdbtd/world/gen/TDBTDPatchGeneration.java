@@ -7,7 +7,7 @@ public class TDBTDPatchGeneration {
                 GenerationStep.Feature.VEGETAL_DECORATION, TDBTDPlacedFeatures.PATCH_LOTUS_PLACED.getKey().get());
     }
 
-    public static void registerGenFeat() {}
 
      */
+    public static void registerGenFeat() {}
 }

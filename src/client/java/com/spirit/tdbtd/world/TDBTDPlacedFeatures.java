@@ -1,51 +1,53 @@
 package com.spirit.tdbtd.world;
 
 import com.spirit.Main;
-import com.spirit.tdbtd.block.TDBTDBlocks;
-import com.spirit.tdbtd.world.feature.TDBTDOrePlacement;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placementmodifier.*;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
 import java.util.List;
 
-import static com.spirit.tdbtd.world.TDBTDConfiguredFeatures.*;
-
 public class TDBTDPlacedFeatures {
-        public static final RegistryKey<PlacedFeature> CRITERIC_CHARRED_PLACED_KEY = registerKey("criteric_charred_placed");
-        public static final RegistryKey<PlacedFeature> INFURTRINATED_ORE_PLACED_KEY = registerKey("infurtrinated_ore_placed");
+        //public static final RegistryKey<PlacedFeature> CRITERIC_CHARRED_PLACED_KEY = registerKey("criteric_charred_placed");
+        //public static final RegistryKey<PlacedFeature> INFURTRINATED_ORE_PLACED_KEY = registerKey("infurtrinated_ore_placed");
 
 
         public static void bootstrap(Registerable<PlacedFeature> context) {
             var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-            register(context, CRITERIC_CHARRED_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(CRITERIC_CHARRED_KEY),
+            /*register(context, CRITERIC_CHARRED_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(CRITERIC_CHARRED_KEY),
                     VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(1, 0.1f, 2), TDBTDBlocks.CRITERIC_CHARRED_SAPLING));
 
             register(context, INFURTRINATED_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(INFURTRINATED_ORE_KEY),
                     TDBTDOrePlacement.modifiersWithCount(16, // Veins per Chunk
                             HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
+
+             */
         }
 
         public static RegistryKey<PlacedFeature> registerKey(String name) {
             return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(Main.TDBTD_ID, name));
         }
 
-        private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
-                                     List<PlacementModifier> modifiers) {
-            context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-        }
+    private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+                                 List<PlacementModifier> modifiers) {
+        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+    }
 
-        private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key,
-                                                                                       RegistryEntry<ConfiguredFeature<?, ?>> configuration,
-                                                                                       PlacementModifier... modifiers) {
-            register(context, key, configuration, List.of(modifiers));
-        }
+    private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key,
+                                                                                   RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+                                                                                   PlacementModifier... modifiers) {
+        register(context, key, configuration, List.of(modifiers));
+    }
+
+
 
 
     /*

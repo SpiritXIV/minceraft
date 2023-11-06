@@ -6,6 +6,7 @@ import com.spirit.tdbtd.effect.TDBTDEffects;
 import com.spirit.tdbtd.entity.custom.*;
 import com.spirit.tdbtd.item.TDBTDItems;
 import com.spirit.tdbtd.potion.TDBTDPotions;
+import com.spirit.tdbtd.world.gen.TDBTDWorldGen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
@@ -15,14 +16,14 @@ public class TDBTDMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
-
         TDBTDItems.registerAll();
         TDBTDEffects.registerEffects();
         TDBTDPotions.registerPotions();
         TDBTDBlocks.registerAll();
+        TDBTDWorldGen.generateTDBTDWorldGen();
+        TDBTDWorldGen.registerWorldGenFeat();
 
-        
+
         FabricDefaultAttributeRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(APERTURENTEETH, AperturenteethEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(CODELAING, CodelaingEntity.setAttributes());

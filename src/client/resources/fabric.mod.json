@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "shit",
+  "id": "minceraft",
   "version": "1.0.0",
-  "name": "Shit of the Crypt",
-  "description": "Just a better 1.20, both good and shit",
+  "name": "Minceraft",
+  "description": "Just a better minecraft, both good and shit",
   "authors": [
     "Spirit (mod maker)",
     "KingZhara (java rewriter)",
@@ -32,8 +32,8 @@
       "com.spirit.tdbtd.TDBTDClientMod"
     ],
     "fabric-datagen": [
-      "com.spirit.DataGenerator",
-      "com.spirit.shit.ShitModDataGenerator"
+      "com.spirit.shit.ShitDataGenerator",
+      "com.spirit.tdbtd.TDBTDDataGenerator"
     ]
   },
   "mixins": [

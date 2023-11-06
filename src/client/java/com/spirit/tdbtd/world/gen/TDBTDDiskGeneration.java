@@ -1,9 +1,9 @@
 package com.spirit.tdbtd.world.gen;
 
 public class TDBTDDiskGeneration {
-   /* public static void generateDiskTD() {
+    /*public static void generateDiskTD() {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_DECORATION, DISK_TD_PLACED.getKey().get());
+                GenerationStep.Feature.UNDERGROUND_DECORATION, PL.getKey().get());
     }
 
     public static void generateDiskCD() {
@@ -21,7 +21,7 @@ public class TDBTDDiskGeneration {
                 GenerationStep.Feature.UNDERGROUND_DECORATION, DISK_TREE_PLACED.getKey().get());
     }
 
-    public static void registerGenFeat() {}
 
-    */
+     */
+    public static void registerGenFeat() {}
 }
