@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class SturgoRenderer extends MobEntityRenderer<SturgoEntity, SturgoModel<SturgoEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/sturgo.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/sturgo.png");
 
     public SturgoRenderer(EntityRendererFactory.Context context) {
         super(context, new SturgoModel<>(context.getPart(TDBTDModelLayers.STURGO)), 0.6f);

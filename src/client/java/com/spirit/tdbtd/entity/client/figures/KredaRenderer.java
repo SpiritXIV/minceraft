@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class KredaRenderer extends MobEntityRenderer<KredaEntity, KredaModel<KredaEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/kreda.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/kreda.png");
 
     public KredaRenderer(EntityRendererFactory.Context context) {
         super(context, new KredaModel<>(context.getPart(TDBTDModelLayers.KREDA)), 0.6f);

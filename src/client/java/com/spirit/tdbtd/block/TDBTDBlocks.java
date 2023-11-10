@@ -81,9 +81,9 @@ OTHER
     public static final Block INFURTRINATED_TUFF = new Block(FabricBlockSettings.copy(Blocks.TUFF).sounds(BlockSoundGroup.TUFF).strength(2.0F).requiresTool());
     public static final Block INFURTRINATED_BLACKSTONE = new Block(FabricBlockSettings.copy(Blocks.TUFF).sounds(BlockSoundGroup.STONE).strength(2.0F).requiresTool());
     public static final Block INFURTRINATED_BASALT = new Block(FabricBlockSettings.copy(Blocks.TUFF).sounds(BlockSoundGroup.BASALT).strength(2.0F).requiresTool());
-    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_SLAB = new SlabBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_SLAB).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
-    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_STAIRS = new StairsBlock(TDBTDBlocks.INFURTRINATED_COBBLED_DEEPSLATE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
-    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_WALL = new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
+    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_SLAB = new SlabBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_SLAB).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
+    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_STAIRS = new StairsBlock(TDBTDBlocks.INFURTRINATED_COBBLED_DEEPSLATE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
+    public static final Block INFURTRINATED_COBBLED_DEEPSLATE_WALL = new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
     public static final Block INFURTRINATED_DEEPSLATE_BRICKS = new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
     public static final Block INFURTRINATED_DEEPSLATE_BRICKS_SLAB = new SlabBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_SLAB).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
     public static final Block INFURTRINATED_DEEPSLATE_BRICKS_STAIRS = new StairsBlock(TDBTDBlocks.INFURTRINATED_DEEPSLATE_BRICKS.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(4.0F).requiresTool());
@@ -107,10 +107,6 @@ OTHER
     public static final Block CRITERIC_VINES_HEAD = new TDBTDCaveVinesHeadBlock(FabricBlockSettings.copy(Blocks.STONE).ticksRandomly().noCollision().luminance(CaveVines.getLuminanceSupplier(14)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
 
     public static final Block CRITERIC_VINES_BODY = new TDBTDCaveVinesBodyBlock(FabricBlockSettings.copy(Blocks.STONE).noCollision().luminance(CaveVines.getLuminanceSupplier(14)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
-
-    public static final Block CRITERIC_CHARRED_GRASS_BLOCK = new TDBTDGrassBlock(AbstractBlock.Settings.copy(Blocks.STONE).sounds(BlockSoundGroup.CAVE_VINES).strength(2.0F).requiresTool());
-    public static final Block CRITERIC_CHARRED_DIRT = new Block(AbstractBlock.Settings.copy(Blocks.STONE).sounds(BlockSoundGroup.CAVE_VINES).strength(2.0F).requiresTool().ticksRandomly());
-    public static final Block CRITERIC_CHARRED_FARMLAND = new TDBTDFarmlandBlock(FabricBlockSettings.copy(Blocks.FARMLAND).sounds(BlockSoundGroup.CAVE_VINES).strength(2.0F).requiresTool().ticksRandomly());
 
 
     //SPECIAL BLOCKS
@@ -141,7 +137,7 @@ OTHER
             {"stripped_criteric_charred_wood", STRIPPED_CRITERIC_CHARRED_WOOD},
             {"criteric_charred_wood", CRITERIC_CHARRED_WOOD},
             {"criteric_charred_leaves", CRITERIC_CHARRED_LEAVES},
-            {"criteric_charred_flower_leaves", CRITERIC_CHARRED_FLOWER_LEAVES},
+            {"criteric_charred_flowering_leaves", CRITERIC_CHARRED_FLOWER_LEAVES},
             {"criteric_charred_slab", CRITERIC_CHARRED_SLAB},
             {"criteric_charred_fence", CRITERIC_CHARRED_FENCE},
             {"criteric_charred_fence_gate", CRITERIC_CHARRED_FENCE_GATE},
@@ -171,13 +167,13 @@ OTHER
             {"infurtrinated_tuff", INFURTRINATED_TUFF},
             {"infurtrinated_blackstone", INFURTRINATED_BLACKSTONE},
             {"infurtrinated_basalt", INFURTRINATED_BASALT},
-            {"infurtrinated_cobbled_deepslate_bricks_slab", INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_SLAB},
-            {"infurtrinated_cobbled_deepslate_bricks_stairs", INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_STAIRS},
-            {"infurtrinated_cobbled_deepslate_bricks_wall", INFURTRINATED_COBBLED_DEEPSLATE_BRICKS_WALL},
+            {"infurtrinated_cobbled_deepslate_slab", INFURTRINATED_COBBLED_DEEPSLATE_SLAB},
+            {"infurtrinated_cobbled_deepslate_stairs", INFURTRINATED_COBBLED_DEEPSLATE_STAIRS},
+            {"infurtrinated_cobbled_deepslate_wall", INFURTRINATED_COBBLED_DEEPSLATE_WALL},
             {"infurtrinated_deepslate_bricks", INFURTRINATED_DEEPSLATE_BRICKS},
             {"infurtrinated_deepslate_bricks_slab", INFURTRINATED_DEEPSLATE_BRICKS_SLAB},
             {"infurtrinated_deepslate_bricks_stairs", INFURTRINATED_DEEPSLATE_BRICKS_STAIRS},
-            {"infurtrinated_deepslate_bricks_wall", INFURTRINATED_DEEPSLATE_BRICKS_WALL},
+            {"infurtrinated_deepslate_brick_wall", INFURTRINATED_DEEPSLATE_BRICKS_WALL},
             {"cracked_infurtrinated_deepslate_bricks", CRACKED_INFURTRINATED_DEEPSLATE_BRICKS},
             {"infurtrinated_deepslate_tiles", INFURTRINATED_DEEPSLATE_TILES},
             {"infurtrinated_deepslate_tiles_slab", INFURTRINATED_DEEPSLATE_TILES_SLAB},
@@ -189,14 +185,11 @@ OTHER
             {"infurtrinated_stone_bricks_stairs", INFURTRINATED_STONE_BRICKS_STAIRS},
             {"infurtrinated_stone_bricks_wall", INFURTRINATED_STONE_BRICKS_WALL},
             {"cracked_infurtrinated_stone_bricks", CRACKED_INFURTRINATED_STONE_BRICKS},
-            {"infurtrinated_cobblestone_bricks_slab", INFURTRINATED_COBBLESTONE_BRICKS_SLAB},
-            {"infurtrinated_cobblestone_bricks_stairs", INFURTRINATED_COBBLESTONE_BRICKS_STAIRS},
-            {"infurtrinated_cobblestone_bricks_wall", INFURTRINATED_COBBLESTONE_BRICKS_WALL},
-            {"criteric_vines_head", CRITERIC_VINES_HEAD},
-            {"criteric_vines_body", CRITERIC_VINES_BODY},
-            {"criteric_charred_grass_block", CRITERIC_CHARRED_GRASS_BLOCK},
-            {"criteric_charred_dirt", CRITERIC_CHARRED_DIRT},
-            {"criteric_charred_farmland", CRITERIC_CHARRED_FARMLAND},
+            {"infurtrinated_cobblestone_slab", INFURTRINATED_COBBLESTONE_BRICKS_SLAB},
+            {"infurtrinated_cobblestone_stairs", INFURTRINATED_COBBLESTONE_BRICKS_STAIRS},
+            {"infurtrinated_cobblestone_wall", INFURTRINATED_COBBLESTONE_BRICKS_WALL},
+            {"criteric_vines_top", CRITERIC_VINES_HEAD},
+            {"criteric_vines", CRITERIC_VINES_BODY},
             {"sculk_teeth", SCULK_TEETH},
             {"sculk_ribs", SCULK_RIBS},
             {"sculk_tenvines", SCULK_TENVINES},

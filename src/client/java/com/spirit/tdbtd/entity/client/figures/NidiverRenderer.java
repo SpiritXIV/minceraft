@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class NidiverRenderer extends MobEntityRenderer<NidiverEntity, NidiverModel<NidiverEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/nidiver.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/nidiver.png");
 
     public NidiverRenderer(EntityRendererFactory.Context context) {
         super(context, new NidiverModel<>(context.getPart(TDBTDModelLayers.NIDIVER)), 0.6f);

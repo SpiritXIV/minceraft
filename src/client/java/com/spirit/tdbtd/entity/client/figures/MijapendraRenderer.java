@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class MijapendraRenderer extends MobEntityRenderer<MijapendraEntity, MijapendraModel<MijapendraEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/mijapendra.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/mijapendra.png");
 
     public MijapendraRenderer(EntityRendererFactory.Context context) {
         super(context, new MijapendraModel<>(context.getPart(TDBTDModelLayers.MIJAPENDRA)), 0.6f);

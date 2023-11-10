@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class ScutleonRenderer extends MobEntityRenderer<ScutleonEntity, ScutleonModel<ScutleonEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/scutleon.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/scutleon.png");
 
     public ScutleonRenderer(EntityRendererFactory.Context context) {
         super(context, new ScutleonModel<>(context.getPart(TDBTDModelLayers.SCUTLEON)), 0.6f);

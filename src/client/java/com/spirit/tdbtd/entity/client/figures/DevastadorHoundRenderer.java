@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class DevastadorHoundRenderer extends MobEntityRenderer<DevastadorHoundEntity, DevastadorHoundModel<DevastadorHoundEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/devastador_hound.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/devastador_hound.png");
 
     public DevastadorHoundRenderer(EntityRendererFactory.Context context) {
         super(context, new DevastadorHoundModel<>(context.getPart(TDBTDModelLayers.DEVASTADOR_HOUND)), 0.6f);

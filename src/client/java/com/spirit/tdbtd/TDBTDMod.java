@@ -4,6 +4,7 @@ import com.spirit.Main;
 import com.spirit.tdbtd.block.TDBTDBlocks;
 import com.spirit.tdbtd.effect.TDBTDEffects;
 import com.spirit.tdbtd.entity.custom.*;
+import com.spirit.tdbtd.item.TDBTDItemGroup;
 import com.spirit.tdbtd.item.TDBTDItems;
 import com.spirit.tdbtd.potion.TDBTDPotions;
 import com.spirit.tdbtd.world.gen.TDBTDWorldGen;
@@ -20,6 +21,8 @@ public class TDBTDMod implements ModInitializer {
         TDBTDEffects.registerEffects();
         TDBTDPotions.registerPotions();
         TDBTDBlocks.registerAll();
+        TDBTDItemGroup.register();
+
         TDBTDWorldGen.generateTDBTDWorldGen();
         TDBTDWorldGen.registerWorldGenFeat();
 

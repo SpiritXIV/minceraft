@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class ContrivancePollaRenderer extends MobEntityRenderer<ContrivancePollaEntity, ContrivancePollaModel<ContrivancePollaEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/contrivancepolla.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/contrivancepolla.png");
 
     public ContrivancePollaRenderer(EntityRendererFactory.Context context) {
         super(context, new ContrivancePollaModel<>(context.getPart(TDBTDModelLayers.CONTRIVANCEPOLLA)), 0.6f);

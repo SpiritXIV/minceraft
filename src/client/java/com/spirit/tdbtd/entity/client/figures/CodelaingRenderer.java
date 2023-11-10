@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class CodelaingRenderer extends MobEntityRenderer<CodelaingEntity, CodelaingModel<CodelaingEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/codelaing.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/codelaing.png");
 
     public CodelaingRenderer(EntityRendererFactory.Context context) {
         super(context, new CodelaingModel<>(context.getPart(TDBTDModelLayers.CODELAING)), 0.6f);

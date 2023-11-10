@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class TenebrousNibblerRenderer extends MobEntityRenderer<TenebrousNibblerEntity, TenebrousNibblerModel<TenebrousNibblerEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/tenebrous_nibbler.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/tenebrous_nibbler.png");
 
     public TenebrousNibblerRenderer(EntityRendererFactory.Context context) {
         super(context, new TenebrousNibblerModel<>(context.getPart(TDBTDModelLayers.TENEBROUS_NIBBLER)), 0.6f);

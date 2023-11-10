@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class AperturenteethRenderer extends MobEntityRenderer<AperturenteethEntity, AperturenteethModel<AperturenteethEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/aperturenteeth.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/aperturenteeth.png");
 
     public AperturenteethRenderer(EntityRendererFactory.Context context) {
         super(context, new AperturenteethModel<>(context.getPart(TDBTDModelLayers.APERTURENTEETH)), 0.6f);

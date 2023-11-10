@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class CuratorRenderer extends MobEntityRenderer<CuratorEntity, CuratorModel<CuratorEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/curator.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/curator.png");
 
     public CuratorRenderer(EntityRendererFactory.Context context) {
         super(context, new CuratorModel<>(context.getPart(TDBTDModelLayers.CURATOR)), 0.6f);

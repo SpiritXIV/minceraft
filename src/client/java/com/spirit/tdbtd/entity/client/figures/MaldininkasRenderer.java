@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class MaldininkasRenderer extends MobEntityRenderer<MaldininkasEntity, MaldininkasModel<MaldininkasEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/maldininkas.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/maldininkas.png");
 
     public MaldininkasRenderer(EntityRendererFactory.Context context) {
         super(context, new MaldininkasModel<>(context.getPart(TDBTDModelLayers.MALDININKAS)), 0.6f);

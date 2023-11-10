@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class EnguiaRenderer extends MobEntityRenderer<EnguiaEntity, EnguiaModel<EnguiaEntity>> {
-    private static final Identifier TEXTURE = new Identifier(Main.SHIT_ID, "textures/entity/enguia.png");
+    private static final Identifier TEXTURE = new Identifier(Main.TDBTD_ID, "textures/entity/enguia.png");
 
     public EnguiaRenderer(EntityRendererFactory.Context context) {
         super(context, new EnguiaModel<>(context.getPart(TDBTDModelLayers.ENGUIA)), 0.6f);
