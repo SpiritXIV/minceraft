@@ -2,7 +2,7 @@ package com.spirit.tdbtd.block;
 
 import com.spirit.Main;
 import com.spirit.tdbtd.block.custom.*;
-import com.spirit.tdbtd.world.feature.tree.SculkCharredSaplingGenerator;
+import com.spirit.tdbtd.world.tree.SculkCharredSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -104,9 +104,9 @@ OTHER
     public static final Block INFURTRINATED_COBBLESTONE_BRICKS_WALL = new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).sounds(BlockSoundGroup.STONE).strength(4.0F).requiresTool());
 
     //CRITERIC
-    public static final Block CRITERIC_VINES_HEAD = new TDBTDCaveVinesHeadBlock(FabricBlockSettings.copy(Blocks.STONE).ticksRandomly().noCollision().luminance(CaveVines.getLuminanceSupplier(14)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
+    public static final Block CRITERIC_VINES_HEAD = new TDBTDCaveVinesHeadBlock(FabricBlockSettings.copy(Blocks.STONE).ticksRandomly().noCollision().luminance(CaveVines.getLuminanceSupplier(3)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
 
-    public static final Block CRITERIC_VINES_BODY = new TDBTDCaveVinesBodyBlock(FabricBlockSettings.copy(Blocks.STONE).noCollision().luminance(CaveVines.getLuminanceSupplier(14)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
+    public static final Block CRITERIC_VINES_BODY = new TDBTDCaveVinesBodyBlock(FabricBlockSettings.copy(Blocks.STONE).noCollision().luminance(CaveVines.getLuminanceSupplier(3)).breakInstantly().sounds(BlockSoundGroup.SCULK_VEIN).strength(2.0F).requiresTool());
 
 
     //SPECIAL BLOCKS
@@ -115,17 +115,73 @@ OTHER
     public static final Block SCULK_TENVINES = new TenVinesBlock(FabricBlockSettings.copy(Blocks.TWISTING_VINES).noCollision().sounds(BlockSoundGroup.SCULK_VEIN).nonOpaque().strength(2.0F), () -> Blocks.SCULK);
     public static final Block SCULK_TENVINES_PLANT = new TenVinesPlantBlock(FabricBlockSettings.copy(Blocks.TWISTING_VINES_PLANT).noCollision().sounds(BlockSoundGroup.SCULK_VEIN).nonOpaque().strength(2.0F), () -> Blocks.SCULK);
 
-    public static final Block SCULK_FERN = new SculkFernBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_FERN = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
 
     public static final Block LARGE_SCULK_FERN = new TDBTDTallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
 
     public static final Block SCULK_LOTUS = new SculkLotusBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.WATER);
 
-    public static final Block SCULK_SLUDGE = new SculkPutsBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_FOUNTAIN_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_BUD = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_GROWTH = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_TAIL = new TDBTDTallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_SPIKE = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_WEB = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_BONESHAFT = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_THORNS = new SculkThornsBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_EMITTER = new SculkEmitterBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_SHAKER = new SculkShakerBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block SCULK_MAW = new SculkMawBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+    public static final Block LAYERED_SCULK = new SculkBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool());
+
+
+
+    public static final Block FRAMED_SCULK = new Block(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool());
+
+
+    public static final Block DEEPSLATE_VASE = new DeepslateVaseBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool());
+
 
 
     //OTHER BLOCKS
     public static final Block UNLIT_LANTERN = new UnlitLanternBlock(FabricBlockSettings.copy(Blocks.LANTERN).sounds(BlockSoundGroup.LANTERN).requiresTool().strength(3.5f).luminance(state -> 0));
+
+
+
+
+
+    //SCULKED MOD IMPORTS
+
+    public static final Block INFURTRINATED_BONED_BLOCK = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block INFURTRINATED_BONED_BULB = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block INFURTRINATED_BONED_BULBLIGHT = new Block(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block INFURTRINATED_BONED_CAGE = new Block(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block INFURTRINATED_BONED_VERTEBRAE = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block PILLARED_INFURTRINATED_BONED_VERTEBRAE = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block INFURTRINATED_BONED_BRICKED_BLOCK = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block CHISELED_INFURTRINATED_BONED_BLOCK = new Block(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block BEDEVIL_BOOKSHELF = new Block(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block BEDEVIL_WELL = new Block(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+
+    public static final Block INFURTRINATED_BONED_BARS = new PaneBlock(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+
+    public static final Block INFURTRINATED_BONED_DOOR = new DoorBlock(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BASALT).strength(4.0F).requiresTool().nonOpaque(), /*TEMP*/BlockSetType.WARPED);
+    public static final Block INFURTRINATED_BONED_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BASALT).strength(4.0F).requiresTool().nonOpaque(), /*TEMP*/BlockSetType.WARPED);
+
+
+    public static final Block CRITERIC_MOSS_CARPET = new CarpetBlock(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+    public static final Block CRITERIC_MOSS_BLOCK = new TDBTDMossBlock(FabricBlockSettings.copy(Blocks.STONE).sounds(BlockSoundGroup.BONE).strength(5f).requiresTool());
+
+
+
+    public static final Block ECHOING_AMETHYST = new EchoingAmethystBlock(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5f).requiresTool());
+    public static final Block BUDDING_ECHOING_AMETHYST = new BuddingEchoingAmethystBlock(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).ticksRandomly().sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5f).requiresTool());
+    public static final Block SMALL_ECHOING_AMETHYST_BUD = new EchoingAmethystClusterBlock(3, 4, FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).sounds(BlockSoundGroup.AMETHYST_CLUSTER).strength(5f).requiresTool().luminance((state) -> 1));
+    public static final Block MEDIUM_ECHOING_AMETHYST_BUD = new EchoingAmethystClusterBlock(4, 3, FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).sounds(BlockSoundGroup.AMETHYST_CLUSTER).strength(5f).requiresTool().luminance((state) -> 2));
+    public static final Block LARGE_ECHOING_AMETHYST_BUD = new EchoingAmethystClusterBlock(5, 3, FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).sounds(BlockSoundGroup.AMETHYST_CLUSTER).strength(5f).requiresTool().luminance((state) -> 4));
+    public static final Block ECHOING_AMETHYST_CLUSTER = new EchoingAmethystClusterBlock(7, 3, FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK).sounds(BlockSoundGroup.AMETHYST_CLUSTER).strength(5f).requiresTool().luminance((state) -> 5));
+
 
     public static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
             {"infurtrinated_block", INFURTRINATED_BLOCK},
@@ -197,9 +253,60 @@ OTHER
             {"sculk_fern", SCULK_FERN},
             {"large_sculk_fern", LARGE_SCULK_FERN},
             {"sculk_lotus", SCULK_LOTUS},
-            {"sculk_sludge", SCULK_SLUDGE},
+
+            {"sculk_fountain_shroom", SCULK_FOUNTAIN_SHROOM},
+            {"sculk_shroom", SCULK_SHROOM},
+            {"sculk_bud", SCULK_BUD},
+            {"sculk_growth", SCULK_GROWTH},
+            {"sculk_tail", SCULK_TAIL},
+            {"sculk_spike", SCULK_SPIKE},
+            {"sculk_web", SCULK_WEB},
+            {"sculk_boneshaft", SCULK_BONESHAFT},
+            {"sculk_thorns", SCULK_THORNS},
+            {"sculk_emitter", SCULK_EMITTER},
+            {"sculk_shaker", SCULK_SHAKER},
+            {"sculk_maw", SCULK_MAW},
+            {"layered_sculk", LAYERED_SCULK},
+
+            {"framed_sculk", FRAMED_SCULK},
+
+
+            {"deepslate_vase", DEEPSLATE_VASE},
+
+
+
             {"unlit_lantern", UNLIT_LANTERN},
-            
+
+
+
+            {"infurtrinated_boned_block", INFURTRINATED_BONED_BLOCK},
+            {"infurtrinated_boned_bulb", INFURTRINATED_BONED_BULB},
+            {"infurtrinated_boned_bulblight", INFURTRINATED_BONED_BULBLIGHT},
+            {"infurtrinated_boned_cage", INFURTRINATED_BONED_CAGE},
+            {"infurtrinated_boned_vertebrae", INFURTRINATED_BONED_VERTEBRAE},
+            {"pillared_infurtrinated_boned_vertebrae", PILLARED_INFURTRINATED_BONED_VERTEBRAE},
+            {"infurtrinated_boned_bricked_block", INFURTRINATED_BONED_BRICKED_BLOCK},
+            {"chiseled_infurtrinated_boned_block", CHISELED_INFURTRINATED_BONED_BLOCK},
+            {"bedevil_bookshelf", BEDEVIL_BOOKSHELF},
+            {"bedevil_well", BEDEVIL_WELL},
+
+            {"infurtrinated_boned_bars", INFURTRINATED_BONED_BARS},
+            {"infurtrinated_boned_door", INFURTRINATED_BONED_DOOR},
+            {"infurtrinated_boned_trapdoor", INFURTRINATED_BONED_TRAPDOOR},
+
+
+            {"criteric_moss_block", CRITERIC_MOSS_BLOCK},
+            {"criteric_moss_carpet", CRITERIC_MOSS_CARPET},
+
+
+            {"echoing_amethyst", ECHOING_AMETHYST},
+            {"budding_echoing_amethyst", BUDDING_ECHOING_AMETHYST},
+            {"small_echoing_amethyst_bud", SMALL_ECHOING_AMETHYST_BUD},
+            {"medium_echoing_amethyst_bud", MEDIUM_ECHOING_AMETHYST_BUD},
+            {"large_echoing_amethyst_bud", LARGE_ECHOING_AMETHYST_BUD},
+            {"echoing_amethyst_cluster", ECHOING_AMETHYST_CLUSTER},
+
+
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
 

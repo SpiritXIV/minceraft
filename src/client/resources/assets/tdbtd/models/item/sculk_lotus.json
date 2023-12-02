@@ -1,6 +1,4 @@
 {
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "tdbtd:item/sculk_lotus"
-  }
+  "parent": "tdbtd:block/sculk_lotus"
+
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tdbtd:block/infurtrinated_boned_bulblight"
+  }
+}

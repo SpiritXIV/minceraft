@@ -116,7 +116,6 @@ public class PericarpiumEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new AttackGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
         this.goalSelector.add(1, new BreatheAirGoal(this));
         this.goalSelector.add(1, new FlyGoal(this, 30f));
         this.moveControl = new FlightMoveControl(this, 20, false);

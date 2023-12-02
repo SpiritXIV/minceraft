@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud"
+    },
+    "facing=west": {
+      "model": "tdbtd:block/medium_echoing_amethyst_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

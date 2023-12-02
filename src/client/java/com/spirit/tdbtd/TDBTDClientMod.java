@@ -37,11 +37,35 @@ public class TDBTDClientMod implements ClientModInitializer {
             BlockRenderLayerMap.INSTANCE.putBlock(SCULK_FERN, RenderLayer.getCutout());
             BlockRenderLayerMap.INSTANCE.putBlock(LARGE_SCULK_FERN, RenderLayer.getCutout());
             BlockRenderLayerMap.INSTANCE.putBlock(SCULK_LOTUS, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_FOUNTAIN_SHROOM, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SHROOM, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_BUD, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_GROWTH, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TAIL, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SPIKE, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_WEB, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_BONESHAFT, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_THORNS, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_EMITTER, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SHAKER, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_MAW, RenderLayer.getCutout());
+
 
             BlockRenderLayerMap.INSTANCE.putBlock(UNLIT_LANTERN, RenderLayer.getCutout());
 
 
             BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_CHAIN, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_CAGE, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_BARS, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_DOOR, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_TRAPDOOR, RenderLayer.getCutout());
+
+
+            BlockRenderLayerMap.INSTANCE.putBlock(SMALL_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(MEDIUM_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(LARGE_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ECHOING_AMETHYST_CLUSTER, RenderLayer.getCutout());
+
         }
         private void registerEntityRenderers() {
             EntityRendererRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerRenderer::new);

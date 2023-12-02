@@ -28,9 +28,9 @@ public class TDBTDEntities {
     public static final EntityType<PericarpiumEntity> PERICARPIUM = registerEntity("pericarpium", SpawnGroup.MONSTER, PericarpiumEntity::new, 1f, 2f);
     public static final EntityType<ScutleonEntity> SCUTLEON = registerEntity("scutleon", SpawnGroup.MONSTER, ScutleonEntity::new, 1f, 2f);
     public static final EntityType<NidiverEntity> NIDIVER = registerEntity("nidiver", SpawnGroup.MONSTER, NidiverEntity::new, 1f, 0.6f);
-    public static final EntityType<CuratorEntity> CURATOR = registerEntity("com.spirit.tdbtd.entity.client.figures.raw.curator", SpawnGroup.MONSTER, CuratorEntity::new, 1f, 0.6f);
+    public static final EntityType<CuratorEntitySpare> CURATOR = registerEntity("curator", SpawnGroup.MONSTER, CuratorEntitySpare::new, 1f, 0.6f);
     public static final EntityType<MijapendraEntity> MIJAPENDRA = registerEntity("mijapendra", SpawnGroup.MONSTER, MijapendraEntity::new, 1f, 0.6f);
-    public static final EntityType<ContrivancePolloOneEntity> CONTRIVANCEPOLLOONE = registerEntity("contrivancepolloone", SpawnGroup.MONSTER, ContrivancePolloOneEntity::new, 1f, 0.6f);
+    public static final EntityType<ContrivancePolloOneEntity> CONTRIVANCEPOLLOONE = registerEntity("contrivancepolloone", SpawnGroup.MONSTER, ContrivancePolloOneEntity::new, 1f, 6f);
     public static final EntityType<ContrivancePollaEntity> CONTRIVANCEPOLLA = registerEntity("contrivancepolla", SpawnGroup.MONSTER, ContrivancePollaEntity::new, 1f, 0.6f);
     public static final EntityType<AbyssofinEntity> ABYSSOFIN = registerEntity("abyssofin", SpawnGroup.MONSTER, AbyssofinEntity::new, 1f, 0.6f);
     public static final EntityType<SturgoEntity> STURGO = registerEntity("sturgo", SpawnGroup.MONSTER, SturgoEntity::new, 1f, 0.6f);

@@ -1,12 +1,12 @@
 package com.spirit.tdbtd.entity.client.figures;
 
-import com.spirit.tdbtd.entity.custom.CuratorEntity;
+import com.spirit.tdbtd.entity.custom.CuratorEntitySpare;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class CuratorModel<T extends CuratorEntity> extends SinglePartEntityModel<T> {
+public class CuratorModel<T extends CuratorEntitySpare> extends SinglePartEntityModel<T> {
 
     private final ModelPart root;
     public CuratorModel(ModelPart root) {

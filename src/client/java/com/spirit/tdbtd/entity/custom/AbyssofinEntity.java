@@ -21,7 +21,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -89,7 +88,6 @@ public class AbyssofinEntity extends HostileEntity {
     protected void initGoals() {
 
         this.goalSelector.add(0, new BreatheAirGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
         this.goalSelector.add(0, new MoveIntoWaterGoal(this));
         this.goalSelector.add(1, new ChaseBoatGoal(this));
         this.goalSelector.add(1, new AvoidSunlightGoal(this));

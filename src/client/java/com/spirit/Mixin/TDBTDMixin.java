@@ -1,6 +1,5 @@
 package com.spirit.Mixin;
 
-import com.spirit.Main;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +10,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TDBTDMixin {
     @Inject(at = @At("HEAD"), method = "init()V")
     private void init(CallbackInfo info) {
-        Main.TDBTDLOGGER.info("");
     }
 }

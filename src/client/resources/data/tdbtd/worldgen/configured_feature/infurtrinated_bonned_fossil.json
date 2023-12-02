@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:fossil",
+  "config": {
+    "fossil_processors": "tdbtd:infurtrinated_bonned_fossil_rot",
+    "fossil_structures": [
+      "tdbtd:fossil/bone_1",
+      "tdbtd:fossil/bone_2",
+      "tdbtd:fossil/bone_3",
+      "tdbtd:fossil/bone_4",
+      "tdbtd:fossil/bone_5",
+      "tdbtd:fossil/bone_6",
+      "tdbtd:fossil/bone_7",
+      "tdbtd:fossil/bone_8"
+    ],
+    "max_empty_corners_allowed": 4,
+    "overlay_processors": "tdbtd:infurtrinated_bonned_fossil_frag",
+    "overlay_structures": [
+      "tdbtd:fossil/frag_1",
+      "tdbtd:fossil/frag_2",
+      "tdbtd:fossil/frag_3",
+      "tdbtd:fossil/frag_4",
+      "tdbtd:fossil/frag_5",
+      "tdbtd:fossil/frag_6",
+      "tdbtd:fossil/frag_7",
+      "tdbtd:fossil/frag_8"
+    ]
+  }
+}

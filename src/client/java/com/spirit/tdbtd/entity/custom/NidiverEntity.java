@@ -68,7 +68,6 @@ public class NidiverEntity extends HostileEntity {
         this.goalSelector.add(2, new MeleeAttackGoal(this, 0.6, false));
         this.goalSelector.add(3, new BreatheAirGoal(this));
         this.goalSelector.add(4, new AvoidSunlightGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
 
 
         this.goalSelector.add(1, new SwimGoal(this));

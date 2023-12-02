@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "tdbtd:dimented_grass_block",
+    "tdbtd:dimented_dirt",
+    "tdbtd:dimented_rooted_dirt",
+    "tdbtd:dimented_coarse_dirt",
+    "tdbtd:dimented_podzol",
+    "tdbtd:dimented_sand",
+    "tdbtd:dimented_gravel",
+    "tdbtd:dimented_farmland"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "tdbtd:infurtrinated_deepslate_bricks",
+    "tdbtd:cracked_infurtrinated_deepslate_bricks",
+    "tdbtd:infurtrinated_deepslate_tiles",
+    "tdbtd:infurtrinated_deepslate_brick_wall",
+    "tdbtd:infurtrinated_deepslate_bricks_slab",
+    "tdbtd:infurtrinated_deepslate_bricks_stairs",
+    "tdbtd:infurtrinated_deepslate_tiles_wall",
+    "tdbtd:infurtrinated_deepslate_tiles_slab",
+    "tdbtd:infurtrinated_deepslate_tiles_stairs",
+    "tdbtd:cracked_infurtrinated_deepslate_tiles",
+    "tdbtd:criteric_moss_block"
+  ]
+}

@@ -89,7 +89,6 @@ public class CodelaingEntity extends HostileEntity {
     protected void initGoals() {
 
         this.goalSelector.add(0, new BreatheAirGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
         this.goalSelector.add(0, new MoveIntoWaterGoal(this));
         this.goalSelector.add(1, new ChaseBoatGoal(this));
         this.goalSelector.add(1, new AvoidSunlightGoal(this));

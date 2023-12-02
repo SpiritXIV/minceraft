@@ -162,7 +162,7 @@ new Item(new FabricItemSettings().food(TDBTDFoodComponents.SCULK_BEETROOT));
     public static final Item MALDININKAS_SPAWN_EGG = new SpawnEggItem(TDBTDEntities.MALDININKAS, 7239035, 2744299,
         new FabricItemSettings());
 
-    public static final Item DEVASTADOR_HOUND_SPAWNEGG = new SpawnEggItem(TDBTDEntities.DEVASTADOR_HOUND, 	213328, 352861,
+    public static final Item DEVASTADOR_HOUND_SPAWN_EGG = new SpawnEggItem(TDBTDEntities.DEVASTADOR_HOUND, 	213328, 352861,
         new FabricItemSettings());
 
     public static final Item DEVASTADOR_CUR_SPAWN_EGG = new SpawnEggItem(TDBTDEntities.DEVASTADOR_CUR, 13751990, 10661766,
@@ -238,7 +238,7 @@ new Item(new FabricItemSettings().food(TDBTDFoodComponents.SCULK_BEETROOT));
             {"sturgo_spawn_egg", STURGO_SPAWN_EGG},
             {"enguia_spawn_egg", ENGUIA_SPAWN_EGG},
             {"maldininkas_spawn_egg", MALDININKAS_SPAWN_EGG},
-            {"devastador_hound_spawnegg", DEVASTADOR_HOUND_SPAWNEGG},
+            {"devastador_hound_spawn_egg", DEVASTADOR_HOUND_SPAWN_EGG},
             {"devastador_cur_spawn_egg", DEVASTADOR_CUR_SPAWN_EGG},
             {"devastador_pup_spawn_egg", DEVASTADOR_PUP_SPAWN_EGG},
             {"kreda_spawn_egg", KREDA_SPAWN_EGG}

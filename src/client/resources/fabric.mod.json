@@ -6,6 +6,7 @@
   "description": "Just a better minecraft, both good and shit",
   "authors": [
     "Spirit (mod maker)",
+    "Ethan_4D (sculked mod creator)",
     "KingZhara (java rewriter)",
     "Absolutelyaya (second java writer)",
     "alphaxenopete82 (entity m/t)",
@@ -32,8 +33,7 @@
       "com.spirit.tdbtd.TDBTDClientMod"
     ],
     "fabric-datagen": [
-      "com.spirit.shit.ShitDataGenerator",
-      "com.spirit.tdbtd.TDBTDDataGenerator"
+      "com.spirit.DataGeneration"
     ]
   },
   "mixins": [

@@ -1,27 +1,20 @@
 package com.spirit.tdbtd.world.gen;
 
+import com.spirit.tdbtd.world.TDBTDPlacedFeatures;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.GenerationStep;
+
 public class TDBTDDiskGeneration {
-    /*public static void generateDiskTD() {
+    public static void generateDisk() {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_DECORATION, PL.getKey().get());
-    }
+                GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.DIMENTED_GRAVEL_DISC_PLACED_KEY);
 
-    public static void generateDiskCD() {
+
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_DECORATION, DISK_CD_PLACED.getKey().get());
-    }
-
-    public static void generateDiskGD() {
+                GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.INFURTRINATED_DEEPSLATE_DISC_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_DECORATION, DISK_GD_PLACED.getKey().get());
+                GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.INFURTRINATED_TUFF_DISC_PLACED_KEY);
     }
-
-    public static void generateDiskTree() {
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_DECORATION, DISK_TREE_PLACED.getKey().get());
-    }
-
-
-     */
-    public static void registerGenFeat() {}
 }

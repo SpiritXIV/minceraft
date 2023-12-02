@@ -7,7 +7,6 @@
     "ShitMixin",
     "TDBTDMixin",
     "WorldLoadMixin"
-
   ],
   "client": [
     "ShitMixin",

@@ -1,21 +1,22 @@
 package com.spirit.tdbtd.world.feature;
 
-import com.spirit.Main;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-public class TDBTDFeature <FC extends FeatureConfig> {
-    public static final Feature<DefaultFeatureConfig> SCULK_CAVE_VINES = TDBTDFeature.register("sculk_cave_vines", new TDBTDCaveVinesFeature(DefaultFeatureConfig.CODEC));
+public abstract class TDBTDFeature<FC extends FeatureConfig> {
 
-    private static Feature<DefaultFeatureConfig> register(String id, TDBTDCaveVinesFeature feature) {
-        return Registry.register(Registries.FEATURE, new Identifier(Main.TDBTD_ID, id), feature);
+    static {
+        Feature<DefaultFeatureConfig> SCULK_CAVE_VINES = Registry.register(Registries.FEATURE, "sculk_cave_vines", new TDBTDCaveVinesFeature(DefaultFeatureConfig.CODEC));
     }
 
-    public static void registerFeatures() {}
+        private static <C extends FeatureConfig, F extends Feature<C>>F register (String name, F feature){
+            return (F) Registry.register(Registries.FEATURE, (String) name, feature);
+        }
 
+        public static void registerFeatures () {
     }
+}
 

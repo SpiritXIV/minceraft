@@ -13,6 +13,7 @@ public class Client implements ClientModInitializer {
         Client.checkTDBTDClientMod();
         TDBTDClientMod.registerTDBTDClientMod();
         Client.registerClient();
+        IrisConfigModifier.haveInitializeClient();
     }
 
     public static void checkShitpostClientMod() {

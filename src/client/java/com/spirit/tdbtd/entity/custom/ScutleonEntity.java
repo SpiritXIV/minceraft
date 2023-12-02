@@ -64,7 +64,6 @@ public class ScutleonEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new AttackGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
 
         this.goalSelector.add(1, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(1, new LookAroundGoal(this));

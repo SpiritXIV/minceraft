@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "tdbtd:block/sculk_maw"
+    },
+    "active=true": {
+      "model": "tdbtd:block/sculk_maw_active"
+    }
+  }
+}

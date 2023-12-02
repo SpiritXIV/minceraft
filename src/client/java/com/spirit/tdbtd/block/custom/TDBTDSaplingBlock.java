@@ -1,6 +1,6 @@
 package com.spirit.tdbtd.block.custom;
 
-import com.spirit.tdbtd.world.feature.tree.SculkCharredSaplingGenerator;
+import com.spirit.tdbtd.world.tree.SculkCharredSaplingGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;

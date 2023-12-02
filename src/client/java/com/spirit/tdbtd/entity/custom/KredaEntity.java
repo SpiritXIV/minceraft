@@ -18,7 +18,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -145,7 +144,6 @@ public class KredaEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new AttackGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,1.2));
         this.goalSelector.add(1, new WanderAroundPointOfInterestGoal(this, 10.0, false));
         this.goalSelector.add(1, new WanderAroundGoal(this, 10f));
         this.goalSelector.add(1, new WanderNearTargetGoal(this, 30.0, 10));

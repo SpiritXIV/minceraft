@@ -1,10 +1,14 @@
 package com.spirit.tdbtd.world.gen;
 
+import com.spirit.tdbtd.world.TDBTDPlacedFeatures;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.GenerationStep;
+
 public class TDBTDGeodeGeneration {
-    /*public static void generateGeode() {
+    public static void generateGeode() {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
-                GenerationStep.Feature.UNDERGROUND_ORES, TDBTDPlacedFeatures.DIMENTED_GEODE_PLACED.getKey().get());
+                GenerationStep.Feature.UNDERGROUND_DECORATION, TDBTDPlacedFeatures.INFURTRINATED_GEODE_PLACED_KEY);
     }
-     */
-    public static void registerGenFeat() {}
 }

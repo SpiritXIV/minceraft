@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "tdbtd:block/pillared_infurtrinated_boned_vertebrae_top",
+    "side": "tdbtd:block/pillared_infurtrinated_boned_vertebrae"
+  }
+}

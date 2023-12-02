@@ -1,6 +1,6 @@
 package com.spirit.tdbtd;
 
-import com.spirit.tdbtd.data.TDBTDWorldGenerator;
+import com.spirit.tdbtd.datagen.TDBTDWorldGenerator;
 import com.spirit.tdbtd.world.TDBTDConfiguredFeatures;
 import com.spirit.tdbtd.world.TDBTDPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -25,6 +25,6 @@ public class TDBTDDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, TDBTDConfiguredFeatures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, TDBTDPlacedFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, TDBTDPlacedFeatures::boostrap);
     }
 }

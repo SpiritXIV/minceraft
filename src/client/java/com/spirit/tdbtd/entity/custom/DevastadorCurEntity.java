@@ -63,7 +63,6 @@ public class DevastadorCurEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new AttackGoal(this));
-        this.goalSelector.add(1, new FleeEntityGoal<WardenEntity>(this, WardenEntity.class, 10, 1,0.6));
         this.goalSelector.add(1, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(1, new LookAroundGoal(this));
         this.goalSelector.add(2, new MeleeAttackGoal(this, 0.5, false));

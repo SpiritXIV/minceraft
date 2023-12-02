@@ -7,7 +7,7 @@ import com.spirit.tdbtd.entity.custom.*;
 import com.spirit.tdbtd.item.TDBTDItemGroup;
 import com.spirit.tdbtd.item.TDBTDItems;
 import com.spirit.tdbtd.potion.TDBTDPotions;
-import com.spirit.tdbtd.world.gen.TDBTDWorldGen;
+import com.spirit.tdbtd.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
@@ -23,9 +23,6 @@ public class TDBTDMod implements ModInitializer {
         TDBTDBlocks.registerAll();
         TDBTDItemGroup.register();
 
-        TDBTDWorldGen.generateTDBTDWorldGen();
-        TDBTDWorldGen.registerWorldGenFeat();
-
 
         FabricDefaultAttributeRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(APERTURENTEETH, AperturenteethEntity.setAttributes());
@@ -33,7 +30,7 @@ public class TDBTDMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(PERICARPIUM, PericarpiumEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(SCUTLEON, ScutleonEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(NIDIVER, NidiverEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntitySpare.setAttributes());
         FabricDefaultAttributeRegistry.register(MIJAPENDRA, MijapendraEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLOONE, ContrivancePolloOneEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLA, ContrivancePollaEntity.setAttributes());
@@ -45,6 +42,9 @@ public class TDBTDMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(DEVASTADOR_CUR, DevastadorCurEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(DEVASTADOR_PUP, DevastadorPupEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(KREDA, KredaEntity.setAttributes());
+
+        TDBTDWorldGeneration.generateTDBTDWorldGen();
+        TDBTDWorldGeneration.registerWorldGenFeat();
     }
 
     public static void registerTDBTDMod() {

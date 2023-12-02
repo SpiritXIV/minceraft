@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "tdbtd:infurtrinated_deepslate_ore",
+    "tdbtd:infurtrinated_block",
+    "tdbtd:infurtrinated_deepslate_bricks",
+    "tdbtd:infurtrinated_deepslate_bricks_slab",
+    "tdbtd:infurtrinated_deepslate_bricks_stairs",
+    "tdbtd:infurtrinated_deepslate_brick_wall",
+    "tdbtd:infurtrinated_deepslate_tiles",
+    "tdbtd:infurtrinated_deepslate_tiles_slab",
+    "tdbtd:infurtrinated_deepslate_tiles_stairs",
+    "tdbtd:infurtrinated_deepslate_tiles_wall",
+    "tdbtd:infurtrinated_chain",
+    "tdbtd:infurtrinated_andesite",
+    "tdbtd:infurtrinated_calcite",
+    "tdbtd:infurtrinated_cobbled_deepslate",
+    "tdbtd:infurtrinated_cobblestone",
+    "tdbtd:infurtrinated_deepslate",
+    "tdbtd:infurtrinated_diorite",
+    "tdbtd:infurtrinated_granite",
+    "tdbtd:infurtrinated_smooth_basalt",
+    "tdbtd:infurtrinated_stone",
+    "tdbtd:infurtrinated_stone_bricks",
+    "tdbtd:infurtrinated_stone_bricks_slab",
+    "tdbtd:infurtrinated_stone_bricks_stairs",
+    "tdbtd:infurtrinated_stone_bricks_wall",
+    "tdbtd:infurtrinated_tuff"
+  ]
+}
