@@ -12,7 +12,7 @@ public class TDBTDWorldGeneration {
         TDBTDMossCeilingGeneration.generateCeiling();
         TDBTDCaveVinesGeneration.generateVines();
         TDBTDTreeGeneration.generateTrees();
-        TDBTDCritericCharredGeneration.generateCritericCharred();
+        TDBTDCaveVinesGeneration.generateTenvines();
 
         TDBTDEntitySpawn.addEntitySpawn();
     }

@@ -21,7 +21,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -35,8 +34,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class CodelaingEntity extends HostileEntity {
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final int MAX_AIR = 4800;
     private static final int MAX_MOISTNESS = 2400;
 
@@ -53,12 +58,32 @@ public class CodelaingEntity extends HostileEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 40;
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
     protected void updateLimbs(float posDelta) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
+    }
+
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
     }
 
     public boolean occludeVibrationSignals() {
@@ -204,6 +229,7 @@ public class CodelaingEntity extends HostileEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(MOISTNESS, 2600);
+        this.dataTracker.startTracking(ATTACKING, false);
     }
     @Override
     public boolean canBreatheInWater() {

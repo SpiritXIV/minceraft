@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.ApertureTeethAnimations;
 import com.spirit.tdbtd.entity.custom.AperturenteethEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -46,8 +47,12 @@ public class AperturenteethModel<T extends AperturenteethEntity> extends SingleP
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(AperturenteethEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(ApertureTeethAnimations.APERTURENTEETH_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, ApertureTeethAnimations.APERTURENTEETH_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, ApertureTeethAnimations.APERTURENTEETH_ATTACK, ageInTicks, 1f);
     }
 
 

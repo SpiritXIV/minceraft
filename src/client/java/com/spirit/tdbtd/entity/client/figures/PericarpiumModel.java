@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.PericarpiumAnimations;
 import com.spirit.tdbtd.entity.custom.PericarpiumEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -44,8 +45,12 @@ public class PericarpiumModel<T extends PericarpiumEntity> extends SinglePartEnt
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(PericarpiumEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(PericarpiumAnimations.PERICARPIUM_FLY, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, PericarpiumAnimations.PERICARPIUM_IDLE, ageInTicks, 1f);
+        //this.updateAnimation(entity.attackAnimationState, PericarpiumAnimations.APERTURENTEETH_ATTACK, ageInTicks, 1f);
     }
 
 

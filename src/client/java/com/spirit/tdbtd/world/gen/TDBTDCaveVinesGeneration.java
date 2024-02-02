@@ -11,4 +11,9 @@ public class TDBTDCaveVinesGeneration {
   BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
           GenerationStep.Feature.UNDERGROUND_DECORATION, TDBTDPlacedFeatures.CRITERIC_VINES_PLACED_KEY);
  }
+
+ public static void generateTenvines() {
+  BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
+          GenerationStep.Feature.UNDERGROUND_DECORATION, TDBTDPlacedFeatures.SCULK_TENVINES_PLACED_KEY);
+ }
 }

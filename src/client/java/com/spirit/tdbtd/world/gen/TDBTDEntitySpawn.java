@@ -50,8 +50,8 @@ public class TDBTDEntitySpawn {
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK), SpawnGroup.MISC,
                 CURATOR, 10, 1, 1);
 
-        SpawnRestriction.register(CURATOR, SpawnRestriction.Location.NO_RESTRICTIONS,
-                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+        //SpawnRestriction.register(CURATOR, SpawnRestriction.Location.NO_RESTRICTIONS,
+        //        Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
 
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK), SpawnGroup.MONSTER,
                 MIJAPENDRA, 50, 1, 2);

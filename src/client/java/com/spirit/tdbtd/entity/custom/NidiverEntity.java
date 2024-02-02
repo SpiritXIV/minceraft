@@ -27,8 +27,13 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class NidiverEntity extends HostileEntity {
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
     public NidiverEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -39,6 +44,17 @@ public class NidiverEntity extends HostileEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 40;
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
@@ -47,6 +63,14 @@ public class NidiverEntity extends HostileEntity {
         this.limbAnimator.updateLimbs(f, 0.2f);
     }
 
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
+    }
 
     public boolean occludeVibrationSignals() {
         return true;
@@ -110,6 +134,7 @@ public class NidiverEntity extends HostileEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(SPIDER_FLAGS, (byte)0);
+        this.dataTracker.startTracking(ATTACKING, false);
     }
 
     @Override

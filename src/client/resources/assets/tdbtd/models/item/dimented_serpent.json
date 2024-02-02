@@ -1,8 +1,5 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "tdbtd:item/dimented_serpent"
-    },
+    "parent": "minecraft:item/generated",
     "display": {
         "gui": {
             "rotation": [
@@ -129,41 +126,33 @@
                 2,
                 1
             ]
-        },
+        }
+    },
+
+    "textures": {
+        "layer0": "tdbtd:item/dimented_serpent"
+    },
+
         "overrides": [
             {
                 "predicate": {
-                    "pulling": 1
+                    "minecraft:pulling": 1
                 },
                 "model": "tdbtd:item/dimented_serpent_pulling_0"
             },
             {
                 "predicate": {
-                    "pulling": 1,
-                    "pull": 0.58
+                    "minecraft:pulling": 1,
+                    "minecraft:pull": 0.65
                 },
                 "model": "tdbtd:item/dimented_serpent_pulling_1"
             },
             {
                 "predicate": {
-                    "pulling": 1,
-                    "pull": 1.0
+                    "minecraft:pulling": 1,
+                    "minecraft:pull": 0.9
                 },
                 "model": "tdbtd:item/dimented_serpent_pulling_2"
-            },
-            {
-                "predicate": {
-                    "charged": 1
-                },
-                "model": "tdbtd:item/dimented_serpent_arrow"
-            },
-            {
-                "predicate": {
-                    "charged": 1,
-                    "firework": 1
-                },
-                "model": "tdbtd:item/dimented_serpent"
             }
         ]
     }
-}

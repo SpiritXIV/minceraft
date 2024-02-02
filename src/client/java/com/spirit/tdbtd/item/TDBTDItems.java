@@ -6,6 +6,7 @@ import com.spirit.tdbtd.entity.TDBTDEntities;
 import com.spirit.tdbtd.item.custom.*;
 import com.spirit.tdbtd.sound.TDBTDSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -57,8 +58,10 @@ new DimentedScytheItem(TDBTDAdvanceToolMaterial.DIMENTED, 17, -1F,
     //RANGED
     public static final Item SCULKBOW =
 new TDBTDBowItem(new FabricItemSettings().rarity(Rarity.RARE).maxCount(1).maxDamage(600));
+
+    public static DamageSource damageSource;
     public static final Item DIMENTEDSERPENT =
-new TDBTDShriekbowItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1200));
+new TDBTDSculkSerpentItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1200));
     public static final Item DIMENTEDTHORN =
 new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
         new FabricItemSettings().rarity(Rarity.EPIC));
@@ -67,6 +70,7 @@ new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
     public static final Item SOULSHRIEKER =
 new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
         new FabricItemSettings().rarity(Rarity.EPIC));
+
 
     //FOOD
     public static final Item APPLE =
@@ -278,6 +282,10 @@ registerItem(key, value);
     }
     private static void registerToolItem(String name, Item item) {
         Registry.register(Registries.ITEM, new Identifier(Main.TDBTD_ID, name), item);
+    }
+
+    public static void setDamageSource(DamageSource damageSource) {
+        TDBTDItems.damageSource = damageSource;
     }
 }
 

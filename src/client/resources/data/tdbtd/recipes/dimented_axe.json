@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nSN",
+    "nB ",
+    " / "
+  ],
+  "key": {
+    "n": {
+      "item": "tdbtd:infurtrinated_ingot"
+    },
+    "S": {
+      "item": "minecraft:sculk_catalyst"
+    },
+    "N": {
+      "item": "tdbtd:dimented_petal_alloy"
+    },
+    "B": {
+      "item": "minecraft:bone_block"
+    },
+    "/": {
+      "item": "tdbtd:dimented_stem"
+    }
+  },
+  "result": {
+    "item": "tdbtd:dimented_axe",
+    "count": 1
+  }
+}

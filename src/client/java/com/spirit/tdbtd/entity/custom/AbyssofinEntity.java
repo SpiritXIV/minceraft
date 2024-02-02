@@ -34,11 +34,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class AbyssofinEntity extends HostileEntity {
-    public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static final int MAX_AIR = 4800;
-    private static final int MAX_MOISTNESS = 2400;
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
+
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public AbyssofinEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -52,6 +56,17 @@ public class AbyssofinEntity extends HostileEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 40;
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
@@ -59,6 +74,7 @@ public class AbyssofinEntity extends HostileEntity {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
     }
+
 
     public boolean occludeVibrationSignals() {
         return true;
@@ -118,6 +134,11 @@ public class AbyssofinEntity extends HostileEntity {
 
     @Override
     public void tick() {
+        super.tick();
+        if(this.getWorld().isClient()) {
+            setupAnimationStates();
+        }
+
         super.tick();
         if(this.getWorld().isClient()) {
             setupAnimationStates();
@@ -204,7 +225,19 @@ public class AbyssofinEntity extends HostileEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(MOISTNESS, 2600);
+        this.dataTracker.startTracking(ATTACKING, false);
     }
+
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
+    }
+
+
     @Override
     public boolean canBreatheInWater() {
         return true;

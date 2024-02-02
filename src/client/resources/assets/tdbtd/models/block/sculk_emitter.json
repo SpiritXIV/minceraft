@@ -1,98 +1,10 @@
 {
-	"parent": "block/block",
-	"textures": {
-		"4": "tdbtd:block/sculk_emitter_side",
-		"5": "tdbtd:block/sculk_emitter_top",
-		"particle": "tdbtd:block/sculk_emitter_side"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [0, 11, 16],
-			"faces": {
-				"north": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "north"},
-				"east": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "east"},
-				"south": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "south"},
-				"west": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "west"},
-				"up": {"uv": [0, 5, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 5, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [16, 0, 0],
-			"to": [16, 11, 16],
-			"faces": {
-				"north": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "north"},
-				"east": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "east"},
-				"south": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "south"},
-				"west": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "west"},
-				"up": {"uv": [0, 5, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 5, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 0],
-			"to": [16, 11, 0],
-			"faces": {
-				"north": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "north"},
-				"east": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "east"},
-				"south": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "south"},
-				"west": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "west"},
-				"up": {"uv": [0, 5, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 5, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 16],
-			"to": [16, 11, 16],
-			"faces": {
-				"north": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "north"},
-				"east": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "east"},
-				"south": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "south"},
-				"west": {"uv": [0, 5, 16, 16], "texture": "#4", "cullface": "west"},
-				"up": {"uv": [0, 5, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 5, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 0],
-			"to": [16, 5, 16],
-			"faces": {
-				"north": {"uv": [0, 11, 16, 16], "texture": "#4"},
-				"east": {"uv": [0, 11, 16, 16], "texture": "#4"},
-				"south": {"uv": [0, 11, 16, 16], "texture": "#4"},
-				"west": {"uv": [0, 11, 16, 16], "texture": "#4"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#5"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [0, 46, 0],
-			"translation": [0, 2, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [0, 46, 0],
-			"translation": [0, 2, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 46, 0],
-			"translation": [0, 2, 0],
-			"scale": [0.64, 0.64, 0.64]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 46, 0],
-			"translation": [0, 2, 0],
-			"scale": [0.64, 0.64, 0.64]
-		},
-		"ground": {
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"head": {
-			"translation": [0, 10.25, 0]
-		}
-	}
+  "parent": "tdbtd:block/emitter",
+  "textures": {
+    "all": "tdbtd:block/sculk_emitter_side",
+    "particle": "tdbtd:block/sculk_emitter_side",
+    "0": "tdbtd:block/sculk_sensor_bottom",
+    "1": "tdbtd:block/sculk_emitter_side",
+    "2": "tdbtd:block/sculk_emitter_top"
+  }
 }

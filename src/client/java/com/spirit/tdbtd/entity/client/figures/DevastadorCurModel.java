@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.DevastadorCurAnimations;
 import com.spirit.tdbtd.entity.custom.DevastadorCurEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -56,9 +57,14 @@ public class DevastadorCurModel<T extends DevastadorCurEntity> extends SinglePar
         root.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
     }
 
-    @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 
+    @Override
+    public void setAngles(DevastadorCurEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
+
+        this.animateMovement(DevastadorCurAnimations.DEVASTADOR_CUR_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, DevastadorCurAnimations.DEVASTADOR_CUR_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, DevastadorCurAnimations.DEVASTADOR_CUR_IDLE, ageInTicks, 1f);
     }
 
 

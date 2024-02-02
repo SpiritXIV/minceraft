@@ -1,5 +1,8 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.ApertureTeethAnimations;
+import com.spirit.tdbtd.entity.animation.entities.NidiverAnimations;
+import com.spirit.tdbtd.entity.custom.AperturenteethEntity;
 import com.spirit.tdbtd.entity.custom.NidiverEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -67,8 +70,12 @@ public class NidiverModel<T extends NidiverEntity> extends SinglePartEntityModel
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(NidiverEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(NidiverAnimations.NIDIVER_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, NidiverAnimations.NIDIVER_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, NidiverAnimations.NIDIVER_ATTACK, ageInTicks, 1f);
     }
 
 

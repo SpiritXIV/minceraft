@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "tdbtd:block/pulse_sculk",
+    "particle": "tdbtd:block/pulse_sculk"
+  }
+}

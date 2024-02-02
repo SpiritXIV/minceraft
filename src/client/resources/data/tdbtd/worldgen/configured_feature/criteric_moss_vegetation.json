@@ -6,13 +6,13 @@
       "entries": [
         {
           "data": {
-            "Name": "minecraft:flowering_azalea"
+            "Name": "tdbtd:sculk_boneshaft"
           },
           "weight": 4
         },
         {
           "data": {
-            "Name": "minecraft:azalea"
+            "Name": "tdbtd:sculk_fountain_shroom"
           },
           "weight": 7
         },
@@ -24,16 +24,13 @@
         },
         {
           "data": {
-            "Name": "minecraft:grass"
+            "Name": "tdbtd:sculk_fern"
           },
           "weight": 50
         },
         {
           "data": {
-            "Name": "minecraft:tall_grass",
-            "Properties": {
-              "half": "lower"
-            }
+            "Name": "tdbtd:large_sculk_fern"
           },
           "weight": 10
         }

@@ -8,7 +8,15 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import static com.spirit.tdbtd.block.TDBTDBlocks.*;
 import static com.spirit.tdbtd.entity.TDBTDEntities.*;
@@ -49,6 +57,7 @@ public class TDBTDClientMod implements ClientModInitializer {
             BlockRenderLayerMap.INSTANCE.putBlock(SCULK_EMITTER, RenderLayer.getCutout());
             BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SHAKER, RenderLayer.getCutout());
             BlockRenderLayerMap.INSTANCE.putBlock(SCULK_MAW, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TENDRIL, RenderLayer.getCutout());
 
 
             BlockRenderLayerMap.INSTANCE.putBlock(UNLIT_LANTERN, RenderLayer.getCutout());
@@ -108,5 +117,13 @@ public class TDBTDClientMod implements ClientModInitializer {
 
     public static void registerTDBTDClientMod() {
         Main.SHITLOGGER.info("> --Connected || the-shit-of-crypt/src/main/java/com/spirit/tdbtd/TDBTDClientMod");
+    }
+
+    private static <T extends Entity> EntityType<T> registerEntityType(String name, SpawnGroup group, EntityType.EntityFactory<T> entityFactory, float width, float height) {
+        Identifier entityId = new Identifier(Main.SHIT_ID, name);
+        FabricEntityTypeBuilder<T> entityTypeBuilder = FabricEntityTypeBuilder.create(group, entityFactory)
+                .dimensions(EntityDimensions.fixed(width, height))
+                .trackRangeBlocks(4).trackedUpdateRate(10);
+        return Registry.register(Registries.ENTITY_TYPE, entityId, entityTypeBuilder.build());
     }
 }

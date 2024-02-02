@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.DevastadorHoundAnimations;
 import com.spirit.tdbtd.entity.custom.DevastadorHoundEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -73,8 +74,13 @@ public class DevastadorHoundModel<T extends DevastadorHoundEntity> extends Singl
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(DevastadorHoundEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(DevastadorHoundAnimations.DEVASTADOR_HOUND_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, DevastadorHoundAnimations.DEVASTADOR_HOUND_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, DevastadorHoundAnimations.DEVASTADOR_HOUND_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.runAnimationState, DevastadorHoundAnimations.DEVASTADOR_HOUND_RUN, ageInTicks, 1f);
     }
 
 

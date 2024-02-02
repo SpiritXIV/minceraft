@@ -9,6 +9,7 @@
  */
 
 package com.spirit;
+
 import com.spirit.shit.ShitMod;
 import com.spirit.tdbtd.TDBTDMod;
 import net.fabricmc.api.ModInitializer;
@@ -41,7 +42,7 @@ public class Main implements ModInitializer {
 
 
     public static void checkShitpostMod() {
-        Main.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
+        Main.LOGGER.info("> --Checked || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
     }
     public static void checkTDBTDMod() {
         Main.LOGGER.info("> --Checked || the-shit-of-crypt/src/main/java/com/spirit/tdbtd/TDBTDMod");

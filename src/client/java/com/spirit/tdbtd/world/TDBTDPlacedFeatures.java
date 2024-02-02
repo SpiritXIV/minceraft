@@ -33,12 +33,14 @@ public class TDBTDPlacedFeatures {
     public static final RegistryKey<PlacedFeature> INFURTRINATED_DEEPSLATE_DISC_PLACED_KEY = registerKey("infurtrinated_deepslate_disc_placed");
     public static final RegistryKey<PlacedFeature> INFURTRINATED_TUFF_DISC_PLACED_KEY = registerKey("infurtrinated_tuff_disc_placed");
 
+    public static final RegistryKey<PlacedFeature> SCULK_TENVINES_PLACED_KEY = registerKey("sculk_tenvines_placed");
+
 
     public static void boostrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, INFURTRINATED_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.INFURTRINATED_ORE_KEY),
-                TDBTDOrePlacement.modifiersWithCount(12, // Veins per Chunk
+                TDBTDOrePlacement.modifiersWithCount(2, // Veins per Chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(0))));
 
 
@@ -71,6 +73,10 @@ public class TDBTDPlacedFeatures {
                 TDBTDDiskPlacement.modifiersWithCount(SquarePlacementModifier.of(), PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, BlockFilterPlacementModifier.of(BlockPredicate.matchingFluids(Fluids.WATER)), BiomePlacementModifier.of()));
         register(context, INFURTRINATED_TUFF_DISC_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.INFURTRINATED_TUFF_DISC_KEY),
                 TDBTDDiskPlacement.modifiersWithCount(SquarePlacementModifier.of(), PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, BlockFilterPlacementModifier.of(BlockPredicate.matchingFluids(Fluids.WATER)), BiomePlacementModifier.of()));
+
+
+        register(context, SCULK_TENVINES_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.SCULK_TENVINES_KEY),
+                TDBTDVinesPlacement.modifiersWithCount(188, SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_120_RANGE, EnvironmentScanPlacementModifier.of(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.IS_AIR, 12)));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

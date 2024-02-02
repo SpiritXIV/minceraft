@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tdbtd:pillared_infurtrinated_boned_vertebrae"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tdbtd:blocks/pillared_infurtrinated_boned_vertebrae"
+}

@@ -6,6 +6,7 @@ import com.spirit.Main;
 import com.spirit.tdbtd.block.TDBTDBlocks;
 import com.spirit.tdbtd.block.custom.TDBTDCaveVinesBodyBlock;
 import com.spirit.tdbtd.block.custom.TDBTDCaveVinesHeadBlock;
+import com.spirit.tdbtd.block.custom.TenVinesBlock;
 import net.minecraft.block.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -60,6 +61,13 @@ public class TDBTDConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFURTRINATED_DEEPSLATE_DISC_KEY = registerKey("infurtrinated_deepslate_disc_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFURTRINATED_TUFF_DISC_KEY = registerKey("infurtrinated_tuff_disc_key");
+
+
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>>  SCULK_TENVINES_KEY = registerKey("sculk_tenvines");
+
+
+
 
     public static <T extends IntProvider> Codec<T> createValidatingCodec(int min, int max, Codec<T> providerCodec) {
         return Codecs.validate(providerCodec, (provider) -> {
@@ -140,12 +148,12 @@ public class TDBTDConfiguredFeatures {
                         randomizedIntBlockStateProvider)), Direction.DOWN, BlockPredicate.IS_AIR, true));
 
         register(context, CRITERIC_MOSS_VEGETATION_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(DataPool.<BlockState>builder()
-                .add(Blocks.FLOWERING_AZALEA.getDefaultState(), 4).add(Blocks.AZALEA.getDefaultState(), 7).add(TDBTDBlocks.CRITERIC_MOSS_CARPET.getDefaultState(), 25)
-                .add(Blocks.GRASS.getDefaultState(), 50).add(Blocks.TALL_GRASS.getDefaultState(), 10).build())));
+                .add(TDBTDBlocks.SCULK_BONESHAFT.getDefaultState(), 4).add(TDBTDBlocks.SCULK_FERN.getDefaultState(), 7).add(TDBTDBlocks.CRITERIC_MOSS_CARPET.getDefaultState(), 25)
+                .add(TDBTDBlocks.SCULK_FOUNTAIN_SHROOM.getDefaultState(), 50).add(TDBTDBlocks.LARGE_SCULK_FERN.getDefaultState(), 10).build())));
 
         RegistryEntry<ConfiguredFeature<?, ?>> mossVegetationEntry = (RegistryEntry<ConfiguredFeature<?, ?>>) registerKey("criteric_moss_vegetation_key").getRegistry();
         register(context, CRITERIC_MOSS_PATCH_KEY, Feature.VEGETATION_PATCH,
-                new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.of(Blocks.MOSS_BLOCK), PlacedFeatures.createEntry(mossVegetationEntry), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1),
+                new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.of(TDBTDBlocks.CRITERIC_MOSS_BLOCK), PlacedFeatures.createEntry(mossVegetationEntry), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1),
                         0.0F, 5, 0.8F, UniformIntProvider.create(4, 7), 0.3F));
 
 
@@ -156,6 +164,20 @@ public class TDBTDConfiguredFeatures {
         register(context, INFURTRINATED_TUFF_DISC_KEY, Feature.DISK, new DiskFeatureConfig(PredicatedStateProvider.of(TDBTDBlocks.INFURTRINATED_TUFF), BlockPredicate.matchingBlocks(List.of(Blocks.TUFF, Blocks.TUFF)), UniformIntProvider.create(2, 5), 2));
 
 
+        weightedBlockStateProvider = new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                .add(TDBTDBlocks.SCULK_TENVINES.getDefaultState(), 4).add((BlockState) TDBTDBlocks.SCULK_TENVINES.getDefaultState().with(TenVinesBlock.AGE, 10), 1).build());
+
+        randomizedIntBlockStateProvider = new RandomizedIntBlockStateProvider(
+                new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                        .add(TDBTDBlocks.SCULK_TENVINES_PLANT.getDefaultState(), 4).add((BlockState) TDBTDBlocks.SCULK_TENVINES_PLANT.getDefaultState().with(TenVinesBlock.AGE, 10), 1).build()
+                ), TenVinesBlock.AGE, UniformIntProvider.create(23, 25));
+
+        register(context, SCULK_TENVINES_KEY, Feature.BLOCK_COLUMN, new BlockColumnFeatureConfig(
+                List.of(BlockColumnFeatureConfig.createLayer(
+                        new WeightedListIntProvider(DataPool.<IntProvider>builder()
+                                .add(UniformIntProvider.create(0, 19), 2).add(UniformIntProvider.create(0, 2), 3).add(UniformIntProvider.create(0, 6), 10).build()),
+                        weightedBlockStateProvider), BlockColumnFeatureConfig.createLayer(ConstantIntProvider.create(1),
+                        randomizedIntBlockStateProvider)), Direction.UP, BlockPredicate.IS_AIR, true));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
@@ -212,17 +234,6 @@ public class TDBTDConfiguredFeatures {
                                 List.of(new PredicatedStateProvider.Rule(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), Blocks.DEEPSLATE),
                                         BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT)))), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)),
                                 UniformIntProvider.create(3, 6), 2));
-
-
-        //TENVINES
-        public static final RegistryEntry<ConfiguredFeature<BlockPileFeatureConfig, ?>> SCULK_TENVINES =
-                ConfiguredFeatures.register("sculk_tenvines", Feature.BLOCK_PILE,
-                        new BlockPileFeatureConfig(BlockStateProvider.of(TDBTDBlocks.SCULK_TENVINES_PLANT)));
-
-       //CAVE VINES
-       public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> SCULK_CAVE_VINES =
-               ConfiguredFeatures.register("sculk_cave_vines", TDBTDFeature.SCULK_CAVE_VINES);
-
 
        //PATCH
        public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_LOTUS =

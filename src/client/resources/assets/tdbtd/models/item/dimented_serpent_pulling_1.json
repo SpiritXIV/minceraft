@@ -1,5 +1,5 @@
 {
-    "parent": "tdbtd:item/sculk_serpent",
+    "parent": "tdbtd:item/dimented_serpent",
     "textures": {
         "layer0": "tdbtd:item/dimented_serpent_pulling_1"
     }

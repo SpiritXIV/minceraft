@@ -176,6 +176,7 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.SCULK_SHROOM);
                         entries.add(TDBTDBlocks.SCULK_BUD);
                         entries.add(TDBTDBlocks.SCULK_GROWTH);
+                        entries.add(TDBTDBlocks.SCULK_TENDRIL);
                         entries.add(TDBTDBlocks.SCULK_TAIL);
                         entries.add(TDBTDBlocks.SCULK_SPIKE);
                         entries.add(TDBTDBlocks.SCULK_WEB);

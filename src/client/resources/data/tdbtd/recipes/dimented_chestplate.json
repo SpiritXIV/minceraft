@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#D#",
+    "nCn",
+    "nNn"
+  ],
+  "key": {
+    "#": {
+      "item": "tdbtd:infurtrinated_fragment"
+    },
+    "D": {
+      "item": "tdbtd:dimented_flower"
+    },
+    "n": {
+      "item": "tdbtd:infurtrinated_ingot"
+    },
+    "C": {
+      "item": "minecraft:chainmail_chestplate"
+    },
+    "N": {
+      "item": "tdbtd:dimented_petal_alloy"
+    }
+  },
+  "result": {
+    "item": "tdbtd:dimented_chestplate",
+    "count": 1
+  }
+}

@@ -1,5 +1,8 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.ApertureTeethAnimations;
+import com.spirit.tdbtd.entity.animation.entities.MijiapendraAnimations;
+import com.spirit.tdbtd.entity.custom.AperturenteethEntity;
 import com.spirit.tdbtd.entity.custom.MijapendraEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -116,8 +119,12 @@ public class MijapendraModel<T extends MijapendraEntity> extends SinglePartEntit
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(MijapendraEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(MijiapendraAnimations.MIJAPENDRA_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, MijiapendraAnimations.MIJAPENDRA_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, MijiapendraAnimations.MIJAPENDRA_ATTACK, ageInTicks, 1f);
     }
 
 

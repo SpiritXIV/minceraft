@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tdbtd:cracked_infurtrinated_deepslate_tiles"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tdbtd:blocks/cracked_infurtrinated_deepslate_tiles"
+}

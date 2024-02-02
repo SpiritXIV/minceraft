@@ -1,70 +1,11 @@
 {
-	"parent": "block/block",
-	"textures": {
-		"0": "tdbtd:block/sculk_shaker_side",
-		"1": "tdbtd:block/sculk_shaker_top",
-		"particle": "tdbtd:block/sculk_shaker_side"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [0, 15, 16],
-			"faces": {
-				"north": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "north"},
-				"east": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "south"},
-				"west": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [0, 1, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [16, 0, 0],
-			"to": [16, 15, 16],
-			"faces": {
-				"north": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "north"},
-				"east": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "south"},
-				"west": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [0, 1, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 16],
-			"to": [16, 15, 16],
-			"faces": {
-				"north": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "north"},
-				"east": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "south"},
-				"west": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [0, 1, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 0],
-			"to": [16, 15, 0],
-			"faces": {
-				"north": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "north"},
-				"east": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "south"},
-				"west": {"uv": [0, 1, 16, 16], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [0, 1, 16, 16], "texture": "#missing"},
-				"down": {"uv": [0, 1, 16, 16], "texture": "#missing", "cullface": "down"}
-			}
-		},
-		{
-			"from": [0, 0, 0],
-			"to": [16, 5, 16],
-			"faces": {
-				"north": {"uv": [0, 11, 16, 16], "texture": "#0"},
-				"east": {"uv": [0, 11, 16, 16], "texture": "#0"},
-				"south": {"uv": [0, 11, 16, 16], "texture": "#0"},
-				"west": {"uv": [0, 11, 16, 16], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
-			}
-		}
-	]
+  "parent": "tdbtd:block/shaker",
+  "textures": {
+    "all": "tdbtd:block/sculk_shaker_side",
+    "particle": "tdbtd:block/sculk_shaker_side",
+    "0": "tdbtd:block/sculk_sensor_bottom",
+    "1": "tdbtd:block/sculk_shaker_side",
+    "2": "tdbtd:block/sculk_shaker_top",
+    "missing": "tdbtd:block/sculk_sensor_bottom"
+  }
 }

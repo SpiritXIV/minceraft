@@ -1,17 +1,10 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package com.spirit.tdbtd.item.custom;
 
-import java.util.function.Predicate;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity.PickupPermission;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -21,31 +14,20 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
+import java.util.function.Predicate;
+
 public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
-    public static final int field_30855 = 20;
+    public static final int TICKS_PER_SECOND = 20;
     public static final int RANGE = 15;
 
-    public TDBTDBowItem(Settings settings) {
+    public TDBTDBowItem(Item.Settings settings) {
         super(settings);
     }
 
-
-
-    /*TEMP*/
-    @Override
-    public Predicate<ItemStack> getProjectiles() {
-        return null;
-    }
-
-    @Override
-    public int getRange() {
-        return 0;
-    }
-
-    /*public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof PlayerEntity playerEntity) {
             boolean bl = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
-            ItemStack itemStack = playerEntity.getArrowType(stack);
+            ItemStack itemStack = playerEntity.getProjectileType(stack);
             if (!itemStack.isEmpty() || bl) {
                 if (itemStack.isEmpty()) {
                     itemStack = new ItemStack(Items.ARROW);
@@ -58,14 +40,14 @@ public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
                     if (!world.isClient) {
                         ArrowItem arrowItem = (ArrowItem)(itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
                         PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(world, itemStack, playerEntity);
-                        persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 1.0F, f * 5.0F, 0.5F);
+                        persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 5.0F, f * 5.0F, -1.0F);
                         if (f == 1.0F) {
                             persistentProjectileEntity.setCritical(true);
                         }
 
                         int j = EnchantmentHelper.getLevel(Enchantments.POWER, stack);
                         if (j > 0) {
-                            persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() + (double)j * 0.5 + 1.0);
+                            persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() + (double)j * 0.5 + 0.5);
                         }
 
                         int k = EnchantmentHelper.getLevel(Enchantments.PUNCH, stack);
@@ -74,20 +56,17 @@ public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
                         }
 
                         if (EnchantmentHelper.getLevel(Enchantments.FLAME, stack) > 0) {
-                            persistentProjectileEntity.setOnFireFor(200);
+                            persistentProjectileEntity.setOnFireFor(100);
                         }
 
-                        stack.damage(2, playerEntity, (p) -> {
-                            p.sendToolBreakStatus(playerEntity.getActiveHand());
-                        });
                         if (bl2 || playerEntity.getAbilities().creativeMode && (itemStack.isOf(Items.SPECTRAL_ARROW) || itemStack.isOf(Items.TIPPED_ARROW))) {
-                            persistentProjectileEntity.pickupType = PickupPermission.CREATIVE_ONLY;
+                            persistentProjectileEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                         }
 
                         world.spawnEntity(persistentProjectileEntity);
                     }
 
-                    world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BLOCK_SCULK_SENSOR_CLICKING_STOP, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     if (!bl2 && !playerEntity.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                         if (itemStack.isEmpty()) {
@@ -121,7 +100,7 @@ public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        boolean bl = !user.getStuckArrowCount(itemStack).isEmpty();
+        boolean bl = !user.getProjectileType(itemStack).isEmpty();
         if (!user.getAbilities().creativeMode && !bl) {
             return TypedActionResult.fail(itemStack);
         } else {
@@ -137,6 +116,4 @@ public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
     public int getRange() {
         return 15;
     }
-
-     */
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "tdbtd:block/sculk_tendril",
+    "particle": "tdbtd:block/sculk_tendril"
+  }
+}

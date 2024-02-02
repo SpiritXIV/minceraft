@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.SturgoAnimations;
 import com.spirit.tdbtd.entity.custom.SturgoEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -59,8 +60,12 @@ public class SturgoModel<T extends SturgoEntity> extends SinglePartEntityModel<T
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(SturgoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(SturgoAnimations.STURGO_SWIM, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, SturgoAnimations.STURGO_IDLE, ageInTicks, 1f);
+        //this.updateAnimation(entity.attackAnimationState, SturgoAnimations.APERTURENTEETH_ATTACK, ageInTicks, 1f);
     }
 
 

@@ -1,12 +1,13 @@
 package com.spirit.tdbtd.entity.client.figures;
 
-import com.spirit.tdbtd.entity.custom.CuratorEntitySpare;
+import com.spirit.tdbtd.entity.animation.entities.CuratorAnimations;
+import com.spirit.tdbtd.entity.custom.CuratorEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class CuratorModel<T extends CuratorEntitySpare> extends SinglePartEntityModel<T> {
+public class CuratorModel<T extends CuratorEntity> extends SinglePartEntityModel<T> {
 
     private final ModelPart root;
     public CuratorModel(ModelPart root) {
@@ -44,8 +45,12 @@ public class CuratorModel<T extends CuratorEntitySpare> extends SinglePartEntity
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(CuratorEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(CuratorAnimations.CURATOR_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, CuratorAnimations.CURATOR_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, CuratorAnimations.CURATOR_ATTACK, ageInTicks, 1f);
     }
 
 

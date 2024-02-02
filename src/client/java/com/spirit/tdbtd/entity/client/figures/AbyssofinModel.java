@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
+import com.spirit.tdbtd.entity.animation.entities.AbyssofinAnimations;
 import com.spirit.tdbtd.entity.custom.AbyssofinEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -47,8 +48,12 @@ public class AbyssofinModel<T extends AbyssofinEntity> extends SinglePartEntityM
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(AbyssofinEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.animateMovement(AbyssofinAnimations.ABYSSOFIN_SWIM, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, AbyssofinAnimations.ABYSSOFIN_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, AbyssofinAnimations.ABYSSOFIN_ATTACK, ageInTicks, 1f);
     }
 
 

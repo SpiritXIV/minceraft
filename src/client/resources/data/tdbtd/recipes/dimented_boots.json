@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#SD",
+    "ECE",
+    "n n"
+  ],
+  "key": {
+    "#": {
+      "item": "tdbtd:dimented_petal_alloy"
+    },
+    "S": {
+      "item": "minecraft:sculk"
+    },
+    "D": {
+      "item": "tdbtd:dimented_flower"
+    },
+    "E": {
+      "item": "tdbtd:infurtrinated_fragment"
+    },
+    "C": {
+      "item": "minecraft:chainmail_boots"
+    },
+    "n": {
+      "item": "tdbtd:infurtrinated_ingot"
+    }
+  },
+  "result": {
+    "item": "tdbtd:dimented_boots",
+    "count": 1
+  }
+}

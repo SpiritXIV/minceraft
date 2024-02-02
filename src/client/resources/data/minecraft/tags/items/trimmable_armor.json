@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tdbtd:dimented_helmet",
+    "tdbtd:dimented_chestplate",
+    "tdbtd:dimented_leggings",
+    "tdbtd:dimented_boots"
+  ]
+}

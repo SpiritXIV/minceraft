@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#E#",
+    "#A#",
+    "#E#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sculk"
+    },
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "A": {
+      "item": "minecraft:pufferfish"
+    }
+  },
+  "result": {
+    "item": "tdbtd:sculk_pufferfish"
+  }
+}

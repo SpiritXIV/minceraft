@@ -10,7 +10,7 @@
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "tdbtd:dimented_dirt"
+        "Name": "tdbtd:dimented_grass_block"
       }
     },
     "foliage_placer": {

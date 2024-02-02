@@ -17,7 +17,7 @@ public class Client implements ClientModInitializer {
     }
 
     public static void checkShitpostClientMod() {
-        Main.LOGGER.info("> --Loaded || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitClientMod");
+        Main.LOGGER.info("> --Checked || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitClientMod");
     }
     public static void checkTDBTDClientMod() {
         Main.LOGGER.info("> --Checked || the-shit-of-crypt/src/main/java/com/spirit/tdbtd/TDBTDClientMod");

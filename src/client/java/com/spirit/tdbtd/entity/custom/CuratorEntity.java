@@ -48,10 +48,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.BiConsumer;
 
 public class CuratorEntity extends HostileEntity implements Vibrations {
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
+
     public AnimationState roaringAnimationState = new AnimationState();
     public AnimationState sniffingAnimationState = new AnimationState();
     public AnimationState emergingAnimationState = new AnimationState();
@@ -62,9 +68,18 @@ public class CuratorEntity extends HostileEntity implements Vibrations {
     private int lastTendrilPitch;
     private int heartbeatCooldown;
     private int lastHeartbeatCooldown;
-    private int idleAnimationTimeout = 0;
     private final WardenAngerManager angerManager = new WardenAngerManager(this::isValidTarget, Collections.emptyList());
     private static final WardenAngerManager angerstaticManager = new WardenAngerManager(CuratorEntity::isstaticValidTarget, Collections.emptyList());
+
+    public static DefaultAttributeContainer.Builder setAttributes() {
+        return HostileEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 15.00)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 9.0f)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.3f)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1)
+                .add(EntityAttributes.GENERIC_ARMOR, 6)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1f);
+    }
 
     @Contract("null->false")
     public boolean isValidTarget(@Nullable Entity entity) {
@@ -107,7 +122,7 @@ public class CuratorEntity extends HostileEntity implements Vibrations {
     private final Vibrations.Callback vibrationCallback = new VibrationCallback(this.getType(), this.getWorld());
     private final Vibrations.ListenerData vibrationListenerData = new Vibrations.ListenerData();
 
-    protected CuratorEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public CuratorEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
         this.experiencePoints = 5;
         this.getNavigation().setCanSwim(true);
@@ -128,12 +143,32 @@ public class CuratorEntity extends HostileEntity implements Vibrations {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 40;
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
     protected void updateLimbs(float posDelta) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
+    }
+
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
     }
 
     public Packet<ClientPlayPacketListener> createSpawnPacket() {
@@ -215,6 +250,8 @@ public class CuratorEntity extends HostileEntity implements Vibrations {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(ANGER, 0);
+        this.dataTracker.startTracking(ATTACKING, false);
+
     }
 
     public int getAnger() {
@@ -360,14 +397,6 @@ public class CuratorEntity extends HostileEntity implements Vibrations {
     protected void sendAiDebugData() {
         super.sendAiDebugData();
         DebugInfoSender.sendBrainDebugData(this);
-    }
-
-    public void updateEventHandler(BiConsumer<EntityGameEventHandler<?>, ServerWorld> callback) {
-        World var3 = this.getWorld();
-        if (var3 instanceof ServerWorld serverWorld) {
-            callback.accept(this.gameEventHandler, serverWorld);
-        }
-
     }
 
     public static void addDarknessToClosePlayers(ServerWorld world, Vec3d pos, @Nullable Entity entity, int range) {

@@ -121,6 +121,8 @@ OTHER
 
     public static final Block SCULK_LOTUS = new SculkLotusBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.WATER);
 
+    public static final Block SCULK_TENDRIL = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
+
     public static final Block SCULK_FOUNTAIN_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_BUD = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
@@ -134,6 +136,8 @@ OTHER
     public static final Block SCULK_SHAKER = new SculkShakerBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_MAW = new SculkMawBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block LAYERED_SCULK = new SculkBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool());
+
+    public static final Block PULSING_SCULK = new SculkBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK).strength(2.0F).requiresTool());
 
 
 
@@ -254,6 +258,7 @@ OTHER
             {"large_sculk_fern", LARGE_SCULK_FERN},
             {"sculk_lotus", SCULK_LOTUS},
 
+            {"sculk_tendril", SCULK_TENDRIL},
             {"sculk_fountain_shroom", SCULK_FOUNTAIN_SHROOM},
             {"sculk_shroom", SCULK_SHROOM},
             {"sculk_bud", SCULK_BUD},
@@ -267,6 +272,7 @@ OTHER
             {"sculk_shaker", SCULK_SHAKER},
             {"sculk_maw", SCULK_MAW},
             {"layered_sculk", LAYERED_SCULK},
+            {"pulsing_sculk", PULSING_SCULK},
 
             {"framed_sculk", FRAMED_SCULK},
 

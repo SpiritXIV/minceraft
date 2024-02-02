@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "tdbtd",
+  "cookingtime": 200,
+  "experience": 3.0,
+  "group": "infurtrinated_fragment",
+  "ingredient": {
+    "item": "tdbtd:infurtrinated_deepslate_ore"
+  },
+  "result": "tdbtd:infurtrinated_fragment"
+}

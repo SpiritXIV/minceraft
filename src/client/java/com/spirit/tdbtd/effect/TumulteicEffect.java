@@ -1,34 +1,38 @@
 package com.spirit.tdbtd.effect;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.world.entity.EntityChangeListener;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.server.world.ServerWorld;
 
 public class TumulteicEffect extends StatusEffect {
     protected TumulteicEffect() {
         super(StatusEffectCategory.HARMFUL, 3124687);
     }
 
-    @Override
-    public void applyUpdateEffect(LivingEntity pLivingEntity, int pAmplifier) {
-        if (!pLivingEntity.getWorld().isClient()) {
-            double s = pLivingEntity.getX();
-            double y = pLivingEntity.getY();
-            double z = pLivingEntity.getZ();
+    int effectNum = 39;
 
-            pLivingEntity.emitGameEvent(GameEvent.SCULK_SENSOR_TENDRILS_CLICKING);
-            pLivingEntity.emitGameEvent(GameEvent.SHRIEK);
+    @Override
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if (!entity.getWorld().isClient()) {
+            ServerWorld world = (ServerWorld) entity.getWorld();
+            executeStopSound(world, entity);
+
         }
 
-        super.applyUpdateEffect(pLivingEntity, pAmplifier);
+        super.applyUpdateEffect(entity, amplifier);
+    }
+
+    private void executeStopSound(ServerWorld world, LivingEntity entity) {
+        if (entity.hasStatusEffect(StatusEffect.byRawId(effectNum))) {
+
+            world.getServer().getCommandManager().executeWithPrefix(world.getServer().getCommandSource(), "stopsound @a[nbt={ActiveEffects:[{Id:" + effectNum + "}]}]");
+        }
     }
 
 
     @Override
-    public boolean canApplyUpdateEffect(int pDuration, int pAmplifer) {
+    public boolean canApplyUpdateEffect(int pDuration, int pAmplifier) {
         return true;
     }
 }

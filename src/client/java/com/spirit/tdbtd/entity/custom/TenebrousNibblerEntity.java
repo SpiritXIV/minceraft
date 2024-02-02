@@ -35,8 +35,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class TenebrousNibblerEntity extends HostileEntity {
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final int MAX_AIR = 4800;
     private static final int MAX_MOISTNESS = 2400;
 
@@ -52,6 +58,17 @@ public class TenebrousNibblerEntity extends HostileEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 40;
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
@@ -59,6 +76,16 @@ public class TenebrousNibblerEntity extends HostileEntity {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
     }
+
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
+    }
+
     public boolean occludeVibrationSignals() {
         return true;
     }
@@ -193,6 +220,7 @@ public class TenebrousNibblerEntity extends HostileEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(MOISTNESS, 400);
+        this.dataTracker.startTracking(ATTACKING, false);
     }
     @Override
     public boolean canBreatheInWater() {
