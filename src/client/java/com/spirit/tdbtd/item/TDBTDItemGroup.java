@@ -14,30 +14,30 @@ public class TDBTDItemGroup {
     public static final ItemGroup TDBTD_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.TDBTD_ID, "tdbtd_item_group"),
             FabricItemGroup.builder()
                     .displayName(Text.translatable("itemgroup.tdbtditem"))
-                    .icon(() -> new ItemStack(TDBTDItems.DIMENTEDHELMET))
+                    .icon(() -> new ItemStack(TDBTDItems.DIMENTED_HELMET))
                     .entries((displayContext, entries) -> {
                         entries.add(TDBTDItems.INFURTRINATED_FRAGMENT);
                         entries.add(TDBTDItems.INFURTRINATED_INGOT);
-                        entries.add(TDBTDItems.DIMENTEDSTEM);
-                        entries.add(TDBTDItems.DIMENTEDPETAL);
-                        entries.add(TDBTDItems.DIMENTEDPETALALLOY);
-                        entries.add(TDBTDItems.DIMENTEDFLOWER);
+                        entries.add(TDBTDItems.DIMENTED_STEM);
+                        entries.add(TDBTDItems.DIMENTED_PETAL);
+                        entries.add(TDBTDItems.DIMENTED_PETAL_ALLOY);
+                        entries.add(TDBTDItems.DIMENTED_FLOWER);
                         entries.add(TDBTDItems.SOUL_ESSENCE);
                         entries.add(TDBTDItems.LOST_SOUL);
-                        entries.add(TDBTDItems.DIMENTEDHELMET);
-                        entries.add(TDBTDItems.DIMENTEDCHESTPLATE);
-                        entries.add(TDBTDItems.DIMENTEDLEGGINGS);
-                        entries.add(TDBTDItems.DIMENTEDBOOTS);
+                        entries.add(TDBTDItems.DIMENTED_HELMET);
+                        entries.add(TDBTDItems.DIMENTED_CHESTPLATE);
+                        entries.add(TDBTDItems.DIMENTED_LEGGINGS);
+                        entries.add(TDBTDItems.DIMENTED_BOOTS);
                         entries.add(TDBTDItems.DIMENTED_SWORD);
                         entries.add(TDBTDItems.DIMENTED_PICKAXE);
                         entries.add(TDBTDItems.DIMENTED_AXE);
                         entries.add(TDBTDItems.DIMENTED_SHOVEL);
                         entries.add(TDBTDItems.DIMENTED_HOE);
-                        entries.add(TDBTDItems.DIMENTEDSCYTHE);
-                        entries.add(TDBTDItems.SCULKBOW);
-                        entries.add(TDBTDItems.DIMENTEDSERPENT);
-                        entries.add(TDBTDItems.DIMENTEDTHORN);
-                        entries.add(TDBTDItems.SOULSHRIEKER);
+                        entries.add(TDBTDItems.DIMENTED_SCYTHE);
+                        entries.add(TDBTDItems.DIMENTED_BOW);
+                        entries.add(TDBTDItems.DIMENTED_SERPENT);
+                        entries.add(TDBTDItems.DIMENTED_THORN);
+                        entries.add(TDBTDItems.SOUL_SHRIEKER);
                         entries.add(TDBTDItems.SHRIEKER_MUSIC_DISC);
                         entries.add(TDBTDItems.THE_WARDEN_MUSIC_DISC);
                         entries.add(TDBTDItems.WARDEN_RUN_MUSIC_DISC);

@@ -8,10 +8,10 @@ import static com.spirit.tdbtd.item.TDBTDItems.*;
 
 public class TDBTDModelPredicateProvider {
     public static void registerModels() {
-        registerBow(SCULKBOW);
-        registerBow(DIMENTEDSCYTHE);
-        registerBow(DIMENTEDTHORN);
-        registerBow(DIMENTEDSERPENT);
+        registerBow(DIMENTED_BOW);
+        registerBow(DIMENTED_SCYTHE);
+        registerBow(DIMENTED_THORN);
+        registerBow(DIMENTED_SERPENT);
     }
 
     private static void registerBow(Item bow) {

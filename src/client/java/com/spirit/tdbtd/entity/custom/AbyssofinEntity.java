@@ -5,7 +5,7 @@ import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
-import net.minecraft.entity.ai.control.AquaticMoveControl;
+import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -21,6 +21,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -31,24 +32,25 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+
 
 public class AbyssofinEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
-    public final AnimationState idleAnimationState = new AnimationState();
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> MOVING_TO_DARK_PLACE = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private int stalkingTime = 0;
     private int idleAnimationTimeout = 0;
-
-    public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
-
-    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
-
+    public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState attackAnimationState = new AnimationState();
     public AbyssofinEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.moveControl = new AquaticMoveControl(this, 85, 10, 0.02f, 0.1f, true);
+        this.moveControl = new AquaticMoveControl(this);
         this.lookControl = new YawAdjustingLookControl(this, 10);
-    }
+        this.dataTracker.startTracking(MOVING_TO_DARK_PLACE, false);    }
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = this.random.nextInt(40) + 80;
@@ -97,31 +99,26 @@ public class AbyssofinEntity extends HostileEntity {
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.3f)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1)
                 .add(EntityAttributes.GENERIC_ARMOR, 6)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1f);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
     }
 
     @Override
     protected void initGoals() {
-
         this.goalSelector.add(0, new BreatheAirGoal(this));
-        this.goalSelector.add(0, new MoveIntoWaterGoal(this));
-        this.goalSelector.add(1, new ChaseBoatGoal(this));
-        this.goalSelector.add(1, new AvoidSunlightGoal(this));
+        this.goalSelector.add(1, new MoveIntoWaterGoal(this));
+        this.goalSelector.add(2, new MoveToDarkPlaceGoal(this));
+        this.goalSelector.add(3, new ChaseBoatGoal(this));
         this.goalSelector.add(4, new SwimAroundGoal(this, 2.0, 10));
-        this.goalSelector.add(4, new LookAroundGoal(this));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 10.0f));
-        this.goalSelector.add(6, new MeleeAttackGoal(this, 1.2f, true));
-
-
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, DolphinEntity.class, true));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, DrownedEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, CodEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, AxolotlEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, TurtleEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, false));
-
-
+        this.goalSelector.add(5, new LookAroundGoal(this));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 10.0f));
+        this.goalSelector.add(7, new MeleeAttackGoal(this, 1.2f, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, DolphinEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, DrownedEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, CodEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, AxolotlEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal<>(this, TurtleEntity.class, true));
+        this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, false));
         this.experiencePoints = 5;
         this.getNavigation().setCanSwim(true);
         this.setPathfindingPenalty(PathNodeType.UNPASSABLE_RAIL, 0.0f);
@@ -132,11 +129,29 @@ public class AbyssofinEntity extends HostileEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0f);
     }
 
+    public boolean isMovingToDarkPlace() {
+        return this.dataTracker.get(MOVING_TO_DARK_PLACE);
+    }
+
+    public void setMovingToDarkPlace(boolean movingToDarkPlace) {
+        this.dataTracker.set(MOVING_TO_DARK_PLACE, movingToDarkPlace);
+    }
+
     @Override
     public void tick() {
         super.tick();
-        if(this.getWorld().isClient()) {
+        if (this.getWorld().isClient()) {
             setupAnimationStates();
+        }
+
+        if (this.isDark() && !this.isAttacking()) {
+            stalkingTime++;
+        } else {
+            stalkingTime = 0;
+        }
+
+        if (stalkingTime >= 600 && !this.isAttacking()) {
+            this.setAttacking(true);
         }
 
         super.tick();
@@ -155,8 +170,8 @@ public class AbyssofinEntity extends HostileEntity {
                 this.damage(DamageTypes.DRY_OUT, 1.0f);
             }
             if (this.isOnGround()) {
-                this.setVelocity(this.getVelocity().add((this.random.nextFloat() * 2.0f - 1.0f) * 0.2f, 0.5, (this.random.nextFloat() * 2.0f - 1.0f) * 0.2f));
-                this.setYaw(this.random.nextFloat() * 360.0f);
+                this.setVelocity(this.getVelocity().add((this.random.nextFloat() * .5f), 0.5, (this.random.nextFloat() * .5f)));
+                this.setYaw(this.random.nextFloat());
                 this.setOnGround(false);
                 this.velocityDirty = true;
             }
@@ -174,7 +189,6 @@ public class AbyssofinEntity extends HostileEntity {
     }
 
     private void damage(RegistryKey<DamageType> dryOut, float amount) {
-
     }
 
     @Override
@@ -182,7 +196,7 @@ public class AbyssofinEntity extends HostileEntity {
         if (this.canMoveVoluntarily() && this.isTouchingWater()) {
             this.updateVelocity(this.getMovementSpeed(), movementInput);
             this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().multiply(0.9));
+            this.setVelocity(this.getVelocity().multiply(0.2));
             if (this.getTarget() == null) {
                 this.setVelocity(this.getVelocity().add(0.0, -0.008, 0.0));
             }
@@ -191,11 +205,27 @@ public class AbyssofinEntity extends HostileEntity {
         }
     }
 
-
-
     @Override
     protected EntityNavigation createNavigation(World world) {
         return new SwimNavigation(this, world);
+    }
+
+    static class AquaticMoveControl extends MoveControl {
+        public AquaticMoveControl(MobEntity entity) {
+            super(entity);
+        }
+
+        @Override
+        public void tick() {
+            if (this.state == MoveControl.State.MOVE_TO && !this.entity.isTouchingWater()) {
+                this.entity.setMovementSpeed(MathHelper.lerp(0.02F, this.entity.getMovementSpeed(), 0.0F));
+                this.entity.setForwardSpeed(0.0F);
+                this.entity.setSidewaysSpeed(0.0F);
+                this.state = MoveControl.State.WAIT;
+            } else {
+                super.tick();
+            }
+        }
     }
 
     @Override
@@ -208,7 +238,6 @@ public class AbyssofinEntity extends HostileEntity {
         return this.getMaxAir();
     }
 
-
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
@@ -219,6 +248,11 @@ public class AbyssofinEntity extends HostileEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.setMoistness(nbt.getInt("Moistness"));
+    }
+
+    private boolean isDark() {
+        BlockPos blockPos = this.getBlockPos();
+        return this.getWorld().isNight() && !this.getWorld().isSkyVisible(blockPos);
     }
 
     @Override
@@ -265,4 +299,54 @@ public class AbyssofinEntity extends HostileEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(SoundEvents.BLOCK_SLIME_BLOCK_STEP, 0.15f, 1.0f);}
+
+
+    static class MoveToDarkPlaceGoal extends Goal {
+        private final AbyssofinEntity entity;
+        public MoveToDarkPlaceGoal(AbyssofinEntity entity) {
+            this.entity = entity;
+        }
+
+        @Override
+        public boolean canStart() {
+            return this.entity.isDark() && !this.entity.isAttacking() && !this.entity.isMovingToDarkPlace();
+        }
+
+        @Override
+        public void start() {
+            this.entity.setMovingToDarkPlace(true);
+        }
+
+        @Override
+        public void tick() {
+            if (!this.entity.isDark()) {
+                WorldAccess world = this.entity.getWorld();
+                BlockPos darkPlace = findDarkPlace(world, this.entity.getBlockPos());
+                if (darkPlace != null) {
+                    this.entity.getNavigation().startMovingTo(darkPlace.getX(), darkPlace.getY(), darkPlace.getZ(), 1.0);
+                }
+            } else {
+                this.entity.setMovingToDarkPlace(false);
+            }
+        }
+
+        @Override
+        public void stop() {
+            this.entity.setMovingToDarkPlace(false);
+        }
+
+        private BlockPos findDarkPlace(WorldAccess world, BlockPos currentPos) {
+            BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+            for (int i = 0; i < 10; i++) {
+                int offsetX = this.entity.getRandom().nextInt(16) - 8;
+                int offsetY = this.entity.getRandom().nextInt(8) - 4;
+                int offsetZ = this.entity.getRandom().nextInt(16) - 8;
+                mutablePos.set(currentPos).move(offsetX, offsetY, offsetZ);
+                if (world.getLightLevel(LightType.BLOCK, mutablePos) < 8) {
+                    return mutablePos;
+                }
+            }
+            return null;
+        }
+    }
 }

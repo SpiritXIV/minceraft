@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public enum TDBTDAdvanceToolMaterial implements ToolMaterial {
     DIMENTED(5, 3900, 9.0F, 0.0F, 30,
-            () -> Ingredient.ofItems(TDBTDItems.DIMENTEDFLOWER));
+            () -> Ingredient.ofItems(TDBTDItems.DIMENTED_FLOWER));
 
     private final int miningLevel;
     private final int itemDurability;

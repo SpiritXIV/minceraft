@@ -21,16 +21,13 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class SculkLotusBlock extends PlantBlock {
-    private final Supplier<Block> ground;
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    public SculkLotusBlock(Settings settings, Supplier<Block> ground) {
+    public SculkLotusBlock(Settings settings) {
         super(settings);
-        this.ground = ground;
     }
 
     private static final VoxelShape SHAPE_N = Stream.of(

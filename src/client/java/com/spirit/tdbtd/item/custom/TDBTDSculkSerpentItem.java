@@ -32,11 +32,11 @@ public class TDBTDSculkSerpentItem extends BowItem {
         if (user.isSneaking()) {
             user.setCurrentHand(hand);
 
-            user.playSound(SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 0.4f, 1);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 0.4f, 1);
 
             return TypedActionResult.consume(stack);
         } else {
-            user.playSound(SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 10, 1);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 10, 1);
             return super.use(world, user, hand);
         }
     }
@@ -53,8 +53,7 @@ public class TDBTDSculkSerpentItem extends BowItem {
 
                         executeSonicBoom(world, player);
 
-                        // Add sound when fully charged
-                        player.playSound(SoundEvents.ENTITY_WARDEN_ANGRY, SoundCategory.PLAYERS, 10, 0);
+                        world.playSound((PlayerEntity) user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_ANGRY, SoundCategory.PLAYERS, 10, 0);
 
                         player.getItemCooldownManager().set(this, 1);
                     }
@@ -64,49 +63,47 @@ public class TDBTDSculkSerpentItem extends BowItem {
     }
 
     private static void applyDamageAndEffect(LivingEntity entity, float DAMAGE) {
-        // Apply your damage and effects here
         entity.damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), TDBTDSculkSerpentItem.DAMAGE);
     }
 
 
-    public static void executeSonicBoom(World world, PlayerEntity player) {
-        if (world instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld) world;
+    public static void executeSonicBoom(World world, PlayerEntity user) {
+        if (world instanceof ServerWorld serverWorld) {
 
-            player.playSound(SoundEvents.ENTITY_WARDEN_ROAR, SoundCategory.PLAYERS, 10, 1);
-            player.playSound(SoundEvents.ENTITY_WARDEN_AGITATED, SoundCategory.PLAYERS, 10, 1);
-            player.playSound(SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.PLAYERS, 10, 1.4f);
-            player.playSound(SoundEvents.ENTITY_WARDEN_TENDRIL_CLICKS, SoundCategory.PLAYERS, 10, 0.5f);
-            player.playSound(SoundEvents.ENTITY_ELDER_GUARDIAN_AMBIENT, SoundCategory.PLAYERS, 10, 1.1f);
-            player.playSound(SoundEvents.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, SoundCategory.PLAYERS, 10, 0);
-            player.playSound(SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 10, 0);
-            serverWorld.spawnParticles(ParticleTypes.SCULK_SOUL, player.getX(), player.getY(), player.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
-            serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, player.getX(), player.getY(), player.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
-            serverWorld.spawnParticles(ParticleTypes.SOUL, player.getX(), player.getY(), player.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_ROAR, SoundCategory.PLAYERS, 10, 1);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_AGITATED, SoundCategory.PLAYERS, 10, 1);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.PLAYERS, 10, 1.4f);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_TENDRIL_CLICKS, SoundCategory.PLAYERS, 10, 0.5f);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ELDER_GUARDIAN_AMBIENT, SoundCategory.PLAYERS, 10, 1.1f);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, SoundCategory.PLAYERS, 10, 0);
+            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 10, 0);
+            serverWorld.spawnParticles(ParticleTypes.SCULK_SOUL, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
+            serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
+            serverWorld.spawnParticles(ParticleTypes.SOUL, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
 
 
-            Vec3d lookVector = player.getRotationVec(1.0f);
-            Vec3d shootVector = player.getCameraPosVec(1.0F).add(lookVector.multiply(DISTANCE));
+            Vec3d lookVector = user.getRotationVec(1.0f);
+            Vec3d shootVector = user.getCameraPosVec(1.0F).add(lookVector.multiply(DISTANCE));
 
             int numberOfParticles = 60;
 
-            Vec3d step = shootVector.subtract(player.getCameraPosVec(1.0F)).multiply(1.0 / numberOfParticles);
+            Vec3d step = shootVector.subtract(user.getCameraPosVec(1.0F)).multiply(1.0 / numberOfParticles);
 
             for (int i = 0; i < numberOfParticles; i++) {
-                double posX = player.getX() + i * step.x;
-                double posY = player.getY() + i * step.y;
-                double posZ = player.getZ() + i * step.z;
+                double posX = user.getX() + i * step.x;
+                double posY = user.getY() + i * step.y;
+                double posZ = user.getZ() + i * step.z;
                 serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, posX, posY + YADJUST, posZ, 1, 0.0, 0.0, 0.0, 0.0);
                 serverWorld.spawnParticles(ParticleTypes.SCULK_CHARGE_POP, posX, posY  + YADJUST, posZ, 1, 0.0, 0.0, 0.0, 0.0);
             }
 
             for (int i = 0; i < 50; i++) {
-                player.playSound(SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS, 10, 1);
+                world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS, 10, 1);
 
             }
 
 
-            Box area = new Box(player.getX(), player.getY() + YADJUST, player.getZ(), shootVector.x, shootVector.y + YADJUST, shootVector.z);
+            Box area = new Box(user.getX(), user.getY() + YADJUST, user.getZ(), shootVector.x, shootVector.y + YADJUST, shootVector.z);
 
             serverWorld.getEntitiesByClass(LivingEntity.class, area, entity -> true).forEach(entity -> {
                 if (entity instanceof LivingEntity) {

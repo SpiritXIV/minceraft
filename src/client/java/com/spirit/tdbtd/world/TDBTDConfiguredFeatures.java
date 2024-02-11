@@ -57,6 +57,7 @@ public class TDBTDConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRITERIC_MOSS_PATCH_CEILING_KEY = registerKey("criteric_moss_patch_ceiling_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRITERIC_MOSS_VEGETATION_KEY = registerKey("criteric_moss_vegetation_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DIMENTED_GRAVEL_DISC_KEY = registerKey("dimented_gravel_disc_key");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DIMENTED_GRASS_DISC_KEY = registerKey("dimented_grass_disc_key");
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFURTRINATED_DEEPSLATE_DISC_KEY = registerKey("infurtrinated_deepslate_disc_key");
@@ -157,7 +158,8 @@ public class TDBTDConfiguredFeatures {
                         0.0F, 5, 0.8F, UniformIntProvider.create(4, 7), 0.3F));
 
 
-        register(context, DIMENTED_GRAVEL_DISC_KEY, Feature.DISK, new DiskFeatureConfig(PredicatedStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL), BlockPredicate.matchingBlocks(List.of(Blocks.GRAVEL, Blocks.GRAVEL)), UniformIntProvider.create(2, 5), 2));
+        register(context, DIMENTED_GRAVEL_DISC_KEY, Feature.DISK, new DiskFeatureConfig(PredicatedStateProvider.of(TDBTDBlocks.DIMENTED_GRAVEL), BlockPredicate.matchingBlocks(List.of(Blocks.GRAVEL, Blocks.SAND)), UniformIntProvider.create(2, 5), 2));
+        register(context, DIMENTED_GRASS_DISC_KEY, Feature.DISK, new DiskFeatureConfig(PredicatedStateProvider.of(TDBTDBlocks.DIMENTED_GRASS_BLOCK), BlockPredicate.matchingBlocks(List.of(Blocks.GRASS_BLOCK, Blocks.DIRT)), UniformIntProvider.create(2, 5), 2));
 
 
         register(context, INFURTRINATED_DEEPSLATE_DISC_KEY, Feature.DISK, new DiskFeatureConfig(PredicatedStateProvider.of(TDBTDBlocks.INFURTRINATED_DEEPSLATE), BlockPredicate.matchingBlocks(List.of(Blocks.DEEPSLATE, Blocks.DEEPSLATE)), UniformIntProvider.create(2, 5), 2));

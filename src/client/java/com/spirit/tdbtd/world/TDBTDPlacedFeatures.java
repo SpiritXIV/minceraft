@@ -29,6 +29,7 @@ public class TDBTDPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CRITERIC_MOSS_PATCH_PLACED_KEY = registerKey("criteric_moss_patch_placed");
     public static final RegistryKey<PlacedFeature> CRITERIC_MOSS_PATCH_CEILING_PLACED_KEY = registerKey("criteric_moss_patch_ceiling_placed");
     public static final RegistryKey<PlacedFeature> DIMENTED_GRAVEL_DISC_PLACED_KEY = registerKey("dimented_gravel_disk_placed");
+    public static final RegistryKey<PlacedFeature> DIMENTED_GRASS_DISC_PLACED_KEY = registerKey("dimented_grass_disk_placed");
 
     public static final RegistryKey<PlacedFeature> INFURTRINATED_DEEPSLATE_DISC_PLACED_KEY = registerKey("infurtrinated_deepslate_disc_placed");
     public static final RegistryKey<PlacedFeature> INFURTRINATED_TUFF_DISC_PLACED_KEY = registerKey("infurtrinated_tuff_disc_placed");
@@ -66,7 +67,10 @@ public class TDBTDPlacedFeatures {
                         BlockPredicate.solid(), BlockPredicate.IS_AIR, 12), RandomOffsetPlacementModifier.vertically(ConstantIntProvider.create(-1)), BiomePlacementModifier.of()));
 
         register(context, DIMENTED_GRAVEL_DISC_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.DIMENTED_GRAVEL_DISC_KEY),
-                TDBTDDiskPlacement.modifiersWithCount(SquarePlacementModifier.of(), PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, BlockFilterPlacementModifier.of(BlockPredicate.matchingFluids(Fluids.WATER)), BiomePlacementModifier.of()));
+                TDBTDDiskPlacement.modifiersWithCount(SquarePlacementModifier.of(), PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, BlockFilterPlacementModifier.of(BlockPredicate.matchingFluids(Fluids.EMPTY)), BiomePlacementModifier.of()));
+
+        register(context, DIMENTED_GRASS_DISC_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.DIMENTED_GRASS_DISC_KEY),
+                TDBTDDiskPlacement.modifiersWithCount(SquarePlacementModifier.of(), PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, BlockFilterPlacementModifier.of(BlockPredicate.matchingFluids(Fluids.EMPTY)), BiomePlacementModifier.of()));
 
 
         register(context, INFURTRINATED_DEEPSLATE_DISC_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(TDBTDConfiguredFeatures.INFURTRINATED_DEEPSLATE_DISC_KEY),

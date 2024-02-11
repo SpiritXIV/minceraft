@@ -22,13 +22,13 @@ public class TDBTDEntities {
     private static final Identifier TDBTD_ID = new Identifier(Main.TDBTD_ID);
 
 
-    public static final EntityType<TenebrousNibblerEntity> TENEBROUS_NIBBLER = registerEntity("tenebrous_nibbler", SpawnGroup.MONSTER, TenebrousNibblerEntity::new, 1f, 2f);
+    public static final EntityType<TenebrousNibblerEntity> TENEBROUS_NIBBLER = registerEntity("tenebrous_nibbler", SpawnGroup.MONSTER, TenebrousNibblerEntity::new, 0.3f, 0.3f);
     public static final EntityType<AperturenteethEntity> APERTURENTEETH = registerEntity("aperturenteeth", SpawnGroup.MONSTER, AperturenteethEntity::new, 0.5f, 0.4f);
     public static final EntityType<CodelaingEntity> CODELAING = registerEntity("codelaing", SpawnGroup.MONSTER, CodelaingEntity::new, 1f, 1f);
     public static final EntityType<PericarpiumEntity> PERICARPIUM = registerEntity("pericarpium", SpawnGroup.MONSTER, PericarpiumEntity::new, 1f, 2f);
     public static final EntityType<ScutleonEntity> SCUTLEON = registerEntity("scutleon", SpawnGroup.MONSTER, ScutleonEntity::new, 1f, 2f);
     public static final EntityType<NidiverEntity> NIDIVER = registerEntity("nidiver", SpawnGroup.MONSTER, NidiverEntity::new, 1f, 0.6f);
-    public static final EntityType<CuratorEntity> CURATOR = registerEntity("curator", SpawnGroup.MONSTER, CuratorEntity::new, 1f, 0.6f);
+    public static final EntityType<CuratorEntity> CURATOR = registerEntity("curator", SpawnGroup.MONSTER, CuratorEntity::new, 1f, 2.5f);
     public static final EntityType<MijapendraEntity> MIJAPENDRA = registerEntity("mijapendra", SpawnGroup.MONSTER, MijapendraEntity::new, 1f, 0.6f);
     public static final EntityType<ContrivancePolloOneEntity> CONTRIVANCEPOLLOONE = registerEntity("contrivancepolloone", SpawnGroup.MONSTER, ContrivancePolloOneEntity::new, 1f, 6f);
     public static final EntityType<ContrivancePollaEntity> CONTRIVANCEPOLLA = registerEntity("contrivancepolla", SpawnGroup.MONSTER, ContrivancePollaEntity::new, 1f, 0.6f);

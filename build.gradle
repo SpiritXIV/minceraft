@@ -14,7 +14,6 @@ repositories {
 	maven { url 'https://maven.fabricmc.net/' }
 	maven { url 'https://repo.spongepowered.org/maven/' } // Add this if missing
 	maven { url "https://maven.nucleoid.xyz/" }
-
 }
 
 loom {
@@ -53,6 +52,9 @@ sourceSets {
 	}
 }
 dependencies {
+	mappings "net.fabricmc:yarn:1.20.1+build.10:v2"
+
+
 	implementation 'org.jetbrains:annotations:24.0.0'
 	implementation group: 'net.sourceforge.pmd', name: 'pmd-core', version: '6.42.0'
 

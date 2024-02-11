@@ -1,6 +1,5 @@
 package com.spirit.tdbtd.entity.custom;
 
-import com.spirit.tdbtd.entity.ai.goal.KredaFlyGoal;
 import com.spirit.tdbtd.entity.ai.pathing.KredaFlightMoveControl;
 import com.spirit.tdbtd.entity.ai.pathing.KredaNavigation;
 import net.minecraft.block.BlockState;
@@ -181,7 +180,6 @@ public class KredaEntity extends HostileEntity {
         this.goalSelector.add(1, new WanderAroundPointOfInterestGoal(this, 10.0, false));
         this.goalSelector.add(1, new WanderAroundGoal(this, 10f));
         this.goalSelector.add(1, new WanderNearTargetGoal(this, 30.0, 10));
-        this.goalSelector.add(9, new KredaFlyGoal(this, 10f));
         this.moveControl = new KredaFlightMoveControl(this, 20, false);
         this.goalSelector.add(2, new MeleeAttackGoal(this,1.0f, false));
         this.goalSelector.add(3, new LookAroundGoal(this));

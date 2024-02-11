@@ -17,7 +17,7 @@ public class DimentedScytheItem extends SwordItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        target.addStatusEffect(new StatusEffectInstance(TDBTDEffects.TUMULTEIC, 500, 0), attacker);
+        target.addStatusEffect(new StatusEffectInstance(TDBTDEffects.TUMULTEIC, 250, 0), attacker);
         target.setSwimming(true);
         target.setVelocity(0, 1, 0);
         target.playSound(SoundEvents.ENTITY_PLAYER_BREATH, 1.0f, 0.6f);
@@ -30,8 +30,8 @@ public class DimentedScytheItem extends SwordItem {
         target.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1.0f, 1);
         target.emitGameEvent(GameEvent.ENTITY_ROAR);
         target.emitGameEvent(GameEvent.SHRIEK);
-        target.addStatusEffect(new StatusEffectInstance(TDBTDEffects.INFIRMA, 500, 0), attacker);
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 500, 0), attacker);
+        target.addStatusEffect(new StatusEffectInstance(TDBTDEffects.INFIRMA, 250, 0), attacker);
+        target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 250, 0), attacker);
         return super.postHit(stack, target, attacker);
     }
 }

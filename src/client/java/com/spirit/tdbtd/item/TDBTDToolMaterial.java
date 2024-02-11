@@ -33,7 +33,7 @@ public class TDBTDToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(TDBTDItems.INFURTRINATED_FRAGMENT);
+        return Ingredient.ofItems(TDBTDItems.INFURTRINATED_INGOT);
     }
 }
 

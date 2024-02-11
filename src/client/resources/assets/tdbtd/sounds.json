@@ -30,6 +30,17 @@
         "stream": true
       }
     ]
+  },
+
+  "deep_dark_ambience": {
+    "sounds": [
+      {"name": "tdbtd:music/overworld/panophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/selenophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/dementophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/isolophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/taphephobia", "stream": true},
+      {"name": "tdbtd:music/overworld/agony", "stream": true}
+    ]
   }
 
 }

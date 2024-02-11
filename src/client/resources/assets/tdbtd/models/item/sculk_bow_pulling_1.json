@@ -1,6 +1,0 @@
-{
-  "parent": "tdbtd:item/sculk_bow",
-  "textures": {
-    "layer0": "tdbtd:item/sculk_bow_pulling_1"
-  }
-}

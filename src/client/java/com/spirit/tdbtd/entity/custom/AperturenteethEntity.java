@@ -1,5 +1,7 @@
 package com.spirit.tdbtd.entity.custom;
 
+import com.spirit.tdbtd.entity.ai.goal.BuriedAttackGoal;
+import com.spirit.tdbtd.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
 public class AperturenteethEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(AperturenteethEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
+    static float ATTACK_DAMAGE = 7.0f;
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -88,7 +90,7 @@ public class AperturenteethEntity extends HostileEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.00)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0f)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ATTACK_DAMAGE)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.1f)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, -0.5)
                 .add(EntityAttributes.GENERIC_ARMOR, 4)
@@ -97,12 +99,14 @@ public class AperturenteethEntity extends HostileEntity {
 
     @Override
     protected void initGoals() {
+        this.goalSelector.add(6, new BuriedAttackGoal(this));
         this.goalSelector.add(1, new AttackGoal(this));
         this.goalSelector.add(1, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(1, new LookAroundGoal(this));
         this.goalSelector.add(2, new MeleeAttackGoal(this, 0.4, false));
         this.goalSelector.add(3, new BreatheAirGoal(this));
         this.goalSelector.add(4, new AvoidSunlightGoal(this));
+        this.goalSelector.add(5, new LookAtPlayerGoal(this));
 
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, FoxEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
@@ -150,5 +154,12 @@ public class AperturenteethEntity extends HostileEntity {
         this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
         this.playSound(SoundEvents.ENTITY_EVOKER_FANGS_ATTACK, 1.0f, 0.8f);
         return super.tryAttack(target);
+    }
+
+    public void lookAtEntity(PlayerEntity player) {
+    }
+
+    public float getDamage() {
+        return ATTACK_DAMAGE;
     }
 }

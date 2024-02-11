@@ -119,10 +119,9 @@ OTHER
 
     public static final Block LARGE_SCULK_FERN = new TDBTDTallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
 
-    public static final Block SCULK_LOTUS = new SculkLotusBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.WATER);
+    public static final Block SCULK_LOTUS = new SculkLotusBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).nonOpaque().strength(2.0F).requiresTool());
 
-    public static final Block SCULK_TENDRIL = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
-
+    public static final Block SCULK_TENDRIL = new SculkTenDrilBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_FOUNTAIN_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_SHROOM = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);
     public static final Block SCULK_BUD = new TDBTDSmallPlantBlock(FabricBlockSettings.copy(Blocks.SCULK).sounds(BlockSoundGroup.SCULK_CATALYST).noCollision().nonOpaque().strength(2.0F).requiresTool(), () -> Blocks.SCULK);

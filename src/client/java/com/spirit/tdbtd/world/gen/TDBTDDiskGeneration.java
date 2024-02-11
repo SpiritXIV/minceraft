@@ -11,6 +11,9 @@ public class TDBTDDiskGeneration {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
                 GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.DIMENTED_GRAVEL_DISC_PLACED_KEY);
 
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
+                GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.DIMENTED_GRASS_DISC_PLACED_KEY);
+
 
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK),
                 GenerationStep.Feature.RAW_GENERATION, TDBTDPlacedFeatures.INFURTRINATED_DEEPSLATE_DISC_PLACED_KEY);

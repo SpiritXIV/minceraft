@@ -16,9 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.function.Predicate;
 
-public class TDBTDBowItem extends RangedWeaponItem implements Vanishable {
-    public static final int TICKS_PER_SECOND = 20;
-    public static final int RANGE = 15;
+public class TDBTDBowItem extends BowItem {
 
     public TDBTDBowItem(Item.Settings settings) {
         super(settings);

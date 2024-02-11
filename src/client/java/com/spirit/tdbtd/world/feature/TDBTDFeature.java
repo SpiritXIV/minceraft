@@ -9,8 +9,6 @@ public abstract class TDBTDFeature<FC extends FeatureConfig> {
     static {
         Feature<DefaultFeatureConfig> SCULK_CAVE_VINES = Registry.register(Registries.FEATURE, "sculk_cave_vines", new TDBTDCaveVinesFeature(DefaultFeatureConfig.CODEC));
         Feature<DefaultFeatureConfig> SCULK_TENVINES = Registry.register(Registries.FEATURE, "sculk_tenvines", new TDBTDSculkTenvinesFeature(DefaultFeatureConfig.CODEC));
-
-
     }
 
         private static <C extends FeatureConfig, F extends Feature<C>>F register (String name, F feature){

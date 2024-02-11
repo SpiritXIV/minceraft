@@ -34,16 +34,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EnguiaEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(EnguiaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> HIDING = DataTracker.registerData(EnguiaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(EnguiaEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
-    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static final int MAX_AIR = 4800;
-    private static final int MAX_MOISTNESS = 2400;
 
 
     public EnguiaEntity(EntityType<? extends HostileEntity> entityType, World world) {
@@ -145,9 +144,20 @@ public class EnguiaEntity extends HostileEntity {
     @Override
     public void tick() {
         super.tick();
-        if(this.getWorld().isClient()) {
+        if (this.getWorld().isClient()) {
             setupAnimationStates();
         }
+
+        boolean isInDarkPlace = this.isInDarkPlace();
+
+        if (isInDarkPlace && this.attackAnimationTimeout <= 0) {
+            if (this.getTarget() != null && this.squaredDistanceTo(this.getTarget()) < 25) {
+                this.popOutAndAttack();
+            } else if (this.getTarget() != null && this.squaredDistanceTo(this.getTarget()) < 50 && !this.getTarget().getServer().getDefaultGameMode().isCreative()) {
+                this.playAlertSound();
+            }
+        }
+
         if (this.isAiDisabled()) {
             this.setAir(this.getMaxAir());
             return;
@@ -181,9 +191,23 @@ public class EnguiaEntity extends HostileEntity {
     private void damage(RegistryKey<DamageType> dryOut, float amount) {
     }
 
+    private boolean isInDarkPlace() {
+        BlockPos blockPos = new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ());
+        return !this.getWorld().isDay() && this.getWorld().getBlockState(blockPos).getLuminance() < 8;
+    }
+
+    private void popOutAndAttack() {
+        this.setAttacking(true);
+        this.playSound(SoundEvents.ENTITY_WARDEN_ANGRY, 1.0f, 1.0f);
+    }
+
+    private void playAlertSound() {
+            this.playSound(SoundEvents.ENTITY_POLAR_BEAR_WARNING, 1.0f, 1.0f);
+    }
+
     @Override
     public void travel(Vec3d movementInput) {
-        if (this.canMoveVoluntarily() && this.isTouchingWater()) {
+        if (this.canMoveVoluntarily() && this.isTouchingWater() && !this.dataTracker.get(HIDING)) {
             this.updateVelocity(this.getMovementSpeed(), movementInput);
             this.move(MovementType.SELF, this.getVelocity());
             this.setVelocity(this.getVelocity().multiply(0.9));
@@ -191,7 +215,7 @@ public class EnguiaEntity extends HostileEntity {
                 this.setVelocity(this.getVelocity().add(0.0, -0.008, 0.0));
             }
         } else {
-            super.travel(movementInput);
+            this.setVelocity(Vec3d.ZERO);
         }
     }
 
@@ -230,6 +254,7 @@ public class EnguiaEntity extends HostileEntity {
         super.initDataTracker();
         this.dataTracker.startTracking(MOISTNESS, 2600);
         this.dataTracker.startTracking(ATTACKING, false);
+        this.dataTracker.startTracking(HIDING, false);
     }
     @Override
     public boolean canBreatheInWater() {

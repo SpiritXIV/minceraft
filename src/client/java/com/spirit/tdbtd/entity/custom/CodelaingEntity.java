@@ -33,17 +33,16 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.Objects;
+
 public class CodelaingEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(CodelaingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(CodelaingEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
-
     public final AnimationState attackAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
     public int attackAnimationTimeout = 0;
-    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static final int MAX_AIR = 4800;
-    private static final int MAX_MOISTNESS = 2400;
+    private int stalkCooldown = 0;
 
 
     public CodelaingEntity(EntityType<? extends HostileEntity> entityType, World world) {
@@ -51,6 +50,7 @@ public class CodelaingEntity extends HostileEntity {
         this.moveControl = new AquaticMoveControl(this, 85, 10, 0.02f, 0.1f, true);
         this.lookControl = new YawAdjustingLookControl(this, 10);
     }
+
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = this.random.nextInt(40) + 80;
@@ -59,14 +59,14 @@ public class CodelaingEntity extends HostileEntity {
             --this.idleAnimationTimeout;
         }
 
-        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+        if (this.isAttacking() && attackAnimationTimeout <= 0) {
             attackAnimationTimeout = 40;
             attackAnimationState.start(this.age);
         } else {
             --this.attackAnimationTimeout;
         }
 
-        if(!this.isAttacking()) {
+        if (!this.isAttacking()) {
             attackAnimationState.stop();
         }
     }
@@ -99,7 +99,6 @@ public class CodelaingEntity extends HostileEntity {
     }
 
 
-
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 15.00)
@@ -121,7 +120,7 @@ public class CodelaingEntity extends HostileEntity {
         this.goalSelector.add(4, new LookAroundGoal(this));
         this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 10.0f));
         this.goalSelector.add(6, new MeleeAttackGoal(this, 1.2f, true));
-
+        this.goalSelector.add(2, new StalkPlayerGoal(this));
 
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, DolphinEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, DrownedEntity.class, true));
@@ -145,7 +144,7 @@ public class CodelaingEntity extends HostileEntity {
     @Override
     public void tick() {
         super.tick();
-        if(this.getWorld().isClient()) {
+        if (this.getWorld().isClient()) {
             setupAnimationStates();
         }
         if (this.isAiDisabled()) {
@@ -168,12 +167,12 @@ public class CodelaingEntity extends HostileEntity {
         }
         if (this.getWorld().isClient && this.isTouchingWater() && this.getVelocity().lengthSquared() > 0.03) {
             Vec3d vec3d = this.getRotationVec(0.0f);
-            float f = MathHelper.cos(this.getYaw() * ((float)Math.PI / 180)) * 0.3f;
-            float g = MathHelper.sin(this.getYaw() * ((float)Math.PI / 180)) * 0.3f;
+            float f = MathHelper.cos(this.getYaw() * ((float) Math.PI / 180)) * 0.3f;
+            float g = MathHelper.sin(this.getYaw() * ((float) Math.PI / 180)) * 0.3f;
             float h = 1.2f - this.random.nextFloat() * 0.7f;
             for (int i = 0; i < 2; ++i) {
-                this.getWorld().addParticle(ParticleTypes.SCULK_CHARGE_POP, this.getX() - vec3d.x * (double)h + (double)f, this.getY() - vec3d.y, this.getZ() - vec3d.z * (double)h + (double)g, 0.0, 0.0, 0.0);
-                this.getWorld().addParticle(ParticleTypes.SCULK_CHARGE_POP, this.getX() - vec3d.x * (double)h - (double)f, this.getY() - vec3d.y, this.getZ() - vec3d.z * (double)h - (double)g, 0.0, 0.0, 0.0);
+                this.getWorld().addParticle(ParticleTypes.SCULK_CHARGE_POP, this.getX() - vec3d.x * (double) h + (double) f, this.getY() - vec3d.y, this.getZ() - vec3d.z * (double) h + (double) g, 0.0, 0.0, 0.0);
+                this.getWorld().addParticle(ParticleTypes.SCULK_CHARGE_POP, this.getX() - vec3d.x * (double) h - (double) f, this.getY() - vec3d.y, this.getZ() - vec3d.z * (double) h - (double) g, 0.0, 0.0, 0.0);
             }
         }
     }
@@ -194,8 +193,6 @@ public class CodelaingEntity extends HostileEntity {
             super.travel(movementInput);
         }
     }
-
-
 
     @Override
     protected EntityNavigation createNavigation(World world) {
@@ -231,6 +228,7 @@ public class CodelaingEntity extends HostileEntity {
         this.dataTracker.startTracking(MOISTNESS, 2600);
         this.dataTracker.startTracking(ATTACKING, false);
     }
+
     @Override
     public boolean canBreatheInWater() {
         return true;
@@ -247,15 +245,65 @@ public class CodelaingEntity extends HostileEntity {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {return SoundEvents.BLOCK_CONDUIT_AMBIENT_SHORT;}
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.BLOCK_CONDUIT_AMBIENT_SHORT;
+    }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.BLOCK_SOUL_SAND_BREAK;}
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.BLOCK_SOUL_SAND_BREAK;
+    }
 
     @Override
-    protected SoundEvent getDeathSound() {return SoundEvents.BLOCK_CONDUIT_ATTACK_TARGET;}
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.BLOCK_CONDUIT_ATTACK_TARGET;
+    }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.BLOCK_SLIME_BLOCK_STEP, 0.15f, 1.0f);}
+        this.playSound(SoundEvents.BLOCK_SLIME_BLOCK_STEP, 0.15f, 1.0f);
+    }
+
+    class StalkPlayerGoal extends Goal {
+        private final CodelaingEntity entity;
+
+        public StalkPlayerGoal(CodelaingEntity entity) {
+            this.entity = entity;
+        }
+
+        @Override
+        public boolean canStart() {
+            return entity.getTarget() == null && (entity.isSubmergedInWater() || entity.hasVehicle()) && stalkCooldown <= 0;
+        }
+
+        @Override
+        public void start() {
+            entity.setAttacking(false);
+        }
+
+        @Override
+        public void tick() {
+            if (entity.getTarget() == null) {
+                PlayerEntity player = entity.getWorld().getClosestPlayer(entity, 10.0);
+                if (player != null) {
+                    entity.getNavigation().startMovingTo(player, 1.0);
+                }
+            }
+
+            if (entity.getTarget() != null && entity.getTarget().hasVehicle()) {
+                if (stalkCooldown <= 0) {
+                    // Break the target's boat and set cooldown
+                    Objects.requireNonNull(entity.getTarget().getVehicle()).kill();
+                    stalkCooldown = 200; // 10 seconds cooldown (200 ticks at 20 ticks per second)
+                } else {
+                    stalkCooldown--;
+                }
+            }
+        }
+
+        @Override
+        public void stop() {
+            entity.getNavigation().stop();
+        }
+    }
 }

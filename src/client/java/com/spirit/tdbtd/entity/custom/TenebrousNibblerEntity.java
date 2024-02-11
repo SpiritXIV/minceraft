@@ -21,7 +21,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.WardenEntity;
-import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -33,22 +32,31 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.Predicate;
+
 
 public class TenebrousNibblerEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(TenebrousNibblerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(TenebrousNibblerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
+    private static final TrackedData<Optional<UUID>> GROUP_LEADER = DataTracker.registerData(TenebrousNibblerEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
+    private static final TrackedData<Integer> GROUP_SIZE = DataTracker.registerData(TenebrousNibblerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
-    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final int MAX_AIR = 4800;
     private static final int MAX_MOISTNESS = 2400;
 
     public TenebrousNibblerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.moveControl = new AquaticMoveControl(this, 85, 10, 0.02f, 0.1f, true);
+        this.moveControl = new AquaticMoveControl(this, 85, 10, 0.1f, 0.02f, true);
         this.lookControl = new YawAdjustingLookControl(this, 10);
     }
     private void setupAnimationStates() {
@@ -118,6 +126,7 @@ public class TenebrousNibblerEntity extends HostileEntity {
         this.goalSelector.add(4, new LookAroundGoal(this));
         this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 10.0f));
         this.goalSelector.add(6, new MeleeAttackGoal(this, 1.2f, true));
+        this.goalSelector.add(7, new SwarmPlayerGoal(this, 1.2, 15));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, false));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PassiveEntity.class, true));
@@ -167,6 +176,32 @@ public class TenebrousNibblerEntity extends HostileEntity {
                 this.getWorld().addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3d.x * (double)h - (double)f, this.getY() - vec3d.y, this.getZ() - vec3d.z * (double)h - (double)g, 0.0, 0.0, 0.0);
             }
         }
+
+        if (!this.getWorld().isClient()) {
+            if (this.getGroupSize() < 15) {
+                List<TenebrousNibblerEntity> nearbyNibblers = getGroupMembers();
+                for (TenebrousNibblerEntity nearbyNibbler : nearbyNibblers) {
+                    if (!nearbyNibbler.getGroupLeader().equals(this.getGroupLeader())) {
+                        nearbyNibbler.setGroupLeader(this.getUuid());
+                        nearbyNibbler.setGroupSize(this.getGroupSize() + 1);
+                    }
+                }
+            }
+
+            if (this.isLeader()) {
+                if (this.getTarget() != null) {
+                    this.getNavigation().startMovingTo(this.getTarget(), 1.0);
+                }
+            }
+
+            if (this.isLeader() && this.getRecentDamageSource() != null) {
+                List<TenebrousNibblerEntity> groupMembers = getGroupMembers();
+                for (TenebrousNibblerEntity groupMember : groupMembers) {
+                    groupMember.setAttacking(true);
+                    groupMember.getNavigation().startMovingTo(this.getRecentDamageSource().getAttacker(), 1.5);
+                }
+            }
+        }
     }
 
     private void damage(RegistryKey<DamageType> dryOut, float amount) {
@@ -176,14 +211,16 @@ public class TenebrousNibblerEntity extends HostileEntity {
     public void travel(Vec3d movementInput) {
         if (this.canMoveVoluntarily() && this.isTouchingWater()) {
             this.updateVelocity(this.getMovementSpeed(), movementInput);
-            this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().multiply(0.8));
-            if (this.getTarget() == null) {
-                this.setVelocity(this.getVelocity().add(0.0, -0.005, 0.0));
+
+            if (this.isInsideWaterOrBubbleColumn()) {
+                this.move(MovementType.SELF, this.getVelocity());
+                this.setVelocity(this.getVelocity().multiply(0.8));
+                if (this.getTarget() == null) {
+                    this.setVelocity(this.getVelocity().add(0.0, -0.005, 0.0));
+                }
             }
-        } else {
-            super.travel(movementInput);
-        }
+                super.travel(movementInput);
+            }
     }
 
 
@@ -221,7 +258,30 @@ public class TenebrousNibblerEntity extends HostileEntity {
         super.initDataTracker();
         this.dataTracker.startTracking(MOISTNESS, 400);
         this.dataTracker.startTracking(ATTACKING, false);
+        this.dataTracker.startTracking(GROUP_LEADER, Optional.of(UUID.randomUUID()));
+        this.dataTracker.startTracking(GROUP_SIZE, 15);
     }
+
+    private Optional<Optional<UUID>> getGroupLeader() {
+        return Optional.ofNullable(this.dataTracker.get(GROUP_LEADER));
+    }
+
+    private void setGroupLeader(@Nullable UUID leaderUUID) {
+        this.dataTracker.set(GROUP_LEADER, Optional.ofNullable(leaderUUID));
+    }
+
+    private int getGroupSize() {
+        return this.dataTracker.get(GROUP_SIZE);
+    }
+
+    private void setGroupSize(int size) {
+        this.dataTracker.set(GROUP_SIZE, size);
+    }
+
+    private List<TenebrousNibblerEntity> getGroupMembers() {
+        return this.getWorld().getEntitiesByClass(TenebrousNibblerEntity.class, this.getBoundingBox().expand(15.0, 5.0, 15.0), (Predicate<? super TenebrousNibblerEntity>) World.OVERWORLD);
+    }
+
     @Override
     public boolean canBreatheInWater() {
         return true;
@@ -237,6 +297,10 @@ public class TenebrousNibblerEntity extends HostileEntity {
         return 4.0f;
     }
 
+    private boolean isLeader() {
+        return this.getUuid().equals(this.getGroupLeader());
+    }
+
     @Override
     protected SoundEvent getAmbientSound() {return SoundEvents.BLOCK_SOUL_SAND_STEP;}
 
@@ -249,4 +313,43 @@ public class TenebrousNibblerEntity extends HostileEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(SoundEvents.BLOCK_SLIME_BLOCK_STEP, 0.15f, 1.0f);}
+
+    private static class SwarmPlayerGoal extends TrackTargetGoal {
+        private final TenebrousNibblerEntity nibbler;
+
+        public SwarmPlayerGoal(TenebrousNibblerEntity nibbler, double speed, int updateRate) {
+            super(nibbler, true, true);
+            this.nibbler = nibbler;
+        }
+
+        @Override
+        public boolean canStart() {
+            return nibbler.isLeader();
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            nibbler.setAttacking(true);
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            nibbler.setAttacking(false);
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+
+            // Custom logic for swarming around the player
+            List<TenebrousNibblerEntity> nearbyNibblers = nibbler.getGroupMembers();
+            for (TenebrousNibblerEntity nearbyNibbler : nearbyNibblers) {
+                if (nearbyNibbler.getTarget() != null && nearbyNibbler.getTarget().isAlive()) {
+                    nearbyNibbler.getNavigation().startMovingTo(nearbyNibbler.getTarget(), 1.0);
+                }
+            }
+        }
+    }
 }

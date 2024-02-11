@@ -44,8 +44,8 @@ public class TDBTDLootTableModifiers {
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.25f)) // Drops 25% of the time
                         .with(ItemEntry.builder(TDBTDItems.INFURTRINATED_INGOT))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDPETAL))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDSTEM))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_PETAL))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_STEM))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());
@@ -54,7 +54,7 @@ public class TDBTDLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.10f)) // Drops 10% of the time
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDPETALALLOY))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_PETAL_ALLOY))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());
@@ -63,11 +63,11 @@ public class TDBTDLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.01f)) // Drops 1% of the time
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDFLOWER))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDBOOTS))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDCHESTPLATE))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDLEGGINGS))
-                        .with(ItemEntry.builder(TDBTDItems.DIMENTEDHELMET))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_FLOWER))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_BOOTS))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_CHESTPLATE))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_LEGGINGS))
+                        .with(ItemEntry.builder(TDBTDItems.DIMENTED_HELMET))
                         .with(ItemEntry.builder(TDBTDItems.DIMENTED_SWORD))
                         .with(ItemEntry.builder(TDBTDItems.DIMENTED_HOE))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());

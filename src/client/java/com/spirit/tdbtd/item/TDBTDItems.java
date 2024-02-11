@@ -19,23 +19,23 @@ import java.util.stream.Stream;
 
 
 public class TDBTDItems {
-
+@SuppressWarnings({"typo"})
     //Items
     public static final Item INFURTRINATED_FRAGMENT = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item INFURTRINATED_INGOT = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
 
-    public static final Item DIMENTEDSTEM = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
-    public static final Item DIMENTEDPETAL = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
-    public static final Item DIMENTEDPETALALLOY = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
-    public static final Item DIMENTEDFLOWER = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC));
+    public static final Item DIMENTED_STEM = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
+    public static final Item DIMENTED_PETAL = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
+    public static final Item DIMENTED_PETAL_ALLOY = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE));
+    public static final Item DIMENTED_FLOWER = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC));
     public static final Item SOUL_ESSENCE = new Item(new FabricItemSettings().maxCount(16).rarity(Rarity.RARE));
     public static final Item LOST_SOUL = new Item(new FabricItemSettings().maxCount(16).rarity(Rarity.RARE));
 
     //ARMOR
-    public static final Item DIMENTEDHELMET = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.HELMET, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
-    public static final Item DIMENTEDCHESTPLATE = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
-    public static final Item DIMENTEDLEGGINGS = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.LEGGINGS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
-    public static final Item DIMENTEDBOOTS = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.BOOTS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
+    public static final Item DIMENTED_HELMET = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.HELMET, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
+    public static final Item DIMENTED_CHESTPLATE = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
+    public static final Item DIMENTED_LEGGINGS = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.LEGGINGS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
+    public static final Item DIMENTED_BOOTS = new ArmorItem(ArmorMaterials.DIMENTED, ArmorItem.Type.BOOTS, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
 
     //TOOLS
     public static final Item DIMENTED_SWORD = new SwordItem(TDBTDToolMaterial.INSTANCE, 9, -0F,
@@ -44,32 +44,16 @@ public class TDBTDItems {
         new FabricItemSettings().rarity(Rarity.RARE));
     public static final Item DIMENTED_AXE = new TDBTDAxeItem(TDBTDToolMaterial.INSTANCE, 11, -3.2F,
         new FabricItemSettings().rarity(Rarity.RARE));
-    public static final Item DIMENTED_SHOVEL =
-new TDBTDShovelItem(TDBTDToolMaterial.INSTANCE, 7, -3.0F,
+    public static final Item DIMENTED_SHOVEL = new TDBTDShovelItem(TDBTDToolMaterial.INSTANCE, 7, -3.0F,
         new FabricItemSettings().rarity(Rarity.RARE));
-    public static final Item DIMENTED_HOE =
-new TDBTDHoeItem(TDBTDToolMaterial.INSTANCE, 2, -3.2F,
+    public static final Item DIMENTED_HOE = new TDBTDHoeItem(TDBTDToolMaterial.INSTANCE, 2, -3.2F,
         new FabricItemSettings().rarity(Rarity.RARE));
 
-    //SCYTHE
-    public static final Item DIMENTEDSCYTHE =
-new DimentedScytheItem(TDBTDAdvanceToolMaterial.DIMENTED, 17, -1F,
-        new FabricItemSettings().rarity(Rarity.EPIC));
-    //RANGED
-    public static final Item SCULKBOW =
-new TDBTDBowItem(new FabricItemSettings().rarity(Rarity.RARE).maxCount(1).maxDamage(600));
-
-    public static DamageSource damageSource;
-    public static final Item DIMENTEDSERPENT =
-new TDBTDSculkSerpentItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1200));
-    public static final Item DIMENTEDTHORN =
-new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
-        new FabricItemSettings().rarity(Rarity.EPIC));
-
-    //OTHER UNIQUE WEPONDS
-    public static final Item SOULSHRIEKER =
-new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F,
-        new FabricItemSettings().rarity(Rarity.EPIC));
+    public static final Item DIMENTED_SCYTHE = new DimentedScytheItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, -3.3F, new FabricItemSettings().rarity(Rarity.EPIC));
+    public static final Item DIMENTED_BOW = new TDBTDBowItem(new FabricItemSettings().rarity(Rarity.RARE).maxCount(1).maxDamage(600));
+    public static final Item DIMENTED_SERPENT = new TDBTDSculkSerpentItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).maxDamage(1200));
+    public static final Item DIMENTED_THORN = new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, 1F, new FabricItemSettings().rarity(Rarity.EPIC));
+    public static final Item SOUL_SHRIEKER = new SoulShriekerItem(TDBTDAdvanceToolMaterial.DIMENTED, 8, -3.6F, new FabricItemSettings().rarity(Rarity.EPIC));
 
 
     //FOOD
@@ -182,16 +166,16 @@ new Item(new FabricItemSettings().food(TDBTDFoodComponents.SCULK_BEETROOT));
     static Map<String, Object> ITEMS = Stream.of(new Object[][] {
             {"infurtrinated_fragment", INFURTRINATED_FRAGMENT},
             {"infurtrinated_ingot", INFURTRINATED_INGOT},
-            {"dimented_stem", DIMENTEDSTEM},
-            {"dimented_petal", DIMENTEDPETAL},
-            {"dimented_petal_alloy", DIMENTEDPETALALLOY},
-            {"dimented_flower", DIMENTEDFLOWER},
+            {"dimented_stem", DIMENTED_STEM},
+            {"dimented_petal", DIMENTED_PETAL},
+            {"dimented_petal_alloy", DIMENTED_PETAL_ALLOY},
+            {"dimented_flower", DIMENTED_FLOWER},
             {"soul_essence", SOUL_ESSENCE},
             {"lost_soul", LOST_SOUL},
-            {"dimented_helmet", DIMENTEDHELMET},
-            {"dimented_chestplate", DIMENTEDCHESTPLATE},
-            {"dimented_leggings", DIMENTEDLEGGINGS},
-            {"dimented_boots", DIMENTEDBOOTS},
+            {"dimented_helmet", DIMENTED_HELMET},
+            {"dimented_chestplate", DIMENTED_CHESTPLATE},
+            {"dimented_leggings", DIMENTED_LEGGINGS},
+            {"dimented_boots", DIMENTED_BOOTS},
             {"sculk_apple", APPLE},
             {"sculk_baked_potato", BAKED_POTATO},
             {"sculk_beef", BEEF},
@@ -261,11 +245,11 @@ registerItem(key, value);
                 registerToolItem("dimented_axe", DIMENTED_AXE);
                 registerToolItem("dimented_shovel", DIMENTED_SHOVEL);
                 registerToolItem("dimented_hoe", DIMENTED_HOE);
-                registerToolItem("dimented_scythe", DIMENTEDSCYTHE);
-                registerToolItem("sculk_bow", SCULKBOW);
-                registerToolItem("dimented_serpent", DIMENTEDSERPENT);
-                registerToolItem("dimented_thorn", DIMENTEDTHORN);
-                registerToolItem("soul_shrieker", SOULSHRIEKER);
+                registerToolItem("dimented_scythe", DIMENTED_SCYTHE);
+                registerToolItem("dimented_bow", DIMENTED_BOW);
+                registerToolItem("dimented_serpent", DIMENTED_SERPENT);
+                registerToolItem("dimented_thorn", DIMENTED_THORN);
+                registerToolItem("soul_shrieker", SOUL_SHRIEKER);
     }
 
 
@@ -275,7 +259,7 @@ registerItem(key, value);
     //    entries.add(BLUE_BRICK);
     // }
 
-
+    public static DamageSource damageSource;
     //REGISTRY
     private static void registerItem(String name, Item item) {
         Registry.register(Registries.ITEM, new Identifier(Main.TDBTD_ID, name), item);

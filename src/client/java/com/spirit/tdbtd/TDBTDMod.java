@@ -2,6 +2,7 @@ package com.spirit.tdbtd;
 
 import com.spirit.Main;
 import com.spirit.tdbtd.block.TDBTDBlocks;
+import com.spirit.tdbtd.block.entity.TDBTDBlockEntities;
 import com.spirit.tdbtd.effect.TDBTDEffects;
 import com.spirit.tdbtd.entity.custom.*;
 import com.spirit.tdbtd.item.TDBTDItemGroup;
@@ -24,6 +25,7 @@ import static com.spirit.tdbtd.entity.TDBTDEntities.*;
 public class TDBTDMod implements ModInitializer {
 
 
+
     private static <T extends Entity> EntityType<T> registerEntityType(String name, SpawnGroup group, EntityType.EntityFactory<T> entityFactory, float width, float height) {
         Identifier entityId = new Identifier(Main.SHIT_ID, name);
         FabricEntityTypeBuilder<T> entityTypeBuilder = FabricEntityTypeBuilder.create(group, entityFactory)
@@ -31,8 +33,6 @@ public class TDBTDMod implements ModInitializer {
                 .trackRangeBlocks(4).trackedUpdateRate(10);
         return Registry.register(Registries.ENTITY_TYPE, entityId, entityTypeBuilder.build());
     }
-
-
 
 
     @Override
@@ -43,7 +43,7 @@ public class TDBTDMod implements ModInitializer {
         TDBTDBlocks.registerAll();
         TDBTDItemGroup.register();
         TDBTDLootTableModifiers.modifyLootTables();
-
+        TDBTDBlockEntities.registerBlockEntities();
 
         FabricDefaultAttributeRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(APERTURENTEETH, AperturenteethEntity.setAttributes());
@@ -51,7 +51,7 @@ public class TDBTDMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(PERICARPIUM, PericarpiumEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(SCUTLEON, ScutleonEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(NIDIVER, NidiverEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntity.addAttributes());
         FabricDefaultAttributeRegistry.register(MIJAPENDRA, MijapendraEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLOONE, ContrivancePolloOneEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLA, ContrivancePollaEntity.setAttributes());

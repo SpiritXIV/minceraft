@@ -17,11 +17,14 @@ public class TDBTDSounds {
     public static final SoundEvent POLLO_ONE_BEAM = SoundEvent.of(new Identifier(Main.TDBTD_ID,"pollo_one_beam"));
 
 
+    public static final SoundEvent DEEP_DARK_AMBIENCE = SoundEvent.of(new Identifier(Main.TDBTD_ID,"deep_dark_ambience"));
+
     static Map<String, Object> SOUNDS = Stream.of(new Object[][]{
             {"shrieker", SHRIEKER},
             {"the_warden", THE_WARDEN},
             {"warden_run", WARDEN_RUN},
             {"pollo_one_beam", POLLO_ONE_BEAM},
+            {"deep_dark_ambience", DEEP_DARK_AMBIENCE},
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
 
