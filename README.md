@@ -16,6 +16,7 @@
   <p>KingZhara <span style="float: right;">| Secondary Developer</span></p>
   <p>alphaxenopete86 <span style="float: right;">| Entity Designer Lead</span></p>
   <p>ComputerUser <span style="float: right;">| 2d, 3d, Designer Lead</span></p>
+  <p>KrimsonKolbolt <span style="float: right;">| 2d, 3d, Designer</span></p>
   <p>Milkyfur <span style="float: right;">| 2d Designer</span></p>
   <p>Mcfella <span style="float: right;">| 3d Designer</span></p>
 </b></div>
