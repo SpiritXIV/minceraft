@@ -1,8 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
-import com.spirit.tdbtd.entity.animation.entities.ApertureTeethAnimations;
 import com.spirit.tdbtd.entity.animation.entities.KredaAnimations;
-import com.spirit.tdbtd.entity.custom.AperturenteethEntity;
 import com.spirit.tdbtd.entity.custom.KredaEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -89,6 +87,7 @@ public class KredaModel<T extends KredaEntity> extends SinglePartEntityModel<T> 
         this.animateMovement(KredaAnimations.KREDA_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, KredaAnimations.KREDA_STANDING_IDLE, ageInTicks, 1f);
         this.updateAnimation(entity.attackAnimationState, KredaAnimations.KREDA_ATTACK, ageInTicks, 1f);
+        this.updateAnimation(entity.flyingAnimationState, KredaAnimations.KREDA_FLYING_IDLE, ageInTicks, 1f);
     }
 
 

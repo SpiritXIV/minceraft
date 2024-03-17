@@ -34,16 +34,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class SturgoEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(SturgoEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(SturgoEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
-    private static final TrackedData<Integer> MOISTNESS = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static final int MAX_AIR = 4800;
-    private static final int MAX_MOISTNESS = 2400;
 
 
     public SturgoEntity(EntityType<? extends HostileEntity> entityType, World world) {
@@ -244,7 +242,7 @@ public class SturgoEntity extends HostileEntity {
 
     @Override
     protected float getSoundVolume() {
-        return 4.0f;
+        return 1.0f;
     }
 
     @Override

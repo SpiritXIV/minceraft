@@ -51,7 +51,7 @@
         }
       },
       "mangrove_root_placement": {
-        "can_grow_through": "#minecraft:mangrove_roots_can_grow_through",
+        "can_grow_through": "#minecraft:sculk_replaceable_world_gen",
         "max_root_length": 15,
         "max_root_width": 8,
         "muddy_roots_in": [
@@ -69,7 +69,7 @@
         "muddy_roots_provider": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "tdbtd:criteric_charred_wood",
+            "Name": "tdbtd:criteric_charred_roots",
             "Properties": {
               "axis": "y"
             }
@@ -80,7 +80,7 @@
       "root_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "tdbtd:criteric_charred_wood",
+          "Name": "tdbtd:criteric_charred_roots",
           "Properties": {
             "waterlogged": "false"
           }
@@ -97,7 +97,7 @@
     "trunk_placer": {
       "type": "minecraft:upwards_branching_trunk_placer",
       "base_height": 4,
-      "can_grow_through": "#minecraft:mangrove_logs_can_grow_through",
+      "can_grow_through": "#minecraft:sculk_replaceable_world_gen",
       "extra_branch_length": {
         "type": "minecraft:uniform",
         "value": {

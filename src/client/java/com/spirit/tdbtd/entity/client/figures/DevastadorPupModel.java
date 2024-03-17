@@ -1,8 +1,6 @@
 package com.spirit.tdbtd.entity.client.figures;
 
-import com.spirit.tdbtd.entity.animation.entities.ApertureTeethAnimations;
 import com.spirit.tdbtd.entity.animation.entities.DevastadorPupAnimations;
-import com.spirit.tdbtd.entity.custom.AperturenteethEntity;
 import com.spirit.tdbtd.entity.custom.DevastadorPupEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -76,6 +74,7 @@ public class DevastadorPupModel<T extends DevastadorPupEntity> extends SinglePar
         this.animateMovement(DevastadorPupAnimations.DEVASTADOR_PUP_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, DevastadorPupAnimations.DEVASTADOR_PUP_IDLE, ageInTicks, 1f);
         this.updateAnimation(entity.attackAnimationState, DevastadorPupAnimations.DEVASTADOR_PUP_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.sprintingAnimationState, DevastadorPupAnimations.DEVASTADOR_PUP_RUN, ageInTicks, 1f);
     }
 
 

@@ -1,26 +1,32 @@
 package com.spirit.tdbtd.item.custom;
 
+import com.spirit.tdbtd.entity.damage.DamageTypes;
+import com.spirit.tdbtd.sound.TDBTDSounds;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class TDBTDSculkSerpentItem extends BowItem {
-    static double DISTANCE = 50.0;
     static float DAMAGE = 10;
-    static double YADJUST = 1.3;
+    static float PULLTIME = 80;
 
     public TDBTDSculkSerpentItem(Settings settings) {
         super(settings);
@@ -29,16 +35,16 @@ public class TDBTDSculkSerpentItem extends BowItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        if (user.isSneaking()) {
-            user.setCurrentHand(hand);
-
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 0.4f, 1);
-
-            return TypedActionResult.consume(stack);
-        } else {
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_NEARBY_CLOSEST, SoundCategory.PLAYERS, 10, 1);
-            return super.use(world, user, hand);
+        if (world instanceof ServerWorld serverWorld) {
+            if (user.isSneaking()) {
+                user.setCurrentHand(hand);
+                serverWorld.playSound(null, user.getX(), user.getY(), user.getZ(), TDBTDSounds.DIMENTED_SERPENT_CHARGE, SoundCategory.PLAYERS, 1, 1);
+                return TypedActionResult.consume(stack);
+            } else {
+                serverWorld.playSound(null, user.getX(), user.getY(), user.getZ(), TDBTDSounds.DIMENTED_SERPENT_CHARGE, SoundCategory.PLAYERS, 10, 1);
+            }
         }
+        return super.use(world, user, hand);
     }
 
     @Override
@@ -47,69 +53,72 @@ public class TDBTDSculkSerpentItem extends BowItem {
             if (user instanceof PlayerEntity player) {
                 int chargeTime = this.getMaxUseTime(stack) - remainingUseTicks;
 
-                if (chargeTime >= 60) {
-                    if (player.experienceLevel >= 30) {
-                        player.experienceLevel -= 15;
+                if (chargeTime >= PULLTIME) {
+                    float damage = DAMAGE + ((float) player.experienceLevel / 10) * 2;
 
-                        executeSonicBoom(world, player);
+                    executeSonicBoom(world, player, damage);
+                    int currentXP = player.experienceLevel;
+                    player.experienceLevel -= currentXP / 2;
+                    player.experienceLevel = Math.max(0, player.experienceLevel - currentXP / 2);
 
-                        world.playSound((PlayerEntity) user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_ANGRY, SoundCategory.PLAYERS, 10, 0);
-
-                        player.getItemCooldownManager().set(this, 1);
-                    }
+                    player.getItemCooldownManager().set(this, player.experienceLevel / 10);
                 }
             }
         }
     }
 
-    private static void applyDamageAndEffect(LivingEntity entity, float DAMAGE) {
-        entity.damage(new DamageSource(RegistryEntry.of(new DamageType("bombed_self", 1))), TDBTDSculkSerpentItem.DAMAGE);
-    }
-
-
-    public static void executeSonicBoom(World world, PlayerEntity user) {
+    public static void executeSonicBoom(World world, PlayerEntity user, float damage) {
         if (world instanceof ServerWorld serverWorld) {
 
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_ROAR, SoundCategory.PLAYERS, 10, 1);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_AGITATED, SoundCategory.PLAYERS, 10, 1);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.PLAYERS, 10, 1.4f);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_TENDRIL_CLICKS, SoundCategory.PLAYERS, 10, 0.5f);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ELDER_GUARDIAN_AMBIENT, SoundCategory.PLAYERS, 10, 1.1f);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, SoundCategory.PLAYERS, 10, 0);
-            world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 10, 0);
-            serverWorld.spawnParticles(ParticleTypes.SCULK_SOUL, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
-            serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
-            serverWorld.spawnParticles(ParticleTypes.SOUL, user.getX(), user.getY(), user.getZ(), 100, 0.0, 0.0, 0.0, 0.4);
-
-
-            Vec3d lookVector = user.getRotationVec(1.0f);
-            Vec3d shootVector = user.getCameraPosVec(1.0F).add(lookVector.multiply(DISTANCE));
-
-            int numberOfParticles = 60;
-
-            Vec3d step = shootVector.subtract(user.getCameraPosVec(1.0F)).multiply(1.0 / numberOfParticles);
+            Vec3d lookVector = user.getRotationVec(1.0F);
+            Vec3d currentPos = user.getCameraPosVec(1.0F);
+            int numberOfParticles = user.experienceLevel * 2;
+            Vec3d step = lookVector.multiply(user.experienceLevel * 2).multiply(1.0 / numberOfParticles);
 
             for (int i = 0; i < numberOfParticles; i++) {
-                double posX = user.getX() + i * step.x;
-                double posY = user.getY() + i * step.y;
-                double posZ = user.getZ() + i * step.z;
-                serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, posX, posY + YADJUST, posZ, 1, 0.0, 0.0, 0.0, 0.0);
-                serverWorld.spawnParticles(ParticleTypes.SCULK_CHARGE_POP, posX, posY  + YADJUST, posZ, 1, 0.0, 0.0, 0.0, 0.0);
+                currentPos = currentPos.add(step);
+                serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, currentPos.x, currentPos.y, currentPos.z, 1, 0.0, 0.0, 0.0, 0.0);
+                serverWorld.spawnParticles(ParticleTypes.SCULK_CHARGE_POP, currentPos.x, currentPos.y, currentPos.z, 1, 0.0, 0.0, 0.0, 0.0);
+
+                double beamWidth = 2.0;
+                double halfWidth = beamWidth / 2.0;
+                Box collisionBox = new Box(
+                        currentPos.x - halfWidth, currentPos.y,
+                        currentPos.z - halfWidth, currentPos.x + halfWidth,
+                        currentPos.y + 1.0, currentPos.z + halfWidth);
+
+                serverWorld.getEntitiesByClass(LivingEntity.class, collisionBox, entity -> entity != user)
+                        .forEach(entity -> {
+                            if (entity instanceof LivingEntity) {
+                                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 5, 0));
+                                entity.damage(DamageTypes.of(world, DamageTypes.DIMENTED_SERPENT), damage);
+                            }
+                        });
             }
 
-            for (int i = 0; i < 50; i++) {
-                world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS, 10, 1);
+            serverWorld.playSound(null, user.getX(), user.getY(), user.getZ(), TDBTDSounds.DIMENTED_SERPENT_SHOOT, SoundCategory.PLAYERS, 10, 1);
+            serverWorld.spawnParticles(ParticleTypes.SCULK_SOUL, user.getX(), user.getY(), user.getZ(), user.experienceLevel * 2, 0.0, 0.0, 0.0, 0.4);
+            serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, user.getX(), user.getY(), user.getZ(), user.experienceLevel * 2, 0.0, 0.0, 0.0, 0.4);
+            serverWorld.spawnParticles(ParticleTypes.SOUL, user.getX(), user.getY(), user.getZ(), user.experienceLevel * 2, 0.0, 0.0, 0.0, 0.4);
 
+            user.damage(DamageTypes.of(world, DamageTypes.DIMENTED_SHOT), 6);
+        }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        if (MinecraftClient.getInstance().player != null) {
+            PlayerEntity player = MinecraftClient.getInstance().player;
+
+            int attackDamage = (int) (DAMAGE + ((float) player.experienceLevel / 10) * 2);
+            if (player.experienceLevel == 0) {
+                attackDamage = 0;
             }
-
-
-            Box area = new Box(user.getX(), user.getY() + YADJUST, user.getZ(), shootVector.x, shootVector.y + YADJUST, shootVector.z);
-
-            serverWorld.getEntitiesByClass(LivingEntity.class, area, entity -> true).forEach(entity -> {
-                if (entity instanceof LivingEntity) {
-                    applyDamageAndEffect((LivingEntity) entity, DAMAGE);
-                }
-            });
+            float attackSpeed = PULLTIME / 100;
+            tooltip.add(Text.literal("When in Main Hand:").formatted(Formatting.GRAY));
+            tooltip.add(Text.literal(" " + attackDamage + " Attack Damage").formatted(Formatting.DARK_GREEN));
+            tooltip.add(Text.literal(" " + attackSpeed + " Attack Speed").formatted(Formatting.DARK_GREEN));
         }
     }
 }

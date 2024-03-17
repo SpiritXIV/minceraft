@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tdbtd:infurtrinated_deepslate_bricks_wall"
+          "name": "tdbtd:infurtrinated_deepslate_brick_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "tdbtd:blocks/infurtrinated_deepslate_bricks_wall"
+  "random_sequence": "tdbtd:blocks/infurtrinated_deepslate_brick_wall"
 }

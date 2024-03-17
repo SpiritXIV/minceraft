@@ -124,7 +124,7 @@ public class ScutleonEntity extends HostileEntity {
 
     @Override
     protected float getSoundVolume() {
-        return 4.0f;
+        return 1.0f;
     }
 
     @Override

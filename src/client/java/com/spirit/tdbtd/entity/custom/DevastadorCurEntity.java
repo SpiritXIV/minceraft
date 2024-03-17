@@ -1,5 +1,6 @@
 package com.spirit.tdbtd.entity.custom;
 
+import com.spirit.tdbtd.sound.TDBTDSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
@@ -20,7 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class DevastadorCurEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(DevastadorCurEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -120,29 +121,20 @@ public class DevastadorCurEntity extends HostileEntity {
     }
 
     @Override
-    protected float getSoundVolume() {
-        return 4.0f;
-    }
-
-
-    @Override
     protected SoundEvent getAmbientSound() {
-        this.playSound(SoundEvents.ENTITY_SKELETON_AMBIENT, 0.2f, 0.6f);
-        this.playSound(SoundEvents.BLOCK_BONE_BLOCK_PLACE, 0.2f, 0f);
-        return SoundEvents.BLOCK_SCULK_SENSOR_BREAK;
+        return TDBTDSounds.DEVASTADOR_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.BLOCK_SCULK_CATALYST_BREAK;}
+    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_PLAYER_HURT;}
 
     @Override
     protected SoundEvent getDeathSound() {
-        this.playSound(SoundEvents.ENTITY_SILVERFISH_DEATH, 1f, 0.6f);
-        return SoundEvents.BLOCK_DRIPSTONE_BLOCK_BREAK;}
+        return TDBTDSounds.DEVASTADOR_AMBIENT;
+    }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(SoundEvents.BLOCK_BONE_BLOCK_PLACE, 0.15f, 1.0f);
-        this.playSound(SoundEvents.BLOCK_BONE_BLOCK_STEP, 0.4f, 1f);
     }
 }

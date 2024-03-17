@@ -28,13 +28,15 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class KredaEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AbyssofinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(KredaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
+    public final AnimationState flyingAnimationState = new AnimationState();
+    public int flyingAnimationTimeout = 0;
+
     public KredaEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
         this.experiencePoints = 5;
@@ -53,9 +55,18 @@ public class KredaEntity extends HostileEntity {
         } else {
             --this.attackAnimationTimeout;
         }
-
         if(!this.isAttacking()) {
             attackAnimationState.stop();
+        }
+
+        if(!this.isOnGround() && flyingAnimationTimeout <= 0) {
+            flyingAnimationTimeout = 40;
+            flyingAnimationState.start(this.age);
+        } else {
+            --this.flyingAnimationTimeout;
+        }
+        if(this.isOnGround()) {
+            flyingAnimationState.stop();
         }
     }
 
@@ -222,7 +233,7 @@ public class KredaEntity extends HostileEntity {
 
     @Override
     protected float getSoundVolume() {
-        return 4.0f;
+        return 1.0f;
     }
 
     @Override

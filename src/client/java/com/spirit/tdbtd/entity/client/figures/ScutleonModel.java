@@ -58,7 +58,7 @@ public class ScutleonModel<T extends ScutleonEntity> extends SinglePartEntityMod
     public void setAngles(ScutleonEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.getPart().traverse().forEach(ModelPart::resetTransform);
 
-        //this.animateMovement(ScutleonAnimations.APERTURENTEETH_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.animateMovement(ScutleonAnimations.SCUTLEON_IDLE, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, ScutleonAnimations.SCUTLEON_IDLE, ageInTicks, 1f);
         //this.updateAnimation(entity.attackAnimationState, ScutleonAnimations.APERTURENTEETH_ATTACK, ageInTicks, 1f);
     }

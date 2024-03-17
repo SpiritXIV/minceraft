@@ -58,13 +58,8 @@ public class TDBTDConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRITERIC_MOSS_VEGETATION_KEY = registerKey("criteric_moss_vegetation_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DIMENTED_GRAVEL_DISC_KEY = registerKey("dimented_gravel_disc_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DIMENTED_GRASS_DISC_KEY = registerKey("dimented_grass_disc_key");
-
-
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFURTRINATED_DEEPSLATE_DISC_KEY = registerKey("infurtrinated_deepslate_disc_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFURTRINATED_TUFF_DISC_KEY = registerKey("infurtrinated_tuff_disc_key");
-
-
-
     public static final RegistryKey<ConfiguredFeature<?, ?>>  SCULK_TENVINES_KEY = registerKey("sculk_tenvines");
 
 
@@ -95,16 +90,15 @@ public class TDBTDConfiguredFeatures {
 
         register(context, INFURTRINATED_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldInfurtrinatedeOres, 12));
 
-
         register(context, CRITERIC_CHARRED_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(TDBTDBlocks.CRITERIC_CHARRED_LOG),
                 new UpwardsBranchingTrunkPlacer(4, 5, 9, UniformIntProvider.create(5, 9), 0.6f,
-                        UniformIntProvider.create(1, 3), Registries.BLOCK.getOrCreateEntryList(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)),
-                BlockStateProvider.of(Blocks.MANGROVE_LEAVES),
+                        UniformIntProvider.create(1, 3), Registries.BLOCK.getOrCreateEntryList(BlockTags.SCULK_REPLACEABLE_WORLD_GEN)),
+                BlockStateProvider.of(TDBTDBlocks.CRITERIC_CHARRED_LEAVES),
                 new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 70), Optional.of(
                 new MangroveRootPlacer(UniformIntProvider.create(3, 7), BlockStateProvider.of(TDBTDBlocks.CRITERIC_CHARRED_LOG), Optional.of(
                         new AboveRootPlacement(BlockStateProvider.of(TDBTDBlocks.CRITERIC_MOSS_CARPET), 0.5F)),
-                        new MangroveRootPlacement(Registries.BLOCK.getOrCreateEntryList(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), RegistryEntryList.of(Block::getRegistryEntry, TDBTDBlocks.DIMENTED_GRASS_BLOCK, TDBTDBlocks.DIMENTED_DIRT),
+                        new MangroveRootPlacement(Registries.BLOCK.getOrCreateEntryList(BlockTags.SCULK_REPLACEABLE_WORLD_GEN), RegistryEntryList.of(Block::getRegistryEntry, TDBTDBlocks.DIMENTED_GRASS_BLOCK, TDBTDBlocks.DIMENTED_DIRT),
                                 BlockStateProvider.of(TDBTDBlocks.DIMENTED_DIRT), 10, 12, 0.58f))),
                 new TwoLayersFeatureSize(7, 1, 4)).decorators(List.of(
                         new LeavesVineTreeDecorator(1f), new AttachedToLeavesTreeDecorator(0.9f, 1, 0,

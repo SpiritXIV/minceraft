@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      { "model": "tdbtd:block/sculk_weed" },
+      { "model": "tdbtd:block/sculk_weed_1" },
+      { "model": "tdbtd:block/sculk_weed_2" }
+    ]
+  }
+}

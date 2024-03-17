@@ -224,25 +224,6 @@ public class SculkEmitterBlock extends PlantBlock implements BlockEntityProvider
         return catalystPositions;
     }
 
-    private static List<BlockPos> findNearbyShakers(World world, BlockPos pos) {
-        int radius = 16;
-        List<BlockPos> shakerPositions = new ArrayList<>();
-
-        for (int x = -radius; x <= radius; x++) {
-            for (int y = -radius; y <= radius; y++) {
-                for (int z = -radius; z <= radius; z++) {
-                    BlockPos targetPos = pos.add(x, y, z);
-                    BlockState targetState = world.getBlockState(targetPos);
-                    if (targetState.getBlock() instanceof SculkShakerBlock) {
-                        shakerPositions.add(targetPos);
-                    }
-
-                }
-            }
-        }
-        return shakerPositions;
-    }
-
     public static class SculkEmitterBlockEntity extends BlockEntity {
         private int emitTimer = 0;
         private static final int EMIT_INTERVAL = 24000;
@@ -265,27 +246,6 @@ public class SculkEmitterBlock extends PlantBlock implements BlockEntityProvider
                 }
             } else {
                 isValid = false;
-            }
-        }
-
-        public void onHitByConnectingBeam(BlockPos emitterPos) {
-            // Find nearby SculkCatalystBlock positions
-            List<BlockPos> shakerPositions = findNearbyShakers(world, this.pos);
-
-            // Iterate through nearby SculkCatalystBlock positions
-            for (BlockPos targetPos : shakerPositions) {
-                // Calculate direction from emitterPos to the current SculkCatalystBlock position
-                Vec3i vector = emitterPos.subtract(targetPos);
-                Direction direction = Direction.fromVector(vector.getX(), vector.getY(), vector.getZ());
-
-                if (world != null) {
-                    BlockPos targetBlockPos = emitterPos.offset(direction);
-                    BlockState targetState = world.getBlockState(targetBlockPos);
-
-                    if (targetState.getBlock() instanceof SculkShakerBlock) {
-                        ((SculkShakerBlock) targetState.getBlock()).shootBeamToShaker(targetBlockPos, emitterPos);
-                    }
-                }
             }
         }
     }

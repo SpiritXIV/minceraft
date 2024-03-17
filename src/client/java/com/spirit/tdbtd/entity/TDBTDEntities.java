@@ -23,9 +23,9 @@ public class TDBTDEntities {
 
 
     public static final EntityType<TenebrousNibblerEntity> TENEBROUS_NIBBLER = registerEntity("tenebrous_nibbler", SpawnGroup.MONSTER, TenebrousNibblerEntity::new, 0.3f, 0.3f);
-    public static final EntityType<AperturenteethEntity> APERTURENTEETH = registerEntity("aperturenteeth", SpawnGroup.MONSTER, AperturenteethEntity::new, 0.5f, 0.4f);
+    public static final EntityType<AperturenteethEntity> APERTURENTEETH = registerEntity("aperturenteeth", SpawnGroup.MONSTER, AperturenteethEntity::new, 0.8f, 0.6f);
     public static final EntityType<CodelaingEntity> CODELAING = registerEntity("codelaing", SpawnGroup.MONSTER, CodelaingEntity::new, 1f, 1f);
-    public static final EntityType<PericarpiumEntity> PERICARPIUM = registerEntity("pericarpium", SpawnGroup.MONSTER, PericarpiumEntity::new, 1f, 2f);
+    public static final EntityType<PericarpiumEntity> PERICARPIUM = registerEntity("pericarpium", SpawnGroup.MONSTER, PericarpiumEntity::new, 0.6f, 0.5f);
     public static final EntityType<ScutleonEntity> SCUTLEON = registerEntity("scutleon", SpawnGroup.MONSTER, ScutleonEntity::new, 1f, 2f);
     public static final EntityType<NidiverEntity> NIDIVER = registerEntity("nidiver", SpawnGroup.MONSTER, NidiverEntity::new, 1f, 0.6f);
     public static final EntityType<CuratorEntity> CURATOR = registerEntity("curator", SpawnGroup.MONSTER, CuratorEntity::new, 1f, 2.5f);
@@ -35,12 +35,12 @@ public class TDBTDEntities {
     public static final EntityType<AbyssofinEntity> ABYSSOFIN = registerEntity("abyssofin", SpawnGroup.MONSTER, AbyssofinEntity::new, 1f, 0.6f);
     public static final EntityType<SturgoEntity> STURGO = registerEntity("sturgo", SpawnGroup.MONSTER, SturgoEntity::new, 1f, 0.6f);
     public static final EntityType<EnguiaEntity> ENGUIA = registerEntity("enguia", SpawnGroup.MONSTER, EnguiaEntity::new, 1f, 0.6f);
-    public static final EntityType<MaldininkasEntity> MALDININKAS = registerEntity("maldininkas", SpawnGroup.MONSTER, MaldininkasEntity::new, 1f, 0.6f);
-    public static final EntityType<DevastadorHoundEntity> DEVASTADOR_HOUND = registerEntity("devastador_hound", SpawnGroup.MONSTER, DevastadorHoundEntity::new, 1f, 0.6f);
-    public static final EntityType<DevastadorCurEntity> DEVASTADOR_CUR = registerEntity("devastador_cur", SpawnGroup.MONSTER, DevastadorCurEntity::new, 1f, 0.6f);
-    public static final EntityType<DevastadorPupEntity> DEVASTADOR_PUP = registerEntity("devastador_pup", SpawnGroup.MONSTER, DevastadorPupEntity::new, 1f, 0.6f);
+    public static final EntityType<MaldininkasEntity> MALDININKAS = registerEntity("maldininkas", SpawnGroup.MONSTER, MaldininkasEntity::new, 1f, 1.8f);
+    public static final EntityType<DevastadorHoundEntity> DEVASTADOR_HOUND = registerEntity("devastador_hound", SpawnGroup.MONSTER, DevastadorHoundEntity::new, 1.4f, 1.4f);
+    public static final EntityType<DevastadorCurEntity> DEVASTADOR_CUR = registerEntity("devastador_cur", SpawnGroup.MONSTER, DevastadorCurEntity::new, 1.4f, 1.4f);
+    public static final EntityType<DevastadorPupEntity> DEVASTADOR_PUP = registerEntity("devastador_pup", SpawnGroup.MONSTER, DevastadorPupEntity::new, 1.3f, 0.6f);
     public static final EntityType<KredaEntity> KREDA = registerEntity("kreda", SpawnGroup.MONSTER, KredaEntity::new, 1f, 0.6f);
-
+    
     private static <T extends Entity> EntityType<T> registerEntity(String name, SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory, float width, float height) {
         Identifier entityId = new Identifier(Main.TDBTD_ID, name);
         EntityType<T> entityType = Registry.register(

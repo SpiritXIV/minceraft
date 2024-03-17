@@ -33,7 +33,7 @@ public class LookAtPlayerGoal extends Goal {
             if (player.isSneaking()) {
                 this.entity.setAttacking(false);
             } else {
-                this.entity.lookAtEntity(player);
+                this.entity.lookAtEntity();
                 if (this.entity.squaredDistanceTo(player) < 2.0 * 2.0) {
                     this.entity.tryAttack(player);
                 }

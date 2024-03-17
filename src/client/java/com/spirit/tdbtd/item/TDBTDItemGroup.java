@@ -11,10 +11,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TDBTDItemGroup {
-    public static final ItemGroup TDBTD_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.TDBTD_ID, "tdbtd_item_group"),
+    public static final ItemGroup TDBTD_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.TDBTD_ID, "tdbtd_group"),
             FabricItemGroup.builder()
-                    .displayName(Text.translatable("itemgroup.tdbtditem"))
-                    .icon(() -> new ItemStack(TDBTDItems.DIMENTED_HELMET))
+                    .displayName(Text.literal("tdbtd"))
+                    .icon(() -> new ItemStack(TDBTDItems.DIMENTED_FLOWER))
                     .entries((displayContext, entries) -> {
                         entries.add(TDBTDItems.INFURTRINATED_FRAGMENT);
                         entries.add(TDBTDItems.INFURTRINATED_INGOT);
@@ -38,9 +38,6 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDItems.DIMENTED_SERPENT);
                         entries.add(TDBTDItems.DIMENTED_THORN);
                         entries.add(TDBTDItems.SOUL_SHRIEKER);
-                        entries.add(TDBTDItems.SHRIEKER_MUSIC_DISC);
-                        entries.add(TDBTDItems.THE_WARDEN_MUSIC_DISC);
-                        entries.add(TDBTDItems.WARDEN_RUN_MUSIC_DISC);
                         entries.add(TDBTDItems.TENEBROUS_NIBBLER_SPAWN_EGG);
                         entries.add(TDBTDItems.APERTURENTEETH_SPAWN_EGG);
                         entries.add(TDBTDItems.CODELAING_SPAWN_EGG);
@@ -59,13 +56,6 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDItems.DEVASTADOR_CUR_SPAWN_EGG);
                         entries.add(TDBTDItems.DEVASTADOR_PUP_SPAWN_EGG);
                         entries.add(TDBTDItems.KREDA_SPAWN_EGG);
-                    }).build());
-
-    public static final ItemGroup TDBTD_FOOD_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.TDBTD_ID, "tdbtd_food_group"),
-            FabricItemGroup.builder()
-                    .displayName(Text.translatable("itemgroup.tdbtdfood"))
-                    .icon(() -> new ItemStack(TDBTDItems.APPLE))
-                    .entries((displayContext, entries) -> {
                         entries.add(TDBTDItems.APPLE);
                         entries.add(TDBTDItems.BAKED_POTATO);
                         entries.add(TDBTDItems.BEEF);
@@ -99,13 +89,6 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDItems.POTATO);
                         entries.add(TDBTDItems.ROTTEN_FLESH);
                         entries.add(TDBTDItems.SPIDER_EYE);
-                    }).build());
-
-    public static final ItemGroup TDBTD_BLOCK_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.TDBTD_ID, "tdbtd_block_group"),
-            FabricItemGroup.builder()
-                    .displayName(Text.translatable("itemgroup.tdbtdblock"))
-                    .icon(() -> new ItemStack(TDBTDItems.APPLE))
-                    .entries((displayContext, entries) -> {
                         entries.add(TDBTDBlocks.INFURTRINATED_BLOCK);
                         entries.add(TDBTDBlocks.INFURTRINATED_DEEPSLATE_ORE);
                         entries.add(TDBTDBlocks.CRITERIC_CHARRED_PLANKS);
@@ -114,6 +97,7 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.STRIPPED_CRITERIC_CHARRED_LOG);
                         entries.add(TDBTDBlocks.STRIPPED_CRITERIC_CHARRED_WOOD);
                         entries.add(TDBTDBlocks.CRITERIC_CHARRED_WOOD);
+                        entries.add(TDBTDBlocks.CRITERIC_CHARRED_ROOTS);
                         entries.add(TDBTDBlocks.CRITERIC_CHARRED_LEAVES);
                         entries.add(TDBTDBlocks.CRITERIC_CHARRED_FLOWER_LEAVES);
                         entries.add(TDBTDBlocks.CRITERIC_CHARRED_SLAB);
@@ -142,6 +126,7 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.INFURTRINATED_GRANITE);
                         entries.add(TDBTDBlocks.INFURTRINATED_SMOOTH_BASALT);
                         entries.add(TDBTDBlocks.INFURTRINATED_STONE);
+                        entries.add(TDBTDBlocks.INFURTRINATED_STONE_SLAB);
                         entries.add(TDBTDBlocks.INFURTRINATED_TUFF);
                         entries.add(TDBTDBlocks.INFURTRINATED_BLACKSTONE);
                         entries.add(TDBTDBlocks.INFURTRINATED_BASALT);
@@ -162,7 +147,7 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.INFURTRINATED_STONE_BRICKS_SLAB);
                         entries.add(TDBTDBlocks.INFURTRINATED_STONE_BRICKS_STAIRS);
                         entries.add(TDBTDBlocks.INFURTRINATED_STONE_BRICKS_WALL);
-                        entries.add(TDBTDBlocks.CRACKED_INFURTRINATED_STONE_BRICKS);
+                      //entries.add(TDBTDBlocks.CRACKED_INFURTRINATED_STONE_BRICKS);
                         entries.add(TDBTDBlocks.INFURTRINATED_COBBLESTONE_BRICKS_SLAB);
                         entries.add(TDBTDBlocks.INFURTRINATED_COBBLESTONE_BRICKS_STAIRS);
                         entries.add(TDBTDBlocks.INFURTRINATED_COBBLESTONE_BRICKS_WALL);
@@ -185,10 +170,9 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.SCULK_EMITTER);
                         entries.add(TDBTDBlocks.SCULK_SHAKER);
                         entries.add(TDBTDBlocks.SCULK_MAW);
+                        entries.add(TDBTDBlocks.SCULK_WEED);
                         entries.add(TDBTDBlocks.CRITERIC_MOSS_BLOCK);
                         entries.add(TDBTDBlocks.CRITERIC_MOSS_CARPET);
-
-
                         entries.add(TDBTDBlocks.BEDEVIL_BOOKSHELF);
                         entries.add(TDBTDBlocks.BEDEVIL_WELL);
                         entries.add(TDBTDBlocks.CHISELED_INFURTRINATED_BONED_BLOCK);
@@ -202,19 +186,16 @@ public class TDBTDItemGroup {
                         entries.add(TDBTDBlocks.INFURTRINATED_BONED_BARS);
                         entries.add(TDBTDBlocks.INFURTRINATED_BONED_DOOR);
                         entries.add(TDBTDBlocks.INFURTRINATED_BONED_TRAPDOOR);
-
                         entries.add(TDBTDBlocks.LAYERED_SCULK);
                         entries.add(TDBTDBlocks.FRAMED_SCULK);
                         entries.add(TDBTDBlocks.DEEPSLATE_VASE);
                         entries.add(TDBTDBlocks.UNLIT_LANTERN);
-
                         entries.add(TDBTDBlocks.ECHOING_AMETHYST);
                         entries.add(TDBTDBlocks.BUDDING_ECHOING_AMETHYST);
                         entries.add(TDBTDBlocks.SMALL_ECHOING_AMETHYST_BUD);
                         entries.add(TDBTDBlocks.MEDIUM_ECHOING_AMETHYST_BUD);
                         entries.add(TDBTDBlocks.LARGE_ECHOING_AMETHYST_BUD);
                         entries.add(TDBTDBlocks.ECHOING_AMETHYST_CLUSTER);
-
                     }).build());
 
     public static void register() {}

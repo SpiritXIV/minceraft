@@ -1,5 +1,7 @@
 package com.spirit.tdbtd.entity.custom;
 
+import com.spirit.shit.sound.ShitSounds;
+import com.spirit.tdbtd.sound.TDBTDSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
@@ -267,20 +269,15 @@ public class EnguiaEntity extends HostileEntity {
     }
 
     @Override
-    protected float getSoundVolume() {
-        return 4.0f;
-    }
+    protected SoundEvent getAmbientSound() {return TDBTDSounds.ENTITY_WATER_BREATH;}
 
     @Override
-    protected SoundEvent getAmbientSound() {return SoundEvents.BLOCK_CONDUIT_AMBIENT_SHORT;}
+    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_PLAYER_HURT;}
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.BLOCK_SOUL_SAND_BREAK;}
-
-    @Override
-    protected SoundEvent getDeathSound() {return SoundEvents.BLOCK_CONDUIT_ATTACK_TARGET;}
+    protected SoundEvent getDeathSound() {return TDBTDSounds.ENTITY_WATER_BREATH;}
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.BLOCK_SLIME_BLOCK_STEP, 0.15f, 1.0f);}
+        this.playSound(ShitSounds.NOTHING, 0.15f, 1.0f);}
 }

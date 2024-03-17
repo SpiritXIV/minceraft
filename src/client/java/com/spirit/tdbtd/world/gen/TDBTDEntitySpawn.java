@@ -1,18 +1,10 @@
 package com.spirit.tdbtd.world.gen;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.BiomeKeys;
-
-import static com.spirit.tdbtd.entity.TDBTDEntities.*;
 public class TDBTDEntitySpawn {
     public static void addEntitySpawn() {
+        /*
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.DEEP_DARK), SpawnGroup.AXOLOTLS,
-                TENEBROUS_NIBBLER, 50, 6, 10);
+                TENEBROUS_NIBBLER, 1, 4, 8);
 
         SpawnRestriction.register(TENEBROUS_NIBBLER, SpawnRestriction.Location.IN_WATER,
                 Heightmap.Type.OCEAN_FLOOR, MobEntity::canMobSpawn);
@@ -100,5 +92,6 @@ public class TDBTDEntitySpawn {
 
         SpawnRestriction.register(DEVASTADOR_PUP, SpawnRestriction.Location.NO_RESTRICTIONS,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+         */
     }
 }

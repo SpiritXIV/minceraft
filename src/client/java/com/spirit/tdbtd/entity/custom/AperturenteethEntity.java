@@ -1,8 +1,9 @@
 package com.spirit.tdbtd.entity.custom;
 
-import com.spirit.tdbtd.entity.ai.goal.BuriedAttackGoal;
 import com.spirit.tdbtd.entity.ai.goal.LookAtPlayerGoal;
+import com.spirit.tdbtd.sound.TDBTDSounds;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
@@ -17,15 +18,17 @@ import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.EnumSet;
+
 public class AperturenteethEntity extends HostileEntity {
-    private static final TrackedData<Boolean> ATTACKING =
-            DataTracker.registerData(AperturenteethEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    static float ATTACK_DAMAGE = 7.0f;
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(AperturenteethEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    static float ATTACK_DAMAGE = 4.0f;
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -129,21 +132,14 @@ public class AperturenteethEntity extends HostileEntity {
     }
 
     @Override
-    protected float getSoundVolume() {
-        return 4.0f;
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
-        this.playSound(SoundEvents.ENTITY_ENDER_EYE_LAUNCH, 1.0f, 1.6f);
-        this.playSound(SoundEvents.ENTITY_ENDERMITE_STEP, 1.0f, 0.8f);
-        return SoundEvents.BLOCK_TUFF_BREAK;}
+        return TDBTDSounds.APERTURENTEETH_AMBIENT;}
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.BLOCK_SCULK_CATALYST_BREAK;}
+    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_PLAYER_HURT;}
 
     @Override
-    protected SoundEvent getDeathSound() {return SoundEvents.BLOCK_DRIPSTONE_BLOCK_BREAK;}
+    protected SoundEvent getDeathSound() {return TDBTDSounds.APERTURENTEETH_AMBIENT;}
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
@@ -152,14 +148,88 @@ public class AperturenteethEntity extends HostileEntity {
     @Override
     public boolean tryAttack(Entity target) {
         this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
-        this.playSound(SoundEvents.ENTITY_EVOKER_FANGS_ATTACK, 1.0f, 0.8f);
+        this.playSound(TDBTDSounds.APERTURENTEETH_BITE, 1.0f, 0.8f);
         return super.tryAttack(target);
-    }
-
-    public void lookAtEntity(PlayerEntity player) {
     }
 
     public float getDamage() {
         return ATTACK_DAMAGE;
     }
+
+    public void lookAtEntity() {
+    }
+
+    public static class BuriedAttackGoal extends Goal {
+        private final AperturenteethEntity entity;
+        private final World world;
+        private BlockPos buryPos;
+        private int buryCooldown;
+        private int buriedTime;
+
+        public BuriedAttackGoal(AperturenteethEntity entity) {
+            this.entity = entity;
+            this.world = entity.getWorld();
+            this.setControls(EnumSet.of(Control.MOVE));
+        }
+
+        @Override
+        public boolean canStart() {
+            return !this.entity.isAttacking() && this.buryCooldown <= 0 && shouldBury();
+        }
+
+        private boolean shouldBury() {
+            return this.world.getRandom().nextInt(this.world.isNight() ? 150 : 300) == 0
+                    && this.world.getBlockState(this.entity.getBlockPos().down()).getBlock() == Blocks.SCULK;
+        }
+
+        @Override
+        public void start() {
+            this.buryPos = this.entity.getBlockPos().add(-5 + this.world.getRandom().nextInt(11), 0, -5 + this.world.getRandom().nextInt(11));
+            this.buryCooldown = 600;
+            this.buriedTime = 12000;
+
+            this.entity.playSound(SoundEvents.ENTITY_WARDEN_ANGRY, 1.0f, 1.0f);
+            this.entity.setAiDisabled(true);
+        }
+
+        @Override
+        public void tick() {
+            if (this.buriedTime > 0) {
+                this.buriedTime--;
+
+                this.entity.getNavigation().startMovingTo(this.buryPos.getX() + 0.5, this.entity.getY(), this.buryPos.getZ() + 0.5, 0.0);
+                this.entity.setMovementSpeed(-1);
+            } else {
+                PlayerEntity player = this.world.getClosestPlayer(this.entity, 1.0);
+                if (player != null) {
+                    player.damage(entity.getRecentDamageSource(), entity.getDamage());
+                    this.entity.playSound(SoundEvents.BLOCK_SCULK_BREAK, 1.0f, 1.0f);
+                    this.entity.getWorld().addParticle(ParticleTypes.EXPLOSION, true, entity.getX(), entity.getY(), entity.getZ(), 0,1, 0);
+                    this.entity.setAttacking(true);
+                    this.entity.setMovementSpeed(+1);
+                }
+            }
+        }
+
+        @Override
+        public void stop() {
+            this.entity.setAttacking(false);
+            this.entity.setAiDisabled(false);
+
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return this.entity.isAttacking();
+        }
+
+        public void stopExecuting() {
+            this.entity.setAttacking(false);
+        }
+
+        public void resetTask() {
+            this.buryCooldown--;
+        }
+    }
+
 }

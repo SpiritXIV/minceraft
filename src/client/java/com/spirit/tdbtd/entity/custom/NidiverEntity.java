@@ -28,15 +28,18 @@ import org.jetbrains.annotations.Nullable;
 
 public class NidiverEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(NidiverEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Byte> SPIDER_FLAGS = DataTracker.registerData(SpiderEntity.class, TrackedDataHandlerRegistry.BYTE);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
+
     public NidiverEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints = 5;
     }
+
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = this.random.nextInt(40) + 80;
@@ -45,15 +48,16 @@ public class NidiverEntity extends HostileEntity {
             --this.idleAnimationTimeout;
         }
 
-        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+        if (this.isAttacking() && attackAnimationTimeout <= 0) {
             attackAnimationTimeout = 40;
             attackAnimationState.start(this.age);
         } else {
             --this.attackAnimationTimeout;
         }
 
-        if(!this.isAttacking()) {
+        if (!this.isAttacking()) {
             attackAnimationState.stop();
+
         }
     }
 
@@ -61,10 +65,6 @@ public class NidiverEntity extends HostileEntity {
     protected void updateLimbs(float posDelta) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
-    }
-
-    public void setAttacking(boolean attacking) {
-        this.dataTracker.set(ATTACKING, attacking);
     }
 
     @Override
@@ -75,7 +75,6 @@ public class NidiverEntity extends HostileEntity {
     public boolean occludeVibrationSignals() {
         return true;
     }
-    private static final TrackedData<Byte> SPIDER_FLAGS = DataTracker.registerData(SpiderEntity.class, TrackedDataHandlerRegistry.BYTE);
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
@@ -92,8 +91,6 @@ public class NidiverEntity extends HostileEntity {
         this.goalSelector.add(2, new MeleeAttackGoal(this, 0.6, false));
         this.goalSelector.add(3, new BreatheAirGoal(this));
         this.goalSelector.add(4, new AvoidSunlightGoal(this));
-
-
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(3, new PounceAtTargetGoal(this, 0.4f));
         this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
@@ -122,7 +119,7 @@ public class NidiverEntity extends HostileEntity {
 
     @Override
     protected float getSoundVolume() {
-        return 4.0f;
+        return 1.0f;
     }
 
     @Override

@@ -1,7 +1,9 @@
 {
   "variants": {
-    "": {
-      "model": "tdbtd:block/deepslate_vase"
-    }
+    "": [
+      { "model": "tdbtd:block/deepslate_vase" },
+      { "model": "tdbtd:block/deepslate_vase_1" },
+      { "model": "tdbtd:block/deepslate_vase_2" }
+    ]
   }
 }

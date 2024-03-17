@@ -1,34 +1,22 @@
 {
   "shrieker": {
     "sounds": [
-      {
-        "name": "tdbtd:shrieker",
-        "stream": true
-      }
+      {"name": "tdbtd:shrieker", "stream": true}
     ]
   },
-  "the_warden": {
+  "evilfromthewastes": {
     "sounds": [
-      {
-        "name": "tdbtd:the_warden",
-        "stream": true
-      }
+      {"name": "tdbtd:music_disc/evilfromthewastes", "stream": true}
     ]
   },
-  "warden_run": {
+  "findingawayout": {
     "sounds": [
-      {
-        "name": "tdbtd:warden_run",
-        "stream": true
-      }
+      {"name": "tdbtd:music_disc/findingawayout", "stream": true}
     ]
   },
-  "pollo_one_beam": {
+  "sculkingaround": {
     "sounds": [
-      {
-        "name": "tdbtd:pollo_one_beam",
-        "stream": true
-      }
+      {"name": "tdbtd:music_disc/sculkingaround", "stream": true}
     ]
   },
 
@@ -39,8 +27,76 @@
       {"name": "tdbtd:music/overworld/dementophobia", "stream": true},
       {"name": "tdbtd:music/overworld/isolophobia", "stream": true},
       {"name": "tdbtd:music/overworld/taphephobia", "stream": true},
-      {"name": "tdbtd:music/overworld/agony", "stream": true}
+      {"name": "tdbtd:music/overworld/agony", "stream": true},
+      {"name": "tdbtd:music/overworld/kenophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/scopophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/traumatophobia", "stream": true},
+      {"name": "tdbtd:music/overworld/melanophobia", "stream": true}
+    ]
+  },
+
+  "dimented_serpent_shoot": {
+    "sounds": [
+      {"name": "tdbtd:item/dimented_serpent_shoot", "stream": true}
+    ]
+  },
+  "dimented_serpent_charge": {
+    "sounds": [
+      {"name": "tdbtd:item/dimented_serpent_charge", "stream": true}
+    ]
+  },
+  "aperturenteeth_ambient": {
+    "sounds": [
+      {"name": "tdbtd:entities/aperturenteeth/ambient_1", "stream": true},
+      {"name": "tdbtd:entities/aperturenteeth/ambient_2", "stream": true},
+      {"name": "tdbtd:entities/aperturenteeth/ambient_3", "stream": true},
+      {"name": "tdbtd:entities/aperturenteeth/ambient_4", "stream": true}
+    ]
+  },
+  "aperturenteeth_bite": {
+    "sounds": [
+      {"name": "tdbtd:entities/aperturenteeth/bite", "stream": true}
+    ]
+  },
+  "codelaing_ambient": {
+    "sounds": [
+      {"name": "tdbtd:entities/codelaing/ambient_1", "stream": true},
+      {"name": "tdbtd:entities/codelaing/ambient_2", "stream": true},
+      {"name": "tdbtd:entities/codelaing/ambient_3", "stream": true},
+      {"name": "tdbtd:entities/codelaing/ambient_4", "stream": true},
+      {"name": "tdbtd:entities/codelaing/ambient_5", "stream": true}
+    ]
+  },
+  "devastador_ambient": {
+    "sounds": [
+      {"name": "tdbtd:entities/devastador/ambient_1", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_2", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_3", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_4", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_5", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_6", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_7", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_8", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_9", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_10", "stream": true},
+      {"name": "tdbtd:entities/devastador/ambient_11", "stream": true}
+    ]
+  },
+  "devastador_angry": {
+    "sounds": [
+      {"name": "tdbtd:entities/devastador/angry", "stream": true}
+    ]
+  },
+  "tenebrous_nibbler_bite": {
+    "sounds": [
+      {"name": "tdbtd:entities/tenebrous_nibbler/bite", "stream": true}
+    ]
+  },
+  "entity_water_breath": {
+    "sounds": [
+      {"name": "tdbtd:entities/entity_water_breath_1", "stream": true},
+      {"name": "tdbtd:entities/entity_water_breath_2", "stream": true},
+      {"name": "tdbtd:entities/entity_water_breath_3", "stream": true}
     ]
   }
-
 }

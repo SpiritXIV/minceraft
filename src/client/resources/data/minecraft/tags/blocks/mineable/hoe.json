@@ -2,6 +2,26 @@
   "replace": false,
   "values": [
     "tdbtd:criteric_charred_leaves",
-    "tdbtd:criteric_charred_flowering_leaves"
+    "tdbtd:criteric_charred_flowering_leaves",
+    "tdbtd:sculk_teeth",
+    "tdbtd:sculk_ribs",
+    "tdbtd:sculk_tenvines",
+    "tdbtd:sculk_fern",
+    "tdbtd:sculk_large_fern",
+    "tdbtd:sculk_lotus",
+    "tdbtd:sculk_fountain_shroom",
+    "tdbtd:sculk_shroom",
+    "tdbtd:sculk_bud",
+    "tdbtd:sculk_growth",
+    "tdbtd:sculk_tendril",
+    "tdbtd:sculk_tail",
+    "tdbtd:sculk_spike",
+    "tdbtd:sculk_web",
+    "tdbtd:sculk_boneshaft",
+    "tdbtd:sculk_thorns",
+    "tdbtd:sculk_maw",
+    "tdbtd:criteric_moss_block",
+    "tdbtd:criteric_moss_carpet",
+    "tdbtd:layered_sculk"
   ]
 }

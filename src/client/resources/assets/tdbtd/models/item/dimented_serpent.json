@@ -143,14 +143,14 @@
             {
                 "predicate": {
                     "minecraft:pulling": 1,
-                    "minecraft:pull": 0.65
+                    "minecraft:pull": 3.5
                 },
                 "model": "tdbtd:item/dimented_serpent_pulling_1"
             },
             {
                 "predicate": {
                     "minecraft:pulling": 1,
-                    "minecraft:pull": 0.9
+                    "minecraft:pull": 7.0
                 },
                 "model": "tdbtd:item/dimented_serpent_pulling_2"
             }

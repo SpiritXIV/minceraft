@@ -23,6 +23,10 @@ public class SculkBlockMixin {
             BlockState customBlockState = (BlockState) Blocks.SCULK_CATALYST.getDefaultState();
             info.setReturnValue(customBlockState);
         }
+        if (random.nextInt(10) == 0) {
+            BlockState customBlockState = (BlockState) TDBTDBlocks.SCULK_SHAKER.getDefaultState();
+            info.setReturnValue(customBlockState);
+        }
         if (random.nextInt(5) == 0) {
             BlockState customBlockState = (BlockState) TDBTDBlocks.SCULK_TENDRIL.getDefaultState();
             info.setReturnValue(customBlockState);

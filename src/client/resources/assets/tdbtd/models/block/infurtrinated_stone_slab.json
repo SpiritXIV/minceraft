@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "tdbtd:block/infurtrinated_stone",
+    "side": "tdbtd:block/infurtrinated_stone",
+    "top": "tdbtd:block/infurtrinated_stone"
+  }
+}

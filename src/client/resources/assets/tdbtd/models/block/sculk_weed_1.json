@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tdbtd:block/sculk_weed_1"
+  }
+}

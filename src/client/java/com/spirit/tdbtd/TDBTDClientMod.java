@@ -90,6 +90,32 @@ public class TDBTDClientMod implements ClientModInitializer {
         registerEntityRenderers();
         registerBlockRenderLayers();
         TDBTDModelPredicateProvider.registerModels();
+
+
+/*
+        WorldRenderEvents.END.register((context) -> {
+            if (context.world().getDimension().equals(DimensionTypes.OVERWORLD)) {
+                if (!Iris.getIrisConfig().areShadersEnabled() || !Iris.getCurrentPackName().equals("neverend")) {
+                    try {
+                        Iris.getIrisConfig().setShaderPackName("neverend");
+                        Iris.getIrisConfig().setShadersEnabled(true);
+                        Iris.getIrisConfig().save();
+                        Iris.reload();
+                    } catch (Exception var3) {
+                    }
+                }
+            } else if (Iris.getCurrentPackName().equals("neverend")) {
+                try {
+                    Iris.getIrisConfig().setShaderPackName("");
+                    Iris.getIrisConfig().setShadersEnabled(false);
+                    Iris.getIrisConfig().save();
+                    Iris.reload();
+                } catch (Exception var2) {
+                }
+            }
+
+        });
+*/
     }
 
     private boolean isPlayerInDeepDark(Biome biome, PlayerEntity playerEntity) {
@@ -103,51 +129,52 @@ public class TDBTDClientMod implements ClientModInitializer {
     }
 
     private void registerBlockRenderLayers() {
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_FLOWER_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_CHARRED_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_VINES_BODY, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CRITERIC_VINES_HEAD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TEETH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_RIBS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TENVINES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TENVINES_PLANT, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_FERN, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(LARGE_SCULK_FERN, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_LOTUS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_FOUNTAIN_SHROOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SHROOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_BUD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_GROWTH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TAIL, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_WEB, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_BONESHAFT, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_THORNS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_EMITTER, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_SHAKER, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_MAW, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SCULK_TENDRIL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                CRITERIC_CHARRED_DOOR,
+                CRITERIC_CHARRED_TRAPDOOR,
+                CRITERIC_CHARRED_LEAVES,
+                CRITERIC_CHARRED_FLOWER_LEAVES,
+                CRITERIC_CHARRED_SAPLING,
+                CRITERIC_CHARRED_ROOTS,
+                CRITERIC_VINES_BODY,
+                CRITERIC_VINES_HEAD,
+                SCULK_TEETH,
+                SCULK_RIBS,
+                SCULK_TENVINES,
+                SCULK_TENVINES_PLANT,
+                SCULK_FERN,
+                LARGE_SCULK_FERN,
+                SCULK_LOTUS,
+                SCULK_FOUNTAIN_SHROOM,
+                SCULK_SHROOM,
+                SCULK_BUD,
+                SCULK_GROWTH,
+                SCULK_TAIL,
+                SCULK_SPIKE,
+                SCULK_WEB,
+                SCULK_BONESHAFT,
+                SCULK_THORNS,
+                SCULK_EMITTER,
+                SCULK_SHAKER,
+                SCULK_MAW,
+                SCULK_TENDRIL,
+                SCULK_WEED,
+                UNLIT_LANTERN,
+                INFURTRINATED_CHAIN,
+                INFURTRINATED_BONED_BARS,
+                INFURTRINATED_BONED_DOOR,
+                INFURTRINATED_BONED_TRAPDOOR,
+                SMALL_ECHOING_AMETHYST_BUD,
+                MEDIUM_ECHOING_AMETHYST_BUD,
+                LARGE_ECHOING_AMETHYST_BUD,
+                ECHOING_AMETHYST_CLUSTER);
 
-
-        BlockRenderLayerMap.INSTANCE.putBlock(UNLIT_LANTERN, RenderLayer.getCutout());
-
-
-        BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_CHAIN, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_CAGE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_BARS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(INFURTRINATED_BONED_TRAPDOOR, RenderLayer.getCutout());
-
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SMALL_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MEDIUM_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(LARGE_ECHOING_AMETHYST_BUD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ECHOING_AMETHYST_CLUSTER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+                INFURTRINATED_BONED_CAGE);
 
     }
+
+
     private void registerEntityRenderers() {
         EntityRendererRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(TDBTDModelLayers.TENEBROUS_NIBBLER, TenebrousNibblerModel::getTexturedModelData);
