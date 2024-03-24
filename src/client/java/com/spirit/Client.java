@@ -1,15 +1,15 @@
 package com.spirit;
 
-import com.spirit.shit.ShitClientMod;
 import com.spirit.tdbtd.TDBTDClientMod;
+import com.spirit.koil.render.IrisConfigModifier;
 import net.fabricmc.api.ClientModInitializer;
 
 public class Client implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        Client.checkShitpostClientMod();
-        ShitClientMod.registerShitpostClientMod();
+      //Client.checkShitpostClientMod();
+      //ShitClientMod.registerShitpostClientMod();
         Client.checkTDBTDClientMod();
         TDBTDClientMod.registerTDBTDClientMod();
         Client.registerClient();

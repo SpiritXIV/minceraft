@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapedless",
+  "pattern": [
+    "nS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sculk"
+    },
+    "n": {
+      "item": "#minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "tdbtd:criteric_charred_sapling",
+    "count": 1
+  }
+}

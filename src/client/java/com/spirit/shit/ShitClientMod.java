@@ -1,14 +1,14 @@
 package com.spirit.shit;
 
 import com.spirit.Main;
-import com.spirit.shit.entity.client.ShitModelLayers;
-import com.spirit.shit.entity.client.figures.*;
-import com.spirit.shit.event.KeyInputHandler;
-import com.spirit.shit.particle.custom.CreeperEntityParticle;
-import com.spirit.shit.particle.custom.PlayerEntityParticle;
-import com.spirit.shit.particle.custom.SkeletonEntityParticle;
-import com.spirit.shit.particle.custom.ZombieEntityParticle;
-import com.spirit.shit.render.BulletEntityRenderer;
+import com.spirit.shit.global.entity.client.ShitModelLayers;
+import com.spirit.shit.global.entity.client.figures.*;
+import com.spirit.shit.data.event.KeyInputHandler;
+import com.spirit.shit.global.particle.custom.CreeperEntityParticle;
+import com.spirit.shit.global.particle.custom.PlayerEntityParticle;
+import com.spirit.shit.global.particle.custom.SkeletonEntityParticle;
+import com.spirit.shit.global.particle.custom.ZombieEntityParticle;
+import com.spirit.shit.data.render.BulletEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -17,9 +17,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
-import static com.spirit.shit.block.ShitBlocks.*;
-import static com.spirit.shit.entity.ShitEntities.*;
-import static com.spirit.shit.particle.ShitParticles.*;
+import static com.spirit.shit.global.block.ShitBlocks.*;
+import static com.spirit.shit.global.entity.ShitEntities.*;
+import static com.spirit.shit.global.particle.ShitParticles.*;
 import static com.spirit.shit.ShitMod.*;
 
 

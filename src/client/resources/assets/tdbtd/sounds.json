@@ -98,5 +98,13 @@
       {"name": "tdbtd:entities/entity_water_breath_2", "stream": true},
       {"name": "tdbtd:entities/entity_water_breath_3", "stream": true}
     ]
+  },
+  "item_armor_equip_dimented": {
+    "sounds": [
+      {"name": "tdbtd:item/armor/item_armor_equip_dimented_1", "stream": true},
+      {"name": "tdbtd:item/armor/item_armor_equip_dimented_2", "stream": true},
+      {"name": "tdbtd:item/armor/item_armor_equip_dimented_3", "stream": true},
+      {"name": "tdbtd:item/armor/item_armor_equip_dimented_4", "stream": true}
+    ]
   }
 }

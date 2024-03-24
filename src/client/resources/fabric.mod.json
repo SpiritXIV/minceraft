@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "minceraft",
-  "version": "1.0.0",
+  "version": "0.7.60",
   "name": "Minceraft",
   "description": "Just a better minecraft, both good and shit",
-  "authors": [
+  "": [
     "--TDBTD--",
     "Spirit (mod maker)",
     "Ethan_4D (sculked mod creator)",
@@ -26,12 +26,10 @@
     "sources": ""
   },
   "license": "mit",
-  "icon": "assets/shit/icon.png",
+  "icon": "assets/icon.png",
   "environment": "*",
+  "accessWidener" : "minceraft.accesswidener",
   "entrypoints": {
-    "fabric-datagen": [
-      "com.spirit.DataGeneration"
-    ],
     "main": [
       "com.spirit.Main",
       "com.spirit.shit.ShitMod",

@@ -10,7 +10,6 @@
 
 package com.spirit;
 
-import com.spirit.shit.ShitMod;
 import com.spirit.tdbtd.TDBTDMod;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
@@ -22,24 +21,20 @@ public class Main implements ModInitializer {
     //public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
 
     public static final String MAIN_ID = "Koil Connector - Spirit";
-    public static final String DATAGEN = "main";
     public static final String SHIT_ID = "shit";
     public static final String TDBTD_ID = "tdbtd";
     public static final Logger LOGGER = LogManager.getLogger(MAIN_ID);
     public static final Logger SHITLOGGER = LogManager.getLogger(SHIT_ID);
     public static final Logger TDBTDLOGGER = LogManager.getLogger(TDBTD_ID);
 
-
-
     @Override
     public void onInitialize() {
-        Main.checkShitpostMod();
-        ShitMod.registerShitpostMod();
+      //Main.checkShitpostMod();
+      //ShitMod.registerShitpostMod();
         Main.checkTDBTDMod();
         TDBTDMod.registerTDBTDMod();
         Main.registerMain();
     }
-
 
     public static void checkShitpostMod() {
         Main.LOGGER.info("> --Checked || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");

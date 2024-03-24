@@ -1,9 +1,9 @@
 package com.spirit;
 
-import com.spirit.shit.datagen.*;
-import com.spirit.tdbtd.datagen.TDBTDWorldGenerator;
-import com.spirit.tdbtd.world.TDBTDConfiguredFeatures;
-import com.spirit.tdbtd.world.TDBTDPlacedFeatures;
+import com.spirit.shit.data.datagen.*;
+import com.spirit.tdbtd.data.datagen.TDBTDWorldGenerator;
+import com.spirit.tdbtd.global.world.TDBTDConfiguredFeatures;
+import com.spirit.tdbtd.global.world.TDBTDPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
@@ -21,7 +21,6 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         pack.addProvider(ShitLootTableProvider::new);
         pack.addProvider(ShitModelProvider::new);
         pack.addProvider(ShitPoiTagProvider::new);
-
 
         pack.addProvider(TDBTDWorldGenerator::new);
     }

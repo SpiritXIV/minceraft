@@ -1,6 +1,7 @@
 {
   "required": true,
-  "package": "com.spirit.Mixin",
+  "minVersion": "0.8",
+  "package": "com.spirit.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ClientPlayerInteractionManagerMixin",

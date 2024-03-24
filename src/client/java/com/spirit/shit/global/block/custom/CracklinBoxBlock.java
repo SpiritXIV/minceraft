@@ -1,0 +1,15 @@
+package com.spirit.shit.global.block.custom;
+
+import com.spirit.shit.data.common.AbstractShitBlock;
+import net.minecraft.block.Block;
+import net.minecraft.util.shape.VoxelShape;
+
+public class CracklinBoxBlock extends AbstractShitBlock {
+    private static final VoxelShape SHAPE = java.util.Optional.of(Block.createCuboidShape(3, 0, 7, 14, 15, 10)).get();
+
+    public CracklinBoxBlock(Settings settings) {
+        super(settings, SHAPE);
+    }
+
+
+}

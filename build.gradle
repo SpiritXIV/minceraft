@@ -14,6 +14,7 @@ repositories {
 	maven { url 'https://maven.fabricmc.net/' }
 	maven { url 'https://repo.spongepowered.org/maven/' } // Add this if missing
 	maven { url "https://maven.nucleoid.xyz/" }
+	maven { url 'https://maven.wispforest.io' }
 }
 
 loom {
@@ -34,7 +35,7 @@ loom {
 			inherit server
 			name "Data Generation"
 			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/client/generated")}"
 			vmArg "-Dfabric-api.datagen.modid=tdbtd" //can ba changed
 
 			runDir "build/datagen"
@@ -60,9 +61,9 @@ dependencies {
 
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation include("net.fabricmc:fabric-loader:${project.loader_version}")
 	implementation 'org.spongepowered:mixin:0.8.2'
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation include("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 	modImplementation include("eu.pb4:common-protection-api:${project.common_protection_api_version}")
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
@@ -76,20 +77,25 @@ processResources {
 	}
 }
 
+def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
-
+	it.options.encoding = "UTF-8"
+	if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+		it.options.release = targetJavaVersion
+	}
 }
 
 java {
+	def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+	if (JavaVersion.current() < javaVersion) {
+		toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+	}
+	archivesBaseName = project.archives_base_name
 	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${project.archivesBaseName}" }
 	}
 }

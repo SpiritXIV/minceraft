@@ -1,9 +1,9 @@
 package com.spirit.tdbtd;
 
 import com.spirit.Main;
-import com.spirit.tdbtd.entity.client.TDBTDModelLayers;
-import com.spirit.tdbtd.entity.client.figures.*;
-import com.spirit.tdbtd.util.TDBTDModelPredicateProvider;
+import com.spirit.tdbtd.global.entity.client.TDBTDModelLayers;
+import com.spirit.tdbtd.global.entity.client.figures.*;
+import com.spirit.tdbtd.data.util.TDBTDModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -29,8 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
-import static com.spirit.tdbtd.block.TDBTDBlocks.*;
-import static com.spirit.tdbtd.entity.TDBTDEntities.*;
+import static com.spirit.tdbtd.global.block.TDBTDBlocks.*;
+import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
 
 @SuppressWarnings({"unsued"})
 

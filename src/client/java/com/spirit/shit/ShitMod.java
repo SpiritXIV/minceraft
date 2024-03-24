@@ -12,47 +12,47 @@ package com.spirit.shit;
 
 
 import com.spirit.Main;
-import com.spirit.shit.block.ShitBlocks;
-import com.spirit.shit.common.GunProjectileItem;
-import com.spirit.shit.effect.ShitEffects;
-import com.spirit.shit.entity.ShitEntities;
-import com.spirit.shit.entity.custom.*;
-import com.spirit.shit.entity.custom.projectile.*;
-import com.spirit.shit.entity.custom.projectile.beverage.*;
-import com.spirit.shit.item.ShitItemGroup;
-import com.spirit.shit.item.ShitItems;
-import com.spirit.shit.common.GunItem;
-import com.spirit.shit.painting.ShitPaintings;
-import com.spirit.shit.particle.ShitParticles;
-import com.spirit.shit.potion.ShitPotions;
-import com.spirit.shit.sound.ShitSounds;
-import com.spirit.shit.util.PacketIDs;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
+import com.spirit.shit.global.block.ShitBlocks;
+import com.spirit.shit.data.common.Common;
+import com.spirit.shit.data.common.GunItem;
+import com.spirit.shit.data.common.GunProjectileItem;
+import com.spirit.shit.global.effect.ShitEffects;
+import com.spirit.shit.global.entity.ShitEntities;
+import com.spirit.shit.global.entity.custom.*;
+import com.spirit.shit.global.entity.custom.projectile.*;
+import com.spirit.shit.global.entity.custom.projectile.beverage.*;
+import com.spirit.shit.global.item.ShitItems;
+import com.spirit.shit.global.painting.ShitPaintings;
+import com.spirit.shit.global.particle.ShitParticles;
+import com.spirit.shit.global.potion.ShitPotions;
+import com.spirit.shit.global.sound.ShitSounds;
+import com.spirit.shit.data.util.PacketIDs;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import com.spirit.shit.common.Common;
+
 import java.util.Objects;
 
 import static net.minecraft.server.command.CommandManager.literal;
@@ -61,7 +61,6 @@ public class ShitMod implements ModInitializer {
     // Commented as a node of how to make a custom registry
     //public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     //public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
-
     private static <T extends Entity> EntityType<T> registerEntityType(String name, SpawnGroup group, EntityType.EntityFactory<T> entityFactory, float width, float height) {
         Identifier entityId = new Identifier(Main.SHIT_ID, name);
         FabricEntityTypeBuilder<T> entityTypeBuilder = FabricEntityTypeBuilder.create(group, entityFactory)
@@ -201,7 +200,7 @@ public class ShitMod implements ModInitializer {
         ShitEffects.registerEffects();
         ShitPotions.registerPotions();
         ShitBlocks.registerAll();
-        ShitItemGroup.register();
+      //ShitItemGroup.register();
         ShitPaintings.registerPaintings();
 
 
@@ -212,7 +211,7 @@ public class ShitMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ShitEntities.SLIM_SHADY, SlimShadyEntity.setAttributes());
         //FabricDefaultAttributeRegistry.register(ShitEntities.YIPPEE, YippeeEntity.setAttributes());
 
-        Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
+      //Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
 
         //PACKETS
 

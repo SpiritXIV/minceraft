@@ -1,17 +1,17 @@
 package com.spirit.tdbtd;
 
 import com.spirit.Main;
-import com.spirit.tdbtd.block.entity.TDBTDBlockEntities;
-import com.spirit.tdbtd.effect.TDBTDEffects;
-import com.spirit.tdbtd.entity.custom.*;
-import com.spirit.tdbtd.item.TDBTDItemGroup;
-import com.spirit.tdbtd.potion.TDBTDPotions;
-import com.spirit.tdbtd.util.TDBTDLootTableModifiers;
-import com.spirit.tdbtd.world.gen.TDBTDWorldGeneration;
+import com.spirit.tdbtd.global.block.entity.TDBTDBlockEntities;
+import com.spirit.tdbtd.global.effect.TDBTDEffects;
+import com.spirit.tdbtd.global.entity.custom.*;
+import com.spirit.tdbtd.global.item.TDBTDItemGroup;
+import com.spirit.tdbtd.global.potion.TDBTDPotions;
+import com.spirit.tdbtd.data.util.TDBTDLootTableModifiers;
+import com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
-import static com.spirit.tdbtd.entity.TDBTDEntities.*;
+import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
 public class TDBTDMod implements ModInitializer {
     @Override
     public void onInitialize() {

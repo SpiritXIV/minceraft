@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tdbtd:item/sculk_weed"
+    "layer0": "tdbtd:block/sculk_weed"
   }
 }

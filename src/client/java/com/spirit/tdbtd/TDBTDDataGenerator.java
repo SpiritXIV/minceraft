@@ -1,8 +1,8 @@
 package com.spirit.tdbtd;
 
-import com.spirit.tdbtd.datagen.TDBTDWorldGenerator;
-import com.spirit.tdbtd.world.TDBTDConfiguredFeatures;
-import com.spirit.tdbtd.world.TDBTDPlacedFeatures;
+import com.spirit.tdbtd.data.datagen.TDBTDWorldGenerator;
+import com.spirit.tdbtd.global.world.TDBTDConfiguredFeatures;
+import com.spirit.tdbtd.global.world.TDBTDPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;

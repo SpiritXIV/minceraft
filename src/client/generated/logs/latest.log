@@ -91,8 +91,8 @@ java.lang.RuntimeException: Could not execute entrypoint stage 'main' due to err
 Caused by: java.lang.IllegalArgumentException: Cannot add spawns for entities with spawnGroup=MISC since they'd be replaced by pigs.
 	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:145) ~[guava-31.1-jre.jar:?]
 	at net.fabricmc.fabric.api.biome.v1.BiomeModifications.addSpawn(BiomeModifications.java:74) ~[fabric-biome-api-v1-common-13.0.12+215bbe9677.jar:?]
-	at com.spirit.tdbtd.world.gen.TDBTDEntitySpawn.addEntitySpawn(TDBTDEntitySpawn.java:14) ~[client/:?]
-	at com.spirit.tdbtd.world.gen.TDBTDWorldGeneration.generateTDBTDWorldGen(TDBTDWorldGeneration.java:11) ~[client/:?]
+	at com.spirit.tdbtd.global.world.gen.TDBTDEntitySpawn.addEntitySpawn(TDBTDEntitySpawn.java:14) ~[client/:?]
+	at com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration.generateTDBTDWorldGen(TDBTDWorldGeneration.java:11) ~[client/:?]
 	at com.spirit.tdbtd.TDBTDMod.onInitialize(TDBTDMod.java:46) ~[client/:?]
 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:383) ~[fabric-loader-0.14.24.jar:?]
 	... 6 more

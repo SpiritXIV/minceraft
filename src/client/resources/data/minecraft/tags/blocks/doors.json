@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "tdbtd:criteric_charred_door"
+    "tdbtd:criteric_charred_door",
+    "tdbtd:infurtrinated_boned_door"
   ]
 }

@@ -1,9 +1,9 @@
 package com.spirit.tdbtd;
 
 import com.spirit.Main;
-import com.spirit.tdbtd.item.TDBTDItems;
-import com.spirit.tdbtd.item.custom.TDBTDMusicDiscItem;
-import com.spirit.tdbtd.sound.TDBTDSounds;
+import com.spirit.tdbtd.global.item.TDBTDItems;
+import com.spirit.tdbtd.global.item.custom.TDBTDMusicDiscItem;
+import com.spirit.tdbtd.global.sound.TDBTDSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -19,9 +19,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.spirit.tdbtd.block.TDBTDBlocks.*;
-import static com.spirit.tdbtd.item.TDBTDItems.*;
-import static com.spirit.tdbtd.sound.TDBTDSounds.*;
+import static com.spirit.tdbtd.global.block.TDBTDBlocks.*;
+import static com.spirit.tdbtd.global.item.TDBTDItems.*;
+import static com.spirit.tdbtd.global.sound.TDBTDSounds.*;
 
 public class TDBTDHelperMethods {
 
@@ -254,10 +254,8 @@ public class TDBTDHelperMethods {
             {"infurtrinated_boned_door", INFURTRINATED_BONED_DOOR},
             {"infurtrinated_boned_trapdoor", INFURTRINATED_BONED_TRAPDOOR},
 
-
             {"criteric_moss_block", CRITERIC_MOSS_BLOCK},
             {"criteric_moss_carpet", CRITERIC_MOSS_CARPET},
-
 
             {"echoing_amethyst", ECHOING_AMETHYST},
             {"budding_echoing_amethyst", BUDDING_ECHOING_AMETHYST},
