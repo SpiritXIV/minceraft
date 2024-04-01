@@ -9,7 +9,9 @@
   
 <hr>
 <h3 align="center">--TDBTD--</h3>
+<div>
 <img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-ff5f57"/>
+</div>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
   <p>Kip Kebab (the nexus mod creator)</p>
@@ -18,7 +20,9 @@
   <p>KrimsonKolbolt (item/block m/t)</p>
 <hr>
 <h3 align="center">--ShitPost--</h3>
+<div>
 <img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-ff5f57"/>
+</div>
   <p>SpiritXIV (mod maker)</p>
   <p>UNLUCKY (java writer)</p>
   <p>Absolutelyaya (java writer)</p>
