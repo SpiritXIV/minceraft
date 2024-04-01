@@ -12,7 +12,6 @@
 <div>
 <img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-555555"/>
 </div>
-<br>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
   <p>Kip Kebab (the nexus mod creator)</p>
@@ -24,7 +23,6 @@
 <div>
 <img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-555555"/>
 </div>
-<br>
   <p>SpiritXIV (mod maker)</p>
   <p>UNLUCKY (java writer)</p>
   <p>Absolutelyaya (java writer)</p>
@@ -40,7 +38,6 @@
 <div>
 <img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
 </div>
-<br>
   <p>SpiritXIV (mod maker)</p>
 <br>
 <hr>
@@ -48,5 +45,4 @@
 <div>
 <img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
 </div>
-<br>
   <p>SpiritXIV (mod maker)</p>
