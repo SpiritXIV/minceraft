@@ -10,7 +10,6 @@
 <hr>
 <h3 align="center">--TDBTD--</h3>
 <img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/>
-<br>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
   <p>Kip Kebab (the nexus mod creator)</p>
