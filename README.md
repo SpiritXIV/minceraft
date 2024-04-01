@@ -18,7 +18,7 @@
   <p>alphaxenopete82 (entity m/t)</p>
   <p>Computer User (item/block m/t)</p>
   <p>KrimsonKolbolt (item/block m/t)</p>
-<p></p>
+<br>
 <h4>--ShitPost--</h4>
   <p>SpiritXIV (mod maker)</p>
   <p>UNLUCKY (java writer)</p>
@@ -29,11 +29,11 @@
   <p>KrimsonKolbolt (item/block m/t)</p>
   <p>McFella (e/i/b m/t)</p>
   <p>Milkyfur (item m/t)</p>
-<p></p>
+<br>
 <p>(comming soon)</p>
 <h4>--My Beloved--</h4>
   <p>SpiritXIV (mod maker)</p>
-<p></p>
+<br>
 <p>(comming soon)</p>
 <h4>--Ignite--</h4>
   <p>SpiritXIV (mod maker)</p>
