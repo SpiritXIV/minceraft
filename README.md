@@ -10,7 +10,7 @@
 <p></p>
 <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/the-shit-of-crypt.svg" alt="spirits wakatime"> <img src="https://wakatime.com/badge/user/ed131eb9-2f69-4003-911c-207210cbc266/project/399f361b-5624-44c9-bf23-82c7b61cde3f.svg" alt="zharas wakatime"></div>
 <hr>
-<h3 align="center">Mod Team</h3>
+<h3 align="center">======================</h3>
 <div align="center"><b>
   <p>SpiritXIV <span style="float: right;">| Main Developer</span></p> 
   <p>KingZhara <span style="float: right;">| Secondary Developer</span></p>
