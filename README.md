@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/> <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
+<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/><img src="https://img.shields.io/badge/Alpha%200.7.60-ff5f57"/><img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
   <hr>
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/.github/workflows/minecraft.png?raw=true" alt="minecraft.png"/>
@@ -10,7 +10,7 @@
 <hr>
 <h3 align="center">--TDBTD--</h3>
 <div>
-<img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-555555"/>
+<img src="https://img.shields.io/badge/Alpha%200.7.60-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-555555"/>
 </div>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
