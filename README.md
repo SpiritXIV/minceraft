@@ -10,7 +10,7 @@
 <hr>
   
 <h4>Mod Team</h4>
-<h4>--TDBTD--</h4>
+<h4 align="center">--TDBTD--</h4>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
   <p>Kip Kebab (the nexus mod creator)</p>
@@ -18,7 +18,7 @@
   <p>Computer User (item/block m/t)</p>
   <p>KrimsonKolbolt (item/block m/t)</p>
 <br>
-<h4>--ShitPost--</h4>
+<h4 align="center">--ShitPost--</h4>
   <p>SpiritXIV (mod maker)</p>
   <p>UNLUCKY (java writer)</p>
   <p>Absolutelyaya (java writer)</p>
@@ -30,7 +30,7 @@
   <p>Milkyfur (item m/t)</p>
 <br>
 <p>(comming soon)</p>
-<h4>--My Beloved--</h4>
+<h4 align="center">--My Beloved--</h4>
   <p>SpiritXIV (mod maker)</p>
 <br>
 <p>(comming soon)</p>
