@@ -9,7 +9,7 @@
   
 <hr>
 <h3 align="center">--TDBTD--</h3>
-<img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/>
+<img src="https://img.shields.io/badge/Alpha%200.70.13-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-ff5f57"/>
   <p>SpiritXIV (mod maker)</p>
   <p>Ethan_4D (sculked mod creator)</p>
   <p>Kip Kebab (the nexus mod creator)</p>
@@ -18,7 +18,7 @@
   <p>KrimsonKolbolt (item/block m/t)</p>
 <hr>
 <h3 align="center">--ShitPost--</h3>
-<br>
+<img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/unreleased-ff5f57"/>
   <p>SpiritXIV (mod maker)</p>
   <p>UNLUCKY (java writer)</p>
   <p>Absolutelyaya (java writer)</p>
@@ -31,10 +31,10 @@
 <br>
 <hr>
 <h3 align="center">--My Beloved--</h3>
-<br>
+<img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
   <p>SpiritXIV (mod maker)</p>
 <br>
 <hr>
 <h3 align="center">--Ignite--</h3>
-<br>
+<img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
   <p>SpiritXIV (mod maker)</p>
