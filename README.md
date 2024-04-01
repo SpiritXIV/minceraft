@@ -7,7 +7,6 @@
 <div align="center"><b>Version: 1.0.0 | ALPHA <p>Currently in Development, not for public redistribution</p></b></div>
 <p></p>
 <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"> <img src="https://wakatime.com/badge/user/ed131eb9-2f69-4003-911c-207210cbc266/project/399f361b-5624-44c9-bf23-82c7b61cde3f.svg" alt="zharas wakatime"></div>
-<hr>
   
 <hr>
 <h3 align="center">--TDBTD--</h3>
@@ -19,7 +18,6 @@
   <p>Computer User (item/block m/t)</p>
   <p>KrimsonKolbolt (item/block m/t)</p>
 <hr>
-<br>
 <h3 align="center">--ShitPost--</h3>
 <br>
   <p>SpiritXIV (mod maker)</p>
@@ -32,12 +30,12 @@
   <p>McFella (e/i/b m/t)</p>
   <p>Milkyfur (item m/t)</p>
 <br>
-<p>(comming soon)</p>
+<hr>
 <h3 align="center">--My Beloved--</h3>
 <br>
   <p>SpiritXIV (mod maker)</p>
 <br>
-<p>(comming soon)</p>
+<hr>
 <h3 align="center">--Ignite--</h3>
 <br>
   <p>SpiritXIV (mod maker)</p>
