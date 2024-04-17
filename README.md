@@ -4,14 +4,12 @@
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
 <p>
-  ```
   Branches: (5)<br>
   | TDBTD - 0.70.12 - unreleased<br>
   | ShitPost - 0.0.0 - unreleased<br>
   | My Beloved - 0.0.0 - coming soon<br>
   | Ignite - 0.0.0 - coming soon<br>
   | Gamblic - 0.0.0 - coming soon<br>
-  ```
 </p>
 <p>
   Modteam:<br>
