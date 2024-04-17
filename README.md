@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/>  <img src="https://img.shields.io/badge/Alpha%200.7.60-888888"/>  <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
+<img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/>  <img src="https://img.shields.io/badge/Alpha%200.70-12-888888"/>  <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>
   <hr>
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
