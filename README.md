@@ -8,9 +8,9 @@
 <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></div>
   
 <hr>
-  <p>Branches: (2)</p>
-  <p>| TDBTD - 0.70.12 - unreleased</p>
-  <p>| ShitPost - 0.0.0 - unreleased</p>
+  <p>Branches: (5)</p>
+  <p>| TDBTD - 0.70.12 - unreleased
+     | ShitPost - 0.0.0 - unreleased</p>
   <p>| My Beloved - 0.0.0 - coming soon</p>
   <p>| Ignite - 0.0.0 - coming soon</p>
   <p>| Gamblic - 0.0.0 - coming soon</p>
