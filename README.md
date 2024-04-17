@@ -3,8 +3,7 @@
   <hr>
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
-<hr>
-  <p>
+<p>
   Branches: (5)<br>
   | TDBTD - 0.70.12 - unreleased<br>
   | ShitPost - 0.0.0 - unreleased<br>
@@ -13,7 +12,7 @@
   | Gamblic - 0.0.0 - coming soon<br>
 </p>
 <hr>
-  <p>
+<p>
   Modteam:<br>
   | SpiritXIV<br>
   | Ethan_4D<br>
@@ -26,5 +25,5 @@
   | KingZhara<br>
   | McFella<br>
   | Milkyfur<br>
-  </p>
+</p>
 <br>
