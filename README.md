@@ -13,7 +13,7 @@
   <p>| ShitPost - 0.0.0 - unreleased</p>
 <hr>
   <p>Modteam:</p>
-  <p>| SpiritXIV <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></div></p>
+  <p>| SpiritXIV <img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></p>
   <p>| Ethan_4D</p>
   <p>| Kip Kebab</p>
   <p>| alphaxenopete82</p>
