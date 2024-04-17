@@ -3,8 +3,6 @@
   <hr>
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
-<p></p>
-  
 <hr>
   <p>
   Branches: (5)<br>
