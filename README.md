@@ -46,3 +46,10 @@
 <img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
 </div>
   <p>SpiritXIV (mod maker)</p>
+<br>
+<hr>
+<h3 align="center">--Gamblic--</h3>
+<div>
+<img src="https://img.shields.io/badge/Alpha%200.0.0-ff5f57"/> <img src="https://img.shields.io/badge/coming%20soon-333333"/>
+</div>
+  <p>SpiritXIV (mod maker)</p>
