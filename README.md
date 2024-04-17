@@ -11,9 +11,12 @@
   <p>Branches: (2)</p>
   <p>| TDBTD - 0.70.12 - unreleased</p>
   <p>| ShitPost - 0.0.0 - unreleased</p>
+  <p>| My Beloved - 0.0.0 - coming soon</p>
+  <p>| Ignite - 0.0.0 - coming soon</p>
+  <p>| Gamblic - 0.0.0 - coming soon</p>
 <hr>
   <p>Modteam:</p>
-  <p>| SpiritXIV <img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></p>
+  <p>| SpiritXIV</p>
   <p>| Ethan_4D</p>
   <p>| Kip Kebab</p>
   <p>| alphaxenopete82</p>
