@@ -3,9 +3,7 @@
   <hr>
 </div>
 <img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
-<div align="center"><b>Version: 0.70.12 | ALPHA</b></div>
 <p></p>
-<div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></div>
   
 <hr>
   <p>
