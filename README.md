@@ -8,23 +8,27 @@
 <div align="center"><img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime"></div>
   
 <hr>
-  <p>Branches: (5)</p>
-  <p>| TDBTD - 0.70.12 - unreleased<br>
+  <p>
+  Branches: (5)
+  | TDBTD - 0.70.12 - unreleased<br>
   | ShitPost - 0.0.0 - unreleased<br>
   | My Beloved - 0.0.0 - coming soon<br>
   | Ignite - 0.0.0 - coming soon<br>
-  | Gamblic - 0.0.0 - coming soon<br></p>
+  | Gamblic - 0.0.0 - coming soon<br>
+</p>
 <hr>
-  <p>Modteam:</p>
-  <p>| SpiritXIV</p>
-  <p>| Ethan_4D</p>
-  <p>| Kip Kebab</p>
-  <p>| alphaxenopete82</p>
-  <p>| Computer User</p>
-  <p>| KrimsonKolbolt</p>
-  <p>| UNLUCKY</p>
-  <p>| Absolutelyaya</p>
-  <p>| KingZhara</p>
-  <p>| McFella</p>
-  <p>| Milkyfur</p>
+  <p>
+  Modteam:
+  | SpiritXIV<br>
+  | Ethan_4D<br>
+  | Kip Kebab<br>
+  | alphaxenopete82<br>
+  | Computer User<br>
+  | KrimsonKolbolt<br>
+  | UNLUCKY<br>
+  | Absolutelyaya<br>
+  | KingZhara<br>
+  | McFella<br>
+  | Milkyfur<br>
+  </p>
 <br>
