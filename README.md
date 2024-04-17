@@ -11,7 +11,6 @@
   | Ignite - 0.0.0 - coming soon<br>
   | Gamblic - 0.0.0 - coming soon<br>
 </p>
-<hr>
 <p>
   Modteam:<br>
   | SpiritXIV<br>
