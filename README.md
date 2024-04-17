@@ -9,8 +9,8 @@
   
 <hr>
   <p>Branches: (5)</p>
-  | TDBTD - 0.70.12 - unreleased
-     | ShitPost - 0.0.0 - unreleased
+  | TDBTD - 0.70.12 - unreleased<br>
+  | ShitPost - 0.0.0 - unreleased
   <p>| My Beloved - 0.0.0 - coming soon</p>
   <p>| Ignite - 0.0.0 - coming soon</p>
   <p>| Gamblic - 0.0.0 - coming soon</p>
