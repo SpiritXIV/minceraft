@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "tdbtd:block/infurtrinated_granite",
+    "side": "tdbtd:block/infurtrinated_granite",
+    "top": "tdbtd:block/infurtrinated_granite"
+  }
+}

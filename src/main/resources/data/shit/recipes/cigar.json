@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " k ",
+    "sys",
+    " k "
+  ],
+  "key": {
+    "k": {
+      "item": "minecraft:dried_kelp"
+    },
+    "y": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "s": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "item": "shit:cigar",
+    "count": 1
+  }
+}

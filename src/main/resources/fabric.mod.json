@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "minceraft",
+  "version": "${version}",
+  "name": "Minceraft",
+  "description": "A large mod with toggleable branches that each add their own unique features to the game.",
+  "": [
+    "--TDBTD--",
+    "Spirit (mod maker)",
+    "Ethan_4D (sculked mod creator)",
+    "Kip Kebab (the nexus mod creator)",
+    "alphaxenopete82 (entity m/t)",
+    "Computer User (item/block m/t)",
+    "--ShitPost--",
+    "Spirit (mod maker)",
+    "UNLUCKY (java writer)",
+    "Absolutelyaya (java writer)",
+    "KingZhara (java rewriter)",
+    "alphaxenopete82 (entity m/t)",
+    "Computer User (item/block m/t)",
+    "McFella (e/i/b m/t)",
+    "Milkyfur (item m/t)"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+  "license": "mit",
+  "icon": "assets/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.spirit.Main",
+      "com.spirit.shit.ShitMod",
+      "com.spirit.tdbtd.TDBTDMod"
+    ],
+    "client": [
+      "com.spirit.Client",
+      "com.spirit.shit.ShitClientMod",
+      "com.spirit.tdbtd.TDBTDClientMod"
+    ],
+    "fabric-datagen": [
+      "com.spirit.DataGeneration"
+    ]
+  },
+  "mixins": [
+    "minceraft.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

@@ -1,0 +1,28 @@
+package com.spirit;
+
+import com.spirit.tdbtd.TDBTDClientMod;
+import com.spirit.koil.render.IrisConfigModifier;
+import net.fabricmc.api.ClientModInitializer;
+
+public class Client implements ClientModInitializer {
+
+    @Override
+    public void onInitializeClient() {
+      //Client.checkShitpostClientMod();
+      //ShitClientMod.registerShitpostClientMod();
+        Client.checkTDBTDClientMod();
+        TDBTDClientMod.registerTDBTDClientMod();
+        Client.registerClient();
+        IrisConfigModifier.haveInitializeClient();
+    }
+
+    public static void checkShitpostClientMod() {
+        Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/shit/ShitClientMod");
+    }
+    public static void checkTDBTDClientMod() {
+        Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/tdbtd/TDBTDClientMod");
+    }
+    public static void registerClient() {
+        Main.LOGGER.info("> --Loaded || minceraft/src/main/java/com/spirit/... ~ client");
+    }
+}

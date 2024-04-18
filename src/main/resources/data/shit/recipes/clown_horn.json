@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  i",
+    "wi ",
+    "ww "
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:red_wool"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "shit:clown_horn",
+    "count": 1
+  }
+}
