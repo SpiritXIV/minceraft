@@ -2,7 +2,7 @@
 <img src="https://img.shields.io/badge/A%20Connection%20of%20Koil-222222"/>  <img src="https://img.shields.io/badge/Alpha%200.70.12-888888"/>  <img src="https://img.shields.io/github/license/SpiritXIV/the-shit-of-crypt"/>  <img src="https://wakatime.com/badge/github/SpiritXIV/minceraft.svg" alt="spirits wakatime">
   <hr>
 </div>
-<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/client/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
+<img align="center" src="https://github.com/SpiritXIV/the-shit-of-crypt/blob/main/src/main/resources/assets/minecraft/textures/gui/title/minecraft.png?raw=true" alt="minecraft.png"/>
 <p>
   Branches: (5)<br>
   | TDBTD - 0.70.12 - unreleased<br>
