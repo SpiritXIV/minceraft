@@ -24,7 +24,6 @@ public class TDBTDBlockEntities {
      */
 
     public static void registerBlockEntities() {
-        Main.LOGGER.info("Registering Block Entities for " + Main.TDBTD_ID);
         Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Main.TDBTD_ID, "sculk_emitter_block_entity"), BlockEntityType.Builder.create(SculkEmitterBlockEntity::new, TDBTDBlocks.SCULK_EMITTER).build(null));
         //Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Main.TDBTD_ID, "sculk_shaker_block_entity"), BlockEntityType.Builder.create(SculkShakerBlock.SculkShakerBlockEntity::new, TDBTDBlocks.SCULK_SHAKER).build(null));
     }

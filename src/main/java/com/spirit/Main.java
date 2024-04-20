@@ -62,12 +62,16 @@ public class Main implements ModInitializer {
     public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
 
-    public static final String MAIN_ID = "Koil Connector - Spirit";
+    public static final String MAIN_ID = "minceraft";
     public static final String SHIT_ID = "shit";
     public static final String TDBTD_ID = "tdbtd";
+    public static final String IGNITE_ID = "ignite";
+    public static final String GAMBLIC_ID = "gamblic";
     public static final Logger LOGGER = LogManager.getLogger(MAIN_ID);
     public static final Logger SHITLOGGER = LogManager.getLogger(SHIT_ID);
     public static final Logger TDBTDLOGGER = LogManager.getLogger(TDBTD_ID);
+    public static final Logger IGNITELOGGER = LogManager.getLogger(IGNITE_ID);
+    public static final Logger GAMBLICLOGGER = LogManager.getLogger(GAMBLIC_ID);
 
     @Override
     public void onInitialize() {
@@ -159,6 +163,11 @@ public class Main implements ModInitializer {
         TDBTDWorldGeneration.registerWorldGenFeat();
         TDBTDMod.registerTDBTDMod();
 
+
+        Main.checkIgniteMod();
+
+        Main.checkGamblicMod();
+
         Main.registerMain();
 
     }
@@ -167,6 +176,12 @@ public class Main implements ModInitializer {
     }
     public static void checkTDBTDMod() {
         Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/tdbtd/TDBTDMod");
+    }
+    public static void checkIgniteMod() {
+        Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/ignite/IgniteMod");
+    }
+    public static void checkGamblicMod() {
+        Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/gamblic/GamblicMod");
     }
     public static void registerMain() {
         Main.LOGGER.info("> --Loaded || minceraft/src/main/java/com/spirit/... ~ main");

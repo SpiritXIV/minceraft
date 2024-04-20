@@ -169,7 +169,7 @@ public class ShitMod implements ModInitializer {
 
 
     public static void registerShitpostMod() {
-        Main.SHITLOGGER.info("> --Connected || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitMod");
+        Main.SHITLOGGER.info("> --Connected || minceraft/src/main/java/com/spirit/shit/ShitMod");
     }
 }
 

@@ -163,6 +163,6 @@ public class ShitClientMod implements ClientModInitializer {
     }
 
     public static void registerShitpostClientMod() {
-        Main.SHITLOGGER.info("> --Connected || the-shit-of-crypt/src/main/java/com/spirit/shit/ShitClientMod");
+        Main.SHITLOGGER.info("> --Connected || minceraft/src/main/java/com/spirit/shit/ShitClientMod");
     }
 }
