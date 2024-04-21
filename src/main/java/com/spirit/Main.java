@@ -35,28 +35,19 @@ import com.spirit.tdbtd.global.item.TDBTDItems;
 import com.spirit.tdbtd.global.potion.TDBTDPotions;
 import com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.SimpleRegistry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.ExplosionBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
-
 import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
-import static net.minecraft.server.command.CommandManager.literal;
 
 public class Main implements ModInitializer {
     public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
@@ -113,6 +104,7 @@ public class Main implements ModInitializer {
         //COMMANDS
 
         //DETONATION COMMAND
+        /*
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("explode")
                 .executes(context -> {
                     if (!Objects.requireNonNull(context.getSource().getPlayer()).getWorld().isClient()) {
@@ -126,10 +118,10 @@ public class Main implements ModInitializer {
                         context.getSource().getPlayer().setExperienceLevel(0);
                         context.getSource().getPlayer().setExperiencePoints(0);
                         context.getSource().getPlayer().playSound(ShitSounds.EXPLODE_SOUND_COMMAND, SoundCategory.PLAYERS, 1, 1);
-
                     }
                     return 1;
                 })));
+         */
         ShitMod.registerShitpostMod();
 
         Main.checkTDBTDMod();

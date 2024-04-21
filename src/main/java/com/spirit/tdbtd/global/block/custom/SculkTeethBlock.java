@@ -103,7 +103,7 @@ public class SculkTeethBlock extends PlantBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity.getType() != EntityType.WARDEN) {
+        if (!world.isClient() && entity.getType() != EntityType.WARDEN) {
             entity.damage(DamageTypes.of(world, DamageTypes.SCULK_HURT), 1);
         }
     }
