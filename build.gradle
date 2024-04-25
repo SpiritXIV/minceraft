@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.3-SNAPSHOT'
 	id 'maven-publish'
+	id 'org.jetbrains.kotlin.jvm' version '1.9.23'
 }
 
 version = project.mod_version
@@ -14,6 +15,7 @@ repositories {
 	maven { url 'https://repo.spongepowered.org/maven/' } // Add this if missing
 	maven { url "https://maven.nucleoid.xyz/" }
 	maven { url 'https://maven.wispforest.io' }
+	mavenCentral()
 }
 
 loom {
@@ -44,9 +46,22 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	implementation 'org.jetbrains:annotations:24.0.0'
+	modImplementation "net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23"
 	modImplementation include("eu.pb4:common-protection-api:${project.common_protection_api_version}")
+
+	implementation 'org.jetbrains:annotations:24.0.1'
+	implementation "net.kyori:adventure-api:4.16.0"
+	implementation 'org.yaml:snakeyaml:2.2'
+	implementation 'org.joml:joml:1.10.5'
+	implementation 'org.apache.maven:maven-plugin-api:3.9.6'
+	implementation "org.apache.maven.resolver:maven-resolver-api:${project.apache_maven_resolver}"
+	implementation "org.apache.maven.resolver:maven-resolver-transport-http:${project.apache_maven_resolver}"
+	implementation "org.apache.maven.resolver:maven-resolver-connector-basic:${project.apache_maven_resolver}"
+	implementation 'org.apache.maven.plugin-tools:maven-plugin-tools-api:3.12.0'
+	implementation 'org.apache.maven:maven-plugin-api:3.9.6'
+	implementation 'org.apache.commons:commons-compress:1.21'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }
 
@@ -74,12 +89,13 @@ tasks.withType(JavaCompile).configureEach {
 java {
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+kotlin {
+	jvmToolchain(17)
 }

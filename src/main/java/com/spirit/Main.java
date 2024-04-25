@@ -11,6 +11,8 @@
 package com.spirit;
 
 import com.mojang.serialization.Lifecycle;
+import com.spirit.koil.api.bukkit.Bukkit;
+import com.spirit.koil.api.bukkit.command.SimpleCommandMap;
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.data.common.GunItem;
 import com.spirit.shit.data.util.PacketIDs;
@@ -35,6 +37,7 @@ import com.spirit.tdbtd.global.item.TDBTDItems;
 import com.spirit.tdbtd.global.potion.TDBTDPotions;
 import com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.damage.DamageType;
@@ -42,23 +45,32 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.SimpleRegistry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.FileSystems;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
 import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public class Main implements ModInitializer {
     public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
+    public static StringBuilder blockTextBuilder = new StringBuilder();
 
     public static final String MAIN_ID = "minceraft";
+    public static final String KOIL_ID = "koil";
     public static final String SHIT_ID = "shit";
     public static final String TDBTD_ID = "tdbtd";
     public static final String IGNITE_ID = "ignite";
     public static final String GAMBLIC_ID = "gamblic";
     public static final Logger LOGGER = LogManager.getLogger(MAIN_ID);
+    public static final Logger KOIL_LOGGER = LogManager.getLogger(KOIL_ID);
     public static final Logger SHITLOGGER = LogManager.getLogger(SHIT_ID);
     public static final Logger TDBTDLOGGER = LogManager.getLogger(TDBTD_ID);
     public static final Logger IGNITELOGGER = LogManager.getLogger(IGNITE_ID);
@@ -66,6 +78,12 @@ public class Main implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        //Koil Bridges:
+        Main.bridgeStart();
+        //Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath("./mods/minceraft-0.70.14/com/spirit/koil").toAbsolutePath()));
+        Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath("./minceraft/src/main/java/com/spirit/koil/api/bukkit")));
+        Main.bridgeEnd();
+
         Main.checkShitpostMod();
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
 
@@ -77,7 +95,6 @@ public class Main implements ModInitializer {
         ShitBlocks.registerAll();
         ShitItemGroup.register();
         ShitPaintings.registerPaintings();
-
 
         FabricDefaultAttributeRegistry.register(ShitEntities.JBRID, JbirdEntity.creatorJbirdAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT_BOMB, RatBombEntity.setAttributes());
@@ -122,6 +139,21 @@ public class Main implements ModInitializer {
                     return 1;
                 })));
          */
+
+
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("koil")
+                .executes(context -> {
+                    if (!Objects.requireNonNull(context.getSource().getPlayer()).getWorld().isClient()) {
+                        context.getSource().sendMessage(Text.literal("test"));
+                    }
+                    return 1;
+                })));
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            SimpleCommandMap.BukkitCommand.register(dispatcher);
+        });
+
         ShitMod.registerShitpostMod();
 
         Main.checkTDBTDMod();
@@ -161,7 +193,6 @@ public class Main implements ModInitializer {
         Main.checkGamblicMod();
 
         Main.registerMain();
-
     }
     public static void checkShitpostMod() {
         Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/shit/ShitMod");
@@ -177,6 +208,55 @@ public class Main implements ModInitializer {
     }
     public static void registerMain() {
         Main.LOGGER.info("> --Loaded || minceraft/src/main/java/com/spirit/... ~ main");
+    }
+
+    public static void bridgeStart() {
+        blockTextBuilder.append("""
+            
+            ====================================================================================================================================================================
+            Beginning Bridging...
+            Bridges (2):
+            | Bukkit (dysfunctional)
+            | Quilt (in progress)
+            ====================================================================================================================================================================
+            """);
+    }
+    public static void bridgeEnd() {
+        blockTextBuilder.append("""
+
+            Loaders Bridged!
+            Continuing Loading Minecraft...
+            ====================================================================================================================================================================           
+            """);
+    }
+
+
+    public static String formatTime(long millis) {
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % 60;
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % 60;
+        long milliseconds = millis % 1000;
+        if (hours > 0) {
+            return String.format("%02d:%02d:%02d.%03d hr", hours, minutes, seconds, milliseconds);
+        } else if (minutes > 0) {
+            return String.format("%02d:%02d.%03d min", minutes, seconds, milliseconds);
+        } else if (seconds > 0) {
+            return String.format("%02d.%03d s", seconds, milliseconds);
+        } else {
+            return String.format("%d ms", milliseconds);
+        }
+    }
+
+    public static String formatFileSize(double size) {
+        if (size < 1024) {
+            return String.format("%.2f bytes", size);
+        } else if (size < 1024 * 1024) {
+            return String.format("%.2f KB", size / 1024);
+        } else if (size < 1024 * 1024 * 1024) {
+            return String.format("%.2f MB", size / (1024 * 1024));
+        } else {
+            return String.format("%.2f GB", size / (1024 * 1024 * 1024));
+        }
     }
 }
 
