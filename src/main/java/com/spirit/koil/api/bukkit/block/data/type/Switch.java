@@ -1,0 +1,49 @@
+package com.spirit.koil.api.bukkit.block.data.type;
+
+import com.spirit.koil.api.bukkit.block.data.Directional;
+import com.spirit.koil.api.bukkit.block.data.FaceAttachable;
+import com.spirit.koil.api.bukkit.block.data.Powerable;
+import org.jetbrains.annotations.NotNull;
+
+public interface Switch extends Directional, FaceAttachable, Powerable {
+
+    /**
+     * Gets the value of the 'face' property.
+     *
+     * @return the 'face' value
+     * @deprecated use {@link #getAttachedFace()}
+     */
+    @NotNull
+    @Deprecated
+    Face getFace();
+
+    /**
+     * Sets the value of the 'face' property.
+     *
+     * @param face the new 'face' value
+     * @deprecated use {@link #getAttachedFace()}
+     */
+    @Deprecated
+    void setFace(@NotNull Face face);
+
+    /**
+     * The face to which a switch type block is stuck.
+     *
+     * @deprecated use {@link AttachedFace}
+     */
+    @Deprecated
+    public enum Face {
+        /**
+         * The switch is mounted to the floor and pointing upwards.
+         */
+        FLOOR,
+        /**
+         * The switch is mounted to the wall.
+         */
+        WALL,
+        /**
+         * The switch is mounted to the ceiling and pointing dowanrds.
+         */
+        CEILING;
+    }
+}
