@@ -599,5 +599,10 @@
     "sounds": [
       {"name": "shit:nothing", "stream": true}
     ]
+  },
+  "riff": {
+    "sounds": [
+      {"name": "shit:riff", "stream": true}
+    ]
   }
 }

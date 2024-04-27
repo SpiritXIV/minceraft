@@ -85,6 +85,7 @@ public class ShitSounds {
     public static final SoundEvent VILLAGER_SOMEBODYIUSETOKNOW = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_somebodyiusetoknow"));
     public static final SoundEvent VILLAGER_TAKEONME = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_takeonme"));
     public static final SoundEvent VILLAGER_WHATISLOVE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_whatislove"));
+    public static final SoundEvent RIFF = SoundEvent.of(new Identifier(Main.SHIT_ID, "riff"));
 
     static Map<String, Object> SOUNDS = Stream.of(new Object[][]{
             {"light_buzzing", LIGHT_BUZZING},
@@ -150,7 +151,8 @@ public class ShitSounds {
             {"villager_somebodyiusetoknow", VILLAGER_SOMEBODYIUSETOKNOW},
             {"villager_takeonme", VILLAGER_TAKEONME},
             {"villager_whatislove", VILLAGER_WHATISLOVE},
-            {"rubber_chicken", RUBBER_CHICKEN}
+            {"rubber_chicken", RUBBER_CHICKEN},
+            {"riff", RIFF}
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
 

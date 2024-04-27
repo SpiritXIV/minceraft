@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "shit:100_momen_stack"
+    }
+  },
+  "result": {
+    "item": "shit:100_momen",
+    "count": 9
+  }
+}

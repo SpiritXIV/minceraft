@@ -3,16 +3,18 @@ package com.spirit.shit.global.item;
 import com.spirit.Main;
 import com.spirit.shit.global.item.custom.*;
 import com.spirit.shit.global.item.custom.gun.*;
-import com.spirit.shit.global.item.custom.projectile.*;
-import com.spirit.shit.global.item.custom.projectile.beverage.*;
+import com.spirit.shit.global.item.custom.projectile.BlueBrickProjectileItem;
+import com.spirit.shit.global.item.custom.projectile.OatProjectileItem;
+import com.spirit.shit.global.item.custom.projectile.RedBrickProjectileItem;
+import com.spirit.shit.global.item.custom.projectile.TrashCanProjectileItem;
 import com.spirit.shit.global.item.custom.projectile.beverage.BottleItem;
+import com.spirit.shit.global.item.custom.projectile.beverage.*;
 import com.spirit.shit.global.item.custom.projectile.bullet.BulletItem;
 import com.spirit.shit.global.item.custom.projectile.bullet.RifleBulletItem;
 import com.spirit.shit.global.item.custom.projectile.bullet.ShellItem;
 import com.spirit.shit.global.item.custom.projectile.bullet.SlugItem;
 import com.spirit.shit.global.item.material.CatcornMaterial;
 import com.spirit.shit.global.item.material.GiantLolipopMaterial;
-import com.spirit.shit.global.item.material.ZarshScytheMaterial;
 import com.spirit.shit.global.sound.ShitSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
@@ -254,7 +256,6 @@ public class ShitItems {
     public static final Item COSCO_BIG_LONG_DOG_KETCHUP = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
     public static final Item BRASS_KNUCKLES = new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item SAIS = new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
-    public static final Item ZARSH_SCYTHE = new ZarshScytheItem(ZarshScytheMaterial.INSTANCE, 9, -0F, new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item SOUND_BOARD = new SoundBoardItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item MUSTARD = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item KETCHUP = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
@@ -294,13 +295,18 @@ public class ShitItems {
     public static final Item CAMEL_BOX = new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item MARLBORO_BOX = new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item NEWPORT_BOX = new SmokesPackItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
+    public static final Item ONE_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON), 1);
+    public static final Item FIVE_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON), 5);
+    public static final Item TEN_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON), 10);
+    public static final Item TWENTY_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON), 20);
+    public static final Item FIFTY_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE), 50);
+    public static final Item ONEHUNDRED_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC), 100);
+    public static final Item FIVEHUNDRED_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC), 500);
 
     static Map<String, Object> ITEMS = Stream.of(new Object[][] {
 
             //UNSORTED
             {"raw_bauxite", RAW_BAUXITE},
-
-
 
             {"aluminum_ingot", ALUMINUM_INGOT},
             {"aluminum_nugget", ALUMINUM_NUGGET},
@@ -559,6 +565,14 @@ public class ShitItems {
             {"camel_box", CAMEL_BOX},
             {"marlboro_box", MARLBORO_BOX},
             {"newport_box", NEWPORT_BOX},
+            {"1_momen", ONE_MOMEN},
+            {"5_momen", FIVE_MOMEN},
+            {"10_momen", TEN_MOMEN},
+            {"20_momen", TWENTY_MOMEN},
+            {"50_momen", FIFTY_MOMEN},
+            {"100_momen", ONEHUNDRED_MOMEN},
+            {"500_momen", FIVEHUNDRED_MOMEN},
+
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
 
@@ -571,7 +585,6 @@ public class ShitItems {
         }
         registerToolItem("giant_lollipop", GIANT_LOLLIPOP);
         registerToolItem("catcorn", CATCORN);
-        registerToolItem("zarsh_scythe", ZARSH_SCYTHE);
     }
 
 

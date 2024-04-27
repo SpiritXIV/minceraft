@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "stack=1": {
+      "model": "shit:block/100_momen_stack_item"
+    },
+    "stack=2": {
+      "model": "shit:block/100_momen_stack_double"
+    },
+    "stack=3": {
+      "model": "shit:block/100_momen_stack_triple"
+    },
+    "stack=4": {
+      "model": "shit:block/100_momen_stack_quad"
+    },
+    "stack=5": {
+      "model": "shit:block/100_momen_stack_quin"
+    },
+    "stack=6": {
+      "model": "shit:block/100_momen_stack_hex"
+    },
+    "stack=7": {
+      "model": "shit:block/100_momen_stack_sep"
+    },
+    "stack=8": {
+      "model": "shit:block/100_momen_stack_oct"
+    },
+    "stack=9": {
+      "model": "shit:block/100_momen_stack_non"
+    }
+  }
+}

@@ -72,6 +72,20 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.CUBE_GRAY);
                         entries.add(ShitBlocks.CUBE_WHITE);
                         entries.add(ShitBlocks.CUBE_RUSTY);
+                        entries.add(ShitItems.ONE_MOMEN);
+                        entries.add(ShitBlocks.ONE_MOMEN_STACK);
+                        entries.add(ShitItems.FIVE_MOMEN);
+                        entries.add(ShitBlocks.FIVE_MOMEN_STACK);
+                        entries.add(ShitItems.TEN_MOMEN);
+                        entries.add(ShitBlocks.TEN_MOMEN_STACK);
+                        entries.add(ShitItems.TWENTY_MOMEN);
+                        entries.add(ShitBlocks.TWENTY_MOMEN_STACK);
+                        entries.add(ShitItems.FIFTY_MOMEN);
+                        entries.add(ShitBlocks.FIFTY_MOMEN_STACK);
+                        entries.add(ShitItems.ONEHUNDRED_MOMEN);
+                        entries.add(ShitBlocks.ONEHUNDRED_MOMEN_STACK);
+                        entries.add(ShitItems.FIVEHUNDRED_MOMEN);
+                        entries.add(ShitBlocks.FIVEHUNDRED_MOMEN_STACK);
                         entries.add(ShitItems.RED_GROAN_TUBE);
                         entries.add(ShitItems.ORANGE_GROAN_TUBE);
                         entries.add(ShitItems.YELLOW_GROAN_TUBE);
@@ -110,7 +124,6 @@ public class ShitItemGroup {
                         entries.add(ShitItems.PIE_DAMAGE);
                         entries.add(ShitItems.PIE_SUS);
                         entries.add(ShitItems.SAIS);
-                        entries.add(ShitItems.ZARSH_SCYTHE);
                         entries.add(ShitItems.KETCHUP);
                         entries.add(ShitItems.MUSTARD);
                         entries.add(ShitItems.NACHO_DORITOS_CHIP);
@@ -257,8 +270,6 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.SIERRA_PLUSH);
                         entries.add(ShitBlocks.SLAZER_PLUSH);
                         entries.add(ShitBlocks.SPIRIT_PLUSH);
-                        entries.add(ShitBlocks.TALON_PLUSH);
-                        entries.add(ShitBlocks.ZARSH_PLUSH);
                         entries.add(ShitItems.SILENT_HOUSES_MUSIC_DISC);
                         entries.add(ShitItems.FREE_BIRD_MUSIC_DISC);
                         entries.add(ShitItems.AFTER_PARTY_MUSIC_DISC);

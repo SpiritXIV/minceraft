@@ -84,8 +84,6 @@ public class ShitLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ShitBlocks.SIERRA_PLUSH);
         addDrop(ShitBlocks.SLAZER_PLUSH);
         addDrop(ShitBlocks.SPIRIT_PLUSH);
-        addDrop(ShitBlocks.TALON_PLUSH);
-        addDrop(ShitBlocks.ZARSH_PLUSH);
 
         //WARZONE
         addDrop(ShitBlocks.LAND_MINE);

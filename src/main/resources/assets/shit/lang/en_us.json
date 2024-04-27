@@ -38,5 +38,19 @@
   "shit.airhorn_refill": "Airhorn Refilling",
   "shit.bikehorn": "Honk",
   "shit.bikehorn_rare": "Honk Horn",
-  "shit.clownhorn": "Toot"
+  "shit.clownhorn": "Toot",
+  "item.shit.1_momen": "Momen",
+  "item.shit.5_momen": "Momen",
+  "item.shit.10_momen": "Momen",
+  "item.shit.20_momen": "Momen",
+  "item.shit.50_momen": "Momen",
+  "item.shit.100_momen": "Momen",
+  "item.shit.500_momen": "Momen",
+  "block.shit.1_momen_stack": "Momen Stack",
+  "block.shit.5_momen_stack": "Momen Stack",
+  "block.shit.10_momen_stack": "Momen Stack",
+  "block.shit.20_momen_stack": "Momen Stack",
+  "block.shit.50_momen_stack": "Momen Stack",
+  "block.shit.100_momen_stack": "Momen Stack",
+  "block.shit.500_momen_stack": "Momen Stack"
 }

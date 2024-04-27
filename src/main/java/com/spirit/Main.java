@@ -11,8 +11,6 @@
 package com.spirit;
 
 import com.mojang.serialization.Lifecycle;
-import com.spirit.koil.api.bukkit.Bukkit;
-import com.spirit.koil.api.bukkit.command.SimpleCommandMap;
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.data.common.GunItem;
 import com.spirit.shit.data.util.PacketIDs;
@@ -37,7 +35,6 @@ import com.spirit.tdbtd.global.item.TDBTDItems;
 import com.spirit.tdbtd.global.potion.TDBTDPotions;
 import com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.damage.DamageType;
@@ -45,23 +42,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.SimpleRegistry;
-import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.nio.file.FileSystems;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
-import static net.minecraft.server.command.CommandManager.literal;
 
 public class Main implements ModInitializer {
     public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
     public static StringBuilder blockTextBuilder = new StringBuilder();
+    public static final String FILE = "minceraft-0.70.15.jar";
 
     public static final String MAIN_ID = "minceraft";
     public static final String KOIL_ID = "koil";
@@ -79,10 +73,11 @@ public class Main implements ModInitializer {
     @Override
     public void onInitialize() {
         //Koil Bridges:
-        Main.bridgeStart();
-        //Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath("./mods/minceraft-0.70.14/com/spirit/koil").toAbsolutePath()));
-        Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath("./minceraft/src/main/java/com/spirit/koil/api/bukkit")));
-        Main.bridgeEnd();
+        //Main.bridgeStart();
+        //String DIRECTORY = "./mods/";
+        //Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath(DIRECTORY).toAbsolutePath()));
+        //Quilt.logQuiltBridge(String.valueOf(FileSystems.getDefault().getPath(DIRECTORY).toAbsolutePath()));
+        //Main.bridgeEnd();
 
         Main.checkShitpostMod();
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
@@ -140,19 +135,9 @@ public class Main implements ModInitializer {
                 })));
          */
 
-
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("koil")
-                .executes(context -> {
-                    if (!Objects.requireNonNull(context.getSource().getPlayer()).getWorld().isClient()) {
-                        context.getSource().sendMessage(Text.literal("test"));
-                    }
-                    return 1;
-                })));
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            SimpleCommandMap.BukkitCommand.register(dispatcher);
-        });
+        //CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+        //    SimpleCommandMap.BukkitCommand.register(dispatcher);
+        //});
 
         ShitMod.registerShitpostMod();
 
@@ -223,11 +208,11 @@ public class Main implements ModInitializer {
     }
     public static void bridgeEnd() {
         blockTextBuilder.append("""
-
             Loaders Bridged!
             Continuing Loading Minecraft...
             ====================================================================================================================================================================           
             """);
+        System.out.println(blockTextBuilder.toString());
     }
 
 

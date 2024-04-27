@@ -158,8 +158,6 @@ public class ShitClientMod implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(SIERRA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SLAZER_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SPIRIT_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TALON_PLUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ZARSH_PLUSH, RenderLayer.getCutout());
     }
 
     public static void registerShitpostClientMod() {
