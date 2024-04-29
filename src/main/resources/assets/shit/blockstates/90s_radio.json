@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=east": {"model": "shit:block/90s_radio", "y": 270},
+    "facing=north": {"model": "shit:block/90s_radio", "y": 180},
+    "facing=south": {"model": "shit:block/90s_radio"},
+    "facing=west": {"model": "shit:block/90s_radio", "y": 90}
+  }
+}

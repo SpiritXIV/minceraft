@@ -1,0 +1,23 @@
+{
+	"parent": "shit:block/cracklin_box",
+	"texture_size": [1717, 1294],
+	"textures": {
+		"0": "shit:block/cracklin_box",
+		"particle": "shit:block/cracklin_box"
+	},
+	"elements": [
+		{
+			"from": [6.5, 0, 3.5],
+			"to": [9.5, 15, 14.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8.5]},
+			"faces": {
+				"north": {"uv": [14.22015, 2.63369, 16, 13.8238], "texture": "#0"},
+				"east": {"uv": [0.00932, 2.67079, 6.34595, 13.79907], "texture": "#0"},
+				"south": {"uv": [12.21666, 2.63369, 14.00582, 13.79907], "texture": "#0"},
+				"west": {"uv": [6.52301, 2.5966, 12.00233, 13.76198], "texture": "#0"},
+				"up": {"uv": [0.04659, 0.09892, 6.34595, 2.12674], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [0, 14.0711, 6.29936, 16], "rotation": 90, "texture": "#0"}
+			}
+		}
+	]
+}

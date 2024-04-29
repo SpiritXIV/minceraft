@@ -1,0 +1,88 @@
+{
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "shit:item/shize_pineapplepizza",
+		"particle": "shit:item/shize_pineapplepizza"
+	},
+	"elements": [
+		{
+			"from": [6, 0.25, 6],
+			"to": [10, 6.25, 10],
+			"faces": {
+				"north": {"uv": [2, 2, 4, 5], "texture": "#0"},
+				"east": {"uv": [0, 2, 2, 5], "texture": "#0"},
+				"south": {"uv": [6, 2, 8, 5], "texture": "#0"},
+				"west": {"uv": [4, 2, 6, 5], "texture": "#0"},
+				"up": {"uv": [4, 2, 2, 0], "texture": "#0"},
+				"down": {"uv": [6, 0, 4, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 5.75, 6.5],
+			"to": [9.5, 6.75, 9.5],
+			"faces": {
+				"north": {"uv": [6, 7, 7.5, 7.5], "texture": "#0"},
+				"east": {"uv": [4.5, 7, 6, 7.5], "texture": "#0"},
+				"south": {"uv": [9, 7, 10.5, 7.5], "texture": "#0"},
+				"west": {"uv": [7.5, 7, 9, 7.5], "texture": "#0"},
+				"up": {"uv": [7.5, 7, 6, 5.5], "texture": "#0"},
+				"down": {"uv": [9, 5.5, 7.5, 7], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.25, 0, 6.25],
+			"to": [9.75, 1, 9.75],
+			"faces": {
+				"north": {"uv": [1.5, 6.5, 3, 7], "texture": "#0"},
+				"east": {"uv": [0, 6.5, 1.5, 7], "texture": "#0"},
+				"south": {"uv": [4.5, 6.5, 6, 7], "texture": "#0"},
+				"west": {"uv": [3, 6.5, 4.5, 7], "texture": "#0"},
+				"up": {"uv": [3, 6.5, 1.5, 5], "texture": "#0"},
+				"down": {"uv": [4.5, 5, 3, 6.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 20, 0],
+			"translation": [0, 1.7, 0],
+			"scale": [0.78, 0.78, 0.78]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 20, 0],
+			"translation": [0, 1.7, 0],
+			"scale": [0.78, 0.78, 0.78]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 23, 0],
+			"translation": [0, 6, 0]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 23, 0],
+			"translation": [0, 6, 0]
+		},
+		"ground": {
+			"translation": [0, 4.5, 0]
+		},
+		"gui": {
+			"rotation": [0, 140, 13],
+			"translation": [1.5, 7.5, 0],
+			"scale": [1.7, 1.7, 1.7]
+		},
+		"head": {
+			"translation": [0, 14.25, 0]
+		},
+		"fixed": {
+			"translation": [0, 1, 0],
+			"scale": [1.2, 1.2, 1.2]
+		}
+	},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

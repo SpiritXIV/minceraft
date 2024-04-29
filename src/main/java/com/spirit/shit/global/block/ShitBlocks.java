@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ShitBlocks {
-    public static final Block CRACKLIN_BOX = new CracklinBoxBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0F).requiresTool());
     public static final Block GAS_CAN = new GasCanBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
     public static final Block GAS_CANISTER = new GasCanisterBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
     public static final Block TOILET = new ToiletBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
@@ -113,7 +112,6 @@ public class ShitBlocks {
     public static final Block SUITCASE = new SuitCaseBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).requiresTool().strength(2.0F));
 
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
-            {"cracklin_box", CRACKLIN_BOX},
             {"gas_can", GAS_CAN},
             {"gas_canister", GAS_CANISTER},
             {"toilet", TOILET},

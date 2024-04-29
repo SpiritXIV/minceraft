@@ -15,7 +15,6 @@ public class ShitItemGroup {
     public static final ItemGroup SHIT_MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, new Identifier(Main.SHIT_ID, "shitmain"),
             FabricItemGroup.builder().displayName(Text.literal("Shitpost"))
                     .icon(() -> new ItemStack(ShitItems.PEEP_YELLOW)).entries((displayContext, entries) -> {
-                        entries.add(ShitBlocks.CRACKLIN_BOX);
                         entries.add(ShitItems.ALUMINUM_INGOT);
                         entries.add(ShitItems.ALUMINUM_NUGGET);
                         entries.add(ShitItems.BRONZE_INGOT);
@@ -85,6 +84,8 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.ONEHUNDRED_MOMEN_STACK);
                         entries.add(ShitItems.FIVEHUNDRED_MOMEN);
                         entries.add(ShitBlocks.FIVEHUNDRED_MOMEN_STACK);
+                        entries.add(ShitItems.WALLET);
+                        entries.add(ShitBlocks.SUITCASE);
                         entries.add(ShitItems.RED_GROAN_TUBE);
                         entries.add(ShitItems.ORANGE_GROAN_TUBE);
                         entries.add(ShitItems.YELLOW_GROAN_TUBE);
@@ -252,7 +253,6 @@ public class ShitItemGroup {
                         entries.add(ShitItems.ZOMBIE_TAKI_CHIPS);
                         entries.add(ShitItems.ALMOND_WATER);
                         entries.add(ShitItems.CASHEW_WATER);
-
                         entries.add(ShitBlocks.ALPHA_PLUSH);
                         entries.add(ShitBlocks.CATLOVE_PLUSH);
                         entries.add(ShitBlocks.CHEFINSANITY_PLUSH);
