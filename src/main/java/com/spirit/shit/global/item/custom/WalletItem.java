@@ -38,7 +38,7 @@ import java.util.stream.Stream;
 public class WalletItem extends Item {
     private static final String ITEMS_KEY = "Items";
     private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.6F, 0.1F, 0.6F);
-    public static int MAXVALUE = 100000;
+    public static int MAXVALUE = 87122;
 
     public WalletItem(Settings settings) {
         super(settings);
