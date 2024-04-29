@@ -1,18 +1,21 @@
 package com.spirit.shit.global.block.custom;
 
 import com.spirit.koil.render.VoxelShapeRotator;
+import com.spirit.shit.data.common.AbstractShitBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.util.ParticleUtil;
+import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -31,6 +34,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -38,7 +42,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class MomenBlock extends FallingBlock {
+public class MomenBlock extends AbstractShitBlock {
     final VoxelShape NORTH_SHAPE;
     final Map<Direction, VoxelShape> SHAPE_MAP;
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -111,7 +115,7 @@ public class MomenBlock extends FallingBlock {
     public static final IntProperty STACK = IntProperty.of("stack", 1, 9);
 
     public MomenBlock(Settings settings, int value) {
-        super(settings);
+        super(settings, SHAPE_ONE);
         this.value = value;
         BlockState state = this.stateManager.getDefaultState();
         this.SHAPE_MAP = VoxelShapeRotator.rotateAllDirections(SHAPE_ONE);
@@ -146,6 +150,7 @@ public class MomenBlock extends FallingBlock {
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         super.onBlockAdded(state, world, pos, oldState, notify);
         this.checkFall(world, pos, state);
+        world.scheduleBlockTick(pos, this, this.getFallDelay());
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, net.minecraft.util.hit.BlockHitResult hit) {
@@ -263,7 +268,29 @@ public class MomenBlock extends FallingBlock {
     }
 
 
-    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        world.scheduleBlockTick(pos, this, this.getFallDelay());
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+            FallingBlockEntity fallingBlockEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
+            this.configureFallingBlockEntity(fallingBlockEntity);
+        }
+    }
+
+    protected void configureFallingBlockEntity(FallingBlockEntity entity) {
+    }
+
+    protected int getFallDelay() {
+        return 2;
+    }
+
+    public static boolean canFallThrough(BlockState state) {
+        return state.isAir() || state.isIn(BlockTags.FIRE) || state.isLiquid() || state.isReplaceable();
+    }
+
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (random.nextInt(16) == 0) {
             BlockPos blockPos = pos.down();
@@ -271,7 +298,9 @@ public class MomenBlock extends FallingBlock {
                 ParticleUtil.spawnParticle(world, pos, random, new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state));
             }
         }
+
     }
+
     public int getColor(BlockState state, BlockView world, BlockPos pos) {
         return -16777216;
     }

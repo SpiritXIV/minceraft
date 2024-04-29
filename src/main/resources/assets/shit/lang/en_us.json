@@ -1,5 +1,6 @@
 {
   "item.gun.mag.fullness": "Bullets: %s/%s",
+  "item.shit.bundle.fullness": "ƒ: %s",
   "death.attack.energized_by_peep_low_health": "%1$s didn't have enough strength to house the surge",
   "death.attack.energized_by_peep_bomb": "%1$s couldn't house the after surge",
   "death.attack.energized_by_peep": "%1$s couldn't house the surge",
@@ -52,5 +53,7 @@
   "block.shit.20_momen_stack": "Momen Stack",
   "block.shit.50_momen_stack": "Momen Stack",
   "block.shit.100_momen_stack": "Momen Stack",
-  "block.shit.500_momen_stack": "Momen Stack"
+  "block.shit.500_momen_stack": "Momen Stack",
+  "item.shit.wallet": "Wallet",
+  "block.shit.suitcase": "Suitcase"
 }

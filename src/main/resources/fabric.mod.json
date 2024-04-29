@@ -40,9 +40,6 @@
       "com.spirit.tdbtd.TDBTDClientMod",
       "com.spirit.ignite.IgniteClientMod",
       "com.spirit.gamblic.GamblicClientMod"
-    ],
-    "fabric-datagen": [
-      "com.spirit.DataGeneration"
     ]
   },
   "mixins": [

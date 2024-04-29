@@ -7,14 +7,7 @@
     "ClientPlayerInteractionManagerMixin",
     "SculkBlockMixin",
     "SculkPatchFeatureMixin",
-    "ShitClientMixin",
-    "ShitMixin",
-    "TDBTDMixin",
     "WardenEntityMixin"
-  ],
-  "client": [
-    "ShitMixin",
-    "TDBTDMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -11,9 +11,12 @@
 package com.spirit;
 
 import com.mojang.serialization.Lifecycle;
+import com.spirit.gamblic.GamblicMod;
+import com.spirit.ignite.IgniteMod;
 import com.spirit.shit.ShitMod;
 import com.spirit.shit.data.common.GunItem;
 import com.spirit.shit.data.util.PacketIDs;
+import com.spirit.shit.global.block.ShitBlockEntities;
 import com.spirit.shit.global.block.ShitBlocks;
 import com.spirit.shit.global.effect.ShitEffects;
 import com.spirit.shit.global.entity.ShitEntities;
@@ -33,6 +36,7 @@ import com.spirit.tdbtd.global.entity.custom.*;
 import com.spirit.tdbtd.global.item.TDBTDItemGroup;
 import com.spirit.tdbtd.global.item.TDBTDItems;
 import com.spirit.tdbtd.global.potion.TDBTDPotions;
+import com.spirit.tdbtd.global.sound.TDBTDSounds;
 import com.spirit.tdbtd.global.world.gen.TDBTDWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -78,18 +82,68 @@ public class Main implements ModInitializer {
         //Bukkit.logBukkitBridge(String.valueOf(FileSystems.getDefault().getPath(DIRECTORY).toAbsolutePath()));
         //Quilt.logQuiltBridge(String.valueOf(FileSystems.getDefault().getPath(DIRECTORY).toAbsolutePath()));
         //Main.bridgeEnd();
-
-        Main.checkShitpostMod();
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
 
-        ShitItems.registerAll();
-        ShitSounds.registerAll();
-        ShitParticles.registerParticles();
-        ShitEffects.registerEffects();
-        ShitPotions.registerPotions();
-        ShitBlocks.registerAll();
+        Main.checkMain();
+        Main.checkTDBTDMod();
+        Main.checkShitpostMod();
+        Main.checkIgniteMod();
+        Main.checkGamblicMod();
+
+        TDBTDItemGroup.register();
         ShitItemGroup.register();
+
+
+        TDBTDItems.registerAllItems();
+        ShitItems.registerAll();
+
+
+        TDBTDBlocks.registerAllBlocks();
+        ShitBlocks.registerAll();
+
+
+        TDBTDLootTableModifiers.modifyLootTables();
+
+
+
+        TDBTDSounds.registerAll();
+        ShitSounds.registerAll();
+
+
+        TDBTDBlockEntities.registerBlockEntities();
+        ShitBlockEntities.registerBlockEntities();
+
+
+        ShitParticles.registerParticles();
+        TDBTDEffects.registerEffects();
+        ShitEffects.registerEffects();
+        TDBTDPotions.registerPotions();
+        ShitPotions.registerPotions();
         ShitPaintings.registerPaintings();
+
+
+        TDBTDWorldGeneration.generateTDBTDWorldGen();
+        TDBTDWorldGeneration.registerWorldGenFeat();
+
+
+        FabricDefaultAttributeRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(APERTURENTEETH, AperturenteethEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CODELAING, CodelaingEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(PERICARPIUM, PericarpiumEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(SCUTLEON, ScutleonEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(NIDIVER, NidiverEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntity.addAttributes());
+        FabricDefaultAttributeRegistry.register(MIJAPENDRA, MijapendraEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLOONE, ContrivancePolloOneEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLA, ContrivancePollaEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(ABYSSOFIN, AbyssofinEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(STURGO, SturgoEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(ENGUIA, EnguiaEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(MALDININKAS, MaldininkasEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(DEVASTADOR_HOUND, DevastadorHoundEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(DEVASTADOR_CUR, DevastadorCurEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(DEVASTADOR_PUP, DevastadorPupEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(KREDA, KredaEntity.setAttributes());
 
         FabricDefaultAttributeRegistry.register(ShitEntities.JBRID, JbirdEntity.creatorJbirdAttributes());
         FabricDefaultAttributeRegistry.register(ShitEntities.RAT_BOMB, RatBombEntity.setAttributes());
@@ -101,7 +155,6 @@ public class Main implements ModInitializer {
         //Registry.register(Registries.ITEM_GROUP, new Identifier("shit", "booletgroup"), BULLET_ITEM_GROUP);
 
         //PACKETS
-
         ServerPlayNetworking.registerGlobalReceiver(PacketIDs.FIRE_GUN_PACKET, (server, player, handler, buf, responseSender) -> {
             int hand = buf.readInt(); // Read data sent from the client
             server.execute(() -> { // Switch to the main server thread before modifying the game
@@ -114,7 +167,6 @@ public class Main implements ModInitializer {
         });
 
         //COMMANDS
-
         //DETONATION COMMAND
         /*
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("explode")
@@ -139,46 +191,19 @@ public class Main implements ModInitializer {
         //    SimpleCommandMap.BukkitCommand.register(dispatcher);
         //});
 
-        ShitMod.registerShitpostMod();
 
-        Main.checkTDBTDMod();
-        TDBTDItemGroup.register();
-        TDBTDItems.registerAllItems();
-        TDBTDBlocks.registerAllBlocks();
-        TDBTDLootTableModifiers.modifyLootTables();
-        TDBTDEffects.registerEffects();
-        TDBTDPotions.registerPotions();
-        TDBTDLootTableModifiers.modifyLootTables();
-        TDBTDBlockEntities.registerBlockEntities();
-        FabricDefaultAttributeRegistry.register(TENEBROUS_NIBBLER, TenebrousNibblerEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(APERTURENTEETH, AperturenteethEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CODELAING, CodelaingEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(PERICARPIUM, PericarpiumEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(SCUTLEON, ScutleonEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(NIDIVER, NidiverEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CURATOR, CuratorEntity.addAttributes());
-        FabricDefaultAttributeRegistry.register(MIJAPENDRA, MijapendraEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLOONE, ContrivancePolloOneEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(CONTRIVANCEPOLLA, ContrivancePollaEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(ABYSSOFIN, AbyssofinEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(STURGO, SturgoEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(ENGUIA, EnguiaEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(MALDININKAS, MaldininkasEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(DEVASTADOR_HOUND, DevastadorHoundEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(DEVASTADOR_CUR, DevastadorCurEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(DEVASTADOR_PUP, DevastadorPupEntity.setAttributes());
-        FabricDefaultAttributeRegistry.register(KREDA, KredaEntity.setAttributes());
-        TDBTDWorldGeneration.generateTDBTDWorldGen();
-        TDBTDWorldGeneration.registerWorldGenFeat();
+
         TDBTDMod.registerTDBTDMod();
-
-
-        Main.checkIgniteMod();
-
-        Main.checkGamblicMod();
+        ShitMod.registerShitpostMod();
+        IgniteMod.registerIgniteMod();
+        GamblicMod.registerGamblicMod();
 
         Main.registerMain();
     }
+    public static void checkMain() {
+        Main.LOGGER.info("> --Checking || minceraft/src/main/java/com/spirit/... ~ main");
+    }
+
     public static void checkShitpostMod() {
         Main.LOGGER.info("> --Checked || minceraft/src/main/java/com/spirit/shit/ShitMod");
     }

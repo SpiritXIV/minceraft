@@ -1,5 +1,6 @@
 package com.spirit.koil.render;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -8,7 +9,11 @@ import net.minecraft.util.shape.VoxelShapes;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class VoxelShapeRotator {
+public class VoxelShapeRotator extends Block {
+
+    public VoxelShapeRotator(Settings settings) {
+        super(settings);
+    }
 
     // Existing method
     public static Map<Direction, VoxelShape> rotateAllDirections(VoxelShape originalShape) {

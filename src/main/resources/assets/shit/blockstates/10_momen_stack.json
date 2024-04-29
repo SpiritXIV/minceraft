@@ -1,31 +1,40 @@
 {
   "variants": {
-    "stack=1": {
-      "model": "shit:block/10_momen_stack_item"
-    },
-    "stack=2": {
-      "model": "shit:block/10_momen_stack_double"
-    },
-    "stack=3": {
-      "model": "shit:block/10_momen_stack_triple"
-    },
-    "stack=4": {
-      "model": "shit:block/10_momen_stack_quad"
-    },
-    "stack=5": {
-      "model": "shit:block/10_momen_stack_quin"
-    },
-    "stack=6": {
-      "model": "shit:block/10_momen_stack_hex"
-    },
-    "stack=7": {
-      "model": "shit:block/10_momen_stack_sep"
-    },
-    "stack=8": {
-      "model": "shit:block/10_momen_stack_oct"
-    },
-    "stack=9": {
-      "model": "shit:block/10_momen_stack_non"
-    }
+    "facing=east,stack=1": {"model": "shit:block/10_momen_stack_item", "y": 270},
+    "facing=north,stack=1": {"model": "shit:block/10_momen_stack_item", "y": 180},
+    "facing=south,stack=1": {"model": "shit:block/10_momen_stack_item"},
+    "facing=west,stack=1": {"model": "shit:block/10_momen_stack_item", "y": 90},
+    "facing=east,stack=2": {"model": "shit:block/10_momen_stack_double", "y": 270},
+    "facing=north,stack=2": {"model": "shit:block/10_momen_stack_double", "y": 180},
+    "facing=south,stack=2": {"model": "shit:block/10_momen_stack_double"},
+    "facing=west,stack=2": {"model": "shit:block/10_momen_stack_double", "y": 90},
+    "facing=east,stack=3": {"model": "shit:block/10_momen_stack_triple", "y": 270},
+    "facing=north,stack=3": {"model": "shit:block/10_momen_stack_triple", "y": 180},
+    "facing=south,stack=3": {"model": "shit:block/10_momen_stack_triple"},
+    "facing=west,stack=3": {"model": "shit:block/10_momen_stack_triple", "y": 90},
+    "facing=east,stack=4": {"model": "shit:block/10_momen_stack_quad", "y": 270},
+    "facing=north,stack=4": {"model": "shit:block/10_momen_stack_quad", "y": 180},
+    "facing=south,stack=4": {"model": "shit:block/10_momen_stack_quad"},
+    "facing=west,stack=4": {"model": "shit:block/10_momen_stack_quad", "y": 90},
+    "facing=east,stack=5": {"model": "shit:block/10_momen_stack_quin", "y": 270},
+    "facing=north,stack=5": {"model": "shit:block/10_momen_stack_quin", "y": 180},
+    "facing=south,stack=5": {"model": "shit:block/10_momen_stack_quin"},
+    "facing=west,stack=5": {"model": "shit:block/10_momen_stack_quin", "y": 90},
+    "facing=east,stack=6": {"model": "shit:block/10_momen_stack_hex", "y": 270},
+    "facing=north,stack=6": {"model": "shit:block/10_momen_stack_hex", "y": 180},
+    "facing=south,stack=6": {"model": "shit:block/10_momen_stack_hex"},
+    "facing=west,stack=6": {"model": "shit:block/10_momen_stack_hex", "y": 90},
+    "facing=east,stack=7": {"model": "shit:block/10_momen_stack_sep", "y": 270},
+    "facing=north,stack=7": {"model": "shit:block/10_momen_stack_sep", "y": 180},
+    "facing=south,stack=7": {"model": "shit:block/10_momen_stack_sep"},
+    "facing=west,stack=7": {"model": "shit:block/10_momen_stack_sep", "y": 90},
+    "facing=east,stack=8": {"model": "shit:block/10_momen_stack_oct", "y": 270},
+    "facing=north,stack=8": {"model": "shit:block/10_momen_stack_oct", "y": 180},
+    "facing=south,stack=8": {"model": "shit:block/10_momen_stack_oct"},
+    "facing=west,stack=8": {"model": "shit:block/10_momen_stack_oct", "y": 90},
+    "facing=east,stack=9": {"model": "shit:block/10_momen_stack_non", "y": 270},
+    "facing=north,stack=9": {"model": "shit:block/10_momen_stack_non", "y": 180},
+    "facing=south,stack=9": {"model": "shit:block/10_momen_stack_non"},
+    "facing=west,stack=9": {"model": "shit:block/10_momen_stack_non", "y": 90}
   }
 }

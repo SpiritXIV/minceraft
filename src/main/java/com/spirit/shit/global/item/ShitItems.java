@@ -3,12 +3,7 @@ package com.spirit.shit.global.item;
 import com.spirit.Main;
 import com.spirit.shit.global.item.custom.*;
 import com.spirit.shit.global.item.custom.gun.*;
-import com.spirit.shit.global.item.custom.projectile.BlueBrickProjectileItem;
-import com.spirit.shit.global.item.custom.projectile.OatProjectileItem;
-import com.spirit.shit.global.item.custom.projectile.RedBrickProjectileItem;
 import com.spirit.shit.global.item.custom.projectile.TrashCanProjectileItem;
-import com.spirit.shit.global.item.custom.projectile.beverage.BottleItem;
-import com.spirit.shit.global.item.custom.projectile.beverage.*;
 import com.spirit.shit.global.item.custom.projectile.bullet.BulletItem;
 import com.spirit.shit.global.item.custom.projectile.bullet.RifleBulletItem;
 import com.spirit.shit.global.item.custom.projectile.bullet.ShellItem;
@@ -92,144 +87,93 @@ public class ShitItems {
     public static final Item AIR_HORN = new AirHornItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item BIKE_HORN = new BikeHornItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item CLOWN_HORN = new ClownHornItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
-
-    public static final Item RED_BRICK = new RedBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
-    public static final Item BLUE_BRICK = new BlueBrickProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item TRASH_CAN = new TrashCanProjectileItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
-    public static final Item OAT = new OatProjectileItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item BANANA = new Item(new FabricItemSettings().food(ShitFoodComponents.BANANA).maxCount(64).rarity(Rarity.COMMON));
     public static final Item POCKY_STICK = new Item(new FabricItemSettings().food(ShitFoodComponents.POCKY_STICK).maxCount(64).rarity(Rarity.COMMON));
     public static final Item POCKY_STICKS = new Item(new FabricItemSettings().food(ShitFoodComponents.POCKY_STICKS).maxCount(32).rarity(Rarity.COMMON));
     public static final Item POCKY_STICK_BOX = new Item(new FabricItemSettings().food(ShitFoodComponents.POCKY_STICK_BOX).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item NACHO_DORITOS_CHIP = new DoritosChipItem(new FabricItemSettings().food(ShitFoodComponents.DORITOS_CHIP).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item NACHO_DORITOS_BAG = new Item(new FabricItemSettings().food(ShitFoodComponents.DORITOS_BAG).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item HORSE_HOOF = new Item(new FabricItemSettings().food(ShitFoodComponents.HORSE_HOOF).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item RAW_CHEVALINE = new Item(new FabricItemSettings().food(ShitFoodComponents.RAW_CHEVALINE).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item COOKED_CHEVALINE = new Item(new FabricItemSettings().food(ShitFoodComponents.COOKED_CHEVALINE).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item TALON_BURGER = new Item(new FabricItemSettings().food(ShitFoodComponents.TALON_BURGER).maxCount(64).rarity(Rarity.COMMON));
     public static final Item URANIUM_DUST = new UraniumItem(new FabricItemSettings().food(ShitFoodComponents.URANIUM_DUST).maxCount(64).rarity(Rarity.COMMON));
-    public static final Item PEEP_YELLOW = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_YELLOW).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item PEEP_CYAN = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_CYAN).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item PEEP_PINK = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_PINK).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item PEEP_PURPLE = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_PURPLE).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item PEEP_YELLOW = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item PEEP_CYAN = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item PEEP_PINK = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item PEEP_PURPLE = new PeepsItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
     public static final Item BEER = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item BEER_BOTTLE = new BeerBottleProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item BONK_ATOMIC_PUNCH = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item BONK_ATOMIC_PUNCH_PROJECTILE = new BonkAtomicPunchProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item BOTTLE = new BottleItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item BUD_LIGHT = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item BUD_LIGHT_CAN = new BudLightCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item CHAMPAGNE = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item CHAMPAGNE_BOTTLE = new ChampagneBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item CHUG_JUG = new Item(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item CHUG_JUG_EMPTY = new ChugJugProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item COCA_COLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item COCA_COLA_CAN = new CocaColaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item COKE_ZERO = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item COKE_ZERO_CAN = new CokeZeroCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item COKE_HEART_THROB = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item CRITA_COLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item CRITA_COLA_CAN = new CritaColaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item DR_PEPPER = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item DR_PEPPER_CAN = new DrPepperCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item DR_PEPPER_DIET = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item FANTA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item FANTA_CAN = new FantaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item FLASK = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.FLASK).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item FLASK_EMPTY = new FlaskProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
-    public static final Item GLASS_JAR = new GlassJarProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item LAGAR = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item LAGAR_BOTTLE = new LagarBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item MILK_CARTON = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item MILK_CARTON_EMPTY = new MilkCartonProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item MOUNTAIN_DEW = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item MOUNTAIN_DEW_CAN = new MountainDewCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item COFFEE = new Item(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item MUG = new MugItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item MUG_ROOT_BEER = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item MUG_ROOT_BEER_CAN = new MugRootBeerCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item NUKA_COLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item NUKA_COLA_BOTTLE = new NukaColaBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item NUKA_COLA_DARK = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item NUKA_COLA_DARK_BOTTLE = new NukaColaDarkBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item NUKA_COLA_QUANTUM = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item NUKA_COLA_QUANTUM_BOTTLE = new NukaColaQuantumBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_CHERRY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_CIDE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_GRAPE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_LOVE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_ORANGE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_QUARTZ = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_VICTORY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item NUKA_COLA_WILD = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PRIME_ENERGY_BLUERASPBERRY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PRIME_ENERGY_LEMONLIME = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PRIME_ENERGY_ORANGEMANGO = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PRIME_ENERGY_STRAWBERRYWATERMELON = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PRIME_ENERGY_TROPICALPUNCH = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item MONSTER_ENERGY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
+    public static final Item REDBULL = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item PEEPS_PEPSI = new PeepsPepsiItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item PEEPS_PEPSI_CAN = new PeepsPepsiCanProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
-    public static final Item PEPSI = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item PEPSI_CAN = new PepsiCanProjectileItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
+    public static final Item PEPSI = new PepsiItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item RUM = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item RUM_BOTTLE = new RumBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_BLUEBERRYTART = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_BLUEBERRYTART_CAN = new ShizeBlueBerryTartCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_BLUSHINGROSE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_BLUSHINGROSE_CAN = new ShizeBlushingRoseCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_CANADASHY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_CANADASHY_CAN = new ShizeCanadaShyCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_CHEEKYBITOPUD = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_CHEEKYBITOPUD_CAN = new ShizeCheekyBitoPudCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_CHERRYPOP = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_CHERRYPOP_CAN = new ShizeCherryPopCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_COLDBEETSTEW = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_COLDBEETSTEW_CAN = new ShizeColdBeetStewCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_ELDERFLOWER = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_ELDERFLOWER_CAN = new ShizeElderFlowerCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_FACTORYRUST = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_FACTORYRUST_CAN = new ShizeFactoryRustCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_FOURCHEESE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_FOURCHEESE_CAN = new ShizeFourCheeseCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_FRENCHVANILLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_FRENCHVANILLA_CAN = new ShizeFrenchVanillaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_FULMEDAMES = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_FULMEDAMES_CAN = new ShizeFulmedamesCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_GAMERENERGY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_GAMERENERGY_CAN = new ShizeGamerEnergyCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_JELLYBEAN = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_JELLYBEAN_CAN = new ShizeJellyBeanCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_JUICYMELON = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_JUICYMELON_CAN = new ShizeJuicyMelonCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_LEMONPARTY = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_LEMONPARTY_CAN = new ShizeLemonPartyCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_LIGHT = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_LIGHT_CAN = new ShizeLightCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_LIQUORLISIOUS = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_LIQUORLISIOUS_CAN = new ShizeLiquorLisiousCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_MAYONNAISE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_MAYONNAISE_CAN = new ShizeMayonnaiseCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_MUSTARD = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_MUSTARD_CAN = new ShizeMustardCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_ORIGINAL = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_ORIGINAL_CAN = new ShizeOriginalCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_PINEAPPLEPIZZA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_PINEAPPLEPIZZA_CAN = new ShizePineapplePizzaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_RAWMEAT = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_RAWMEAT_CAN = new ShizeRawMeatCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_SARDINESURPRISE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_SARDINESURPRISE_CAN = new ShizeSardineSurpriseCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_STRAWBERRYKIWI = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_STRAWBERRYKIWI_CAN = new ShizeStrawberryKiwiCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_TANGYKETCHUP = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_TANGYKETCHUP_CAN = new ShizeTangyKetchupCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_TAROTEASE = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_TAROTEASE_CAN = new ShizeTaroTeaseCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_THIRSTBORN = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_THIRSTBORN_CAN = new ShizeThirstBornCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_TIRAMISU = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_TIRAMISU_CAN = new ShizeTiramisuCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_TROPICALSTORM = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_TROPICALSTORM_CAN = new ShizeTropicalStormCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SHIZE_VEGGIEBROTH = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SHIZE_VEGGIEBROTH_CAN = new ShizeVeggieBrothCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item STRAWBERRY_MILK_CARTON = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item STRAWBERRY_MILK_CARTON_EMPTY = new StrawberryMilkCartonProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item VODKA = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item VODKA_BOTTLE = new VodkaBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item WINE = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item WINE_BOTTLE = new WineBottleProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item WINE_GLASS = new AlcoholicBeveragesItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item WINE_GLASS_EMPTY = new WineGlassProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item SPEED_COLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item SPEED_COLA_CAN = new SpeedColaCanProjectileItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
-    public static final Item CHOCOLATE_OREO_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_YELLOW).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item GRIMACE_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP_YELLOW).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item CHOCOLATE_OREO_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
+    public static final Item GRIMACE_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
     public static final Item BULLET = new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
     public static final Item RIFLE_BULLET = new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
     public static final Item SHELL = new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
@@ -250,12 +194,9 @@ public class ShitItems {
     public static final Item PIE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item PIE_DAMAGE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item PIE_SUS = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
-    public static final Item LASER_POINTER = new LaserPointerItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG_MUSTARD = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
     public static final Item COSCO_BIG_LONG_DOG_KETCHUP = new CoscoBigLongDogItem(new FabricItemSettings().food(ShitFoodComponents.COSCO_BIG_DOG).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item BRASS_KNUCKLES = new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
-    public static final Item SAIS = new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item SOUND_BOARD = new SoundBoardItem(new FabricItemSettings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item MUSTARD = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item KETCHUP = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
@@ -302,9 +243,58 @@ public class ShitItems {
     public static final Item FIFTY_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.RARE), 50);
     public static final Item ONEHUNDRED_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC), 100);
     public static final Item FIVEHUNDRED_MOMEN = new MomenItem(new FabricItemSettings().maxCount(64).rarity(Rarity.EPIC), 500);
+    public static final Item WALLET = new WalletItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
+    public static final Item TAKI_BLUE_HEAT = new TakisItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item TAKI_FUEGO = new TakisItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item TAKI_NACHO_CHEESE = new TakisItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item TAKI_NITRO = new TakisItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item TAKI_ZOMBIE = new TakisItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_BASIL = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_BBQ = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_CHOCOLATE = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_FISH = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_GOLDEN = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_MISSING = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_MYSTERY_MEAT = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_MYSTERY_MEAT_2 = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_PLAIN = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_SHINY = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_SLIMY = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_SOUR_CREAM_ONION = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHIP_STALE = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NACHO_DORITO_CHIP = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item RANCH_DORITO_CHIP = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item BBQ_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item BIG_BITES = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item BLUE_HEAT_TAKI_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item CHOCO_CRUNCH = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item DIVINE_BLISS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item FISHERMEN = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item FLAVOR_WAVE = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item FUEGO_TAKI_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item LUCKY_SEVENS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item MEAT_TORNADO = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item MIRACLE_MAKER = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NACHO_DORITOS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NACHO_TAKI_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NAN_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NITRO_TAKI_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item NY_CRISPIES = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item PLAIN_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item POLISHED_CRISPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item POPEM = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item RANCH_DORITOS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item SALTY_OASIS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item SOUR_CREAM_ONION_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item SPUD_LITE = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item STOKED_SMOKED = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item USA_OVEN_BAKED = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item YUMYUM = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item ZOMBIE_TAKI_CHIPS = new ChipsItem(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
+    public static final Item ALMOND_WATER = new SodaItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
+    public static final Item CASHEW_WATER = new SodaItem(new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
 
     static Map<String, Object> ITEMS = Stream.of(new Object[][] {
-
             //UNSORTED
             {"raw_bauxite", RAW_BAUXITE},
 
@@ -365,141 +355,91 @@ public class ShitItems {
             {"air_horn", AIR_HORN},
             {"bike_horn", BIKE_HORN},
             {"clown_horn", CLOWN_HORN},
-            {"red_brick", RED_BRICK},
-            {"blue_brick", BLUE_BRICK},
             {"trash_can", TRASH_CAN},
-            {"oat", OAT},
             {"banana", BANANA},
             {"pocky_stick", POCKY_STICK},
             {"pocky_sticks", POCKY_STICKS},
             {"pocky_stick_box", POCKY_STICK_BOX},
-            {"nacho_dorito_chip", NACHO_DORITOS_CHIP},
-            {"nacho_dorito_bag", NACHO_DORITOS_BAG},
-            {"horse_hoof", HORSE_HOOF},
-            {"raw_chevaline", RAW_CHEVALINE},
-            {"cooked_chevaline", COOKED_CHEVALINE},
-            {"talon_burger", TALON_BURGER},
             {"uranium_dust", URANIUM_DUST},
             {"peep_yellow", PEEP_YELLOW},
             {"peep_cyan", PEEP_CYAN},
             {"peep_pink", PEEP_PINK},
             {"peep_purple", PEEP_PURPLE},
             {"beer", BEER},
-            {"beer_bottle", BEER_BOTTLE},
             {"bonk_atomic_punch", BONK_ATOMIC_PUNCH},
-            {"bonk_atomic_punch_projectile", BONK_ATOMIC_PUNCH_PROJECTILE},
             {"bottle", BOTTLE},
             {"bud_light", BUD_LIGHT},
-            {"bud_light_can", BUD_LIGHT_CAN},
             {"champagne", CHAMPAGNE},
-            {"champagne_bottle", CHAMPAGNE_BOTTLE},
             {"chug_jug", CHUG_JUG},
-            {"chug_jug_empty", CHUG_JUG_EMPTY},
             {"coca_cola", COCA_COLA},
-            {"coca_cola_can", COCA_COLA_CAN},
             {"coke_zero", COKE_ZERO},
-            {"coke_zero_can", COKE_ZERO_CAN},
+            {"coke_heart_throb", COKE_HEART_THROB},
             {"crita_cola", CRITA_COLA},
-            {"crita_cola_can", CRITA_COLA_CAN},
             {"dr_pepper", DR_PEPPER},
-            {"dr_pepper_can", DR_PEPPER_CAN},
+            {"dr_pepper_diet", DR_PEPPER_DIET},
             {"fanta", FANTA},
-            {"fanta_can", FANTA_CAN},
             {"flask", FLASK},
-            {"flask_empty", FLASK_EMPTY},
-            {"glass_jar", GLASS_JAR},
             {"lagar", LAGAR},
-            {"lagar_bottle", LAGAR_BOTTLE},
             {"milk_carton", MILK_CARTON},
-            {"milk_carton_empty", MILK_CARTON_EMPTY},
             {"mountain_dew", MOUNTAIN_DEW},
-            {"mountain_dew_can", MOUNTAIN_DEW_CAN},
             {"coffee", COFFEE},
-            {"mug", MUG},
             {"mug_root_beer", MUG_ROOT_BEER},
-            {"mug_root_beer_can", MUG_ROOT_BEER_CAN},
             {"nuka_cola", NUKA_COLA},
-            {"nuka_cola_bottle", NUKA_COLA_BOTTLE},
             {"nuka_cola_dark", NUKA_COLA_DARK},
-            {"nuka_cola_dark_bottle", NUKA_COLA_DARK_BOTTLE},
             {"nuka_cola_quantum", NUKA_COLA_QUANTUM},
-            {"nuka_cola_quantum_bottle", NUKA_COLA_QUANTUM_BOTTLE},
+            {"nuka_cola_cherry", NUKA_COLA_CHERRY},
+            {"nuka_cola_cide", NUKA_COLA_CIDE},
+            {"nuka_cola_grape", NUKA_COLA_GRAPE},
+            {"nuka_cola_love", NUKA_COLA_LOVE},
+            {"nuka_cola_orange", NUKA_COLA_ORANGE},
+            {"nuka_cola_quartz", NUKA_COLA_QUARTZ},
+            {"nuka_cola_victory", NUKA_COLA_VICTORY},
+            {"nuka_cola_wild", NUKA_COLA_WILD},
+            {"prime_energy_blueraspberry", PRIME_ENERGY_BLUERASPBERRY},
+            {"prime_energy_lemonlime", PRIME_ENERGY_LEMONLIME},
+            {"prime_energy_orangemango", PRIME_ENERGY_ORANGEMANGO},
+            {"prime_energy_strawberrywatermelon", PRIME_ENERGY_STRAWBERRYWATERMELON},
+            {"prime_energy_tropicalpunch", PRIME_ENERGY_TROPICALPUNCH},
+            {"monster_energy", MONSTER_ENERGY},
+            {"redbull", REDBULL},
             {"peeps_pepsi", PEEPS_PEPSI},
-            {"peeps_pepsi_can", PEEPS_PEPSI_CAN},
             {"pepsi", PEPSI},
-            {"pepsi_can", PEPSI_CAN},
             {"rum", RUM},
-            {"rum_bottle", RUM_BOTTLE},
             {"shize_blueberrytart", SHIZE_BLUEBERRYTART},
-            {"shize_blueberrytart_can", SHIZE_BLUEBERRYTART_CAN},
             {"shize_blushingrose", SHIZE_BLUSHINGROSE},
-            {"shize_blushingrose_can", SHIZE_BLUSHINGROSE_CAN},
             {"shize_canadashy", SHIZE_CANADASHY},
-            {"shize_canadashy_can", SHIZE_CANADASHY_CAN},
             {"shize_cheekybitopud", SHIZE_CHEEKYBITOPUD},
-            {"shize_cheekybitopud_can", SHIZE_CHEEKYBITOPUD_CAN},
             {"shize_cherrypop", SHIZE_CHERRYPOP},
-            {"shize_cherrypop_can", SHIZE_CHERRYPOP_CAN},
             {"shize_coldbeetstew", SHIZE_COLDBEETSTEW},
-            {"shize_coldbeetstew_can", SHIZE_COLDBEETSTEW_CAN},
             {"shize_elderflower", SHIZE_ELDERFLOWER},
-            {"shize_elderflower_can", SHIZE_ELDERFLOWER_CAN},
             {"shize_factoryrust", SHIZE_FACTORYRUST},
-            {"shize_factoryrust_can", SHIZE_FACTORYRUST_CAN},
             {"shize_fourcheese", SHIZE_FOURCHEESE},
-            {"shize_fourcheese_can", SHIZE_FOURCHEESE_CAN},
             {"shize_frenchvanilla", SHIZE_FRENCHVANILLA},
-            {"shize_frenchvanilla_can", SHIZE_FRENCHVANILLA_CAN},
             {"shize_fulmedames", SHIZE_FULMEDAMES},
-            {"shize_fulmedames_can", SHIZE_FULMEDAMES_CAN},
             {"shize_gamerenergy", SHIZE_GAMERENERGY},
-            {"shize_gamerenergy_can", SHIZE_GAMERENERGY_CAN},
             {"shize_jellybean", SHIZE_JELLYBEAN},
-            {"shize_jellybean_can", SHIZE_JELLYBEAN_CAN},
             {"shize_juicymelon", SHIZE_JUICYMELON},
-            {"shize_juicymelon_can", SHIZE_JUICYMELON_CAN},
             {"shize_lemonparty", SHIZE_LEMONPARTY},
-            {"shize_lemonparty_can", SHIZE_LEMONPARTY_CAN},
             {"shize_light", SHIZE_LIGHT},
-            {"shize_light_can", SHIZE_LIGHT_CAN},
             {"shize_liquorlisious", SHIZE_LIQUORLISIOUS},
-            {"shize_liquorlisious_can", SHIZE_LIQUORLISIOUS_CAN},
             {"shize_mayonnaise", SHIZE_MAYONNAISE},
-            {"shize_mayonnaise_can", SHIZE_MAYONNAISE_CAN},
             {"shize_mustard", SHIZE_MUSTARD},
-            {"shize_mustard_can", SHIZE_MUSTARD_CAN},
             {"shize_original", SHIZE_ORIGINAL},
-            {"shize_original_can", SHIZE_ORIGINAL_CAN},
             {"shize_pineapplepizza", SHIZE_PINEAPPLEPIZZA},
-            {"shize_pineapplepizza_can", SHIZE_PINEAPPLEPIZZA_CAN},
             {"shize_rawmeat", SHIZE_RAWMEAT},
-            {"shize_rawmeat_can", SHIZE_RAWMEAT_CAN},
             {"shize_sardinesurprise", SHIZE_SARDINESURPRISE},
-            {"shize_sardinesurprise_can", SHIZE_SARDINESURPRISE_CAN},
             {"shize_strawberrykiwi", SHIZE_STRAWBERRYKIWI},
-            {"shize_strawberrykiwi_can", SHIZE_STRAWBERRYKIWI_CAN},
             {"shize_tangyketchup", SHIZE_TANGYKETCHUP},
-            {"shize_tangyketchup_can", SHIZE_TANGYKETCHUP_CAN},
             {"shize_tarotease", SHIZE_TAROTEASE},
-            {"shize_tarotease_can", SHIZE_TAROTEASE_CAN},
             {"shize_thirstborn", SHIZE_THIRSTBORN},
-            {"shize_thirstborn_can", SHIZE_THIRSTBORN_CAN},
             {"shize_tiramisu", SHIZE_TIRAMISU},
-            {"shize_tiramisu_can", SHIZE_TIRAMISU_CAN},
             {"shize_tropicalstorm", SHIZE_TROPICALSTORM},
-            {"shize_tropicalstorm_can", SHIZE_TROPICALSTORM_CAN},
             {"shize_veggiebroth", SHIZE_VEGGIEBROTH},
-            {"shize_veggiebroth_can", SHIZE_VEGGIEBROTH_CAN},
             {"strawberry_milk_carton", STRAWBERRY_MILK_CARTON},
-            {"strawberry_milk_carton_empty", STRAWBERRY_MILK_CARTON_EMPTY},
             {"vodka", VODKA},
-            {"vodka_bottle", VODKA_BOTTLE},
             {"wine", WINE},
-            {"wine_bottle", WINE_BOTTLE},
             {"wine_glass", WINE_GLASS},
-            {"wine_glass_empty", WINE_GLASS_EMPTY},
             {"speed_cola", SPEED_COLA},
-            {"speed_cola_can", SPEED_COLA_CAN},
             {"chocolate_oreo_shake", CHOCOLATE_OREO_SHAKE},
             {"grimace_shake", GRIMACE_SHAKE},
             {"bullet", BULLET},
@@ -520,12 +460,9 @@ public class ShitItems {
             {"pie", PIE},
             {"pie_damage", PIE_DAMAGE},
             {"pie_sus", PIE_SUS},
-            {"laser_pointer", LASER_POINTER},
             {"cosco_big_long_dog", COSCO_BIG_LONG_DOG},
             {"cosco_big_long_dog_mustard", COSCO_BIG_LONG_DOG_MUSTARD},
             {"cosco_big_long_dog_ketchup", COSCO_BIG_LONG_DOG_KETCHUP},
-            {"brass_knuckles", BRASS_KNUCKLES},
-            {"sais", SAIS},
             {"sound_board", SOUND_BOARD},
             {"mustard", MUSTARD},
             {"ketchup", KETCHUP},
@@ -572,6 +509,60 @@ public class ShitItems {
             {"50_momen", FIFTY_MOMEN},
             {"100_momen", ONEHUNDRED_MOMEN},
             {"500_momen", FIVEHUNDRED_MOMEN},
+            {"wallet", WALLET},
+
+
+
+
+            //HERE
+            {"taki_blue_heat", TAKI_BLUE_HEAT},
+            {"taki_fuego", TAKI_FUEGO},
+            {"taki_nacho_cheese", TAKI_NACHO_CHEESE},
+            {"taki_nitro", TAKI_NITRO},
+            {"taki_zombie", TAKI_ZOMBIE},
+            {"chip_basil", CHIP_BASIL},
+            {"chip_bbq", CHIP_BBQ},
+            {"chip_chocolate", CHIP_CHOCOLATE},
+            {"chip_fish", CHIP_FISH},
+            {"chip_golden", CHIP_GOLDEN},
+            {"chip_missing", CHIP_MISSING},
+            {"chip_mystery_meat", CHIP_MYSTERY_MEAT},
+            {"chip_mystery_meat_2", CHIP_MYSTERY_MEAT_2},
+            {"chip_plain", CHIP_PLAIN},
+            {"chip_shiny", CHIP_SHINY},
+            {"chip_slimy", CHIP_SLIMY},
+            {"chip_sour_cream_onion", CHIP_SOUR_CREAM_ONION},
+            {"bbq_chips", BBQ_CHIPS},
+            {"big_bites", BIG_BITES},
+            {"blue_heat_taki_chips", BLUE_HEAT_TAKI_CHIPS},
+            {"choco_crunch", CHOCO_CRUNCH},
+            {"divine_bliss", DIVINE_BLISS},
+            {"fishermen", FISHERMEN},
+            {"flavor_wave", FLAVOR_WAVE},
+            {"fuego_taki_chips", FUEGO_TAKI_CHIPS},
+            {"lucky_sevens", LUCKY_SEVENS},
+            {"meat_tornado", MEAT_TORNADO},
+            {"miracle_maker", MIRACLE_MAKER},
+            {"nacho_doritos", NACHO_DORITOS},
+            {"nacho_taki_chips", NACHO_TAKI_CHIPS},
+            {"nan_chips", NAN_CHIPS},
+            {"nitro_taki_chips", NITRO_TAKI_CHIPS},
+            {"ny_crispies", NY_CRISPIES},
+            {"plain_chips", PLAIN_CHIPS},
+            {"polished_crisps", POLISHED_CRISPS},
+            {"popem", POPEM},
+            {"ranch_doritos", RANCH_DORITOS},
+            {"ranch_dorito_chip", RANCH_DORITO_CHIP},
+            {"nacho_dorito_chip", NACHO_DORITO_CHIP},
+            {"salty_oasis", SALTY_OASIS},
+            {"sour_cream_onion_chips", SOUR_CREAM_ONION_CHIPS},
+            {"spud_lite", SPUD_LITE},
+            {"stoked_smoked", STOKED_SMOKED},
+            {"usa_oven_baked", USA_OVEN_BAKED},
+            {"yumyum", YUMYUM},
+            {"zombie_taki_chips", ZOMBIE_TAKI_CHIPS},
+            {"almond_water", ALMOND_WATER},
+            {"cashew_water", CASHEW_WATER},
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
@@ -587,12 +578,6 @@ public class ShitItems {
         registerToolItem("catcorn", CATCORN);
     }
 
-
-    // Don't suppress, this is actually a valid warning
-    //private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
-    //    entries.add(RED_BRICK);
-    //    entries.add(BLUE_BRICK);
-   // }
 
     //REGISTRY
     private static void registerItem(String name, Item item) {

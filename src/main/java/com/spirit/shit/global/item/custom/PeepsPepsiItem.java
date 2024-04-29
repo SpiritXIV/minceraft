@@ -1,6 +1,5 @@
 package com.spirit.shit.global.item.custom;
 
-import com.spirit.shit.global.item.ShitItems;
 import com.spirit.shit.global.sound.ShitSounds;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
@@ -43,19 +42,7 @@ public class PeepsPepsiItem extends Item {
             user.removeStatusEffect(StatusEffects.MINING_FATIGUE);
             user.removeStatusEffect(StatusEffects.SLOW_FALLING);
         }
-
-        if (stack.isEmpty()) {
-            return new ItemStack(ShitItems.PEEPS_PEPSI_CAN);
-        } else {
-            if (user instanceof PlayerEntity playerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
-                ItemStack itemStack = new ItemStack(ShitItems.PEEPS_PEPSI_CAN);
-                if (!playerEntity.getInventory().insertStack(itemStack)) {
-                    playerEntity.dropItem(itemStack, false);
-                }
-            }
-
             return stack;
-        }
     }
 
     public int getMaxUseTime(ItemStack stack) {

@@ -23,7 +23,6 @@ import java.util.Objects;
 public abstract class AbstractShitBlock extends Block {
     final VoxelShape NORTH_SHAPE;
     final Map<Direction, VoxelShape> SHAPE_MAP;
-
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public AbstractShitBlock(Settings settings, VoxelShape SHAPE) {
@@ -31,11 +30,13 @@ public abstract class AbstractShitBlock extends Block {
         this.NORTH_SHAPE = SHAPE;
         this.SHAPE_MAP = VoxelShapeRotator.rotateAllDirections(NORTH_SHAPE);
     }
+
     public AbstractShitBlock(Settings settings) {
         super(settings);
         this.NORTH_SHAPE = null;
         this.SHAPE_MAP = null;
     }
+
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

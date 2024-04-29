@@ -29,7 +29,7 @@ public class CatcornMaterial implements ToolMaterial {
     }
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(ShitItems.OAT);
+        return Ingredient.ofItems(ShitItems.POCKY_STICK_BOX);
     }
 }
 

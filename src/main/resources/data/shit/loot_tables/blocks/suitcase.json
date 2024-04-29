@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_state",
+              "block": "shit:suitcase",
+              "properties": [
+                "type"
+              ]
+            }
+          ],
+          "name": "shit:suitcase"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "shit:blocks/suitcase"
+}

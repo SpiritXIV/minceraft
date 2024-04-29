@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " /n",
-    "/sN",
+    "/SN",
     " /n"
   ],
   "key": {

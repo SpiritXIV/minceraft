@@ -12,7 +12,6 @@ base {
 repositories {
 	maven { url 'https://maven.fabricmc.net/' }
 	maven { url 'https://repo.spongepowered.org/maven/' } // Add this if missing
-	//maven { url 'https://maven.wispforest.io' }
 	mavenCentral()
 }
 
@@ -44,21 +43,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	//modImplementation "net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23"
 
 	implementation 'org.jetbrains:annotations:24.0.1'
-	/*
-	implementation "net.kyori:adventure-api:4.16.0"
-	implementation 'org.yaml:snakeyaml:2.2'
-	implementation 'org.joml:joml:1.10.5'
-	implementation 'org.apache.maven:maven-plugin-api:3.9.6'
-	implementation "org.apache.maven.resolver:maven-resolver-api:${project.apache_maven_resolver}"
-	implementation "org.apache.maven.resolver:maven-resolver-transport-http:${project.apache_maven_resolver}"
-	implementation "org.apache.maven.resolver:maven-resolver-connector-basic:${project.apache_maven_resolver}"
-	implementation 'org.apache.maven.plugin-tools:maven-plugin-tools-api:3.12.0'
-	implementation 'org.apache.commons:commons-compress:1.21'
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-	*/
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }

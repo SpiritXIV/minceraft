@@ -224,7 +224,7 @@ public class SculkEmitterBlock extends PlantBlock implements BlockEntityProvider
         return catalystPositions;
     }
 
-    public static class SculkEmitterBlockEntity extends BlockEntity {
+        public static class SculkEmitterBlockEntity extends BlockEntity {
         private int emitTimer = 0;
         private static final int EMIT_INTERVAL = 24000;
         private boolean isValid = true;

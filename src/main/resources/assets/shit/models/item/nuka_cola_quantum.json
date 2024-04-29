@@ -1,4 +1,5 @@
 {
+	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "shit:item/nuka_cola_quantum",
@@ -125,8 +126,8 @@
 		},
 		"gui": {
 			"rotation": [-20, 145, 25],
-			"translation": [2.5, 5.75, 0],
-			"scale": [1.5, 1.5, 1.5]
+			"translation": [3.25, 7, 0],
+			"scale": [1.75, 1.75, 1.75]
 		},
 		"head": {
 			"translation": [0, 14.5, 0]

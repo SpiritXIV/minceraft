@@ -3,6 +3,7 @@ package com.spirit.shit.global.block;
 import com.spirit.Main;
 import com.spirit.shit.global.block.custom.*;
 import com.spirit.shit.global.block.custom.plush.*;
+import com.spirit.shit.global.block.custom.SuitCaseBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -30,7 +31,7 @@ public class ShitBlocks {
     public static final Block RADIO = new RadioBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
     //POSTERS
-    public static final Block ULTRAKILL_POSTER = new UlraKillPosterBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
+    public static final Block ULTRAKILL_POSTER = new UltraKillPosterBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
     //BACKROOMS LEVEL 0
     public static final Block BACKROOMS_LIGHT = new BackroomsLightBlock(FabricBlockSettings.copy(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.GLASS).strength(-1.0F, 3600000.0F).luminance((state) -> 9));
@@ -80,12 +81,10 @@ public class ShitBlocks {
     public static final Block SLAZER_PLUSH = new SlazerPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
     public static final Block SPIRIT_PLUSH = new SpiritPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
-
     //WARZONE
     public static final Block LAND_MINE = new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
     //OTHER BLOCKS
-
     public static final Block CUBE_BLUE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
     public static final Block CUBE_GRAY = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
     public static final Block CUBE_GREEN = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
@@ -104,14 +103,14 @@ public class ShitBlocks {
     public static final Block DEEPSLATE_BAUXITE_ORE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).requiresTool().strength(2.0F));
 
     //MONEY
-    public static final Block ONE_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 9);
-    public static final Block FIVE_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 45);
-    public static final Block TEN_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 90);
-    public static final Block TWENTY_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 180);
-    public static final Block FIFTY_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 450);
-    public static final Block ONEHUNDRED_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 900);
-    public static final Block FIVEHUNDRED_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).dynamicBounds().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 4500);
-
+    public static final Block ONE_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 9);
+    public static final Block FIVE_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 45);
+    public static final Block TEN_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 90);
+    public static final Block TWENTY_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 180);
+    public static final Block FIFTY_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 450);
+    public static final Block ONEHUNDRED_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 900);
+    public static final Block FIVEHUNDRED_MOMEN_STACK = new MomenBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).ticksRandomly().dropsNothing().burnable().strength(-1.0F, 3600000.0F), 4500);
+    public static final Block SUITCASE = new SuitCaseBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.CHISELED_BOOKSHELF).requiresTool().strength(2.0F));
 
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
             {"cracklin_box", CRACKLIN_BOX},
@@ -188,7 +187,7 @@ public class ShitBlocks {
             {"50_momen_stack", FIFTY_MOMEN_STACK},
             {"100_momen_stack", ONEHUNDRED_MOMEN_STACK},
             {"500_momen_stack", FIVEHUNDRED_MOMEN_STACK},
-
+            {"suitcase", SUITCASE}
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
