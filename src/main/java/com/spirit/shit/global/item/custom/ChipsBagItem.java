@@ -19,31 +19,38 @@ public class ChipsBagItem extends Item {
         super(settings);
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
-        if (user instanceof PlayerEntity playerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+        if (user instanceof PlayerEntity && !((PlayerEntity) user).getAbilities().creativeMode) {
             stack.decrement(1);
         }
         return stack;
     }
 
+    @Override
     public int getMaxUseTime(ItemStack stack) {
         return 3;
     }
 
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.EAT;
     }
 
+    @Override
     public SoundEvent getDrinkSound() {
         return ShitSounds.NOTHING;
     }
 
+    @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_EAT;
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
+
     }
 }

@@ -22,6 +22,7 @@ public class PeepsPepsiItem extends Item {
         super(settings);
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
         if (user instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -45,22 +46,27 @@ public class PeepsPepsiItem extends Item {
             return stack;
     }
 
+    @Override
     public int getMaxUseTime(ItemStack stack) {
         return 10;
     }
 
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }
 
+    @Override
     public SoundEvent getDrinkSound() {
         return ShitSounds.JBIRD_SODA;
     }
 
+    @Override
     public SoundEvent getEatSound() {
         return ShitSounds.NOTHING;
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }

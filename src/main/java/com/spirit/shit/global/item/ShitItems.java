@@ -510,11 +510,6 @@ public class ShitItems {
             {"100_momen", ONEHUNDRED_MOMEN},
             {"500_momen", FIVEHUNDRED_MOMEN},
             {"wallet", WALLET},
-
-
-
-
-            //HERE
             {"taki_blue_heat", TAKI_BLUE_HEAT},
             {"taki_fuego", TAKI_FUEGO},
             {"taki_nacho_cheese", TAKI_NACHO_CHEESE},

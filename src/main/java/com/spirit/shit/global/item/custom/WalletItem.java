@@ -44,6 +44,7 @@ public class WalletItem extends Item {
         super(settings);
     }
 
+    @Override
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType != ClickType.RIGHT) {
             return false;
@@ -64,6 +65,7 @@ public class WalletItem extends Item {
         }
     }
 
+    @Override
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
             if (otherStack.isEmpty()) {
@@ -85,6 +87,7 @@ public class WalletItem extends Item {
         }
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (dropAllBundledItems(itemStack, user)) {
@@ -219,8 +222,6 @@ public class WalletItem extends Item {
         }
         return 0;
     }
-
-
 
     private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();

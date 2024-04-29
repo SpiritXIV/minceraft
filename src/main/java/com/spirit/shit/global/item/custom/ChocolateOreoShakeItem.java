@@ -22,14 +22,17 @@ public class ChocolateOreoShakeItem extends Item {
         super(settings);
     }
 
+    @Override
     public int getMaxUseTime(ItemStack stack) {
         return 50;
     }
 
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.EAT;
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof ServerPlayerEntity serverPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
@@ -39,16 +42,18 @@ public class ChocolateOreoShakeItem extends Item {
             if (!user.getWorld().isClient()) {
                 float health = user.getHealth();
 
-                user.damage(new DamageSource(RegistryEntry.of(new DamageType("drank_oreo_shake", 1))), health);
+                user.damage(new DamageSource(RegistryEntry.of(new DamageType("drank_oreo_shake", 1))), health*100000);
             }
         }
         return stack;
     }
 
+    @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_DRINK;
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }

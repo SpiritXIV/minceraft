@@ -1,14 +1,12 @@
 package com.spirit.shit.global.item.custom;
 
 import com.spirit.shit.global.effect.ShitEffects;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -23,29 +21,31 @@ public class AlcoholicBeveragesItem extends Item {
         super(settings);
     }
 
+    @Override
     public int getMaxUseTime(ItemStack stack) {
         return 30;
     }
 
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.EAT;
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-                if (!((ServerPlayerEntity) user).getAbilities().creativeMode) {
-                    stack.decrement(1);
+        if (user instanceof PlayerEntity && !((PlayerEntity) user).getAbilities().creativeMode) {
+            stack.decrement(1);
             }
             user.addStatusEffect(new StatusEffectInstance(ShitEffects.TIPSY, 400, 0));
-        }
         return stack;
     }
 
+    @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_DRINK;
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }
