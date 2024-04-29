@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"facing=east": {"model": "shit:block/jbird_plush", "y": 270},
-		"facing=north": {"model": "shit:block/jbird_plush", "y": 180},
-		"facing=south": {"model": "shit:block/jbird_plush"},
-		"facing=west": {"model": "shit:block/jbird_plush", "y": 90}
-	}
-}

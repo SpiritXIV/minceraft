@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "": [{
-         "model": "shit:block/cube_yellow","weight":1 },
-      {  "model": "shit:block/cube_yellow1", "weight":1 },
-      {  "model": "shit:block/cube_yellow2", "weight":1 },
-      {  "model": "shit:block/cube_yellow3", "weight":1 }
-    ]}
-}

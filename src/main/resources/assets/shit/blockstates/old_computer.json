@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=east": {"model": "shit:block/old_computer", "y": 270},
-    "facing=north": {"model": "shit:block/old_computer", "y": 180},
-    "facing=south": {"model": "shit:block/old_computer"},
-    "facing=west": {"model": "shit:block/old_computer", "y": 90}
-  }
-}

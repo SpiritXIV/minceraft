@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "shit:block/backrooms_concrete_wall_pillar_light_top_off"
-  }
-}

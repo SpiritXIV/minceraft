@@ -527,6 +527,7 @@ public class ShitItems {
             {"chip_shiny", CHIP_SHINY},
             {"chip_slimy", CHIP_SLIMY},
             {"chip_sour_cream_onion", CHIP_SOUR_CREAM_ONION},
+            {"chip_stale", CHIP_STALE},
             {"bbq_chips", BBQ_CHIPS},
             {"big_bites", BIG_BITES},
             {"blue_heat_taki_chips", BLUE_HEAT_TAKI_CHIPS},

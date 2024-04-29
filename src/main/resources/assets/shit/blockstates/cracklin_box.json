@@ -1,8 +1,0 @@
-{
-  "variants": {
-      "facing=north":[ { "model": "shit:block/cracklin_box" }],
-      "facing=east":[ { "model": "shit:block/cracklin_box_east"}],
-      "facing=south":[ { "model": "shit:block/cracklin_box_south"}],
-      "facing=west":[ { "model": "shit:block/cracklin_box_west"}]
-  }
-}
