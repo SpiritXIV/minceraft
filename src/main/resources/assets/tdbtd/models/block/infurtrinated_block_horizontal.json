@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "tdbtd:block/infurtrinated_block_face",
-    "side": "tdbtd:block/infurtrinated_block_sides"
-  }
-}

@@ -1,28 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "minceraft",
+  "id": "koil",
   "version": "${version}",
-  "name": "Minceraft",
-  "description": "A large mod with toggleable branches that each add their own unique features to the game.",
+  "name": "Koil",
+  "description": "The Brains to the Minceraft Projects and the Home of the game changer Koil.",
   "authors": [
     "Spirit"
   ],
   "contributors": [
-    "Ethan_4D",
-    "Kip Kebab",
-    "alphaxenopete82",
-    "Computer User",
     "UNLUCKY",
     "Absolutelyaya",
-    "KingZhara",
-    "McFella",
-    "Milkyfur"
+    "KingZhara"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/minceraft-koil",
+    "homepage": "https://modrinth.com/mod/koil",
     "sources": "https://github.com/SpiritXIV/minceraft",
     "issues": "https://github.com/SpiritXIV/minceraft/issues"
   },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/jEGF5fb"
+      },
+      "update_checker": true
+    }
+  },
+
   "license": "mit",
   "icon": "assets/icon.png",
   "environment": "*",
@@ -43,8 +47,9 @@
     ]
   },
   "mixins": [
-    "minceraft.mixins.json"
+    "koil.mixins.json"
   ],
+
   "depends": {
     "fabricloader": ">=0.14.21",
     "minecraft": "~1.20.1",
@@ -53,5 +58,6 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener": "koil.accesswidener"
 }

@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"facing=east": {"model": "shit:block/sierra_plush", "y": 270},
-		"facing=north": {"model": "shit:block/sierra_plush", "y": 180},
-		"facing=south": {"model": "shit:block/sierra_plush"},
-		"facing=west": {"model": "shit:block/sierra_plush", "y": 90}
-	}
-}

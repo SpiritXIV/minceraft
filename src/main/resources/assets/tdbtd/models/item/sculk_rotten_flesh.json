@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "tdbtd:item/sculk_rotten_flesh"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/fence_post",
-  "textures": {
-    "texture": "tdbtd:block/criteric_charred_planks"
-  }
-}

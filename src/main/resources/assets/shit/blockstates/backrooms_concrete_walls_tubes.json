@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "": [{
-         "model": "shit:block/backrooms_concrete_walls_tubes_1","weight":1 },
-      {  "model": "shit:block/backrooms_concrete_walls_tubes_2","weight":1 },
-      {  "model": "shit:block/backrooms_concrete_walls_tubes_3","weight":1 }
-    ]}
-}

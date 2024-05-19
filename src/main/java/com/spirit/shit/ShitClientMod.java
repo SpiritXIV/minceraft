@@ -3,12 +3,10 @@ package com.spirit.shit;
 import com.spirit.Main;
 import com.spirit.shit.global.entity.client.ShitModelLayers;
 import com.spirit.shit.global.entity.client.figures.*;
-import com.spirit.shit.data.event.KeyInputHandler;
 import com.spirit.shit.global.particle.custom.CreeperEntityParticle;
 import com.spirit.shit.global.particle.custom.PlayerEntityParticle;
 import com.spirit.shit.global.particle.custom.SkeletonEntityParticle;
 import com.spirit.shit.global.particle.custom.ZombieEntityParticle;
-import com.spirit.shit.data.render.BulletEntityRenderer;
 import com.spirit.tdbtd.global.entity.client.TDBTDModelLayers;
 import com.spirit.tdbtd.global.entity.client.figures.*;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,13 +17,12 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
+import static com.spirit.shit.ShitMod.TrashCanProjectileEntityType;
 import static com.spirit.shit.global.block.ShitBlocks.*;
 import static com.spirit.shit.global.entity.ShitEntities.*;
 import static com.spirit.shit.global.particle.ShitParticles.*;
-import static com.spirit.shit.ShitMod.*;
 import static com.spirit.tdbtd.global.block.TDBTDBlocks.*;
 import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
-import static com.spirit.tdbtd.global.entity.TDBTDEntities.KREDA;
 
 
 public class ShitClientMod implements ClientModInitializer {
@@ -36,7 +33,6 @@ public class ShitClientMod implements ClientModInitializer {
         registerProjectiles();
         registerParticles();
         registerBlockRenderLayers();
-        KeyInputHandler.register();
     }
 
     private void registerEntityRenderers() {
@@ -100,7 +96,6 @@ public class ShitClientMod implements ClientModInitializer {
 
     private void registerProjectiles() {
         EntityRendererRegistry.register(TrashCanProjectileEntityType, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(BulletProjectileEntityType, BulletEntityRenderer::new);
     }
 
     private void registerParticles() {

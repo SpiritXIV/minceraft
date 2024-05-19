@@ -2,12 +2,7 @@ package com.spirit.shit.global.item;
 
 import com.spirit.Main;
 import com.spirit.shit.global.item.custom.*;
-import com.spirit.shit.global.item.custom.gun.*;
 import com.spirit.shit.global.item.custom.projectile.TrashCanProjectileItem;
-import com.spirit.shit.global.item.custom.projectile.bullet.BulletItem;
-import com.spirit.shit.global.item.custom.projectile.bullet.RifleBulletItem;
-import com.spirit.shit.global.item.custom.projectile.bullet.ShellItem;
-import com.spirit.shit.global.item.custom.projectile.bullet.SlugItem;
 import com.spirit.shit.global.item.material.CatcornMaterial;
 import com.spirit.shit.global.item.material.GiantLolipopMaterial;
 import com.spirit.shit.global.sound.ShitSounds;
@@ -174,21 +169,6 @@ public class ShitItems {
     public static final Item SPEED_COLA = new SodaItem(new FabricItemSettings().food(ShitFoodComponents.SODA).maxCount(16).rarity(Rarity.COMMON));
     public static final Item CHOCOLATE_OREO_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
     public static final Item GRIMACE_SHAKE = new ChocolateOreoShakeItem(new FabricItemSettings().food(ShitFoodComponents.PEEP).maxCount(1).rarity(Rarity.COMMON));
-    public static final Item BULLET = new BulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
-    public static final Item RIFLE_BULLET = new RifleBulletItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
-    public static final Item SHELL = new ShellItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
-    public static final Item SLUG = new SlugItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(64));
-    public static final Item AK47 = new AK47Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item DOUBLE_BARREL = new DoubleBarrelItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item FNP90 = new fnp90Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item FNP90SCOPE = new fnp90scopeItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item GLOCK17 = new Glock17Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item M16 = new M16Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item M1_GARAND = new M1GarandItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item REVOLVER = new RevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item GOLDEN_REVOLVER = new GoldenRevolverItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item SAWED_OFF = new SawedOffItem(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
-    public static final Item STRIKER_12 = new Striker12Item(new FabricItemSettings().rarity(Rarity.COMMON).maxCount(1).maxDamage(600));
     public static final Item GIANT_LOLLIPOP = new GiantLollipopItem(GiantLolipopMaterial.INSTANCE, 9, -0F, new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item CATCORN = new CatCornItem(CatcornMaterial.INSTANCE, 9, -0F, new FabricItemSettings().maxCount(1).rarity(Rarity.COMMON));
     public static final Item PIE = new Item(new FabricItemSettings().maxCount(64).rarity(Rarity.COMMON));
@@ -442,21 +422,7 @@ public class ShitItems {
             {"speed_cola", SPEED_COLA},
             {"chocolate_oreo_shake", CHOCOLATE_OREO_SHAKE},
             {"grimace_shake", GRIMACE_SHAKE},
-            {"bullet", BULLET},
-            {"rifle_bullet", RIFLE_BULLET},
-            {"shell", SHELL},
-            {"slug", SLUG},
-            {"ak47", AK47},
-            {"double_barrel", DOUBLE_BARREL},
-            {"fnp_90", FNP90},
-            {"fnp_90_scope", FNP90SCOPE},
-            {"glock_17", GLOCK17},
-            {"m16", M16},
-            {"m1_garand", M1_GARAND},
-            {"revolver", REVOLVER},
-            {"revolver_golden", GOLDEN_REVOLVER},
-            {"sawed_off", SAWED_OFF},
-            {"striker_12", STRIKER_12},
+
             {"pie", PIE},
             {"pie_damage", PIE_DAMAGE},
             {"pie_sus", PIE_SUS},

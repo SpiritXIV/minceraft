@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.spirit.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ClientPlayerInteractionManagerMixin",
+    "LivingEntityMixin",
+    "SculkBlockMixin",
+    "SculkPatchFeatureMixin",
+    "WardenEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "BipedModelMixin",
+    "ClientLivingEntityMixin",
+    "HandRendererMixin"
+  ]
+}

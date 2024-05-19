@@ -12,6 +12,7 @@ base {
 repositories {
 	maven { url 'https://maven.fabricmc.net/' }
 	maven { url 'https://repo.spongepowered.org/maven/' } // Add this if missing
+	maven { url "https://maven.terraformersmc.com/releases/" }
 	mavenCentral()
 }
 
@@ -38,13 +39,17 @@ sourceSets {
 		}
 	}
 }
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "com.terraformersmc:modmenu:7.2.2"
+	implementation 'io.github.llamalad7:mixinextras-common:0.3.5'
 	implementation 'org.jetbrains:annotations:24.0.1'
+	implementation 'com.google.code.gson:gson:2.8.8'
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }

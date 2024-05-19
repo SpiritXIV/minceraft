@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=east": {"model": "shit:block/modem", "y": 270},
-    "facing=north": {"model": "shit:block/modem", "y": 180},
-    "facing=south": {"model": "shit:block/modem"},
-    "facing=west": {"model": "shit:block/modem", "y": 90}
-  }
-}

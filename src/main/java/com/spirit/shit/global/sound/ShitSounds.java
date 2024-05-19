@@ -40,14 +40,6 @@ public class ShitSounds {
     public static final SoundEvent BIKEHORN = SoundEvent.of(new Identifier(Main.SHIT_ID, "bikehorn"));
     public static final SoundEvent CLOWNHORN = SoundEvent.of(new Identifier(Main.SHIT_ID, "clownhorn"));
     public static final SoundEvent BIKEHORN_RARE = SoundEvent.of(new Identifier(Main.SHIT_ID, "bikehorn_rare"));
-    public static final SoundEvent BULLET_IMPACT = SoundEvent.of(new Identifier(Main.SHIT_ID, "bullet_impact"));
-    public static final SoundEvent HUNTING_RIFLE_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "hunting_rifle_shoot"));
-    public static final SoundEvent M16_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "m16_shoot"));
-    public static final SoundEvent PISTOL_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "pistol_shoot"));
-    public static final SoundEvent REVOLVER_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "revolver_shoot"));
-    public static final SoundEvent RIFLE_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "rifle_shoot"));
-    public static final SoundEvent SHOTGUN_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "shotgun_shoot"));
-    public static final SoundEvent SNIPER_SHOOT = SoundEvent.of(new Identifier(Main.SHIT_ID, "sniper_shoot"));
     public static final SoundEvent JBIRD_SPEAK = SoundEvent.of(new Identifier(Main.SHIT_ID, "jbird_speak"));
     public static final SoundEvent JBIRD_HURT = SoundEvent.of(new Identifier(Main.SHIT_ID, "jbird_hurt"));
     public static final SoundEvent IM_SLIM = SoundEvent.of(new Identifier(Main.SHIT_ID, "im_slim"));
@@ -86,6 +78,7 @@ public class ShitSounds {
     public static final SoundEvent VILLAGER_TAKEONME = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_takeonme"));
     public static final SoundEvent VILLAGER_WHATISLOVE = SoundEvent.of(new Identifier(Main.SHIT_ID, "villager_whatislove"));
     public static final SoundEvent RIFF = SoundEvent.of(new Identifier(Main.SHIT_ID, "riff"));
+    public static final SoundEvent RADAR = SoundEvent.of(new Identifier(Main.SHIT_ID, "radar"));
 
     static Map<String, Object> SOUNDS = Stream.of(new Object[][]{
             {"light_buzzing", LIGHT_BUZZING},
@@ -106,14 +99,6 @@ public class ShitSounds {
             {"glass_bottle_thrown", GLASS_BOTTLE_THROWN},
             {"plastic_bottle_thrown", PLASTIC_BOTTLE_THROWN},
             {"plastic_bottle_hit", PLASTIC_BOTTLE_HIT},
-            {"bullet_impact", BULLET_IMPACT},
-            {"hunting_rifle_shoot", HUNTING_RIFLE_SHOOT},
-            {"m16_shoot", M16_SHOOT},
-            {"pistol_shoot", PISTOL_SHOOT},
-            {"revolver_shoot", REVOLVER_SHOOT},
-            {"rifle_shoot", RIFLE_SHOOT},
-            {"shotgun_shoot", SHOTGUN_SHOOT},
-            {"sniper_shoot", SNIPER_SHOOT},
             {"jbird_speak", JBIRD_SPEAK},
             {"jbird_hurt", JBIRD_HURT},
             {"im_slim", IM_SLIM},
@@ -152,7 +137,9 @@ public class ShitSounds {
             {"villager_takeonme", VILLAGER_TAKEONME},
             {"villager_whatislove", VILLAGER_WHATISLOVE},
             {"rubber_chicken", RUBBER_CHICKEN},
-            {"riff", RIFF}
+            {"riff", RIFF},
+            {"radar", RADAR}
+
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
 

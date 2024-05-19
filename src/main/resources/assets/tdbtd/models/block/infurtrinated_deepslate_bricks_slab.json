@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "tdbtd:block/infurtrinated_deepslate_bricks",
-    "side": "tdbtd:block/infurtrinated_deepslate_bricks",
-    "top": "tdbtd:block/infurtrinated_deepslate_bricks"
-  }
-}

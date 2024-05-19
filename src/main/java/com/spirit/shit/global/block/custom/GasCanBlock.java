@@ -73,28 +73,8 @@ public class GasCanBlock extends AbstractShitBlock {
             double y = pos.getY();
             double z = pos.getZ();
 
-            world.createExplosion(
-                    igniter,
-                    DamageTypes.of(world, DamageTypes.GAS_CAN),
-                    new ExplosionBehavior(),
-                    x,
-                    y + 1,
-                    z,
-                    10,
-                    true,
-                    World.ExplosionSourceType.TNT
-            );
-            igniter.getWorld().createExplosion(
-                    igniter,
-                    DamageTypes.of(world, DamageTypes.GAS_CAN),
-                    new ExplosionBehavior(),
-                    x,
-                    y + 1,
-                    z,
-                    10,
-                    true,
-                    World.ExplosionSourceType.TNT
-            );
+            world.createExplosion(igniter, DamageTypes.of(world, DamageTypes.GAS_CAN), new ExplosionBehavior(), x, y + 1, z, 10, true, World.ExplosionSourceType.TNT);
+            igniter.getWorld().createExplosion(igniter, DamageTypes.of(world, DamageTypes.GAS_CAN), new ExplosionBehavior(), x, y + 1, z, 10, true, World.ExplosionSourceType.TNT);
         }
     }
 

@@ -13,9 +13,16 @@ package com.spirit;
 import com.mojang.serialization.Lifecycle;
 import com.spirit.gamblic.GamblicMod;
 import com.spirit.ignite.IgniteMod;
+import com.spirit.ignite.global.block.IgniteBlocks;
+import com.spirit.ignite.global.item.IgniteItemGroup;
+import com.spirit.ignite.global.item.IgniteItems;
+import com.spirit.ignite.global.item.custom.GunItem;
+import com.spirit.ignite.global.particle.IgniteParticles;
+import com.spirit.ignite.global.sound.IgniteSounds;
+import com.spirit.koil.api.json.JsonBlockMaker;
+import com.spirit.koil.api.json.JsonItemMaker;
+import com.spirit.koil.util.PacketIDs;
 import com.spirit.shit.ShitMod;
-import com.spirit.shit.data.common.GunItem;
-import com.spirit.shit.data.util.PacketIDs;
 import com.spirit.shit.global.block.ShitBlockEntities;
 import com.spirit.shit.global.block.ShitBlocks;
 import com.spirit.shit.global.effect.ShitEffects;
@@ -51,6 +58,8 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.nio.file.FileSystems;
 import java.util.concurrent.TimeUnit;
 
 import static com.spirit.tdbtd.global.entity.TDBTDEntities.*;
@@ -59,7 +68,6 @@ public class Main implements ModInitializer {
     public static final RegistryKey<Registry<DamageType>> CUSTOM_DAMAGE_TYPE_KEY = RegistryKey.ofRegistry(new Identifier("shit", "damage_type"));
     public static final SimpleRegistry<DamageType> CUSTOM_DAMAGE_TYPE_REGISTRY = new SimpleRegistry<>(CUSTOM_DAMAGE_TYPE_KEY, Lifecycle.stable(), true);
     public static StringBuilder blockTextBuilder = new StringBuilder();
-    public static final String FILE = "minceraft-0.70.15.jar";
 
     public static final String MAIN_ID = "minceraft";
     public static final String KOIL_ID = "koil";
@@ -76,6 +84,7 @@ public class Main implements ModInitializer {
 
     @Override
     public void onInitialize() {
+
         //Koil Bridges:
         //Main.bridgeStart();
         //String DIRECTORY = "./mods/";
@@ -83,44 +92,43 @@ public class Main implements ModInitializer {
         //Quilt.logQuiltBridge(String.valueOf(FileSystems.getDefault().getPath(DIRECTORY).toAbsolutePath()));
         //Main.bridgeEnd();
         //System.out.println("INIT - BULLET" + ShitItems.BULLET);
-
         Main.checkMain();
         Main.checkTDBTDMod();
         Main.checkShitpostMod();
         Main.checkIgniteMod();
         Main.checkGamblicMod();
+        Main.checkBranches();
 
-        TDBTDItemGroup.register();
-        ShitItemGroup.register();
-
+        JsonItemMaker.makeTheJsonItem();
+        JsonItemMaker.registerItemsFromJson();
+        JsonBlockMaker.makeTheJsonBlocks();
+        JsonBlockMaker.registerBlocksFromJson();
 
         TDBTDItems.registerAllItems();
         ShitItems.registerAll();
-
+        IgniteItems.registerAll();
 
         TDBTDBlocks.registerAllBlocks();
         ShitBlocks.registerAll();
-
+        IgniteBlocks.registerAll();
 
         TDBTDLootTableModifiers.modifyLootTables();
 
-
-
         TDBTDSounds.registerAll();
         ShitSounds.registerAll();
-
+        IgniteSounds.registerAll();
 
         TDBTDBlockEntities.registerBlockEntities();
         ShitBlockEntities.registerBlockEntities();
 
-
         ShitParticles.registerParticles();
+        IgniteParticles.registerParticles();
+
         TDBTDEffects.registerEffects();
         ShitEffects.registerEffects();
         TDBTDPotions.registerPotions();
         ShitPotions.registerPotions();
         ShitPaintings.registerPaintings();
-
 
         TDBTDWorldGeneration.generateTDBTDWorldGen();
         TDBTDWorldGeneration.registerWorldGenFeat();
@@ -161,7 +169,15 @@ public class Main implements ModInitializer {
                 ItemStack itemStack = player.getStackInHand(Hand.values()[hand]);
                 if (itemStack.getItem() instanceof GunItem) {
                     ((GunItem) itemStack.getItem()).handleLeftClick(itemStack, player, player.getWorld());
-                    // Now this function internally checks for cooldown
+                }
+            });
+        });
+        ServerPlayNetworking.registerGlobalReceiver(PacketIDs.ZOOM_GUN_PACKET, (server, player, handler, buf, responseSender) -> {
+            int hand = buf.readInt(); // Read data sent from the client
+            server.execute(() -> { // Switch to the main server thread before modifying the game
+                ItemStack itemStack = player.getStackInHand(Hand.values()[hand]);
+                if (itemStack.getItem() instanceof GunItem) {
+                    ((GunItem) itemStack.getItem()).handleRightClick(itemStack, player, player.getWorld());
                 }
             });
         });
@@ -191,15 +207,38 @@ public class Main implements ModInitializer {
         //    SimpleCommandMap.BukkitCommand.register(dispatcher);
         //});
 
-
-
-        TDBTDMod.registerTDBTDMod();
-        ShitMod.registerShitpostMod();
-        IgniteMod.registerIgniteMod();
-        GamblicMod.registerGamblicMod();
-
         Main.registerMain();
     }
+
+
+    private static void checkBranches() {
+        File modsFolder = new File(String.valueOf(FileSystems.getDefault().getPath("./mods/").toAbsolutePath()));
+        File[] modFiles = modsFolder.listFiles();
+
+        if (modFiles != null) {
+            for (File modFile : modFiles) {
+                if (modFile.getName().endsWith(".jar")) {
+                    if (modFile.getName().startsWith("tdbtd")) {
+                        TDBTDMod.registerTDBTDMod();
+                        TDBTDItemGroup.register();
+                    }
+                    if (modFile.getName().startsWith("shitpost")) {
+                        ShitMod.registerShitpostMod();
+                        ShitItemGroup.register();
+                    }
+                    if (modFile.getName().startsWith("ignite")) {
+                        IgniteMod.registerIgniteMod();
+                        IgniteItemGroup.register();
+                    }
+                    if (modFile.getName().startsWith("gamblic")) {
+                        GamblicMod.registerGamblicMod();
+                    }
+                }
+            }
+        }
+    }
+
+
     public static void checkMain() {
         Main.LOGGER.info("> --Checking || minceraft/src/main/java/com/spirit/... ~ main");
     }
@@ -269,5 +308,3 @@ public class Main implements ModInitializer {
         }
     }
 }
-
-

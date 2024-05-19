@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "tdbtd:block/dimented_rooted_dirt"
-  }
-}

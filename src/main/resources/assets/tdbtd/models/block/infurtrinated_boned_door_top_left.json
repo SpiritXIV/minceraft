@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_left",
-  "textures": {
-    "bottom": "tdbtd:block/infurtrinated_boned_door_bottom",
-    "top": "tdbtd:block/infurtrinated_boned_door_top"
-  }
-}

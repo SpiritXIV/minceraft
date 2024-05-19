@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_pressed",
-  "textures": {
-    "texture": "tdbtd:block/criteric_charred_planks"
-  }
-}

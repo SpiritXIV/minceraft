@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "tdbtd:block/infurtrinated_stone_bricks",
-    "side": "tdbtd:block/infurtrinated_stone_bricks",
-    "top": "tdbtd:block/infurtrinated_stone_bricks"
-  }
-}

@@ -1,5 +1,6 @@
 package com.spirit.shit.data.common;
 
+import com.spirit.ignite.data.common.Common;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

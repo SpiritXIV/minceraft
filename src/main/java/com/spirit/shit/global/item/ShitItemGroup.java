@@ -316,22 +316,6 @@ public class ShitItemGroup {
                         entries.add(ShitBlocks.BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_TOP_OFF);
                         entries.add(ShitBlocks.BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_BOTTOM);
                         entries.add(ShitBlocks.BACKROOMS_CONCRETE_WALL_PILLAR_LIGHT_BOTTOM_OFF);
-                        entries.add(ShitBlocks.LAND_MINE);
-                        entries.add(ShitItems.AK47);
-                        entries.add(ShitItems.DOUBLE_BARREL);
-                        entries.add(ShitItems.FNP90);
-                        entries.add(ShitItems.FNP90SCOPE);
-                        entries.add(ShitItems.GLOCK17);
-                        entries.add(ShitItems.M16);
-                        entries.add(ShitItems.M1_GARAND);
-                        entries.add(ShitItems.REVOLVER);
-                        entries.add(ShitItems.GOLDEN_REVOLVER);
-                        entries.add(ShitItems.SAWED_OFF);
-                        entries.add(ShitItems.STRIKER_12);
-                        entries.add(ShitItems.BULLET);
-                        entries.add(ShitItems.RIFLE_BULLET);
-                        entries.add(ShitItems.SHELL);
-                        entries.add(ShitItems.SLUG);
                     }).build());
 
     public static void register() {

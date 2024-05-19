@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "tdbtd:block/infurtrinated_andesite",
-    "side": "tdbtd:block/infurtrinated_andesite",
-    "top": "tdbtd:block/infurtrinated_andesite"
-  }
-}

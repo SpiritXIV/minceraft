@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "powered=false": { "model": "tdbtd:block/criteric_charred_pressure_plate" },
-    "powered=true": { "model": "tdbtd:block/criteric_charred_pressure_plate_down" }
-  }
-}

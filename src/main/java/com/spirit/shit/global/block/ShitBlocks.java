@@ -81,7 +81,6 @@ public class ShitBlocks {
     public static final Block SPIRIT_PLUSH = new SpiritPlushBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
     //WARZONE
-    public static final Block LAND_MINE = new LandMineBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
 
     //OTHER BLOCKS
     public static final Block CUBE_BLUE = new Block(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE).sounds(BlockSoundGroup.STONE).strength(2.0F));
@@ -148,7 +147,6 @@ public class ShitBlocks {
             {"backrooms_wetted_concrete_ceiling", BACKROOMS_WETTED_CONCRETE_CEILING},
             {"backrooms_industrial_light", BACKROOMS_INDUSTRIAL_LIGHT},
             {"backrooms_industrial_light_shattered", BACKROOMS_INDUSTRIAL_LIGHT_SHATTERED},
-
             {"alpha_plush", ALPHA_PLUSH},
             {"catlove_plush", CATLOVE_PLUSH},
             {"chefinsanity_plush", CHEFINSANITY_PLUSH},
@@ -162,7 +160,6 @@ public class ShitBlocks {
             {"sierra_plush", SIERRA_PLUSH},
             {"slazer_plush", SLAZER_PLUSH},
             {"spirit_plush", SPIRIT_PLUSH},
-            {"land_mine", LAND_MINE},
             {"cube_blue", CUBE_BLUE},
             {"cube_gray", CUBE_GRAY},
             {"cube_green", CUBE_GREEN},
@@ -177,7 +174,6 @@ public class ShitBlocks {
             {"cube_yellow", CUBE_YELLOW},
             {"bauxite_ore", BAUXITE_ORE},
             {"deepslate_bauxite_ore", DEEPSLATE_BAUXITE_ORE},
-
             {"1_momen_stack", ONE_MOMEN_STACK},
             {"5_momen_stack", FIVE_MOMEN_STACK},
             {"10_momen_stack", TEN_MOMEN_STACK},

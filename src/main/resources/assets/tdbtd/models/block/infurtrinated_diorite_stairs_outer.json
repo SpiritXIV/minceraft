@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "tdbtd:block/infurtrinated_diorite",
-    "side": "tdbtd:block/infurtrinated_diorite",
-    "top": "tdbtd:block/infurtrinated_diorite"
-  }
-}

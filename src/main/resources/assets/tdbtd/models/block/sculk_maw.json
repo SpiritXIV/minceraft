@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "tdbtd:block/sculk_maw",
-    "particle": "tdbtd:block/sculk_maw"
-  }
-}

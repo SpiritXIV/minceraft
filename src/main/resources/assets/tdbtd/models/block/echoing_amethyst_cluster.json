@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "tdbtd:block/echoing_amethyst_cluster"
-  }
-}

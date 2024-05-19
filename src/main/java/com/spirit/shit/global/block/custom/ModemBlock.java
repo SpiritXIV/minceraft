@@ -1,7 +1,7 @@
 package com.spirit.shit.global.block.custom;
 
 import com.spirit.shit.data.common.AbstractShitBlock;
-import com.spirit.shit.data.common.Common;
+import com.spirit.ignite.data.common.Common;
 import com.spirit.shit.global.sound.ShitSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

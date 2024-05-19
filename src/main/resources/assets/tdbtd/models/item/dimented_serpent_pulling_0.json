@@ -1,6 +1,0 @@
-{
-    "parent": "tdbtd:item/dimented_serpent",
-    "textures": {
-        "layer0": "tdbtd:item/dimented_serpent_pulling_0"
-    }
-}

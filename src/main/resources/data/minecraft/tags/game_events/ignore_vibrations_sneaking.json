@@ -1,7 +1,0 @@
-{
-  "values": [
-    "minecraft:step",
-    "minecraft:item_interact_start",
-    "minecraft:item_interact_finish"
-  ]
-}
